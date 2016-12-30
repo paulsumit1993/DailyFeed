@@ -12,26 +12,40 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var sourceTableView: UITableView!
     
-    var data = "the-verge"
+    var sourceItems = [DailySourceModel]()
+    
+    var selectedItem = DailySourceModel?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DailySourceModel.getNewsSource { (newsItem, error) in
+            print(newsItem)
+            if let news = newsItem {
+                news.map { self.sourceItems.append($0) }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.sourceTableView.reloadData()
+                })
+            }
+        }
+        
     }
     
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return sourceItems.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SourceCell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = "The Verge"
+        cell.textLabel?.text = sourceItems[indexPath.row].name
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedItem = sourceItems[indexPath.row]
         self.performSegueWithIdentifier("sourceUnwindSegue", sender: self)
     }
 }
