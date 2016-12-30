@@ -20,12 +20,12 @@ class TSImageView: UIImageView {
         imageUrlString = urlString
         
         self.image = nil
-        self.animateImageAppearance(0.25, option: UIViewAnimationOptions.CurveEaseIn, 0.4)
+        self.animateImageAppearance(0.25, option: UIViewAnimationOptions.CurveEaseIn, alpha: 0.4)
         contentMode = mode
         
         if let imageFromCache = imageCache.objectForKey(urlString) as? UIImage {
             self.image = imageFromCache
-            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
+            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, alpha: 1.0)
             return
         }
         
@@ -42,10 +42,10 @@ class TSImageView: UIImageView {
                 
                 if self.imageUrlString == urlString {
                     self.image = imageToCache
-                    self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
+                    self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, alpha: 1.0)
                 }
                 imageCache.setObject(imageToCache, forKey: urlString)
-                self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
+                self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, alpha: 1.0)
             })
             
             }.resume()
