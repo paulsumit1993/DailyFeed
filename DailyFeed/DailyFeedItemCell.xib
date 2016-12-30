@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DailyFeedItemCell" id="gTV-IL-0wX" customClass="DailyFeedItemCell" customModule="DailyFeed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="176" height="159"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="176" height="159"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F0f-SR-SVQ" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="176" height="159"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3u-J2-aGH">
+                        <rect key="frame" x="8" y="137" width="160" height="14"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8cU-x5-Vmt">
+                        <rect key="frame" x="8" y="117" width="148" height="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="A3u-J2-aGH" firstAttribute="top" secondItem="8cU-x5-Vmt" secondAttribute="bottom" constant="5" id="6Qi-wM-UXI"/>
+                <constraint firstItem="F0f-SR-SVQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="O1Q-T3-eQE"/>
+                <constraint firstItem="8cU-x5-Vmt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="QUF-Ak-0R9"/>
+                <constraint firstAttribute="bottom" secondItem="F0f-SR-SVQ" secondAttribute="bottom" id="cDV-9t-Vho"/>
+                <constraint firstAttribute="trailing" secondItem="A3u-J2-aGH" secondAttribute="trailing" constant="8" id="gSG-kA-gGy"/>
+                <constraint firstItem="A3u-J2-aGH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="iQn-5c-tzi"/>
+                <constraint firstAttribute="trailing" secondItem="F0f-SR-SVQ" secondAttribute="trailing" id="lXL-EN-Aog"/>
+                <constraint firstAttribute="bottom" secondItem="A3u-J2-aGH" secondAttribute="bottom" constant="8" id="qKc-dG-Emv"/>
+                <constraint firstAttribute="trailing" secondItem="8cU-x5-Vmt" secondAttribute="trailing" constant="20" id="u2T-Ym-ZRN"/>
+                <constraint firstItem="F0f-SR-SVQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yje-QZ-Xb6"/>
+            </constraints>
+            <size key="customSize" width="176" height="159"/>
+            <connections>
+                <outlet property="newsItemImageView" destination="F0f-SR-SVQ" id="uhR-1Z-D85"/>
+                <outlet property="newsItemSourceLabel" destination="A3u-J2-aGH" id="DjY-z1-1lH"/>
+                <outlet property="newsItemTitleLabel" destination="8cU-x5-Vmt" id="ERl-jQ-yqc"/>
+            </connections>
+            <point key="canvasLocation" x="566" y="432.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

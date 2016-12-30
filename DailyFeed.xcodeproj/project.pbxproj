@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		063504FC1E151C4A002510B0 /* MySafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063504FB1E151C4A002510B0 /* MySafariViewController.swift */; };
+		063505021E15342C002510B0 /* NewsSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063505011E15342C002510B0 /* NewsSourceViewController.swift */; };
 		06D04C1F1E1248DB0013B4AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */; };
-		06D04C211E1248DB0013B4AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C201E1248DB0013B4AA /* ViewController.swift */; };
+		06D04C211E1248DB0013B4AA /* DailyFeedNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C201E1248DB0013B4AA /* DailyFeedNewsController.swift */; };
 		06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06D04C221E1248DB0013B4AA /* Main.storyboard */; };
 		06D04C261E1248DB0013B4AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06D04C251E1248DB0013B4AA /* Assets.xcassets */; };
 		06D04C291E1248DB0013B4AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06D04C271E1248DB0013B4AA /* LaunchScreen.storyboard */; };
 		06D04C341E1248DB0013B4AA /* DailyFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C331E1248DB0013B4AA /* DailyFeedTests.swift */; };
 		06D04C3F1E1248DC0013B4AA /* DailyFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C3E1E1248DC0013B4AA /* DailyFeedUITests.swift */; };
+		06D04C4D1E1249430013B4AA /* DailyFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C4C1E1249430013B4AA /* DailyFeedModel.swift */; };
+		06D04C4F1E1262460013B4AA /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C4E1E1262460013B4AA /* NewsDetailViewController.swift */; };
+		06D04C511E126BD40013B4AA /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C501E126BD40013B4AA /* UIImageExtension.swift */; };
+		06D04C541E13945D0013B4AA /* DailyFeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */; };
+		06D04C551E13945D0013B4AA /* DailyFeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */; };
+		06D04C571E13948C0013B4AA /* TSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C561E13948C0013B4AA /* TSImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		063504FB1E151C4A002510B0 /* MySafariViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySafariViewController.swift; sourceTree = "<group>"; };
+		063505011E15342C002510B0 /* NewsSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSourceViewController.swift; sourceTree = "<group>"; };
 		06D04C1B1E1248DA0013B4AA /* DailyFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06D04C201E1248DB0013B4AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		06D04C201E1248DB0013B4AA /* DailyFeedNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedNewsController.swift; sourceTree = "<group>"; };
 		06D04C231E1248DB0013B4AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06D04C251E1248DB0013B4AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06D04C281E1248DB0013B4AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +57,12 @@
 		06D04C3A1E1248DB0013B4AA /* DailyFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D04C3E1E1248DC0013B4AA /* DailyFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedUITests.swift; sourceTree = "<group>"; };
 		06D04C401E1248DC0013B4AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06D04C4C1E1249430013B4AA /* DailyFeedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedModel.swift; sourceTree = "<group>"; };
+		06D04C4E1E1262460013B4AA /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		06D04C501E126BD40013B4AA /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedItemCell.swift; sourceTree = "<group>"; };
+		06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyFeedItemCell.xib; sourceTree = "<group>"; };
+		06D04C561E13948C0013B4AA /* TSImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +90,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		063504FD1E151CFD002510B0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				06D04C201E1248DB0013B4AA /* DailyFeedNewsController.swift */,
+				06D04C4E1E1262460013B4AA /* NewsDetailViewController.swift */,
+				063504FB1E151C4A002510B0 /* MySafariViewController.swift */,
+				063505011E15342C002510B0 /* NewsSourceViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		063504FE1E151D19002510B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06D04C4C1E1249430013B4AA /* DailyFeedModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		063504FF1E151D2C002510B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06D04C2A1E1248DB0013B4AA /* Info.plist */,
+				06D04C251E1248DB0013B4AA /* Assets.xcassets */,
+				06D04C561E13948C0013B4AA /* TSImageView.swift */,
+				06D04C501E126BD40013B4AA /* UIImageExtension.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		063505001E151D40002510B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06D04C221E1248DB0013B4AA /* Main.storyboard */,
+				06D04C271E1248DB0013B4AA /* LaunchScreen.storyboard */,
+				06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */,
+				06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		06D04C121E1248DA0013B4AA = {
 			isa = PBXGroup;
 			children = (
@@ -98,11 +155,10 @@
 			isa = PBXGroup;
 			children = (
 				06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */,
-				06D04C201E1248DB0013B4AA /* ViewController.swift */,
-				06D04C221E1248DB0013B4AA /* Main.storyboard */,
-				06D04C251E1248DB0013B4AA /* Assets.xcassets */,
-				06D04C271E1248DB0013B4AA /* LaunchScreen.storyboard */,
-				06D04C2A1E1248DB0013B4AA /* Info.plist */,
+				063504FE1E151D19002510B0 /* Model */,
+				063505001E151D40002510B0 /* View */,
+				063504FD1E151CFD002510B0 /* Controller */,
+				063504FF1E151D2C002510B0 /* Supporting Files */,
 			);
 			path = DailyFeed;
 			sourceTree = "<group>";
@@ -229,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D04C551E13945D0013B4AA /* DailyFeedItemCell.xib in Resources */,
 				06D04C291E1248DB0013B4AA /* LaunchScreen.storyboard in Resources */,
 				06D04C261E1248DB0013B4AA /* Assets.xcassets in Resources */,
 				06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */,
@@ -256,7 +313,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06D04C211E1248DB0013B4AA /* ViewController.swift in Sources */,
+				06D04C4F1E1262460013B4AA /* NewsDetailViewController.swift in Sources */,
+				06D04C211E1248DB0013B4AA /* DailyFeedNewsController.swift in Sources */,
+				063504FC1E151C4A002510B0 /* MySafariViewController.swift in Sources */,
+				06D04C571E13948C0013B4AA /* TSImageView.swift in Sources */,
+				063505021E15342C002510B0 /* NewsSourceViewController.swift in Sources */,
+				06D04C541E13945D0013B4AA /* DailyFeedItemCell.swift in Sources */,
+				06D04C4D1E1249430013B4AA /* DailyFeedModel.swift in Sources */,
+				06D04C511E126BD40013B4AA /* UIImageExtension.swift in Sources */,
 				06D04C1F1E1248DB0013B4AA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +546,7 @@
 				06D04C451E1248DC0013B4AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06D04C461E1248DC0013B4AA /* Build configuration list for PBXNativeTarget "DailyFeedTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +555,7 @@
 				06D04C481E1248DC0013B4AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06D04C491E1248DC0013B4AA /* Build configuration list for PBXNativeTarget "DailyFeedUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +564,7 @@
 				06D04C4B1E1248DC0013B4AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
