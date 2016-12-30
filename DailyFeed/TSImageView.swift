@@ -14,12 +14,18 @@ class TSImageView: UIImageView {
     
     var imageUrlString = String?()
     
+    
+    
     func downloadedFromLink(urlString: String, contentMode mode: UIViewContentMode = .ScaleAspectFill) {
         guard let url = NSURL(string: urlString) else { return }
         
         imageUrlString = urlString
         
         self.image = nil
+        UIView.animateWithDuration(0.25, delay: 0.0, options:UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.alpha = 0.4
+            }, completion: nil)
+        
         contentMode = mode
         
         if let imageFromCache = imageCache.objectForKey(urlString) as? UIImage {
@@ -41,6 +47,7 @@ class TSImageView: UIImageView {
                 
                 if self.imageUrlString == urlString {
                     self.image = imageToCache
+                    self.animateImageAppearance()
                 }
                 imageCache.setObject(imageToCache, forKey: urlString)
                 self.animateImageAppearance()
@@ -53,7 +60,7 @@ class TSImageView: UIImageView {
     //Image Appear Animation for Loading Images
     func animateImageAppearance() {
         
-        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
+        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.alpha = 1.0
             }, completion: nil)
     }
