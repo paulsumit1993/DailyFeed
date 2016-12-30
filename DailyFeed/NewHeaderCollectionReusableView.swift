@@ -10,5 +10,5 @@ import UIKit
 
 class NewHeaderCollectionReusableView: UICollectionReusableView {
         
-    @IBOutlet weak var newsSourceTitleLabel: UILabel!
+    @IBOutlet weak var newSourceImageView: TSImageView! 
 }

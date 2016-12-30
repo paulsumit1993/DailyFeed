@@ -15,8 +15,8 @@ class DailyFeedNewsController: UICollectionViewController {
     var newsItems = [DailyFeedModel]()
 
     var filteredNewsItems = [DailyFeedModel]()
-    
-    var newsSource: String? = "The Verge"
+        
+    var newsSourceUrl: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
     
     var resultsSearchController = UISearchController!()
     
@@ -97,7 +97,7 @@ class DailyFeedNewsController: UICollectionViewController {
     @IBAction func unwindToDailyNewsFeed(segue: UIStoryboardSegue) {
         if let sourceVC = segue.sourceViewController as? NewsSourceViewController, sourceId = sourceVC.selectedItem?.id {
            self.activityIndicator.startAnimating()
-           self.newsSource = sourceVC.selectedItem?.name
+           self.newsSourceUrl = sourceVC.selectedItem?.urlsToLogos
            loadNewsData(sourceId)
         }
     }
@@ -157,7 +157,8 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
             
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "newsHeaderCell", forIndexPath: indexPath) as! NewHeaderCollectionReusableView
             
-            headerView.newsSourceTitleLabel.text = self.newsSource
+            headerView.newSourceImageView.downloadedFromLink(self.newsSourceUrl!)
+            headerView.layer.masksToBounds = true
             
             return headerView
             
