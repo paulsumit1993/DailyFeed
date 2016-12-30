@@ -17,7 +17,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="9G8-3r-4Jl">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="50" height="50"/>
                             <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -28,7 +28,7 @@
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1IM-9n-NdH">
-                                <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                <rect key="frame" x="5" y="55" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -37,8 +37,37 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsHeaderCell" id="uDu-Sf-au3" customClass="NewHeaderCollectionReusableView" customModule="DailyFeed" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgk-lP-tg8">
+                                    <rect key="frame" x="20" y="41" width="560" height="1"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="B48-eT-oeu"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Wall Street Journal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGt-Df-q3X">
+                                    <rect key="frame" x="212" y="15" width="176" height="20"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Hgk-lP-tg8" secondAttribute="bottom" constant="8" id="B8t-GL-Qva"/>
+                                <constraint firstItem="Hgk-lP-tg8" firstAttribute="leading" secondItem="uDu-Sf-au3" secondAttribute="leading" constant="20" id="CcH-ZI-a13"/>
+                                <constraint firstItem="gGt-Df-q3X" firstAttribute="centerX" secondItem="uDu-Sf-au3" secondAttribute="centerX" id="RgJ-T1-6MP"/>
+                                <constraint firstItem="gGt-Df-q3X" firstAttribute="centerY" secondItem="uDu-Sf-au3" secondAttribute="centerY" id="nFP-Bf-Pf7"/>
+                                <constraint firstAttribute="trailing" secondItem="Hgk-lP-tg8" secondAttribute="trailing" constant="20" id="w4p-wA-aeq"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="newsSourceTitleLabel" destination="gGt-Df-q3X" id="ad3-d0-tGB"/>
+                            </connections>
+                        </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterCell" id="Gdd-r4-LOU">
-                            <rect key="frame" x="0.0" y="55" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="105" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by NewsAPI.org" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZc-Js-chO">

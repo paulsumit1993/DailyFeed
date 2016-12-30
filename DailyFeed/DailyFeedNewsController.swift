@@ -150,12 +150,13 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
         
         switch kind {
             
-//        case UICollectionElementKindSectionHeader:
-//            
-//            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
-//            
-//            headerView.backgroundColor = UIColor.blueColor();
-//            return headerView
+        case UICollectionElementKindSectionHeader:
+            
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "newsHeaderCell", forIndexPath: indexPath) as! NewHeaderCollectionReusableView
+            
+            headerView.newsSourceTitleLabel.text = "The Verge"
+            
+            return headerView
             
         case UICollectionElementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "newsFooterCell", forIndexPath: indexPath) 
@@ -175,6 +176,8 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
         
         return CGSize(width: (width / 2) - 10, height: (height / 4) - 5)
     }
+    
+    
     
 
     //MARK: SearchController Delegate
