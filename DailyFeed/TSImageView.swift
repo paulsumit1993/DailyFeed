@@ -13,24 +13,19 @@ let imageCache = NSCache()
 class TSImageView: UIImageView {
     
     var imageUrlString = String?()
-    
-    
-    
+
     func downloadedFromLink(urlString: String, contentMode mode: UIViewContentMode = .ScaleAspectFill) {
         guard let url = NSURL(string: urlString) else { return }
         
         imageUrlString = urlString
         
         self.image = nil
-        UIView.animateWithDuration(0.25, delay: 0.0, options:UIViewAnimationOptions.CurveEaseIn, animations: {
-            self.alpha = 0.4
-            }, completion: nil)
-        
+        self.animateImageAppearance(0.25, option: UIViewAnimationOptions.CurveEaseIn, 0.4)
         contentMode = mode
         
         if let imageFromCache = imageCache.objectForKey(urlString) as? UIImage {
             self.image = imageFromCache
-            animateImageAppearance()
+            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
             return
         }
         
@@ -47,10 +42,10 @@ class TSImageView: UIImageView {
                 
                 if self.imageUrlString == urlString {
                     self.image = imageToCache
-                    self.animateImageAppearance()
+                    self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
                 }
                 imageCache.setObject(imageToCache, forKey: urlString)
-                self.animateImageAppearance()
+                self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
             })
             
             }.resume()
@@ -58,10 +53,10 @@ class TSImageView: UIImageView {
     }
     
     //Image Appear Animation for Loading Images
-    func animateImageAppearance() {
+    func animateImageAppearance(duration: Double, option: UIViewAnimationOptions, alpha: Double) {
         
-        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.alpha = 1.0
+        UIView.animateWithDuration(duration, delay: 0, options: duration, animations: {
+            self.alpha = alpha
             }, completion: nil)
     }
     
