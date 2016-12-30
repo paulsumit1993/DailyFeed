@@ -169,7 +169,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
             
         default:
             
-            assert(false, "Unexpected element kind")
+            return UICollectionReusableView()
         }
     }
     
