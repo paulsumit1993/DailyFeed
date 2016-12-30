@@ -37,7 +37,7 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gdd-r4-LOU">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterCell" id="Gdd-r4-LOU">
                             <rect key="frame" x="0.0" y="55" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -47,10 +47,20 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ay-mh-mFe">
+                                    <rect key="frame" x="20" y="8" width="560" height="1"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="Ngi-fL-mgy"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="4ay-mh-mFe" firstAttribute="leading" secondItem="Gdd-r4-LOU" secondAttribute="leading" constant="20" id="5ca-jg-D5N"/>
                                 <constraint firstItem="ZZc-Js-chO" firstAttribute="centerX" secondItem="Gdd-r4-LOU" secondAttribute="centerX" id="9Yi-xi-AQ2"/>
+                                <constraint firstAttribute="trailing" secondItem="4ay-mh-mFe" secondAttribute="trailing" constant="20" id="FKB-MD-ON8"/>
                                 <constraint firstItem="ZZc-Js-chO" firstAttribute="centerY" secondItem="Gdd-r4-LOU" secondAttribute="centerY" id="KCS-SY-lxg"/>
+                                <constraint firstItem="4ay-mh-mFe" firstAttribute="top" secondItem="Gdd-r4-LOU" secondAttribute="top" constant="8" id="rb0-YP-RAy"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>

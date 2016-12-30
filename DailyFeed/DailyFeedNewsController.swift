@@ -145,6 +145,30 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
         return cell
     }
     
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+            
+//        case UICollectionElementKindSectionHeader:
+//            
+//            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
+//            
+//            headerView.backgroundColor = UIColor.blueColor();
+//            return headerView
+            
+        case UICollectionElementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "newsFooterCell", forIndexPath: indexPath) 
+            
+            return footerView
+            
+        default:
+            
+            assert(false, "Unexpected element kind")
+        }
+    }
+    
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         guard let width = self.collectionView?.bounds.width, let height = self.collectionView?.bounds.height else { return CGSize(width: 10, height: 10) }
@@ -152,6 +176,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
         return CGSize(width: (width / 2) - 10, height: (height / 4) - 5)
     }
     
+
     //MARK: SearchController Delegate
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
