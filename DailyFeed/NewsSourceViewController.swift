@@ -20,9 +20,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         DailySourceModel.getNewsSource { (newsItem, error) in
-            print(newsItem)
             if let news = newsItem {
-                news.map { self.sourceItems.append($0) }
+                _ = news.map { self.sourceItems.append($0) }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.sourceTableView.reloadData()
                 })

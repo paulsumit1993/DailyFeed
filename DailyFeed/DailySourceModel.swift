@@ -19,7 +19,7 @@ public struct DailySourceModel {
         guard let id        = json["id"] as? String,
               let name      = json["name"] as? String,
               let url       = json["urlsToLogos"] as? [String: AnyObject],
-              let urlToLogo = url["small"] as? String else { return nil}
+              let urlToLogo = url["medium"] as? String else { return nil}
         
         
         self.id          = id

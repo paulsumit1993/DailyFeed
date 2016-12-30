@@ -43,9 +43,9 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DbO-tM-PWE" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
-                                    <rect key="frame" x="285" y="10" width="30" height="30"/>
+                                    <rect key="frame" x="280" y="5" width="40" height="40"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="1Cg-mr-4PD"/>
+                                        <constraint firstAttribute="height" constant="40" id="1Cg-mr-4PD"/>
                                         <constraint firstAttribute="width" secondItem="DbO-tM-PWE" secondAttribute="height" multiplier="1:1" id="qFY-SI-EIX"/>
                                     </constraints>
                                 </imageView>
