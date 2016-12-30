@@ -25,7 +25,7 @@ class TSImageView: UIImageView {
         
         if let imageFromCache = imageCache.objectForKey(urlString) as? UIImage {
             self.image = imageFromCache
-            animateImageAppearance()
+            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, 1.0)
             return
         }
         
