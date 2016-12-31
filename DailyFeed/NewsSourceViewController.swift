@@ -32,7 +32,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             controller.searchBar.tintColor = UIColor.whiteColor()
             controller.searchBar.sizeToFit()
             
-            self.tableView.tableHeaderView = controller.searchBar
+            self.sourceTableView.tableHeaderView = controller.searchBar
             
             return controller
             }()
@@ -91,7 +91,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             let searchResults = sourceItems.filter { $0.name.lowercaseString.containsString(searchString.lowercaseString) }
             filteredSourceItems = searchResults
             
-            self.tableView.reloadData()
+            self.sourceTableView.reloadData()
         }
     }
 }
