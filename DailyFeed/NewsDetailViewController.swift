@@ -20,7 +20,7 @@ class NewsDetailViewController: UIViewController {
         didSet {
             
             newsImageView.downloadedFromLink((receivedNewItem?.urlToImage)!)
-            newsImageView.addGradient([UIColor.blackColor().CGColor, UIColor.clearColor().CGColor], locations: [0.0, 0.1])
+            newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).CGColor, UIColor.clearColor().CGColor], locations: [0.0, 0.1])
             newsImageView.layer.masksToBounds = true
         }
     }
