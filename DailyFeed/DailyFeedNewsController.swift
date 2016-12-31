@@ -41,7 +41,7 @@ class DailyFeedNewsController: UICollectionViewController {
             controller.searchBar.sizeToFit()
             
             self.navigationItem.titleView = controller.searchBar
-            navigationController?.interactivePopGestureRecognizer.delegate = nil;
+            navigationController?.interactivePopGestureRecognizer?.delegate = nil;
             
             return controller
             }()
