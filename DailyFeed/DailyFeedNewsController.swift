@@ -58,12 +58,12 @@ class DailyFeedNewsController: UICollectionViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.hidesBarsOnTap = false
-        self.controller.searchBar.isHidden = false
+        self.resultsSearchController.searchBar.isHidden = false
     }
     
     override func viewWillDisappear(animated: Bool) {
          super.viewWillDisappear(animated)
-         self.controller.searchBar.isHidden = true
+         self.resultsSearchController.searchBar.isHidden = true
     }
     
     
