@@ -4,4 +4,4 @@
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
 <img src="https://img.shields.io/badge/Xcode-7.3-blue.svg?style=flat" />
 
-iOS client for NewsAPI.org
+iOS client for <a href="https://newsapi.org/">NewsAPI.org</a>
