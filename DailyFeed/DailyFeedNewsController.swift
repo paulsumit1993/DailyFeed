@@ -37,7 +37,7 @@ class DailyFeedNewsController: UICollectionViewController {
             controller.hidesNavigationBarDuringPresentation = false
             controller.searchBar.placeholder = "Search NEWS..."
             controller.searchBar.searchBarStyle = .Prominent
-            //controller.searchBar.tintColor = UIColor.whiteColor()
+            controller.searchBar.tintColor = UIColor.whiteColor()
             controller.searchBar.sizeToFit()
             
             self.navigationItem.titleView = controller.searchBar
