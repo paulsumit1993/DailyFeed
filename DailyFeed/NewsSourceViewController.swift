@@ -8,16 +8,34 @@
 
 import UIKit
 
-class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 
     @IBOutlet weak var sourceTableView: UITableView!
     
     var sourceItems = [DailySourceModel]()
     
+    var filteredSourceItems = [DailyFeedModel]()
+    
     var selectedItem = DailySourceModel?()
+    
+    var resultsSearchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+          self.resultsSearchController = {
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.searchBar.placeholder = "Search NEWS..."
+            controller.searchBar.tintColor = UIColor.whiteColor()
+            controller.searchBar.sizeToFit()
+            
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+            }()
         
         DailySourceModel.getNewsSource { (newsItem, error) in
             if let news = newsItem {
@@ -33,18 +51,47 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sourceItems.count
+         if self.resultsSearchController.active {
+            return self.filteredSourceItems.count
+        }
+        else {
+            return self.sourceItems.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SourceCell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = sourceItems[indexPath.row].name
+          if self.resultsSearchController.active {
+            cell.textLabel?.text = filteredSourceItems[indexPath.row].name
+        }
+        else {
+            cell.textLabel?.text = sourceItems[indexPath.row].name
+        }
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedItem = sourceItems[indexPath.row]
+        if self.resultsSearchController.active {
+            self.selectedItem = filteredSourceItems[indexPath.row]
+        }
+        else {
+            self.selectedItem = sourceItems[indexPath.row]
+        }
+
         self.performSegueWithIdentifier("sourceUnwindSegue", sender: self)
+    }
+    
+     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        filteredSourceItems.removeAll(keepCapacity: false)
+        
+        if let searchString = searchController.searchBar.text {
+            let searchResults = sourceItems.filter { $0.name.lowercaseString.containsString(searchString.lowercaseString) }
+            filteredSourceItems = searchResults
+            
+            self.tableView.reloadData()
+        }
     }
 }
