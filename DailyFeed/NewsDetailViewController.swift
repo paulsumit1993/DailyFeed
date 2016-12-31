@@ -54,13 +54,16 @@ class NewsDetailViewController: UIViewController {
         addBackButton()
         
     }
+    
+override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.hidesBarsOnTap = true
+}
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Hide Navigation bar on tap
-        navigationController?.hidesBarsOnTap = true
-    }
+override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.hidesBarsOnTap = false
+}
     
     //MARK: Back Button Init
     func addBackButton() {
