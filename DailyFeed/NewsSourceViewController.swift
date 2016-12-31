@@ -28,7 +28,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.hidesNavigationBarDuringPresentation = false
-            controller.searchBar.placeholder = "Search NEWS..."
+            controller.searchBar.placeholder = "Search Sources..."
+            controller.searchBar.tintColor = UIColor.blackColor()
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
             
