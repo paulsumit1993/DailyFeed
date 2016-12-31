@@ -30,7 +30,7 @@ class DailyFeedItemCell: UICollectionViewCell {
     func addGradient() {
         guard newsItemImageView.layer.sublayers?.count == nil else { return }
     
-        newsItemImageView.addGradient([UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.5).CGColor], locations: [0.0, 0.75])
+        newsItemImageView.addGradient([UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.6).CGColor], locations: [0.0, 0.75])
     }
 
 }
