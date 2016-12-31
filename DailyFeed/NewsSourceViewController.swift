@@ -14,7 +14,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var sourceItems = [DailySourceModel]()
     
-    var filteredSourceItems = [DailyFeedModel]()
+    var filteredSourceItems = [DailySourceModel]()
     
     var selectedItem = DailySourceModel?()
     
