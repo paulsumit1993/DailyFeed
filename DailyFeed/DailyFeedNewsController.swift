@@ -18,7 +18,7 @@ class DailyFeedNewsController: UICollectionViewController {
         
     var newsSourceUrl: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
     
-    var resultsSearchController = UISearchController!()
+    var resultsSearchController = UISearchController(searchResultsController: nil)
     
     //MARK: IBOutlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
