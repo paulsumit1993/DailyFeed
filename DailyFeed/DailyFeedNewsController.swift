@@ -55,9 +55,9 @@ class DailyFeedNewsController: UICollectionViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.hidesBarsOnTap = false
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 
