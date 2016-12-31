@@ -58,14 +58,9 @@ class DailyFeedNewsController: UICollectionViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.hidesBarsOnTap = false
-        self.resultsSearchController.searchBar.isHidden = false
     }
     
-    override func viewWillDisappear(animated: Bool) {
-         super.viewWillDisappear(animated)
-         self.resultsSearchController.searchBar.isHidden = true
-    }
-    
+
     
     //MARK: Load data from network
     func loadNewsData(source: String) {
