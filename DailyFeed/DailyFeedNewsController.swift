@@ -20,6 +20,8 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var resultsSearchController = UISearchController(searchResultsController: nil)
     
+    let refreshControl = UIRefreshControl()
+
     //MARK: IBOutlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -50,6 +52,8 @@ class DailyFeedNewsController: UICollectionViewController {
         
         self.collectionView?.registerNib(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
 
+        self.collectionView?.addSubview(refreshControl)
+        self.refreshControl.addTarget(self, action: #selector(ViewController.refreshData(sender:)), for: .valueChanged)
         //Populate CollectionView Data
         loadNewsData("the-wall-street-journal")
         
@@ -79,7 +83,10 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
     
-    
+     func refreshWeatherData(sender: UIRefreshControl) {
+        loadNewsData("the-verge")
+        self.refreshControl.endRefreshing()
+    }
     //MARK: Prepare for Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? NewsDetailViewController {
