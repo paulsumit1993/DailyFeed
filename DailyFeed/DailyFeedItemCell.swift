@@ -16,19 +16,11 @@ class DailyFeedItemCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Initialization code
-        self.layer.cornerRadius = 5.0
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOpacity = 1
-        self.layer.shadowOffset = CGSizeMake(1, 1)
-        self.layer.shadowRadius = 2
-       
-
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         addGradient()
     }
     
