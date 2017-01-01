@@ -21,7 +21,7 @@ class DailyFeedItemCell: UICollectionViewCell {
         self.layer.cornerRadius = 5.0
         self.layer.shadowColor = UIColor.blackColor().CGColor
         self.layer.shadowOpacity = 1
-        self.layer.shadowOffset = CGSize.Zero
+        self.layer.shadowOffset = CGSizeMake(0, 0)
         self.layer.shadowRadius = 1
         self.layer.shouldRasterize = true
 
