@@ -17,6 +17,8 @@ class DailyFeedNewsController: UICollectionViewController {
     var filteredNewsItems = [DailyFeedModel]()
         
     var newsSourceUrl: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
+
+    var source: String = "the-verge"
     
     var resultsSearchController = UISearchController(searchResultsController: nil)
     
@@ -84,7 +86,7 @@ class DailyFeedNewsController: UICollectionViewController {
     }
     
      func refreshData(sender: UIRefreshControl) {
-        loadNewsData("the-verge")
+        loadNewsData(self.source)
         self.refreshControl.endRefreshing()
     }
     //MARK: Prepare for Segue
@@ -108,7 +110,8 @@ class DailyFeedNewsController: UICollectionViewController {
         if let sourceVC = segue.sourceViewController as? NewsSourceViewController, sourceId = sourceVC.selectedItem?.id {
            self.activityIndicator.startAnimating()
            self.newsSourceUrl = sourceVC.selectedItem?.urlsToLogos
-           loadNewsData(sourceId)
+           self.source = sourceId
+           loadNewsData(source)
         }
     }
     
