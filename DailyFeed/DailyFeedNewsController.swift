@@ -53,7 +53,7 @@ class DailyFeedNewsController: UICollectionViewController {
         self.collectionView?.registerNib(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
         self.collectionView?.alwaysBounceVertical = true
         self.collectionView?.addSubview(refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(DailyFeedNewsController.refreshData(sender:)), forControlEvents: .ValueChanged)
+        self.refreshControl.addTarget(self, action: #selector(refreshData(sender:)), forControlEvents: .ValueChanged)
         //Populate CollectionView Data
         loadNewsData("the-wall-street-journal")
         
