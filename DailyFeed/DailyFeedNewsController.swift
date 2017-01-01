@@ -83,7 +83,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
     
-     func refreshWeatherData(sender: UIRefreshControl) {
+     func refreshData(sender: UIRefreshControl) {
         loadNewsData("the-verge")
         self.refreshControl.endRefreshing()
     }
