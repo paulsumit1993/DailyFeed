@@ -47,14 +47,14 @@ container.backgroundColor = UIColor(hue: 0/360, saturation: 0/100, brightness: 0
 let loadingView: UIView = UIView()
 loadingView.frame = CGRectMake(0, 0, 80, 80)
 loadingView.center = container.center
-loadingView.backgroundColor = UIColor.whiteColor()
+loadingView.backgroundColor = UIColor.blackColor()
 loadingView.clipsToBounds = true
 loadingView.layer.cornerRadius = 5
 
 spinningActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
 spinningActivityIndicator.hidesWhenStopped = true
 spinningActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-spinningActivityIndicator.color = UIColor.blackColor()
+spinningActivityIndicator.color = UIColor.whiteColor()
 spinningActivityIndicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
 loadingView.addSubview(spinningActivityIndicator)
 container.addSubview(loadingView)
