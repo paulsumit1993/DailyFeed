@@ -53,6 +53,8 @@ class DailyFeedNewsController: UICollectionViewController {
             
             return controller
             }()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         self.collectionView?.registerNib(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
         self.collectionView?.alwaysBounceVertical = true
