@@ -16,14 +16,11 @@ class DailyFeedItemCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Initialization code
-        self.layer.cornerRadius = 5.0
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         addGradient()
     }
     

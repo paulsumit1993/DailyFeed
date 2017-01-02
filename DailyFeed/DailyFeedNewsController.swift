@@ -18,7 +18,7 @@ class DailyFeedNewsController: UICollectionViewController {
         
     var newsSourceUrl: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
 
-    var source: String = "the-verge"
+    var source: String = "the-wall-street-journal"
     
     var resultsSearchController = UISearchController(searchResultsController: nil)
     
