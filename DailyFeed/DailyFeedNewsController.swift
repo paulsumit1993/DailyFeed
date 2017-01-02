@@ -22,7 +22,12 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var resultsSearchController = UISearchController(searchResultsController: nil)
     
-    let refreshControl = UIRefreshControl()
+    let refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.backgroundColor = UIColor.blackColor()
+        refresh.tintColor = UIColor.whiteColor()
+        return refresh
+    }()
 
     //MARK: IBOutlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
