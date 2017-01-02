@@ -57,7 +57,7 @@ spinningActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewSt
 spinningActivityIndicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
 loadingView.addSubview(spinningActivityIndicator)
 container.addSubview(loadingView)
-window.addSubview(container)
+window?.addSubview(container)
 spinningActivityIndicator.startAnimating()
 UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
