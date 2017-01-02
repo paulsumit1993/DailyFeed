@@ -87,9 +87,27 @@ class DailyFeedNewsController: UICollectionViewController {
     }
     
      func refreshData(sender: UIRefreshControl) {
-        loadNewsData(self.source)
-        self.refreshControl.endRefreshing()
+        refreshNewsData(self.source)
     }
+
+    func refreshNewsData(source: String) {
+
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+        DailyFeedModel.getNewsItems(source) { (newsItem, error) in
+            
+            if let news = newsItem {
+               // _ = news.map { self.newsItems.append($0) }
+                self.newsItems = news
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.refreshControl.endRefreshing()
+                    self.collectionView?.reloadData()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                })
+            }
+        }
+    }
+
     //MARK: Prepare for Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? NewsDetailViewController {
