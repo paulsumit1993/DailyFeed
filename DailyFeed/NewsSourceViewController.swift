@@ -42,14 +42,14 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 let window = UIApplication.sharedApplication().keyWindow
 let container: UIView = UIView()
 container.frame = UIScreen.mainScreen().bounds
-container.backgroundColor = UIColor(hue: 0/360, saturation: 0/100, brightness: 0/100, alpha: 0.1)
+container.backgroundColor = UIColor(hue: 0/360, saturation: 0/100, brightness: 0/100, alpha: 0.2)
 
 let loadingView: UIView = UIView()
 loadingView.frame = CGRectMake(0, 0, 80, 80)
 loadingView.center = container.center
 loadingView.backgroundColor = UIColor.lightGrayColor()
 loadingView.clipsToBounds = true
-loadingView.layer.cornerRadius = 40
+loadingView.layer.cornerRadius = 5
 
 spinningActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
 spinningActivityIndicator.hidesWhenStopped = true
