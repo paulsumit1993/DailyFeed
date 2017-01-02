@@ -38,11 +38,37 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             return controller
             }()
         
+        var spinningActivityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+let window = UIApplication.sharedApplication().keyWindow
+let container: UIView = UIView()
+container.frame = UIScreen.mainScreen().bounds
+container.backgroundColor = UIColor(hue: 0/360, saturation: 0/100, brightness: 0/100, alpha: 0.4)
+
+let loadingView: UIView = UIView()
+loadingView.frame = CGRectMake(0, 0, 80, 80)
+loadingView.center = container.center
+loadingView.backgroundColor = UIColor(hue: 359/360, saturation: 67/100, brightness: 71/100, alpha: 1)
+loadingView.clipsToBounds = true
+loadingView.layer.cornerRadius = 40
+
+spinningActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
+spinningActivityIndicator.hidesWhenStopped = true
+spinningActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+spinningActivityIndicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
+loadingView.addSubview(spinningActivityIndicator)
+container.addSubview(loadingView)
+window.addSubview(container)
+spinningActivityIndicator.startAnimating()
+UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         DailySourceModel.getNewsSource { (newsItem, error) in
             if let news = newsItem {
                 _ = news.map { self.sourceItems.append($0) }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.sourceTableView.reloadData()
+                    spinningActivityIndicator.stopAnimating()
+                    container.removeFromSuperview()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 })
             }
         }
