@@ -32,8 +32,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+     
         self.resultsSearchController = {
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
@@ -49,8 +48,6 @@ class DailyFeedNewsController: UICollectionViewController {
             
             return controller
             }()
-        
-        activityIndicator.startAnimating()
         
         self.collectionView?.registerNib(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
         self.collectionView?.alwaysBounceVertical = true
@@ -71,7 +68,10 @@ class DailyFeedNewsController: UICollectionViewController {
     
     //MARK: Load data from network
     func loadNewsData(source: String) {
-        
+
+        self.activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
         DailyFeedModel.getNewsItems(source) { (newsItem, error) in
             
             if let news = newsItem {
@@ -80,6 +80,7 @@ class DailyFeedNewsController: UICollectionViewController {
                 dispatch_async(dispatch_get_main_queue(), { 
                     self.activityIndicator.stopAnimating()
                     self.collectionView?.reloadData()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 })
             }
         }
