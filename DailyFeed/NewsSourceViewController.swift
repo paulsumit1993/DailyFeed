@@ -9,9 +9,11 @@
 import UIKit
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
-
+    
+    //MARK: IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
     
+    //MARK: Variable declaration
     var sourceItems = [DailySourceModel]()
     
     var filteredSourceItems = [DailySourceModel]()
@@ -20,10 +22,30 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var resultsSearchController = UISearchController(searchResultsController: nil)
     
+    let spinningActivityIndicator = TSActivityIndicator()
+
+    let container = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-          self.resultsSearchController = {
+        //setup UI
+        setupUI()
+        
+        //Populate TableView Data
+        loadSourceData()
+        
+    }
+    
+    //MARK: Setup UI
+    func setupUI() {
+        setupSearch()
+        setupSpinner()
+    }
+    
+    //MARK: Setup SearchBar
+    func setupSearch() {
+        self.resultsSearchController = {
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
@@ -32,54 +54,39 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             controller.searchBar.tintColor = UIColor.blackColor()
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
-            
+    
             self.sourceTableView.tableHeaderView = controller.searchBar
-            
+    
             return controller
             }()
-        
-        var spinningActivityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-let window = UIApplication.sharedApplication().keyWindow
-let container: UIView = UIView()
-container.frame = UIScreen.mainScreen().bounds
-container.backgroundColor = UIColor(hue: 0/360, saturation: 0/100, brightness: 0/100, alpha: 0.1)
 
-let loadingView: UIView = UIView()
-loadingView.frame = CGRectMake(0, 0, 80, 80)
-loadingView.center = container.center
-loadingView.backgroundColor = UIColor.blackColor()
-loadingView.clipsToBounds = true
-loadingView.layer.cornerRadius = 5
-
-spinningActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
-spinningActivityIndicator.hidesWhenStopped = true
-spinningActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-spinningActivityIndicator.color = UIColor.whiteColor()
-spinningActivityIndicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
-loadingView.addSubview(spinningActivityIndicator)
-container.addSubview(loadingView)
-window?.addSubview(container)
-spinningActivityIndicator.startAnimating()
-UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+    //MARK: Setup Spinner
+    func setupSpinner() {
+        spinningActivityIndicator.setupTSActivityIndicator(container)
+    }
+    
+    //MARK: Load data from network
+    func loadSourceData() {
         
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         DailySourceModel.getNewsSource { (newsItem, error) in
             if let news = newsItem {
                 _ = news.map { self.sourceItems.append($0) }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.sourceTableView.reloadData()
-                    spinningActivityIndicator.stopAnimating()
-                    container.removeFromSuperview()
+                    self.spinningActivityIndicator.stopAnimating()
+                    self.container.removeFromSuperview()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 })
             }
         }
-        
     }
     
-    
-    
+    //MARK: TableView Delegate Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         if self.resultsSearchController.active {
+        if self.resultsSearchController.active {
             return self.filteredSourceItems.count
         }
         else {
@@ -90,7 +97,7 @@ UIApplication.sharedApplication().beginIgnoringInteractionEvents()
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SourceCell", forIndexPath: indexPath)
         
-          if self.resultsSearchController.active {
+        if self.resultsSearchController.active {
             cell.textLabel?.text = filteredSourceItems[indexPath.row].name
         }
         else {
@@ -107,11 +114,12 @@ UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         else {
             self.selectedItem = sourceItems[indexPath.row]
         }
-
+        
         self.performSegueWithIdentifier("sourceUnwindSegue", sender: self)
     }
     
-     func updateSearchResultsForSearchController(searchController: UISearchController) {
+    //MARK: SearchBar Delegate
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         filteredSourceItems.removeAll(keepCapacity: false)
         

@@ -13,7 +13,7 @@ let imageCache = NSCache()
 class TSImageView: UIImageView {
     
     var imageUrlString = String?()
-
+    
     func downloadedFromLink(urlString: String, contentMode mode: UIViewContentMode = .ScaleAspectFill) {
         guard let url = NSURL(string: urlString) else { return }
         
