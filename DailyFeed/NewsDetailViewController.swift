@@ -85,7 +85,7 @@ class NewsDetailViewController: UIViewController {
     
     //MARK: Add Parallax to UIImageView
     func addParallaxToView(vw: UIView) {
-        let amount = 100
+        let amount = 10
         
         let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
         horizontal.minimumRelativeValue = -amount

@@ -261,6 +261,7 @@
 				TargetAttributes = {
 					06D04C1A1E1248DA0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = QUSZA87835;
 					};
 					06D04C2E1E1248DB0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
@@ -479,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DailyFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeed;
@@ -491,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DailyFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeed;
