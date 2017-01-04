@@ -51,8 +51,12 @@ class NewsDetailViewController: UIViewController {
         
         //Add  Back Button
         addBackButton()
+        
         //Setting gradient to newsImageView
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).CGColor, UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.6).CGColor], locations: [0.0, 0.1, 0.95])
+        
+        //Add parallax to UIImageView
+        addParallaxToView(newsImageView)
         
     }
     
@@ -77,6 +81,23 @@ class NewsDetailViewController: UIViewController {
     //MARK: Back Button Dismiss action
     func dismissButtonTapped() {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    //MARK: Add Parallax to UIImageView
+    func addParallaxToView(vw: UIView) {
+        let amount = 100
+        
+        let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
+        horizontal.minimumRelativeValue = -amount
+        horizontal.maximumRelativeValue = amount
+        
+        let vertical = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
+        vertical.minimumRelativeValue = -amount
+        vertical.maximumRelativeValue = amount
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [horizontal, vertical]
+        vw.addMotionEffect(group)
     }
     
     
