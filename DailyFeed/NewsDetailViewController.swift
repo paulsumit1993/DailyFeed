@@ -51,10 +51,9 @@ class NewsDetailViewController: UIViewController {
         
         //Add  Back Button
         addBackButton()
-        
         //Setting gradient to newsImageView
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).CGColor, UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.6).CGColor], locations: [0.0, 0.1, 0.95])
-
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -79,6 +78,7 @@ class NewsDetailViewController: UIViewController {
     func dismissButtonTapped() {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     
     //MARK: Open News URL in Safari Browser Action
     @IBAction func openUrlInBrowser(sender: UIButton) {
