@@ -45,7 +45,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     let imageHeight:CGFloat = 200.0
     
-    let OffsetSpeed: CGFloat = 7.0
+    let OffsetSpeed: CGFloat = 5.0
  
     //MARK: View Controller Lifecycle Methods
     

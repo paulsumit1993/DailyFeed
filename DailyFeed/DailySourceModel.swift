@@ -12,17 +12,20 @@ public struct DailySourceModel {
     
     public let id: String
     public let name: String
+    public let category: String
     public let urlsToLogos: String
     
     public init?(json: AnyObject) {
         
         guard let id        = json["id"] as? String,
               let name      = json["name"] as? String,
+              let category  = json["category"] as? String,
               let url       = json["urlsToLogos"] as? [String: AnyObject],
               let urlToLogo = url["medium"] as? String else { return nil}
       
         self.id          = id
         self.name        = name
+        self.category    = category
         self.urlsToLogos = urlToLogo
         
     }
