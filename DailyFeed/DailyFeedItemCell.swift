@@ -14,6 +14,7 @@ class DailyFeedItemCell: UICollectionViewCell {
     @IBOutlet weak var newsItemTitleLabel: UILabel!
     @IBOutlet weak var newsItemSourceLabel: UILabel!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 5.0
@@ -28,7 +29,11 @@ class DailyFeedItemCell: UICollectionViewCell {
     func addGradient() {
         guard newsItemImageView.layer.sublayers?.count == nil else { return }
     
-        newsItemImageView.addGradient([UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.6).CGColor], locations: [0.0, 0.75])
+        newsItemImageView.addGradient([UIColor(white: 0, alpha: 0.6).CGColor, UIColor.clearColor().CGColor], locations: [0.0, 0.98])
+    }
+    
+    func offset(offset: CGPoint) {
+        newsItemImageView.frame = CGRectOffset(self.newsItemImageView.bounds, offset.x, offset.y)
     }
 
 }

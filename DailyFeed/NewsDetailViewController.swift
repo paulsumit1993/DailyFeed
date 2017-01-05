@@ -48,7 +48,6 @@ class NewsDetailViewController: UIViewController {
     //MARK: View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Add  Back Button
         addBackButton()
         //Setting gradient to newsImageView
@@ -81,13 +80,10 @@ class NewsDetailViewController: UIViewController {
     
     
     //MARK: Open News URL in Safari Browser Action
-    @IBAction func openUrlInBrowser(sender: UIButton) {
-        
+    @IBAction func openNewInSafari(sender: UISwipeGestureRecognizer) {
         guard let urlString = receivedNewItem?.url, let url = NSURL(string: urlString) else { return }
         let svc = MySafariViewController(URL: url)
         self.presentViewController(svc, animated: true, completion: nil)
     }
-    
-    
     
 }

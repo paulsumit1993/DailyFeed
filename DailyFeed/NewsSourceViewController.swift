@@ -20,7 +20,16 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var selectedItem = DailySourceModel?()
     
-    var resultsSearchController = UISearchController(searchResultsController: nil)
+    var resultsSearchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.dimsBackgroundDuringPresentation = false
+        controller.hidesNavigationBarDuringPresentation = false
+        controller.searchBar.placeholder = "Search Sources..."
+        controller.searchBar.tintColor = UIColor.blackColor()
+        controller.searchBar.searchBarStyle = .Minimal
+        controller.searchBar.sizeToFit()
+        return controller
+    }()
     
     let spinningActivityIndicator = TSActivityIndicator()
 
@@ -45,21 +54,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: Setup SearchBar
     func setupSearch() {
-        self.resultsSearchController = {
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
-            controller.hidesNavigationBarDuringPresentation = false
-            controller.searchBar.placeholder = "Search Sources..."
-            controller.searchBar.tintColor = UIColor.blackColor()
-            controller.searchBar.searchBarStyle = .Minimal
-            controller.searchBar.sizeToFit()
-    
-            self.sourceTableView.tableHeaderView = controller.searchBar
-    
-            return controller
-            }()
-
+        self.resultsSearchController.searchResultsUpdater = self
+        self.sourceTableView.tableHeaderView = resultsSearchController.searchBar
     }
     
     //MARK: Setup Spinner

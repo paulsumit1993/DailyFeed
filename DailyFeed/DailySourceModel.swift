@@ -20,8 +20,7 @@ public struct DailySourceModel {
               let name      = json["name"] as? String,
               let url       = json["urlsToLogos"] as? [String: AnyObject],
               let urlToLogo = url["medium"] as? String else { return nil}
-        
-        
+      
         self.id          = id
         self.name        = name
         self.urlsToLogos = urlToLogo

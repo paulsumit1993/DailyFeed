@@ -20,7 +20,17 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var source: String = "the-wall-street-journal"
     
-    var resultsSearchController = UISearchController(searchResultsController: nil)
+    var resultsSearchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.dimsBackgroundDuringPresentation = false
+        controller.hidesNavigationBarDuringPresentation = false
+        controller.searchBar.placeholder = "Search NEWS..."
+        controller.searchBar.searchBarStyle = .Prominent
+        controller.searchBar.tintColor = UIColor.whiteColor()
+        controller.searchBar.barTintColor = UIColor.blackColor()
+        controller.searchBar.sizeToFit()
+        return controller
+    }()
     
     let spinningActivityIndicator = TSActivityIndicator()
     
@@ -33,9 +43,10 @@ class DailyFeedNewsController: UICollectionViewController {
         return refresh
     }()
     
-    //MARK: IBOutlets
+    let imageHeight:CGFloat = 200.0
     
-    
+    let OffsetSpeed: CGFloat = 7.0
+ 
     //MARK: View Controller Lifecycle Methods
     
     override func viewDidLoad() {
@@ -46,8 +57,6 @@ class DailyFeedNewsController: UICollectionViewController {
         
         //Populate CollectionView Data
         loadNewsData("the-wall-street-journal")
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,27 +76,13 @@ class DailyFeedNewsController: UICollectionViewController {
     
     //MARK: Setup navigation
     func setupNavigationBar() {
-        self.resultsSearchController = {
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
-            controller.hidesNavigationBarDuringPresentation = false
-            controller.searchBar.placeholder = "Search NEWS..."
-            controller.searchBar.searchBarStyle = .Prominent
-            controller.searchBar.tintColor = UIColor.whiteColor()
-            controller.searchBar.barTintColor = UIColor.blackColor()
-            controller.searchBar.sizeToFit()
-            
-            self.navigationItem.titleView = controller.searchBar
-            navigationController?.interactivePopGestureRecognizer?.delegate = nil;
-            
-            return controller
-            }()
+        self.resultsSearchController.searchResultsUpdater = self
+        self.navigationItem.titleView = resultsSearchController.searchBar
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil;
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
     }
-    
     
     //MARK: Setup CollectionView
     func setupCollectionView() {
@@ -126,7 +121,6 @@ class DailyFeedNewsController: UICollectionViewController {
             }
         }
     }
-    
 
     //MARK: Prepare for Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -154,6 +148,4 @@ class DailyFeedNewsController: UICollectionViewController {
             loadNewsData(source)
         }
     }
-    
 }
-

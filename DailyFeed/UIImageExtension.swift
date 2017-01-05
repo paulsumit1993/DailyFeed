@@ -13,10 +13,10 @@ extension UIImageView {
     func addGradient(color: [CGColor], locations: [NSNumber]) {
     
         let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = self.superview!.bounds
+        gradient.frame = self.superview!.frame
         gradient.colors = color
         gradient.locations = locations
-        self.layer.addSublayer(gradient)
+        self.layer.insertSublayer(gradient, above: self.layer)
         
     }
     

@@ -12,6 +12,8 @@ import UIKit
 //MARK: CollectionView Delegate Methods
 extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchResultsUpdating {
     
+    
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -100,6 +102,17 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
             filteredNewsItems = searchResults
             
             self.collectionView?.reloadData()
+        }
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        //  print("inside scroll")
+        
+        if let visibleCells = self.collectionView?.visibleCells() as? [DailyFeedItemCell] {
+            for parallaxCell in visibleCells {
+                let yOffset = (((self.collectionView?.contentOffset.y)! - parallaxCell.frame.origin.y) / imageHeight) * OffsetSpeed
+                parallaxCell.offset(CGPointMake(0.0, yOffset))
+            }
         }
     }
 }
