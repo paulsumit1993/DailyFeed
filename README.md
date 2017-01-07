@@ -4,4 +4,10 @@
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
 <img src="https://img.shields.io/badge/Xcode-7.3-blue.svg?style=flat" />
 
-iOS client for <a href="https://newsapi.org/">NewsAPI.org</a>
+##Screeenshots
+
+<img src="/assets/IMG_0427_iphone5s_gold_portrait.png" />
+<img src="/assets/IMG_0428_iphone5s_gold_portrait.png" />
+<img src="/assets/IMG_0429_iphone5s_gold_portrait.png" />
+
+iOS client for [NewsAPI.org](https://newsapi.org/)
