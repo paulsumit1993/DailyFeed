@@ -6,5 +6,8 @@
 
 iOS client for [NewsAPI.org](https://newsapi.org/)
 
+##Installation
+* Run DailyFeed.xcodeproj using Xcode 7.3.
+* Press Cmd + B to build or Cmd + R to run the project on a device/simulator.
 ##Screenshots
 <img src="/assets/screenshot.jpg">
