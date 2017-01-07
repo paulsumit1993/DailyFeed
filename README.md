@@ -6,8 +6,6 @@
 
 ##Screenshots
 
-<img src="/assets/IMG_0427_iphone5s_gold_portrait.png" style="width: 200px"/>
-<img src="/assets/IMG_0428_iphone5s_gold_portrait.png" style="width: 200px"/>
-<img src="/assets/IMG_0429_iphone5s_gold_portrait.png" style="width: 200px"/>
+<img src="/assets/screenshot.jpg">
 
 iOS client for [NewsAPI.org](https://newsapi.org/)
