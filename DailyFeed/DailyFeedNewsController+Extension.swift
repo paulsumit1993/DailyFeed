@@ -44,16 +44,13 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
             cell.newsItemTitleLabel.text = filteredNewsItems[indexPath.row].title
             cell.newsItemSourceLabel.text = filteredNewsItems[indexPath.row].author
             cell.newsItemImageView.downloadedFromLink(filteredNewsItems[indexPath.row].urlToImage)
-            let yOffset = (((self.collectionView?.contentOffset.y)! - cell.frame.origin.y) / imageHeight) * OffsetSpeed
-            cell.offset(CGPointMake(0.0, yOffset))
-            
+
         } else {
             
             cell.newsItemTitleLabel.text = newsItems[indexPath.row].title
             cell.newsItemSourceLabel.text = newsItems[indexPath.row].author
             cell.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
-            let yOffset = (((self.collectionView?.contentOffset.y)! - cell.frame.origin.y) / imageHeight) * OffsetSpeed
-            cell.offset(CGPointMake(0.0, yOffset))
+
         }
         
         return cell

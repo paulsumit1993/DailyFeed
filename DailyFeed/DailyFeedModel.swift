@@ -52,7 +52,17 @@ extension DailyFeedModel {
         
         NSURLSession.sharedSession().dataTaskWithRequest(baseUrlRequest) { (data, response, error) in
             
-            if let jsonData =  try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) {
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            
+            if let jsonData =  try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) {
                 
                 if let json = jsonData as? [String: AnyObject], let jsonDict = json["articles"] as? NSArray {
                     

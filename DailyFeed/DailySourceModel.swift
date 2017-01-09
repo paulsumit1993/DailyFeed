@@ -18,11 +18,11 @@ public struct DailySourceModel {
     public init?(json: AnyObject) {
         
         guard let id        = json["id"] as? String,
-              let name      = json["name"] as? String,
-              let category  = json["category"] as? String,
-              let url       = json["urlsToLogos"] as? [String: AnyObject],
-              let urlToLogo = url["medium"] as? String else { return nil}
-      
+            let name      = json["name"] as? String,
+            let category  = json["category"] as? String,
+            let url       = json["urlsToLogos"] as? [String: AnyObject],
+            let urlToLogo = url["medium"] as? String else { return nil}
+        
         self.id          = id
         self.name        = name
         self.category    = category
@@ -44,7 +44,17 @@ extension DailySourceModel {
         
         NSURLSession.sharedSession().dataTaskWithRequest(baseUrlRequest) { (data, response, error) in
             
-            if let jsonData =  try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) {
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            
+            if let jsonData =  try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) {
                 
                 if let json = jsonData as? [String: AnyObject], let jsonDict = json["sources"] as? NSArray {
                     
@@ -53,6 +63,6 @@ extension DailySourceModel {
                     completion(newsItems, nil)
                 }
             }
-        }.resume()
+            }.resume()
     }
 }

@@ -32,9 +32,17 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     let spinningActivityIndicator = TSActivityIndicator()
-
+    
     let container = UIView()
-
+    
+    let refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.backgroundColor = UIColor.blackColor()
+        refresh.tintColor = UIColor.whiteColor()
+        return refresh
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +51,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Populate TableView Data
         loadSourceData()
+        
+        //setup TableView
+        setupTableView()
         
     }
     
@@ -58,9 +69,21 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.sourceTableView.tableHeaderView = resultsSearchController.searchBar
     }
     
+    //MARK: Setup TableView
+    func setupTableView() {
+        self.sourceTableView.addSubview(refreshControl)
+        self.refreshControl.addTarget(self, action: #selector(NewsSourceViewController.refreshData(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+    }
+    
     //MARK: Setup Spinner
     func setupSpinner() {
         spinningActivityIndicator.setupTSActivityIndicator(container)
+    }
+    
+    //MARK: refresh news Source data
+    func refreshData(sender: UIRefreshControl) {
+        loadSourceData()
     }
     
     //MARK: Load data from network
@@ -68,15 +91,29 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         DailySourceModel.getNewsSource { (newsItem, error) in
-            if let news = newsItem {
-                _ = news.map { self.sourceItems.append($0) }
+            
+            
+            guard error == nil, let news = newsItem else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.sourceTableView.reloadData()
+                    self.refreshControl.endRefreshing()
                     self.spinningActivityIndicator.stopAnimating()
                     self.container.removeFromSuperview()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    self.showError(error?.localizedDescription ?? "", message: "") { (completed) in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 })
+                return
             }
+            
+            self.sourceItems = news
+            dispatch_async(dispatch_get_main_queue(), {
+                self.refreshControl.endRefreshing()
+                self.sourceTableView.reloadData()
+                self.spinningActivityIndicator.stopAnimating()
+                self.container.removeFromSuperview()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            })
         }
     }
     

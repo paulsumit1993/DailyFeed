@@ -46,7 +46,7 @@ class DailyFeedNewsController: UICollectionViewController {
     let imageHeight:CGFloat = 200.0
     
     let OffsetSpeed: CGFloat = 10.0
- 
+    
     //MARK: View Controller Lifecycle Methods
     
     override func viewDidLoad() {
@@ -109,19 +109,27 @@ class DailyFeedNewsController: UICollectionViewController {
         
         DailyFeedModel.getNewsItems(source) { (newsItem, error) in
             
-            if let news = newsItem {
-                self.newsItems = news
+            guard error == nil, let news = newsItem else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.collectionView?.reloadData()
                     self.refreshControl.endRefreshing()
                     self.spinningActivityIndicator.stopAnimating()
                     self.container.removeFromSuperview()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                })
+                    self.showError(error?.localizedDescription ?? "")
+                    })
+                return
             }
+            self.newsItems = news
+            dispatch_async(dispatch_get_main_queue(), {
+                self.collectionView?.reloadData()
+                self.refreshControl.endRefreshing()
+                self.spinningActivityIndicator.stopAnimating()
+                self.container.removeFromSuperview()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            })
         }
     }
-
+    
     //MARK: Prepare for Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? NewsDetailViewController {
