@@ -111,11 +111,12 @@ class DailyFeedNewsController: UICollectionViewController {
             
             guard error == nil, let news = newsItem else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.refreshControl.endRefreshing()
                     self.spinningActivityIndicator.stopAnimating()
                     self.container.removeFromSuperview()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                    self.showError(error?.localizedDescription ?? "")
+                    self.showError(error?.localizedDescription ?? "", message: "") { (completed) in
+                         self.refreshControl.endRefreshing()   
+                       }
                     })
                 return
             }
