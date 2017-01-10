@@ -8,54 +8,54 @@
 
 import UIKit
 
-let imageCache = NSCache()
+let imageCache = NSCache<AnyObject, AnyObject>()
 
 class TSImageView: UIImageView {
     
-    var imageUrlString = String?()
+    var imageUrlString: String? = nil
     
-    func downloadedFromLink(urlString: String, contentMode mode: UIViewContentMode = .ScaleAspectFill) {
-        guard let url = NSURL(string: urlString) else { return }
+    func downloadedFromLink(_ urlString: String, contentMode mode: UIViewContentMode = .scaleAspectFill) {
+        guard let url = URL(string: urlString) else { return }
         
         imageUrlString = urlString
         
         self.image = nil
-        self.animateImageAppearance(0.25, option: UIViewAnimationOptions.CurveEaseIn, alpha: 0.4)
+        self.animateImageAppearance(0.25, option: UIViewAnimationOptions.curveEaseIn, alpha: 0.4)
         contentMode = mode
         
-        if let imageFromCache = imageCache.objectForKey(urlString) as? UIImage {
+        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             self.image = imageFromCache
-            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, alpha: 1.0)
+            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.curveEaseOut, alpha: 1.0)
             return
         }
         
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             guard
-                let httpURLResponse = response as? NSHTTPURLResponse where httpURLResponse.statusCode == 200,
-                let mimeType = response?.MIMEType where mimeType.hasPrefix("image"),
-                let data = data where error == nil,
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
                 let image = UIImage(data: data)
                 else { return }
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 let imageToCache = image
                 
                 if self.imageUrlString == urlString {
                     self.image = imageToCache
-                    self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, alpha: 1.0)
+                    self.animateImageAppearance(0.4, option: UIViewAnimationOptions.curveEaseOut, alpha: 1.0)
                 }
-                imageCache.setObject(imageToCache, forKey: urlString)
-                self.animateImageAppearance(0.4, option: UIViewAnimationOptions.CurveEaseOut, alpha: 1.0)
+                imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
+                self.animateImageAppearance(0.4, option: UIViewAnimationOptions.curveEaseOut, alpha: 1.0)
             })
             
-            }.resume()
+            }) .resume()
         
     }
     
     //Image Appear Animation for Loading Images
-    func animateImageAppearance(duration: Double, option: UIViewAnimationOptions, alpha: CGFloat) {
+    func animateImageAppearance(_ duration: Double, option: UIViewAnimationOptions, alpha: CGFloat) {
         
-        UIView.animateWithDuration(duration, delay: 0, options: option, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: option, animations: {
             self.alpha = alpha
             }, completion: nil)
     }

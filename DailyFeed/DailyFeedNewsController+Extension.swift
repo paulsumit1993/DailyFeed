@@ -10,60 +10,45 @@ import UIKit
 
 
 //MARK: CollectionView Delegate Methods
-extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchResultsUpdating {
+extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
     
     
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if self.resultsSearchController.active {
-            return self.filteredNewsItems.count
-        }
-        else {
             return self.newsItems.count
-        }
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        self.performSegueWithIdentifier("newsDetailSegue", sender: cell)
+        let cell = collectionView.cellForItem(at: indexPath)
+        self.performSegue(withIdentifier: "newsDetailSegue", sender: cell)
         
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DailyFeedItemCell", forIndexPath: indexPath) as! DailyFeedItemCell
-        
-        if self.resultsSearchController.active {
-            
-            cell.newsItemTitleLabel.text = filteredNewsItems[indexPath.row].title
-            cell.newsItemSourceLabel.text = filteredNewsItems[indexPath.row].author
-            cell.newsItemImageView.downloadedFromLink(filteredNewsItems[indexPath.row].urlToImage)
-
-        } else {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemCell", for: indexPath) as! DailyFeedItemCell
             
             cell.newsItemTitleLabel.text = newsItems[indexPath.row].title
             cell.newsItemSourceLabel.text = newsItems[indexPath.row].author
             cell.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
-
-        }
-        
+   
         return cell
     }
     
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
             
         case UICollectionElementKindSectionHeader:
             
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "newsHeaderCell", forIndexPath: indexPath) as! NewHeaderCollectionReusableView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "newsHeaderCell", for: indexPath) as! NewHeaderCollectionReusableView
             
             headerView.newSourceImageView.downloadedFromLink(self.newsSourceUrl!)
             headerView.layer.masksToBounds = true
@@ -71,7 +56,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
             return headerView
             
         case UICollectionElementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "newsFooterCell", forIndexPath: indexPath)
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "newsFooterCell", for: indexPath)
             
             return footerView
             
@@ -82,37 +67,22 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout, UISearchR
     }
     
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         guard let width = self.collectionView?.bounds.width else { return CGSize(width: 10, height: 10) }
         
         return CGSize(width: (width / 2) - 10, height: (width / 2) - 5)
     }
+
+    //MARK: ScrollViewDidScroll
     
-    
-    
-    
-    //MARK: SearchController Delegate
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-        filteredNewsItems.removeAll(keepCapacity: false)
-        
-        if let searchString = searchController.searchBar.text {
-            let searchResults = newsItems.filter { $0.title.lowercaseString.containsString(searchString.lowercaseString) || $0.author.lowercaseString.containsString(searchString.lowercaseString) }
-            filteredNewsItems = searchResults
-            
-            self.collectionView?.reloadData()
-        }
-    }
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //  print("inside scroll")
         
-        if let visibleCells = self.collectionView?.visibleCells() as? [DailyFeedItemCell] {
+        if let visibleCells = self.collectionView?.visibleCells as? [DailyFeedItemCell] {
             for parallaxCell in visibleCells {
                 let yOffset = (((self.collectionView?.contentOffset.y)! - parallaxCell.frame.origin.y) / imageHeight) * OffsetSpeed
-                parallaxCell.offset(CGPointMake(0.0, yOffset))
+                parallaxCell.offset(CGPoint(x: 0.0, y: yOffset))
             }
         }
     }

@@ -14,7 +14,7 @@ class NewHeaderCollectionReusableView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        newSourceImageView.layer.shadowColor = UIColor.blackColor().CGColor
+        newSourceImageView.layer.shadowColor = UIColor.black.cgColor
         newSourceImageView.layer.shadowOffset = CGSize(width: 0, height: 1)
         newSourceImageView.layer.shadowOpacity = 0.2
         newSourceImageView.layer.shadowRadius = 1.5

@@ -20,26 +20,14 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var source: String = "the-wall-street-journal"
     
-    var resultsSearchController: UISearchController = {
-        let controller = UISearchController(searchResultsController: nil)
-        controller.dimsBackgroundDuringPresentation = false
-        controller.hidesNavigationBarDuringPresentation = false
-        controller.searchBar.placeholder = "Search NEWS..."
-        controller.searchBar.searchBarStyle = .Prominent
-        controller.searchBar.tintColor = UIColor.whiteColor()
-        controller.searchBar.barTintColor = UIColor.blackColor()
-        controller.searchBar.sizeToFit()
-        return controller
-    }()
-    
     let spinningActivityIndicator = TSActivityIndicator()
     
     let container = UIView()
     
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
-        refresh.backgroundColor = UIColor.blackColor()
-        refresh.tintColor = UIColor.whiteColor()
+        refresh.backgroundColor = UIColor.black
+        refresh.tintColor = UIColor.white
         return refresh
     }()
     
@@ -59,7 +47,7 @@ class DailyFeedNewsController: UICollectionViewController {
         loadNewsData("the-wall-street-journal")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -76,20 +64,18 @@ class DailyFeedNewsController: UICollectionViewController {
     
     //MARK: Setup navigation
     func setupNavigationBar() {
-        self.resultsSearchController.searchResultsUpdater = self
-        self.navigationItem.titleView = resultsSearchController.searchBar
-        
+        self.navigationItem.title = "Your Feed"
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil;
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     //MARK: Setup CollectionView
     func setupCollectionView() {
-        self.collectionView?.registerNib(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
+        self.collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
         self.collectionView?.alwaysBounceVertical = true
         self.collectionView?.addSubview(refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(DailyFeedNewsController.refreshData(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.addTarget(self, action: #selector(DailyFeedNewsController.refreshData(_:)), for: UIControlEvents.valueChanged)
     }
     
     //MARK: Setup Spinner
@@ -98,22 +84,22 @@ class DailyFeedNewsController: UICollectionViewController {
     }
     
     //MARK: refresh news Source data
-    func refreshData(sender: UIRefreshControl) {
+    func refreshData(_ sender: UIRefreshControl) {
         loadNewsData(self.source)
     }
     
     //MARK: Load data from network
-    func loadNewsData(source: String) {
+    func loadNewsData(_ source: String) {
         
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         DailyFeedModel.getNewsItems(source) { (newsItem, error) in
             
             guard error == nil, let news = newsItem else {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.spinningActivityIndicator.stopAnimating()
                     self.container.removeFromSuperview()
-                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                     self.showError(error?.localizedDescription ?? "", message: "") { (completed) in
                          self.refreshControl.endRefreshing()   
                        }
@@ -121,35 +107,31 @@ class DailyFeedNewsController: UICollectionViewController {
                 return
             }
             self.newsItems = news
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.collectionView?.reloadData()
                 self.refreshControl.endRefreshing()
                 self.spinningActivityIndicator.stopAnimating()
                 self.container.removeFromSuperview()
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                UIApplication.shared.endIgnoringInteractionEvents()
             })
         }
     }
     
     //MARK: Prepare for Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? NewsDetailViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? NewsDetailViewController {
             
             guard let cell = sender as? UICollectionViewCell else { return }
             
-            guard let indexpath = self.collectionView?.indexPathForCell(cell) else { return }
-            
-            if self.resultsSearchController.active {
-                vc.receivedNewItem = filteredNewsItems[indexpath.row]
-            } else {
+            guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
+
                 vc.receivedNewItem = newsItems[indexpath.row]
-            }
         }
     }
     
     //MARK: Unwind from Source View Controller
-    @IBAction func unwindToDailyNewsFeed(segue: UIStoryboardSegue) {
-        if let sourceVC = segue.sourceViewController as? NewsSourceViewController, sourceId = sourceVC.selectedItem?.id {
+    @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
+        if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.id {
             setupSpinner()
             self.spinningActivityIndicator.startAnimating()
             self.newsSourceUrl = sourceVC.selectedItem?.urlsToLogos

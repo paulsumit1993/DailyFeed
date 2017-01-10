@@ -11,20 +11,20 @@ import UIKit
 public extension UIViewController {
     
     /// shows an UIAlertController alert with error title and message
-    public func showError(title: String, message: String? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
-        if !NSThread.currentThread().isMainThread {
-            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+    public func showError(_ title: String, message: String? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
+        if !Thread.current.isMainThread {
+            DispatchQueue.main.async { [weak self] in
                 self?.showError(title, message: message, handler: handler)
             }
             return
         }
         
-        let attributedString = NSAttributedString(string: title, attributes: [ NSForegroundColorAttributeName : UIColor.lightGrayColor() ])
-        let controller = UIAlertController(title: "", message: "", preferredStyle: .Alert)
+        let attributedString = NSAttributedString(string: title, attributes: [ NSForegroundColorAttributeName : UIColor.lightGray ])
+        let controller = UIAlertController(title: "", message: "", preferredStyle: .alert)
         controller.setValue(attributedString, forKey: "attributedTitle")
-        controller.view.tintColor = UIColor.blackColor()
-        controller.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: handler))
-        presentViewController(controller, animated: true, completion: nil)
+        controller.view.tintColor = UIColor.black
+        controller.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: handler))
+        present(controller, animated: true, completion: nil)
     }
     
 }

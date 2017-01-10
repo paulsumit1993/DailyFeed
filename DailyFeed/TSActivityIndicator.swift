@@ -15,23 +15,23 @@ class TSActivityIndicator: UIActivityIndicatorView {
     }
     
     //MARK: Add Custom activity indicator
-    func setupTSActivityIndicator(container: UIView) {
-        let window = UIApplication.sharedApplication().keyWindow
-        container.frame = UIScreen.mainScreen().bounds
+    func setupTSActivityIndicator(_ container: UIView) {
+        let window = UIApplication.shared.keyWindow
+        container.frame = UIScreen.main.bounds
         container.backgroundColor = UIColor(hue: 0/360, saturation: 0/100, brightness: 0/100, alpha: 0.1)
         
         let loadingView: UIView = UIView()
-        loadingView.frame = CGRectMake(0, 0, 80, 80)
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         loadingView.center = container.center
-        loadingView.backgroundColor = UIColor.blackColor()
+        loadingView.backgroundColor = UIColor.black
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 5
         
-        self.frame = CGRectMake(0, 0, 40, 40)
+        self.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         self.hidesWhenStopped = true
-        self.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        self.color = UIColor.whiteColor()
-        self.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
+        self.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        self.color = UIColor.white
+        self.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
         loadingView.addSubview(self)
         container.addSubview(loadingView)
         window?.addSubview(container)

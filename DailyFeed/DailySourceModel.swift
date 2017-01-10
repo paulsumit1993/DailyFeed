@@ -15,7 +15,7 @@ public struct DailySourceModel {
     public let category: String
     public let urlsToLogos: String
     
-    public init?(json: AnyObject) {
+    public init?(json: [String: AnyObject]) {
         
         guard let id        = json["id"] as? String,
             let name      = json["name"] as? String,
@@ -33,36 +33,36 @@ public struct DailySourceModel {
 }
 
 extension DailySourceModel {
-    static func getNewsSource(completion: ([DailySourceModel]?, NSError?) -> Void) {
+    static func getNewsSource(_ completion: @escaping ([DailySourceModel]?, NSError?) -> Void) {
         
-        let baseURL = NSURL(string: "https://newsapi.org/v1/sources?language=en")!
+        let baseURL = URL(string: "https://newsapi.org/v1/sources?language=en")!
         
-        let baseUrlRequest = NSURLRequest(URL: baseURL)
+        let baseUrlRequest = URLRequest(url: baseURL)
         
         var newsItems = [DailySourceModel]()
         
         
-        NSURLSession.sharedSession().dataTaskWithRequest(baseUrlRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
             
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, error as NSError?)
                 return
             }
             
             guard let data = data else {
-                completion(nil, error)
+                completion(nil, error as NSError?)
                 return
             }
             
-            if let jsonData =  try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) {
+            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) {
                 
-                if let json = jsonData as? [String: AnyObject], let jsonDict = json["sources"] as? NSArray {
+                if let json = jsonData as? [String: AnyObject], let jsonDict = json["sources"] as? [[String: AnyObject]] {
                     
                     newsItems = jsonDict.flatMap(DailySourceModel.init)
                     
                     completion(newsItems, nil)
                 }
             }
-            }.resume()
+            }) .resume()
     }
 }

@@ -12,8 +12,7 @@ import SafariServices
 class NewsDetailViewController: UIViewController {
     
     //MARK: News data declaration
-    var receivedNewItem = DailyFeedModel?()
-    
+    var receivedNewItem: DailyFeedModel? = nil
     //MARK: IBOutlets
     
     @IBOutlet weak var newsImageView: TSImageView! {
@@ -33,8 +32,8 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView! {
         didSet {
             contentTextView.text = receivedNewItem?.description
-            contentTextView.textColor = UIColor.grayColor()
-            contentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+            contentTextView.textColor = UIColor.gray
+            contentTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
             contentTextView.sizeToFit()
         }
     }
@@ -51,16 +50,16 @@ class NewsDetailViewController: UIViewController {
         //Add  Back Button
         addBackButton()
         //Setting gradient to newsImageView
-        newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).CGColor, UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.6).CGColor], locations: [0.0, 0.1, 0.95])
+        newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.1, 0.95])
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.hidesBarsOnTap = true
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
     }
@@ -68,22 +67,22 @@ class NewsDetailViewController: UIViewController {
     //MARK: Back Button Init
     func addBackButton() {
         let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
-        backButton.addTarget(self, action: #selector(NewsDetailViewController.dismissButtonTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        backButton.setImage(UIImage(named: "back"), for: UIControlState())
+        backButton.addTarget(self, action: #selector(NewsDetailViewController.dismissButtonTapped), for: UIControlEvents.touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
     //MARK: Back Button Dismiss action
     func dismissButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     //MARK: Open News URL in Safari Browser Action
-    @IBAction func openNewInSafari(sender: UISwipeGestureRecognizer) {
-        guard let urlString = receivedNewItem?.url, let url = NSURL(string: urlString) else { return }
-        let svc = MySafariViewController(URL: url)
-        self.presentViewController(svc, animated: true, completion: nil)
+    @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {
+        guard let urlString = receivedNewItem?.url, let url = URL(string: urlString) else { return }
+        let svc = MySafariViewController(url: url)
+        self.present(svc, animated: true, completion: nil)
     }
     
 }

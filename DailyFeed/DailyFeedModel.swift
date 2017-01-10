@@ -18,7 +18,7 @@ public struct DailyFeedModel {
     public let description: String
     public let url: String
     
-    public init?(json: AnyObject) {
+    public init?(json: [String: AnyObject]) {
         
         guard let title = json["title"] as? String,
         let author      = json["author"] as? String,
@@ -41,30 +41,30 @@ public struct DailyFeedModel {
 
 extension DailyFeedModel {
     
-    static func getNewsItems(source: String, completion: ([DailyFeedModel]?, NSError?) -> Void) {
+    static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, NSError?) -> Void) {
         
-        let baseURL = NSURL(string: "https://newsapi.org/v1/articles?source=\(source)&apiKey=53b8c0ba0ea24a199f790d660b73675f")!
+        let baseURL = URL(string: "https://newsapi.org/v1/articles?source=\(source)&apiKey=53b8c0ba0ea24a199f790d660b73675f")!
         
-        let baseUrlRequest = NSURLRequest(URL: baseURL)
+        let baseUrlRequest = URLRequest(url: baseURL)
         
         var newsItems = [DailyFeedModel]()
         
         
-        NSURLSession.sharedSession().dataTaskWithRequest(baseUrlRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
             
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, error as NSError?)
                 return
             }
             
             guard let data = data else {
-                completion(nil, error)
+                completion(nil, error as NSError?)
                 return
             }
             
-            if let jsonData =  try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) {
+            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) {
                 
-                if let json = jsonData as? [String: AnyObject], let jsonDict = json["articles"] as? NSArray {
+                if let json = jsonData as? [String: AnyObject], let jsonDict = json["articles"] as? [[String: AnyObject]] {
                     
                     newsItems = jsonDict.flatMap(DailyFeedModel.init)
                     
@@ -72,6 +72,6 @@ extension DailyFeedModel {
                     
                 }
             }
-            }.resume()
+            }) .resume()
     }
 }
