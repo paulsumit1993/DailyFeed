@@ -52,7 +52,10 @@ class NewsDetailViewController: UIViewController {
         addBackButton()
         //Setting gradient to newsImageView
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).CGColor, UIColor.clearColor().CGColor, UIColor(white: 0, alpha: 0.6).CGColor], locations: [0.0, 0.1, 0.95])
-        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController.view.backgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated: Bool) {
