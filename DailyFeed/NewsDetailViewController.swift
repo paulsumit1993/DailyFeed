@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class NewsDetailViewController: UIViewController {
+class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
     
     //MARK: News data declaration
     var receivedNewItem: DailyFeedModel? = nil
@@ -59,7 +59,7 @@ class NewsDetailViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         //Setting gradient to newsImageView
-        newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.1, 0.95])
+        newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.05, 0.95])
         
     }
     
@@ -76,6 +76,7 @@ class NewsDetailViewController: UIViewController {
     @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {
         guard let urlString = receivedNewItem?.url, let url = URL(string: urlString) else { return }
         let svc = MySafariViewController(url: url)
+        svc.delegate = self
         self.present(svc, animated: true, completion: nil)
     }
     
