@@ -13,6 +13,7 @@ class NewsDetailViewController: UIViewController {
     
     //MARK: News data declaration
     var receivedNewItem: DailyFeedModel? = nil
+    
     //MARK: IBOutlets
     
     @IBOutlet weak var newsImageView: TSImageView! {
@@ -44,39 +45,32 @@ class NewsDetailViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var backButton: UIButton! {
+        didSet {
+            backButton.layer.shadowColor = UIColor.black.cgColor
+            backButton.layer.shadowRadius = 2.0
+            backButton.layer.shadowOpacity = 1.0
+            backButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        }
+    }
+    
     //MARK: View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Add  Back Button
-        addBackButton()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         //Setting gradient to newsImageView
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.1, 0.95])
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.hidesBarsOnTap = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.hidesBarsOnTap = false
-    }
-    
-    //MARK: Back Button Init
-    func addBackButton() {
-        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        backButton.setImage(UIImage(named: "back"), for: UIControlState())
-        backButton.addTarget(self, action: #selector(NewsDetailViewController.dismissButtonTapped), for: UIControlEvents.touchUpInside)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-    }
-    
     //MARK: Back Button Dismiss action
-    func dismissButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func dismissButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func dismissSwipeAction() {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     //MARK: Open News URL in Safari Browser Action
     @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {

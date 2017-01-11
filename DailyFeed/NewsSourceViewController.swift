@@ -71,6 +71,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: Setup TableView
     func setupTableView() {
+        self.sourceTableView.register(UINib(nibName: "DailySourceItemCell", bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
         self.sourceTableView.addSubview(refreshControl)
         self.refreshControl.addTarget(self, action: #selector(NewsSourceViewController.refreshData(_:)), for: UIControlEvents.valueChanged)
         
@@ -128,13 +129,13 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SourceCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell", for: indexPath) as! DailySourceItemCell
         
         if self.resultsSearchController.isActive {
-            cell.textLabel?.text = filteredSourceItems[indexPath.row].name
+            cell.sourceImageView.downloadedFromLink(filteredSourceItems[indexPath.row].urlsToLogos)
         }
         else {
-            cell.textLabel?.text = sourceItems[indexPath.row].name
+            cell.sourceImageView.downloadedFromLink(sourceItems[indexPath.row].urlsToLogos)
         }
         
         return cell

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oWo-5U-Bje">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oWo-5U-Bje">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Daily Feed News Controller-->
@@ -13,9 +17,9 @@
             <objects>
                 <collectionViewController id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7N7-o2-reM">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="9G8-3r-4Jl">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
@@ -29,18 +33,17 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsHeaderCell" id="uDu-Sf-au3" customClass="NewHeaderCollectionReusableView" customModule="DailyFeed" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DbO-tM-PWE" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
-                                    <rect key="frame" x="280" y="5" width="40" height="40"/>
+                                    <rect key="frame" x="165.5" y="3" width="44" height="44"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="1Cg-mr-4PD"/>
+                                        <constraint firstAttribute="height" constant="44" id="1Cg-mr-4PD"/>
                                         <constraint firstAttribute="width" secondItem="DbO-tM-PWE" secondAttribute="height" multiplier="1:1" id="qFY-SI-EIX"/>
                                     </constraints>
                                 </imageView>
@@ -54,11 +57,11 @@
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterCell" id="Gdd-r4-LOU">
-                            <rect key="frame" x="0.0" y="105" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="105" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by NewsAPI.org" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZc-Js-chO">
-                                    <rect key="frame" x="219" y="16" width="162" height="17"/>
+                                    <rect key="frame" x="101.5" y="15.5" width="172" height="18"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
@@ -67,8 +70,8 @@
                                     </variation>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ay-mh-mFe">
-                                    <rect key="frame" x="20" y="8" width="560" height="1"/>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <rect key="frame" x="20" y="8" width="335" height="1"/>
+                                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Ngi-fL-mgy"/>
                                     </constraints>
@@ -88,15 +91,15 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="a8j-37-xyQ">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="F2I-QK-DgI">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="F2I-QK-DgI">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="bjF-yu-jQX" kind="presentation" identifier="newsSourceSegue" modalTransitionStyle="crossDissolve" id="SYg-cD-MHo"/>
+                                <segue destination="bjF-yu-jQX" kind="presentation" identifier="newsSourceSegue" modalTransitionStyle="coverVertical" id="SYg-cD-MHo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="1yk-sL-YYJ" kind="show" identifier="newsDetailSegue" id="Kky-f7-CbY"/>
+                        <segue destination="1yk-sL-YYJ" kind="presentation" identifier="newsDetailSegue" modalTransitionStyle="crossDissolve" id="ico-Xt-3Zc"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaA-tc-RMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -112,10 +115,10 @@
                         <viewControllerLayoutGuide type="bottom" id="oRg-Id-Bve"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yk7-G7-fGr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGa-OH-Yje">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGa-OH-Yje">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
@@ -123,14 +126,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6a-Xw-k4Z">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="-4" y="20" width="383" height="647"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="28" width="383" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XSz-yC-ada" id="aKz-78-YEH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -141,7 +144,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="top" secondItem="wCa-B2-Emd" secondAttribute="bottom" id="3G0-qp-hjr"/>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="leading" secondItem="Yk7-G7-fGr" secondAttribute="leadingMargin" constant="-20" id="5up-eH-lGN"/>
@@ -171,29 +174,29 @@
                         <viewControllerLayoutGuide type="bottom" id="YUA-ug-DBv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jP3-ch-vay">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0OI-zn-fNx" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-20" width="600" height="241"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kd6-Lt-aaU">
-                                <rect key="frame" x="15" y="231" width="570" height="251"/>
+                                <rect key="frame" x="15" y="310" width="345" height="303"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaK-t0-JZk">
-                                        <rect key="frame" x="0.0" y="0.0" width="570" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <color key="textColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         </variation>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCH-mL-TaE">
-                                        <rect key="frame" x="0.0" y="25" width="570" height="226"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="0.0" y="25.5" width="345" height="277.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -203,30 +206,38 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0E-nL-0ff">
-                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="-4" y="623" width="383" height="44"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="duC-fp-7Lp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <state key="normal" title="Swipe left to Read More &gt;">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 </variation>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbq-CR-c0C">
-                                <rect key="frame" x="20" y="195" width="570" height="18"/>
+                                <rect key="frame" x="20" y="272.5" width="345" height="19.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nz-Or-miM">
+                                <rect key="frame" x="16" y="20" width="36" height="36"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="dismissButtonTapped" destination="1yk-sL-YYJ" eventType="touchUpInside" id="uku-PC-iZk"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="height" secondItem="jP3-ch-vay" secondAttribute="height" multiplier="0.45" id="6AH-G6-spD"/>
@@ -234,22 +245,26 @@
                             <constraint firstAttribute="trailing" secondItem="0OI-zn-fNx" secondAttribute="trailing" id="7De-hD-YCa"/>
                             <constraint firstAttribute="trailing" secondItem="kd6-Lt-aaU" secondAttribute="trailing" constant="15" id="D9V-R5-n5z"/>
                             <constraint firstItem="kd6-Lt-aaU" firstAttribute="top" secondItem="0OI-zn-fNx" secondAttribute="bottom" constant="10" id="DdP-pG-bm6"/>
+                            <constraint firstItem="1nz-Or-miM" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" id="LI3-Yg-57w"/>
                             <constraint firstItem="kd6-Lt-aaU" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" constant="15" id="SeU-nX-srq"/>
                             <constraint firstItem="hbq-CR-c0C" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" constant="20" id="bz4-D4-nyi"/>
                             <constraint firstAttribute="trailing" secondItem="hbq-CR-c0C" secondAttribute="trailing" constant="10" id="d8N-SL-Qa2"/>
                             <constraint firstItem="hbq-CR-c0C" firstAttribute="bottom" secondItem="0OI-zn-fNx" secondAttribute="bottom" constant="-8" id="dGd-hJ-SJC"/>
                             <constraint firstItem="YUA-ug-DBv" firstAttribute="top" secondItem="S0E-nL-0ff" secondAttribute="bottom" id="f8A-bs-6Zr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="S0E-nL-0ff" secondAttribute="trailing" constant="-20" id="oGn-hO-jdy"/>
+                            <constraint firstItem="1nz-Or-miM" firstAttribute="top" secondItem="jP3-ch-vay" secondAttribute="topMargin" constant="20" id="vGy-bz-aAQ"/>
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" id="vVq-Gp-KLe"/>
                             <constraint firstItem="S0E-nL-0ff" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" constant="-20" id="vdb-Cq-L0D"/>
                             <constraint firstItem="S0E-nL-0ff" firstAttribute="top" secondItem="kd6-Lt-aaU" secondAttribute="bottom" constant="10" id="xWI-VS-ABL"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="C7x-5w-Qtc" appends="YES" id="KmG-QE-zOT"/>
+                            <outletCollection property="gestureRecognizers" destination="a3J-ax-4Pa" appends="YES" id="Nyp-Pi-mNb"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="B6b-G8-lHI"/>
                     <connections>
+                        <outlet property="backButton" destination="1nz-Or-miM" id="QNC-ze-ZER"/>
                         <outlet property="contentTextView" destination="aCH-mL-TaE" id="gfj-Lr-6In"/>
                         <outlet property="newsImageView" destination="0OI-zn-fNx" id="mw4-8k-KuE"/>
                         <outlet property="newsSourceLabel" destination="hbq-CR-c0C" id="KEx-VK-bya"/>
@@ -257,13 +272,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxL-QF-YTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="a3J-ax-4Pa">
+                    <connections>
+                        <action selector="dismissSwipeAction" destination="1yk-sL-YYJ" id="2ro-Vq-BTn"/>
+                    </connections>
+                </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="C7x-5w-Qtc">
                     <connections>
                         <action selector="openNewInSafari:" destination="1yk-sL-YYJ" id="o37-pJ-B38"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3353" y="447"/>
+            <point key="canvasLocation" x="3452" y="447"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="loe-6Q-P3R">
@@ -285,6 +305,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="36" height="36"/>
         <image name="menu" width="36" height="36"/>
     </resources>
 </document>

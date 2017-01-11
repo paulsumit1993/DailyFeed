@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DailySourceItemCell" rowHeight="88" id="KGk-i7-Jjw" customClass="DailySourceItemCell" customModule="DailyFeed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="353" height="88"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rg0-YG-5FM" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
+                        <rect key="frame" x="154.5" y="22" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="SdD-5I-5dM"/>
+                            <constraint firstAttribute="width" secondItem="rg0-YG-5FM" secondAttribute="height" multiplier="1:1" id="khO-zL-D2Z"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rg0-YG-5FM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9dl-EI-iKv"/>
+                    <constraint firstItem="rg0-YG-5FM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FmT-eB-xlS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="sourceImageView" destination="rg0-YG-5FM" id="FmX-vB-YT1"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="52"/>
+        </tableViewCell>
+    </objects>
+</document>
