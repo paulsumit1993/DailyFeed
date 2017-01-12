@@ -13,6 +13,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
     
+    @IBOutlet weak var searchContainerView: UIView!
     //MARK: Variable declaration
     var sourceItems = [DailySourceModel]()
     
@@ -37,8 +38,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
-        refresh.backgroundColor = UIColor.black
-        refresh.tintColor = UIColor.white
+        refresh.backgroundColor = UIColor.white
+        refresh.tintColor = UIColor.black
         return refresh
     }()
     
@@ -57,6 +58,12 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resultsSearchController.delegate = nil
+        resultsSearchController.searchBar.delegate = nil
+    }
+    
     //MARK: Setup UI
     func setupUI() {
         setupSearch()
@@ -66,7 +73,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: Setup SearchBar
     func setupSearch() {
         self.resultsSearchController.searchResultsUpdater = self
-        self.sourceTableView.tableHeaderView = resultsSearchController.searchBar
+        searchContainerView.addSubview(resultsSearchController.searchBar)
+        let attributes: [NSLayoutAttribute] = [.top, .bottom, . left, .right]
+        NSLayoutConstraint.activate(attributes.map{NSLayoutConstraint(item: self.resultsSearchController.searchBar, attribute: $0, relatedBy: .equal, toItem: self.searchContainerView, attribute: $0, multiplier: 1, constant: 0)})
     }
     
     //MARK: Setup TableView
@@ -116,6 +125,12 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
                 UIApplication.shared.endIgnoringInteractionEvents()
             })
         }
+    }
+    
+    
+    //MARK: Status Bar Color
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
     //MARK: TableView Delegate Methods

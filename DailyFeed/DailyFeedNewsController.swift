@@ -64,7 +64,6 @@ class DailyFeedNewsController: UICollectionViewController {
     
     //MARK: Setup navigation
     func setupNavigationBar() {
-        self.navigationItem.title = "Your Feed"
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil;
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
