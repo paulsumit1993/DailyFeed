@@ -17,7 +17,7 @@ public struct DailySourceModel {
     
     public init?(json: [String: AnyObject]) {
         
-        guard let id        = json["id"] as? String,
+        guard let id      = json["id"] as? String,
             let name      = json["name"] as? String,
             let category  = json["category"] as? String,
             let url       = json["urlsToLogos"] as? [String: AnyObject],
@@ -35,9 +35,9 @@ public struct DailySourceModel {
 extension DailySourceModel {
     static func getNewsSource(_ completion: @escaping ([DailySourceModel]?, NSError?) -> Void) {
         
-        let baseURL = URL(string: "https://newsapi.org/v1/sources?language=en")!
+        let sourceURL = NewsAPI.sources.url
         
-        let baseUrlRequest = URLRequest(url: baseURL)
+        let baseUrlRequest = URLRequest(url: sourceURL)
         
         var newsItems = [DailySourceModel]()
         
@@ -56,7 +56,7 @@ extension DailySourceModel {
             
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) {
                 
-                if let json = jsonData as? [String: AnyObject], let jsonDict = json["sources"] as? [[String: AnyObject]] {
+                if let json = jsonData as? [String: AnyObject], let jsonDict = json[NewsAPI.sources.jsonKey] as? [[String: AnyObject]] {
                     
                     newsItems = jsonDict.flatMap(DailySourceModel.init)
                     

@@ -43,9 +43,9 @@ extension DailyFeedModel {
     
     static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, NSError?) -> Void) {
         
-        let baseURL = URL(string: "https://newsapi.org/v1/articles?source=\(source)&apiKey=53b8c0ba0ea24a199f790d660b73675f")!
-        
-        let baseUrlRequest = URLRequest(url: baseURL)
+        let feedURL = NewsAPI.articles(source: source).url
+
+        let baseUrlRequest = URLRequest(url: feedURL)
         
         var newsItems = [DailyFeedModel]()
         
@@ -64,7 +64,7 @@ extension DailyFeedModel {
             
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) {
                 
-                if let json = jsonData as? [String: AnyObject], let jsonDict = json["articles"] as? [[String: AnyObject]] {
+                if let json = jsonData as? [String: AnyObject], let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [[String: AnyObject]] {
                     
                     newsItems = jsonDict.flatMap(DailyFeedModel.init)
                     
