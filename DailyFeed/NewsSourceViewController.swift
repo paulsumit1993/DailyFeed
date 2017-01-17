@@ -13,7 +13,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
     
-    @IBOutlet weak var searchContainerView: UIView!
     //MARK: Variable declaration
     var sourceItems = [DailySourceModel]()
     
@@ -26,8 +25,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         controller.dimsBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = false
         controller.searchBar.placeholder = "Search Sources..."
-        controller.searchBar.tintColor = UIColor.black
         controller.searchBar.searchBarStyle = .minimal
+        controller.searchBar.tintColor = UIColor.black
         controller.searchBar.sizeToFit()
         return controller
     }()
@@ -35,14 +34,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     let spinningActivityIndicator = TSActivityIndicator()
     
     let container = UIView()
-    
-    let refreshControl: UIRefreshControl = {
-        let refresh = UIRefreshControl()
-        refresh.backgroundColor = UIColor.white
-        refresh.tintColor = UIColor.black
-        return refresh
-    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +47,10 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         //setup TableView
         setupTableView()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,17 +68,13 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: Setup SearchBar
     func setupSearch() {
         self.resultsSearchController.searchResultsUpdater = self
-        searchContainerView.addSubview(resultsSearchController.searchBar)
-        let attributes: [NSLayoutAttribute] = [.top, .bottom, . left, .right]
-        NSLayoutConstraint.activate(attributes.map{NSLayoutConstraint(item: self.resultsSearchController.searchBar, attribute: $0, relatedBy: .equal, toItem: self.searchContainerView, attribute: $0, multiplier: 1, constant: 0)})
+        navigationItem.titleView = resultsSearchController.searchBar
     }
     
     //MARK: Setup TableView
     func setupTableView() {
         self.sourceTableView.register(UINib(nibName: "DailySourceItemCell", bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
-        self.sourceTableView.addSubview(refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(NewsSourceViewController.refreshData(_:)), for: UIControlEvents.valueChanged)
-        
+    
     }
     
     //MARK: Setup Spinner
@@ -105,7 +96,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async(execute: {
-                    self.refreshControl.endRefreshing()
                     self.spinningActivityIndicator.stopAnimating()
                     self.container.removeFromSuperview()
                     UIApplication.shared.endIgnoringInteractionEvents()
@@ -118,7 +108,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             
             self.sourceItems = news
             DispatchQueue.main.async(execute: {
-                self.refreshControl.endRefreshing()
                 self.sourceTableView.reloadData()
                 self.spinningActivityIndicator.stopAnimating()
                 self.container.removeFromSuperview()
