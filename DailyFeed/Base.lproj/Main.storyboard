@@ -169,7 +169,7 @@
         <!--News Detail View Controller-->
         <scene sceneID="215-4y-uX3">
             <objects>
-                <viewController id="1yk-sL-YYJ" customClass="NewsDetailViewController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsDetailViewController" id="1yk-sL-YYJ" customClass="NewsDetailViewController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tZc-3f-epY"/>
                         <viewControllerLayoutGuide type="bottom" id="YUA-ug-DBv"/>
@@ -208,7 +208,7 @@
                             </stackView>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0E-nL-0ff">
                                 <rect key="frame" x="-4" y="623" width="383" height="44"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.11372549019607843" green="0.62745098039215685" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="duC-fp-7Lp"/>
                                 </constraints>
@@ -244,6 +244,17 @@
                                     <action selector="dismissButtonTapped" destination="1yk-sL-YYJ" eventType="touchUpInside" id="uku-PC-iZk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TS-FQ-g23">
+                                <rect key="frame" x="315" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8TS-FQ-g23" secondAttribute="height" multiplier="1:1" id="8NI-Uy-cpk"/>
+                                    <constraint firstAttribute="height" constant="44" id="Igk-oT-raP"/>
+                                </constraints>
+                                <state key="normal" image="share"/>
+                                <connections>
+                                    <action selector="shareArticle:" destination="1yk-sL-YYJ" eventType="touchUpInside" id="cSy-kP-dpx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -251,10 +262,12 @@
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="height" secondItem="jP3-ch-vay" secondAttribute="height" multiplier="0.45" id="6AH-G6-spD"/>
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="top" secondItem="tZc-3f-epY" secondAttribute="bottom" constant="-20" id="6RN-kM-x1w"/>
                             <constraint firstAttribute="trailing" secondItem="0OI-zn-fNx" secondAttribute="trailing" id="7De-hD-YCa"/>
+                            <constraint firstItem="8TS-FQ-g23" firstAttribute="trailing" secondItem="jP3-ch-vay" secondAttribute="trailingMargin" id="AZe-u4-wWe"/>
                             <constraint firstAttribute="trailing" secondItem="kd6-Lt-aaU" secondAttribute="trailing" constant="15" id="D9V-R5-n5z"/>
                             <constraint firstItem="kd6-Lt-aaU" firstAttribute="top" secondItem="0OI-zn-fNx" secondAttribute="bottom" constant="10" id="DdP-pG-bm6"/>
                             <constraint firstItem="1nz-Or-miM" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" id="LI3-Yg-57w"/>
                             <constraint firstItem="kd6-Lt-aaU" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" constant="15" id="SeU-nX-srq"/>
+                            <constraint firstItem="8TS-FQ-g23" firstAttribute="top" secondItem="tZc-3f-epY" secondAttribute="bottom" id="aCX-IZ-PL7"/>
                             <constraint firstItem="hbq-CR-c0C" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" constant="20" id="bz4-D4-nyi"/>
                             <constraint firstAttribute="trailing" secondItem="hbq-CR-c0C" secondAttribute="trailing" constant="10" id="d8N-SL-Qa2"/>
                             <constraint firstItem="hbq-CR-c0C" firstAttribute="bottom" secondItem="0OI-zn-fNx" secondAttribute="bottom" constant="-8" id="dGd-hJ-SJC"/>
@@ -277,6 +290,8 @@
                         <outlet property="newsImageView" destination="0OI-zn-fNx" id="mw4-8k-KuE"/>
                         <outlet property="newsSourceLabel" destination="hbq-CR-c0C" id="KEx-VK-bya"/>
                         <outlet property="newsTitleLabel" destination="qaK-t0-JZk" id="sOu-2B-W33"/>
+                        <outlet property="shareButton" destination="8TS-FQ-g23" id="jXZ-kH-ccF"/>
+                        <outlet property="swipeLeftButton" destination="S0E-nL-0ff" id="12l-yh-dR5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxL-QF-YTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -333,5 +348,6 @@
     <resources>
         <image name="back" width="36" height="36"/>
         <image name="menu" width="24" height="24"/>
+        <image name="share" width="24" height="24"/>
     </resources>
 </document>

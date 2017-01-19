@@ -19,17 +19,7 @@ class MySafariViewController: SFSafariViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
+        super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .default
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-
-
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060D64801E30C3E20053F2AB /* NewsDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D647F1E30C3E20053F2AB /* NewsDetailViewControllerTests.swift */; };
 		062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062169571E260AE800ECB0AB /* DailySourceItemCell.swift */; };
 		0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 062169581E260AE800ECB0AB /* DailySourceItemCell.xib */; };
 		063504FC1E151C4A002510B0 /* MySafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063504FB1E151C4A002510B0 /* MySafariViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		060D647F1E30C3E20053F2AB /* NewsDetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		062169571E260AE800ECB0AB /* DailySourceItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemCell.swift; sourceTree = "<group>"; };
 		062169581E260AE800ECB0AB /* DailySourceItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailySourceItemCell.xib; sourceTree = "<group>"; };
 		063504FB1E151C4A002510B0 /* MySafariViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySafariViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				06CAC5951E28A1EC00EF72BB /* DailyFeedModelTests.swift */,
 				06CAC5991E28D81A00EF72BB /* DailySourceModelTests.swift */,
 				06CAC59B1E28E4CA00EF72BB /* NewsAPITests.swift */,
+				060D647F1E30C3E20053F2AB /* NewsDetailViewControllerTests.swift */,
 				06CAC59D1E28E8A400EF72BB /* SFsafaricontrollerTests.swift */,
 				06D04C351E1248DB0013B4AA /* Info.plist */,
 			);
@@ -375,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06CAC59C1E28E4CA00EF72BB /* NewsAPITests.swift in Sources */,
+				060D64801E30C3E20053F2AB /* NewsDetailViewControllerTests.swift in Sources */,
 				06CAC5961E28A1EC00EF72BB /* DailyFeedModelTests.swift in Sources */,
 				06CAC59E1E28E8A400EF72BB /* SFsafaricontrollerTests.swift in Sources */,
 				06CAC59A1E28D81A00EF72BB /* DailySourceModelTests.swift in Sources */,

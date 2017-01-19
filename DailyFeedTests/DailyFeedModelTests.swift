@@ -71,7 +71,7 @@ class DailyFeedModelTests: XCTestCase {
             exp.fulfill()
         }
         
-        self.waitForExpectations(timeout: 6) { error in
+        self.waitForExpectations(timeout: 7) { error in
             XCTAssertNil(error, "Fatal Error")
             XCTAssertGreaterThan(dataModel.count, 0)
         }
