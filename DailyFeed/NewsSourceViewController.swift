@@ -33,6 +33,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let spinningActivityIndicator = TSActivityIndicator()
     
+    //Activity Indicator Container View
     let container = UIView()
     
     override func viewDidLoad() {

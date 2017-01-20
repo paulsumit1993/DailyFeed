@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		060D64801E30C3E20053F2AB /* NewsDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D647F1E30C3E20053F2AB /* NewsDetailViewControllerTests.swift */; };
+		060D64821E30D6D10053F2AB /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D64811E30D6D10053F2AB /* TestData.swift */; };
+		060D64851E31E6E50053F2AB /* DailyFeedItemListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D64831E31E6E50053F2AB /* DailyFeedItemListCell.swift */; };
+		060D64861E31E6E50053F2AB /* DailyFeedItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060D64841E31E6E50053F2AB /* DailyFeedItemListCell.xib */; };
+		060D64881E31EB400053F2AB /* DailySourceItemLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */; };
+		060D648A1E31EB540053F2AB /* DailySourceItemListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D64891E31EB540053F2AB /* DailySourceItemListLayout.swift */; };
 		062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062169571E260AE800ECB0AB /* DailySourceItemCell.swift */; };
 		0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 062169581E260AE800ECB0AB /* DailySourceItemCell.xib */; };
 		063504FC1E151C4A002510B0 /* MySafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063504FB1E151C4A002510B0 /* MySafariViewController.swift */; };
@@ -55,6 +60,11 @@
 
 /* Begin PBXFileReference section */
 		060D647F1E30C3E20053F2AB /* NewsDetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		060D64811E30D6D10053F2AB /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		060D64831E31E6E50053F2AB /* DailyFeedItemListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedItemListCell.swift; sourceTree = "<group>"; };
+		060D64841E31E6E50053F2AB /* DailyFeedItemListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyFeedItemListCell.xib; sourceTree = "<group>"; };
+		060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemLayout.swift; sourceTree = "<group>"; };
+		060D64891E31EB540053F2AB /* DailySourceItemListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemListLayout.swift; sourceTree = "<group>"; };
 		062169571E260AE800ECB0AB /* DailySourceItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemCell.swift; sourceTree = "<group>"; };
 		062169581E260AE800ECB0AB /* DailySourceItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailySourceItemCell.xib; sourceTree = "<group>"; };
 		063504FB1E151C4A002510B0 /* MySafariViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySafariViewController.swift; sourceTree = "<group>"; };
@@ -155,7 +165,11 @@
 				06D04C221E1248DB0013B4AA /* Main.storyboard */,
 				06D04C271E1248DB0013B4AA /* LaunchScreen.storyboard */,
 				06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */,
+				060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */,
+				060D64891E31EB540053F2AB /* DailySourceItemListLayout.swift */,
 				062169571E260AE800ECB0AB /* DailySourceItemCell.swift */,
+				060D64831E31E6E50053F2AB /* DailyFeedItemListCell.swift */,
+				060D64841E31E6E50053F2AB /* DailyFeedItemListCell.xib */,
 				062169581E260AE800ECB0AB /* DailySourceItemCell.xib */,
 				063505091E165C83002510B0 /* NewHeaderCollectionReusableView.swift */,
 				06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */,
@@ -201,6 +215,7 @@
 				06CAC5951E28A1EC00EF72BB /* DailyFeedModelTests.swift */,
 				06CAC5991E28D81A00EF72BB /* DailySourceModelTests.swift */,
 				06CAC59B1E28E4CA00EF72BB /* NewsAPITests.swift */,
+				060D64811E30D6D10053F2AB /* TestData.swift */,
 				060D647F1E30C3E20053F2AB /* NewsDetailViewControllerTests.swift */,
 				06CAC59D1E28E8A400EF72BB /* SFsafaricontrollerTests.swift */,
 				06D04C351E1248DB0013B4AA /* Info.plist */,
@@ -329,6 +344,7 @@
 				06D04C291E1248DB0013B4AA /* LaunchScreen.storyboard in Resources */,
 				06D04C261E1248DB0013B4AA /* Assets.xcassets in Resources */,
 				0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */,
+				060D64861E31E6E50053F2AB /* DailyFeedItemListCell.xib in Resources */,
 				06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,8 +383,11 @@
 				0635050C1E165EA0002510B0 /* DailySourceModel.swift in Sources */,
 				06CAC5981E28A3D600EF72BB /* NewsAPI.swift in Sources */,
 				06D04C511E126BD40013B4AA /* UIImageExtension.swift in Sources */,
+				060D64881E31EB400053F2AB /* DailySourceItemLayout.swift in Sources */,
+				060D648A1E31EB540053F2AB /* DailySourceItemListLayout.swift in Sources */,
 				062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */,
 				068496AC1E23AA2900DBD5A6 /* UIViewControllerExtension.swift in Sources */,
+				060D64851E31E6E50053F2AB /* DailyFeedItemListCell.swift in Sources */,
 				06D04C1F1E1248DB0013B4AA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,6 +399,7 @@
 				06CAC59C1E28E4CA00EF72BB /* NewsAPITests.swift in Sources */,
 				060D64801E30C3E20053F2AB /* NewsDetailViewControllerTests.swift in Sources */,
 				06CAC5961E28A1EC00EF72BB /* DailyFeedModelTests.swift in Sources */,
+				060D64821E30D6D10053F2AB /* TestData.swift in Sources */,
 				06CAC59E1E28E8A400EF72BB /* SFsafaricontrollerTests.swift in Sources */,
 				06CAC59A1E28D81A00EF72BB /* DailySourceModelTests.swift in Sources */,
 			);

@@ -16,7 +16,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var filteredNewsItems = [DailyFeedModel]()
     
-    var newsSourceUrl: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
+    var newsSourceUrlLogo: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
     
     var source: String = "the-wall-street-journal"
     
@@ -72,6 +72,8 @@ class DailyFeedNewsController: UICollectionViewController {
     //MARK: Setup CollectionView
     func setupCollectionView() {
         self.collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
+        self.collectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemListCell")
+        
         self.collectionView?.alwaysBounceVertical = true
         self.collectionView?.addSubview(refreshControl)
         self.refreshControl.addTarget(self, action: #selector(DailyFeedNewsController.refreshData(_:)), for: UIControlEvents.valueChanged)
@@ -124,7 +126,8 @@ class DailyFeedNewsController: UICollectionViewController {
             
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
 
-                vc.receivedNewItem = newsItems[indexpath.row]
+                vc.receivedNewsItem = newsItems[indexpath.row]
+                vc.receivedNewsSourceLogo = newsSourceUrlLogo
         }
     }
     
@@ -133,7 +136,7 @@ class DailyFeedNewsController: UICollectionViewController {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.id {
             setupSpinner()
             self.spinningActivityIndicator.startAnimating()
-            self.newsSourceUrl = sourceVC.selectedItem?.urlsToLogos
+            self.newsSourceUrlLogo = sourceVC.selectedItem?.urlsToLogos
             self.source = sourceId
             loadNewsData(source)
         }

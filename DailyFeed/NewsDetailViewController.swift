@@ -12,14 +12,15 @@ import SafariServices
 class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
     
     //MARK: News data declaration
-    var receivedNewItem: DailyFeedModel? = nil
+    var receivedNewsItem: DailyFeedModel? = nil
+    var receivedNewsSourceLogo: String? = nil
     
     //MARK: IBOutlets
     
     @IBOutlet weak var newsImageView: TSImageView! {
         didSet {
             
-            newsImageView.downloadedFromLink((receivedNewItem?.urlToImage)!)
+            newsImageView.downloadedFromLink((receivedNewsItem?.urlToImage)!)
             newsImageView.layer.masksToBounds = true
             newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.05, 0.85])
         }
@@ -27,13 +28,13 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     @IBOutlet weak var newsTitleLabel: UILabel! {
         didSet {
-            newsTitleLabel.text = receivedNewItem?.title
+            newsTitleLabel.text = receivedNewsItem?.title
         }
     }
     
     @IBOutlet weak var contentTextView: UITextView! {
         didSet {
-            contentTextView.text = receivedNewItem?.description
+            contentTextView.text = receivedNewsItem?.description
             contentTextView.textColor = UIColor.gray
             contentTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
             contentTextView.sizeToFit()
@@ -42,7 +43,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     @IBOutlet weak var newsSourceLabel: UILabel! {
         didSet {
-            newsSourceLabel.text = receivedNewItem?.author
+            newsSourceLabel.text = receivedNewsItem?.author
         }
     }
     
@@ -66,6 +67,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     @IBOutlet weak var swipeLeftButton: UIButton!
     
+    @IBOutlet weak var newsSourceImageView: TSImageView! {
+        didSet {
+        newsSourceImageView.downloadedFromLink((receivedNewsSourceLogo)!)
+
+        }
+    }
     //MARK: View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +105,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         let delay = DispatchTime.now() + 0.11
         DispatchQueue.main.asyncAfter(deadline: delay) {
             
-            guard let articleURL = self.receivedNewItem?.url, let articleImage = self.screenShotMethod() else { return }
+            guard let articleURL = self.receivedNewsItem?.url, let articleImage = self.captureScreenShot() else { return }
             
             let activityVC = UIActivityViewController(activityItems: [articleURL, articleImage], applicationActivities: nil)
             
@@ -114,7 +121,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     }
     
     //Helper to toggle UI elements before and after screenshot capture
-    fileprivate func fadeUIElements(with alpha: CGFloat) {
+     func fadeUIElements(with alpha: CGFloat) {
         UIView.animate(withDuration: 0.1, animations: {
             self.backButton.alpha = alpha
             self.shareButton.alpha = alpha
@@ -124,7 +131,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     }
     
     //Helper method to generate article screenshots
-    fileprivate func screenShotMethod() -> UIImage? {
+     func captureScreenShot() -> UIImage? {
         //Create the UIImage
         let bounds = UIScreen.main.bounds
         UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
@@ -138,7 +145,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     //MARK: Open News URL in Safari Browser Action
     @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {
-        guard let urlString = receivedNewItem?.url, let url = URL(string: urlString) else { return }
+        guard let urlString = receivedNewsItem?.url, let url = URL(string: urlString) else { return }
         let svc = MySafariViewController(url: url)
         svc.delegate = self
         self.present(svc, animated: true, completion: nil)

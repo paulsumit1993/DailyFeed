@@ -9,9 +9,6 @@
 import XCTest
 @testable import DailyFeed
 
-typealias JSON = [String: AnyObject]
-
-
 class DailyFeedModelTests: XCTestCase {
     
     
@@ -26,21 +23,9 @@ class DailyFeedModelTests: XCTestCase {
     func testDailyFeedModel() {
         
         //Mock Data
-        let json: JSON = [
-                          "title": "The Nintendo Switch will launch on March 3rd for $299"  as AnyObject,
-                          "author": "Andrew Webster" as AnyObject,
-                          "publishedAt": "2017-01-13T04:03:09Z" as AnyObject,
-                          "urlToImage": "http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject,
-                          "description": "Nintendo has finally revealed the price and release date for its much-anticipated Switch console: it’s launching on March 3rd worldwide, and in North America the console will be available for..." as AnyObject,
-                          "url":"http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject
-                         ]
+        let json: JSON = TestData.FeedModelJSON
         
-        let corruptJson: JSON = [
-            "title": "The Nintendo Switch will launch on March 3rd for $299"  as AnyObject,
-            "author": "Andrew Webster" as AnyObject,
-            "urlToImage": "http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject,
-            "description": "Nintendo has finally revealed the price and release date for its much-anticipated Switch console: it’s launching on March 3rd worldwide, and in North America the console will be available for..." as AnyObject,
-        ]
+        let corruptJson = TestData.CorruptFeedModelJSON
         
         let model = DailyFeedModel(json: json)
         

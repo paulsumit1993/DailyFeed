@@ -50,7 +50,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "newsHeaderCell", for: indexPath) as! NewHeaderCollectionReusableView
             
-            headerView.newSourceImageView.downloadedFromLink(self.newsSourceUrl!)
+            headerView.newSourceImageView.downloadedFromLink(self.newsSourceUrlLogo!)
             headerView.layer.masksToBounds = true
             
             return headerView

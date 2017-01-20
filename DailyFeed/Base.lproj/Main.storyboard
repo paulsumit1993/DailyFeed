@@ -182,7 +182,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kd6-Lt-aaU">
-                                <rect key="frame" x="15" y="310" width="345" height="303"/>
+                                <rect key="frame" x="15" y="310" width="345" height="314.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaK-t0-JZk">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="20.5"/>
@@ -194,7 +194,7 @@
                                         </variation>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCH-mL-TaE">
-                                        <rect key="frame" x="0.0" y="25.5" width="345" height="277.5"/>
+                                        <rect key="frame" x="0.0" y="25.5" width="345" height="289"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -206,20 +206,6 @@
                                     </textView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0E-nL-0ff">
-                                <rect key="frame" x="-4" y="623" width="383" height="44"/>
-                                <color key="backgroundColor" red="0.11372549019607843" green="0.62745098039215685" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="duC-fp-7Lp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Swipe left to Read More &gt;">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                </variation>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbq-CR-c0C">
                                 <rect key="frame" x="20" y="272.5" width="345" height="19.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
@@ -255,6 +241,24 @@
                                     <action selector="shareArticle:" destination="1yk-sL-YYJ" eventType="touchUpInside" id="cSy-kP-dpx"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Jh-bM7" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WZl-Jh-bM7" secondAttribute="height" multiplier="1:1" id="RSh-lF-maR"/>
+                                    <constraint firstAttribute="height" constant="40" id="euD-xG-5Wy"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw2-wF-wcO">
+                                <rect key="frame" x="-4" y="623" width="383" height="44"/>
+                                <color key="backgroundColor" red="0.1137254902" green="0.62745098040000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bLx-rp-keU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Swipe Left to read more &gt;">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -262,21 +266,22 @@
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="height" secondItem="jP3-ch-vay" secondAttribute="height" multiplier="0.45" id="6AH-G6-spD"/>
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="top" secondItem="tZc-3f-epY" secondAttribute="bottom" constant="-20" id="6RN-kM-x1w"/>
                             <constraint firstAttribute="trailing" secondItem="0OI-zn-fNx" secondAttribute="trailing" id="7De-hD-YCa"/>
+                            <constraint firstItem="YUA-ug-DBv" firstAttribute="top" secondItem="Zw2-wF-wcO" secondAttribute="bottom" id="7w2-RV-vza"/>
                             <constraint firstItem="8TS-FQ-g23" firstAttribute="trailing" secondItem="jP3-ch-vay" secondAttribute="trailingMargin" id="AZe-u4-wWe"/>
                             <constraint firstAttribute="trailing" secondItem="kd6-Lt-aaU" secondAttribute="trailing" constant="15" id="D9V-R5-n5z"/>
                             <constraint firstItem="kd6-Lt-aaU" firstAttribute="top" secondItem="0OI-zn-fNx" secondAttribute="bottom" constant="10" id="DdP-pG-bm6"/>
                             <constraint firstItem="1nz-Or-miM" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" id="LI3-Yg-57w"/>
+                            <constraint firstAttribute="bottom" secondItem="WZl-Jh-bM7" secondAttribute="bottom" constant="4" id="NVv-3v-QaD"/>
                             <constraint firstItem="kd6-Lt-aaU" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" constant="15" id="SeU-nX-srq"/>
+                            <constraint firstItem="Zw2-wF-wcO" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" constant="-20" id="Xud-7B-ask"/>
                             <constraint firstItem="8TS-FQ-g23" firstAttribute="top" secondItem="tZc-3f-epY" secondAttribute="bottom" id="aCX-IZ-PL7"/>
                             <constraint firstItem="hbq-CR-c0C" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" constant="20" id="bz4-D4-nyi"/>
+                            <constraint firstItem="WZl-Jh-bM7" firstAttribute="centerX" secondItem="jP3-ch-vay" secondAttribute="centerX" id="cVa-0h-RpD"/>
                             <constraint firstAttribute="trailing" secondItem="hbq-CR-c0C" secondAttribute="trailing" constant="10" id="d8N-SL-Qa2"/>
                             <constraint firstItem="hbq-CR-c0C" firstAttribute="bottom" secondItem="0OI-zn-fNx" secondAttribute="bottom" constant="-8" id="dGd-hJ-SJC"/>
-                            <constraint firstItem="YUA-ug-DBv" firstAttribute="top" secondItem="S0E-nL-0ff" secondAttribute="bottom" id="f8A-bs-6Zr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="S0E-nL-0ff" secondAttribute="trailing" constant="-20" id="oGn-hO-jdy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zw2-wF-wcO" secondAttribute="trailing" constant="-20" id="hWY-Fd-ZBb"/>
                             <constraint firstItem="1nz-Or-miM" firstAttribute="top" secondItem="jP3-ch-vay" secondAttribute="topMargin" constant="20" id="vGy-bz-aAQ"/>
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" id="vVq-Gp-KLe"/>
-                            <constraint firstItem="S0E-nL-0ff" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" constant="-20" id="vdb-Cq-L0D"/>
-                            <constraint firstItem="S0E-nL-0ff" firstAttribute="top" secondItem="kd6-Lt-aaU" secondAttribute="bottom" constant="10" id="xWI-VS-ABL"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="C7x-5w-Qtc" appends="YES" id="KmG-QE-zOT"/>
@@ -288,10 +293,11 @@
                         <outlet property="backButton" destination="1nz-Or-miM" id="QNC-ze-ZER"/>
                         <outlet property="contentTextView" destination="aCH-mL-TaE" id="gfj-Lr-6In"/>
                         <outlet property="newsImageView" destination="0OI-zn-fNx" id="mw4-8k-KuE"/>
+                        <outlet property="newsSourceImageView" destination="WZl-Jh-bM7" id="7zf-Cy-AMd"/>
                         <outlet property="newsSourceLabel" destination="hbq-CR-c0C" id="KEx-VK-bya"/>
                         <outlet property="newsTitleLabel" destination="qaK-t0-JZk" id="sOu-2B-W33"/>
                         <outlet property="shareButton" destination="8TS-FQ-g23" id="jXZ-kH-ccF"/>
-                        <outlet property="swipeLeftButton" destination="S0E-nL-0ff" id="12l-yh-dR5"/>
+                        <outlet property="swipeLeftButton" destination="Zw2-wF-wcO" id="NlP-Lm-woS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxL-QF-YTd" userLabel="First Responder" sceneMemberID="firstResponder"/>

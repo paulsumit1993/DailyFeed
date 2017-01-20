@@ -23,26 +23,9 @@ class DailySourceModelTests: XCTestCase {
     func testDailySourceModel() {
         
         //Mock Data
-        let json: JSON = [
-            "id": "abc-news-au"  as AnyObject,
-            "name": "ABC News (AU)" as AnyObject,
-            "category": "general" as AnyObject,
-            "urlsToLogos": [
-                            "small": "http://i.newsapi.org/abc-news-au-s.png",
-                            "medium": "http://i.newsapi.org/abc-news-au-m.png",
-                            "large": "http://i.newsapi.org/abc-news-au-l.png"
-                           ] as AnyObject
-                        ]
+        let json = TestData.FeedSourceJSON
         
-        let corruptJson: JSON = [
-            "id": "abc-news-au"  as AnyObject,
-            "category": "general" as AnyObject,
-            "urlsToLogos": [
-                "small": "http://i.newsapi.org/abc-news-au-s.png",
-                "medium": "http://i.newsapi.org/abc-news-au-m.png",
-                "large": "http://i.newsapi.org/abc-news-au-l.png"
-                ] as AnyObject
-        ]
+        let corruptJson = TestData.CorruptfeedSourceJSON
         
         let model = DailySourceModel(json: json)
         
