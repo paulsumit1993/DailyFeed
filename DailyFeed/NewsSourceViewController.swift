@@ -67,6 +67,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     func setupSearch() {
         self.resultsSearchController.searchResultsUpdater = self
         self.sourceTableView.tableHeaderView = resultsSearchController.searchBar
+        self.definesPresentationContext = true
     }
     
     //MARK: Setup TableView
