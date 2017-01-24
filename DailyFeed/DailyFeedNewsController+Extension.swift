@@ -32,15 +32,28 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemCell", for: indexPath) as! DailyFeedItemCell
+        let gridCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemCell", for: indexPath) as! DailyFeedItemCell
+        let listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemListCell", for: indexPath) as! DailyFeedItemListCell
+        
+        switch collectionView.collectionViewLayout {
             
-            cell.newsItemTitleLabel.text = newsItems[indexPath.row].title
-            cell.newsItemSourceLabel.text = newsItems[indexPath.row].author
-            cell.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
-   
-        return cell
+        case is DailySourceItemListLayout:
+                listCell.newsArticleTitleLabel.text = newsItems[indexPath.row].title
+                listCell.newsArticleAuthorLabel.text = newsItems[indexPath.row].author
+                listCell.newsArticleImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
+                return listCell
+            
+        default:
+            gridCell.newsItemTitleLabel.text = newsItems[indexPath.row].title
+            gridCell.newsItemSourceLabel.text = newsItems[indexPath.row].author
+            gridCell.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
+            return gridCell
+        }
     }
     
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -52,7 +65,6 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
             
             headerView.newSourceImageView.downloadedFromLink(self.newsSourceUrlLogo!)
             headerView.layer.masksToBounds = true
-            
             return headerView
             
         case UICollectionElementKindSectionFooter:
@@ -66,24 +78,11 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        guard let width = self.collectionView?.bounds.width else { return CGSize(width: 10, height: 10) }
-        
-        return CGSize(width: (width / 2) - 10, height: (width / 2) - 5)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 8)
     }
-
-    //MARK: ScrollViewDidScroll
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //  print("inside scroll")
-        
-        if let visibleCells = self.collectionView?.visibleCells as? [DailyFeedItemCell] {
-            for parallaxCell in visibleCells {
-                let yOffset = (((self.collectionView?.contentOffset.y)! - parallaxCell.frame.origin.y) / imageHeight) * OffsetSpeed
-                parallaxCell.offset(CGPoint(x: 0.0, y: yOffset))
-            }
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 10)
     }
 }

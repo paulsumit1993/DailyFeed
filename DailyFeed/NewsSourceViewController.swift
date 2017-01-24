@@ -68,14 +68,14 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: Setup SearchBar
     func setupSearch() {
-        self.resultsSearchController.searchResultsUpdater = self
+        resultsSearchController.searchResultsUpdater = self
         navigationItem.titleView = resultsSearchController.searchBar
+        definesPresentationContext = true
     }
     
     //MARK: Setup TableView
     func setupTableView() {
-        self.sourceTableView.register(UINib(nibName: "DailySourceItemCell", bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
-    
+        sourceTableView.register(UINib(nibName: "DailySourceItemCell", bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
     }
     
     //MARK: Setup Spinner

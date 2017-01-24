@@ -19,7 +19,6 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     @IBOutlet weak var newsImageView: TSImageView! {
         didSet {
-            
             newsImageView.downloadedFromLink((receivedNewsItem?.urlToImage)!)
             newsImageView.layer.masksToBounds = true
             newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.05, 0.85])
@@ -65,7 +64,14 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         }
     }
     
-    @IBOutlet weak var swipeLeftButton: UIButton!
+    @IBOutlet weak var swipeLeftButton: UIButton! {
+        didSet {
+            guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.relativelyFormatted else {
+                return swipeLeftButton.setTitle("Read More...", for: .normal)
+            }
+            swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
+        }
+    }
     
     @IBOutlet weak var newsSourceImageView: TSImageView! {
         didSet {
@@ -145,10 +151,18 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     //MARK: Open News URL in Safari Browser Action
     @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {
+        openInSafari()
+    }
+    
+    @IBAction func openArticleInSafari(_ sender: UIButton) {
+        openInSafari()
+    }
+    
+    //Helper method to open articles in Safari
+    func openInSafari() {
         guard let urlString = receivedNewsItem?.url, let url = URL(string: urlString) else { return }
         let svc = MySafariViewController(url: url)
         svc.delegate = self
         self.present(svc, animated: true, completion: nil)
     }
-    
 }

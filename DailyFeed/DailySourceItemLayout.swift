@@ -25,17 +25,20 @@ class DailySourceItemLayout: UICollectionViewFlowLayout {
      */
     func setupLayout() {
         
-        minimumInteritemSpacing = 2
-        minimumLineSpacing = 3
+        minimumInteritemSpacing = 0
+        minimumLineSpacing = 7
         scrollDirection = .vertical
+        sectionInset = UIEdgeInsets(top: 5, left: 6, bottom: 0, right: 6)
+        headerReferenceSize = CGSize(width: 200, height: 20)
+        footerReferenceSize = CGSize(width: 200, height: 20)
     }
     
     func itemHeight() -> CGFloat {
-        return (collectionView!.bounds.height / 4) - 3
+        return (collectionView!.bounds.width / 2) - 10
     }
     
     func itemWidth() -> CGFloat {
-        return (collectionView!.bounds.width / 3) - 2
+        return (collectionView!.bounds.width / 2) - 10
     }
     
     override var itemSize: CGSize {
@@ -46,6 +49,8 @@ class DailySourceItemLayout: UICollectionViewFlowLayout {
             return CGSize(width: itemWidth(), height: itemHeight())
         }
     }
+    
+
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         return collectionView!.contentOffset

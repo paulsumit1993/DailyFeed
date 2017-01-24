@@ -29,11 +29,6 @@ class DailyFeedItemCell: UICollectionViewCell {
     func addGradient() {
         guard newsItemImageView.layer.sublayers?.count == nil else { return }
     
-        newsItemImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor], locations: [0.0, 0.98])
+        newsItemImageView.addGradient([UIColor.clear.cgColor, UIColor(white: 0, alpha: 0.6).cgColor], locations: [0.0, 0.98])
     }
-    
-    func offset(_ offset: CGPoint) {
-        newsItemImageView.frame = self.newsItemImageView.bounds.offsetBy(dx: offset.x, dy: offset.y)
-    }
-
 }

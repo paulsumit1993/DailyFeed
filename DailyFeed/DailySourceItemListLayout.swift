@@ -25,7 +25,7 @@ class DailySourceItemListLayout: UICollectionViewFlowLayout {
      */
     func setupLayout() {
         minimumInteritemSpacing = 0
-        minimumLineSpacing = 3
+        minimumLineSpacing = 5
         scrollDirection = .vertical
     }
     
@@ -49,5 +49,4 @@ class DailySourceItemListLayout: UICollectionViewFlowLayout {
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         return collectionView!.contentOffset
     }
-
 }

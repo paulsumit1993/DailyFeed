@@ -31,9 +31,10 @@ class DailyFeedNewsController: UICollectionViewController {
         return refresh
     }()
     
-    let imageHeight:CGFloat = 200.0
+    //MARK: IBOutlets
     
-    let OffsetSpeed: CGFloat = 10.0
+    
+    @IBOutlet weak var toggleButton: UIButton!
     
     //MARK: View Controller Lifecycle Methods
     
@@ -71,12 +72,12 @@ class DailyFeedNewsController: UICollectionViewController {
     
     //MARK: Setup CollectionView
     func setupCollectionView() {
-        self.collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
-        self.collectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemListCell")
-        
-        self.collectionView?.alwaysBounceVertical = true
-        self.collectionView?.addSubview(refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(DailyFeedNewsController.refreshData(_:)), for: UIControlEvents.valueChanged)
+        collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemCell")
+        collectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil), forCellWithReuseIdentifier: "DailyFeedItemListCell")
+        collectionView?.collectionViewLayout = DailySourceItemLayout()
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(DailyFeedNewsController.refreshData(_:)), for: UIControlEvents.valueChanged)
     }
     
     //MARK: Setup Spinner
@@ -117,6 +118,32 @@ class DailyFeedNewsController: UICollectionViewController {
             })
         }
     }
+    
+    //MARK: Toggle Layout
+    @IBAction func toggleArticlesLayout(_ sender: UIButton) {
+        
+        switch collectionView?.collectionViewLayout {
+        case is DailySourceItemLayout:
+            toggleButton.setImage(UIImage(named: "grid"), for: .normal)
+            switchCollectionViewLayout(for: DailySourceItemListLayout())
+
+        
+        default:
+            toggleButton.setImage(UIImage(named: "list"), for: .normal)
+            switchCollectionViewLayout(for: DailySourceItemLayout())
+        }
+        
+    }
+    
+    // Helper method for switching layouts and fetching image from URL
+    func switchCollectionViewLayout(for layout: UICollectionViewLayout) {
+        collectionView?.collectionViewLayout.invalidateLayout()
+        UIView.animate(withDuration: 0.01, animations: {
+            self.collectionView?.setCollectionViewLayout(layout, animated: false)
+            self.collectionView?.reloadItems(at: (self.collectionView?.indexPathsForVisibleItems)!)
+        })
+    }
+
     
     //MARK: Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

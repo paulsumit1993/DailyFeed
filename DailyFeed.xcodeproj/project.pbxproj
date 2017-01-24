@@ -22,6 +22,7 @@
 		0635050E1E1BA50E002510B0 /* TSActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050D1E1BA50D002510B0 /* TSActivityIndicator.swift */; };
 		063505101E1BAF13002510B0 /* DailyFeedNewsController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050F1E1BAF13002510B0 /* DailyFeedNewsController+Extension.swift */; };
 		068496AC1E23AA2900DBD5A6 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068496AB1E23AA2900DBD5A6 /* UIViewControllerExtension.swift */; };
+		06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C38FCF1E35E43C004429DD /* Date+Relative.swift */; };
 		06CAC5961E28A1EC00EF72BB /* DailyFeedModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5951E28A1EC00EF72BB /* DailyFeedModelTests.swift */; };
 		06CAC5981E28A3D600EF72BB /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5971E28A3D600EF72BB /* NewsAPI.swift */; };
 		06CAC59A1E28D81A00EF72BB /* DailySourceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5991E28D81A00EF72BB /* DailySourceModelTests.swift */; };
@@ -74,6 +75,7 @@
 		0635050D1E1BA50D002510B0 /* TSActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSActivityIndicator.swift; sourceTree = "<group>"; };
 		0635050F1E1BAF13002510B0 /* DailyFeedNewsController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DailyFeedNewsController+Extension.swift"; sourceTree = "<group>"; };
 		068496AB1E23AA2900DBD5A6 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		06C38FCF1E35E43C004429DD /* Date+Relative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Relative.swift"; sourceTree = "<group>"; };
 		06CAC5951E28A1EC00EF72BB /* DailyFeedModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedModelTests.swift; sourceTree = "<group>"; };
 		06CAC5971E28A3D600EF72BB /* NewsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAPI.swift; sourceTree = "<group>"; };
 		06CAC5991E28D81A00EF72BB /* DailySourceModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceModelTests.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				06D04C251E1248DB0013B4AA /* Assets.xcassets */,
 				0635050D1E1BA50D002510B0 /* TSActivityIndicator.swift */,
 				06D04C561E13948C0013B4AA /* TSImageView.swift */,
+				06C38FCF1E35E43C004429DD /* Date+Relative.swift */,
 				06D04C501E126BD40013B4AA /* UIImageExtension.swift */,
 				068496AB1E23AA2900DBD5A6 /* UIViewControllerExtension.swift */,
 			);
@@ -385,6 +388,7 @@
 				06D04C511E126BD40013B4AA /* UIImageExtension.swift in Sources */,
 				060D64881E31EB400053F2AB /* DailySourceItemLayout.swift in Sources */,
 				060D648A1E31EB540053F2AB /* DailySourceItemListLayout.swift in Sources */,
+				06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */,
 				062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */,
 				068496AC1E23AA2900DBD5A6 /* UIViewControllerExtension.swift in Sources */,
 				060D64851E31E6E50053F2AB /* DailyFeedItemListCell.swift in Sources */,

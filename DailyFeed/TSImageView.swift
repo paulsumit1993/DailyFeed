@@ -19,7 +19,7 @@ class TSImageView: UIImageView {
         
         imageUrlString = urlString
         
-        self.image = nil
+        self.image = UIImage(named: "placeholder")
         self.animateImageAppearance(0.25, option: UIViewAnimationOptions.curveEaseIn, alpha: 0.4)
         contentMode = mode
         
