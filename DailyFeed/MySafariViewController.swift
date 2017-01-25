@@ -14,7 +14,7 @@ class MySafariViewController: SFSafariViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 10.0, *) {
-            self.preferredControlTintColor = UIColor.black
+            self.preferredControlTintColor = .black
         }
     }
 

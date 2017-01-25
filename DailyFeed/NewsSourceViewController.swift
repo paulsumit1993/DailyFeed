@@ -9,104 +9,105 @@
 import UIKit
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
-    
-    //MARK: IBOutlets
+
+    // MARK: IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
-    
-    //MARK: Variable declaration
+
+    // MARK: Variable declaration
     var sourceItems = [DailySourceModel]()
-    
+
     var filteredSourceItems = [DailySourceModel]()
-    
-    var selectedItem: DailySourceModel? = nil
-    
+
+    var selectedItem: DailySourceModel?
+
     var resultsSearchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.dimsBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = false
         controller.searchBar.placeholder = "Search Sources..."
         controller.searchBar.searchBarStyle = .minimal
-        controller.searchBar.tintColor = UIColor.black
+        controller.searchBar.tintColor = .black
         controller.searchBar.sizeToFit()
         return controller
     }()
-    
+
     let spinningActivityIndicator = TSActivityIndicator()
-    
+
     //Activity Indicator Container View
     let container = UIView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //setup UI
         setupUI()
-        
+
         //Populate TableView Data
         loadSourceData()
-        
+
         //setup TableView
         setupTableView()
-        
+
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         resultsSearchController.delegate = nil
         resultsSearchController.searchBar.delegate = nil
     }
-    
-    //MARK: Setup UI
+
+    // MARK: Setup UI
     func setupUI() {
         setupSearch()
         setupSpinner()
     }
-    
-    //MARK: Setup SearchBar
+
+    // MARK: Setup SearchBar
     func setupSearch() {
         resultsSearchController.searchResultsUpdater = self
         navigationItem.titleView = resultsSearchController.searchBar
         definesPresentationContext = true
     }
-    
-    //MARK: Setup TableView
+
+    // MARK: Setup TableView
     func setupTableView() {
-        sourceTableView.register(UINib(nibName: "DailySourceItemCell", bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
+        sourceTableView.register(UINib(nibName: "DailySourceItemCell",
+                                       bundle: nil),
+                                 forCellReuseIdentifier: "DailySourceItemCell")
     }
-    
-    //MARK: Setup Spinner
+
+    // MARK: Setup Spinner
     func setupSpinner() {
         spinningActivityIndicator.setupTSActivityIndicator(container)
     }
-    
-    //MARK: refresh news Source data
+
+    // MARK: refresh news Source data
     func refreshData(_ sender: UIRefreshControl) {
         loadSourceData()
     }
-    
-    //MARK: Load data from network
+
+    // MARK: Load data from network
     func loadSourceData() {
-        
+
         UIApplication.shared.beginIgnoringInteractionEvents()
         DailySourceModel.getNewsSource { (newsItem, error) in
-            
-            
+
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async(execute: {
                     self.spinningActivityIndicator.stopAnimating()
                     self.container.removeFromSuperview()
                     UIApplication.shared.endIgnoringInteractionEvents()
-                    self.showError(error?.localizedDescription ?? "", message: "") { (completed) in
+                    self.showError(error?.localizedDescription ?? "", message: "") { _ in
                         self.dismiss(animated: true, completion: nil)
                     }
                 })
                 return
             }
-            
+
             self.sourceItems = news
             DispatchQueue.main.async(execute: {
                 self.sourceTableView.reloadData()
@@ -116,56 +117,53 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
     }
-    
-    
-    //MARK: Status Bar Color
+
+    // MARK: Status Bar Color
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
-    
-    //MARK: TableView Delegate Methods
+
+    // MARK: TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.resultsSearchController.isActive {
             return self.filteredSourceItems.count
-        }
-        else {
+        } else {
             return self.sourceItems.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell", for: indexPath) as! DailySourceItemCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell",
+                                                 for: indexPath) as? DailySourceItemCell
+
         if self.resultsSearchController.isActive {
-            cell.sourceImageView.downloadedFromLink(filteredSourceItems[indexPath.row].urlsToLogos)
+            cell?.sourceImageView.downloadedFromLink(filteredSourceItems[indexPath.row].urlsToLogos)
+        } else {
+            cell?.sourceImageView.downloadedFromLink(sourceItems[indexPath.row].urlsToLogos)
         }
-        else {
-            cell.sourceImageView.downloadedFromLink(sourceItems[indexPath.row].urlsToLogos)
-        }
-        
-        return cell
+
+        return cell!
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.resultsSearchController.isActive {
             self.selectedItem = filteredSourceItems[indexPath.row]
-        }
-        else {
+        } else {
             self.selectedItem = sourceItems[indexPath.row]
         }
-        
+
         self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
-    
-    //MARK: SearchBar Delegate
+
+    // MARK: SearchBar Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        
+
         filteredSourceItems.removeAll(keepingCapacity: false)
-        
+
         if let searchString = searchController.searchBar.text {
             let searchResults = sourceItems.filter { $0.name.lowercased().contains(searchString.lowercased()) }
             filteredSourceItems = searchResults
-            
+
             self.sourceTableView.reloadData()
         }
     }

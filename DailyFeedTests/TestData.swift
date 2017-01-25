@@ -16,17 +16,17 @@ struct  TestData {
         "author": "Andrew Webster" as AnyObject,
         "publishedAt": "2017-01-13T04:03:09Z" as AnyObject,
         "urlToImage": "http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject,
-        "description": "Nintendo has finally revealed the price and release date for its much-anticipated Switch console: it’s launching on March 3rd worldwide, and in North America the console will be available for..." as AnyObject,
-        "url":"http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject
+        "description": "Nintendo has finally revealed the price and release date for its much-anticipated Switch console" as AnyObject,
+        "url": "http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject
     ]
-    
+
     static let CorruptFeedModelJSON: JSON = [
         "title": "The Nintendo Switch will launch on March 3rd for $299"  as AnyObject,
         "author": "Andrew Webster" as AnyObject,
         "urlToImage": "http://www.theverge.com/2017/1/12/14237060/nintendo-switch-console-launch-date-price-announced" as AnyObject,
-        "description": "Nintendo has finally revealed the price and release date for its much-anticipated Switch console: it’s launching on March 3rd worldwide, and in North America the console will be available for..." as AnyObject,
+        "description": "Nintendo has finally revealed the price and release date for its much-anticipated Switch console" as AnyObject
         ]
-    
+
     static let FeedSourceJSON: JSON =  [
         "id": "abc-news-au"  as AnyObject,
         "name": "ABC News (AU)" as AnyObject,
@@ -37,7 +37,7 @@ struct  TestData {
             "large": "http://i.newsapi.org/abc-news-au-l.png"
             ] as AnyObject
     ]
-    
+
     static let CorruptfeedSourceJSON: JSON = [
         "id": "abc-news-au"  as AnyObject,
         "category": "general" as AnyObject,
@@ -47,5 +47,5 @@ struct  TestData {
             "large": "http://i.newsapi.org/abc-news-au-l.png"
             ] as AnyObject
     ]
-    
+
 }

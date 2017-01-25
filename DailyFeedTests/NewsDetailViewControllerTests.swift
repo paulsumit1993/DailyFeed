@@ -10,58 +10,41 @@ import XCTest
 @testable import DailyFeed
 
 class NewsDetailViewControllerTests: XCTestCase {
-    var vc: NewsDetailViewController!
+    var nvc: NewsDetailViewController!
     var window: UIWindow!
     override func setUp() {
         super.setUp()
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        vc = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as? NewsDetailViewController
-        
-        vc.receivedNewItem = DailyFeedModel(json: TestData.FeedModelJSON)
-        
-        _ = vc.view
+        nvc = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as? NewsDetailViewController
+
+        nvc.receivedNewsItem = DailyFeedModel(json: TestData.FeedModelJSON)
+        nvc.receivedNewsSourceLogo = "http://i.newsapi.org/the-wall-street-journal-s.png"
+        _ = nvc.view
     }
-    
-    
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testUIStatusBarStyle() {
-        XCTAssertEqual(vc.preferredStatusBarStyle, UIStatusBarStyle.lightContent)
+        XCTAssertEqual(nvc.preferredStatusBarStyle, UIStatusBarStyle.lightContent)
     }
-    
+
     func testfadeUIElements() {
-        vc.fadeUIElements(with: 0.0)
-        XCTAssertEqual(vc.backButton.alpha, 0.0)
-        XCTAssertEqual(vc.shareButton.alpha, 0.0)
-        XCTAssertEqual(vc.swipeLeftButton.alpha, 0.0)
-        
+        nvc.fadeUIElements(with: 0.0)
+        XCTAssertEqual(nvc.backButton.alpha, 0.0)
+        XCTAssertEqual(nvc.shareButton.alpha, 0.0)
+        XCTAssertEqual(nvc.swipeLeftButton.alpha, 0.0)
     }
-    
-    func testVCDismissal() {
-        vc.dismissButtonTapped()
-        print(vc.view)
-        XCTAssertNil(vc.view)
-    }
-    
-    
-    func testVCDismissal2() {
-        vc.dismissSwipeAction()
-        XCTAssertNil(vc.view)
-    }
-    
+
     func testscreenShotMethodNotNil() {
-        let image = vc.captureScreenShot()
+        let image = nvc.captureScreenShot()
         XCTAssertNotNil(image)
         if type(of: image) == UIImage?.self {
             XCTAssertTrue(true)
         } else {
             XCTAssertFalse(true)
         }
-        
     }
-    
 }

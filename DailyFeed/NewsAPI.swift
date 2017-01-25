@@ -8,15 +8,14 @@
 
 import Foundation
 
-
 enum NewsAPI {
-    
+
     case articles(source: String?)
     case sources
-    
+
     static let baseURL = "https://newsapi.org/v1"
     static let apiToken = "53b8c0ba0ea24a199f790d660b73675f"
-    
+
     //URL Endpoints
     var url: URL {
         switch self {
@@ -27,7 +26,7 @@ enum NewsAPI {
             return URL(string: "\(NewsAPI.baseURL)/sources?language=en")!
         }
     }
-    
+
     var jsonKey: String {
         switch self {
         case .articles:
