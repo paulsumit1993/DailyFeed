@@ -44,7 +44,7 @@ class DailyFeedNewsController: UICollectionViewController {
         setupUI()
 
         //Populate CollectionView Data
-        loadNewsData("the-wall-street-journal")
+        loadNewsData(source)
     }
 
     override func viewWillAppear(_ animated: Bool) {
