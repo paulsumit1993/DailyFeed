@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Your Feed-->
+        <!--Your Feed ▼-->
         <scene sceneID="WGJ-LH-q2G">
             <objects>
                 <collectionViewController storyboardIdentifier="DailyFeedNewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,10 +73,10 @@
                             <outlet property="delegate" destination="L6A-1a-6xf" id="Kzh-I1-kmP"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Your Feed" id="a8j-37-xyQ">
-                        <barButtonItem key="leftBarButtonItem" image="list" id="hjs-ta-6GO">
+                    <navigationItem key="navigationItem" title="Your Feed ▼" id="a8j-37-xyQ">
+                        <barButtonItem key="rightBarButtonItem" image="list" id="hjs-ta-6GO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Opc-IS-oMj">
-                                <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="315" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="list"/>
                                 <connections>
@@ -84,16 +84,11 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="menu" width="44" id="F2I-QK-DgI">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="BLv-b4-OTF" kind="presentation" identifier="newsSourceSegue" modalTransitionStyle="flipHorizontal" id="SYg-cD-MHo"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="toggleButton" destination="Opc-IS-oMj" id="hXI-Bg-kOW"/>
                         <segue destination="1yk-sL-YYJ" kind="presentation" identifier="newsDetailSegue" modalTransitionStyle="crossDissolve" id="ico-Xt-3Zc"/>
+                        <segue destination="BLv-b4-OTF" kind="presentation" identifier="newsSourceSegue" modalTransitionStyle="coverVertical" id="M3e-Uq-SzC"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaA-tc-RMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -113,14 +108,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6a-Xw-k4Z">
-                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada">
                                         <rect key="frame" x="0.0" y="28" width="383" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XSz-yC-ada" id="aKz-78-YEH">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -130,23 +125,13 @@
                                     <outlet property="delegate" destination="bjF-yu-jQX" id="ho7-ij-fRf"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbE-hn-e38">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="ch2-0q-CN3"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="hbE-hn-e38" firstAttribute="top" secondItem="Yk7-G7-fGr" secondAttribute="top" id="0ui-mE-veJ"/>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="leading" secondItem="Yk7-G7-fGr" secondAttribute="leadingMargin" constant="-20" id="5up-eH-lGN"/>
-                            <constraint firstItem="hbE-hn-e38" firstAttribute="leading" secondItem="Yk7-G7-fGr" secondAttribute="leading" id="McW-6m-8CB"/>
+                            <constraint firstItem="z6a-Xw-k4Z" firstAttribute="top" secondItem="Yk7-G7-fGr" secondAttribute="topMargin" id="PzI-Mf-J5p"/>
                             <constraint firstItem="oRg-Id-Bve" firstAttribute="top" secondItem="z6a-Xw-k4Z" secondAttribute="bottom" id="W1M-YK-7gL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="z6a-Xw-k4Z" secondAttribute="trailing" constant="-20" id="YPc-3S-cUd"/>
-                            <constraint firstAttribute="trailing" secondItem="hbE-hn-e38" secondAttribute="trailing" id="bav-MT-6r6"/>
-                            <constraint firstItem="z6a-Xw-k4Z" firstAttribute="top" secondItem="wCa-B2-Emd" secondAttribute="bottom" id="xAF-Xs-UYz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="r66-GT-LNg"/>
@@ -181,7 +166,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaK-t0-JZk">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <color key="textColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.1137254902" green="0.62745098040000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -344,7 +329,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bjF-yu-jQX" kind="relationship" relationship="rootViewController" id="2bQ-eK-W5l"/>
+                        <segue destination="bjF-yu-jQX" kind="relationship" relationship="rootViewController" id="557-vv-NOU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwj-Al-Uyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,7 +340,6 @@
     <resources>
         <image name="back" width="36" height="36"/>
         <image name="list" width="24" height="24"/>
-        <image name="menu" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
 </document>

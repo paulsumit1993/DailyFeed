@@ -27,6 +27,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="rg0-YG-5FM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9dl-EI-iKv"/>
                     <constraint firstItem="rg0-YG-5FM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FmT-eB-xlS"/>

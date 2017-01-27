@@ -10,7 +10,7 @@ import UIKit
 
 class DailyFeedNewsController: UICollectionViewController {
 
-    // MARK: Variable declaration
+    // MARK: - Variable declaration
 
     var newsItems = [DailyFeedModel]()
 
@@ -31,11 +31,11 @@ class DailyFeedNewsController: UICollectionViewController {
         return refresh
     }()
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
 
     @IBOutlet weak var toggleButton: UIButton!
 
-    // MARK: View Controller Lifecycle Methods
+    // MARK: - View Controller Lifecycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class DailyFeedNewsController: UICollectionViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    // MARK: Setup UI
+    // MARK: - Setup UI
     func setupUI() {
 
         setupNavigationBar()
@@ -62,14 +62,20 @@ class DailyFeedNewsController: UICollectionViewController {
         setupSpinner()
     }
 
-    // MARK: Setup navigation
+    // MARK: - Setup navigationBar
     func setupNavigationBar() {
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        let sourceMenuButton = UIButton(type: .custom)
+        sourceMenuButton.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 4, height: 44)
+        sourceMenuButton.setTitle("YourFeed ▼", for: .normal)
+        sourceMenuButton.setTitleColor(.white, for: .normal)
+        sourceMenuButton.addTarget(self, action: #selector(sourceMenuButtonDidTap), for: .touchUpInside)
+        navigationItem.titleView = sourceMenuButton
     }
 
-    // MARK: Setup CollectionView
+    // MARK: - Setup CollectionView
     func setupCollectionView() {
         collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil),
                                  forCellWithReuseIdentifier: "DailyFeedItemCell")
@@ -83,17 +89,17 @@ class DailyFeedNewsController: UICollectionViewController {
                                  for: UIControlEvents.valueChanged)
     }
 
-    // MARK: Setup Spinner
+    // MARK: - Setup Spinner
     func setupSpinner() {
         spinningActivityIndicator.setupTSActivityIndicator(container)
     }
 
-    // MARK: refresh news Source data
+    // MARK: - refresh news Source data
     func refreshData(_ sender: UIRefreshControl) {
         loadNewsData(self.source)
     }
 
-    // MARK: Load data from network
+    // MARK: - Load data from network
     func loadNewsData(_ source: String) {
 
         UIApplication.shared.beginIgnoringInteractionEvents()
@@ -122,7 +128,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
 
-    // MARK: Toggle Layout
+    // MARK: - Toggle Layout
     @IBAction func toggleArticlesLayout(_ sender: UIButton) {
 
         switch collectionView?.collectionViewLayout {
@@ -145,7 +151,13 @@ class DailyFeedNewsController: UICollectionViewController {
         })
     }
 
-    // MARK: Prepare for Segue
+    // MARK: - sourceMenuButton Action method
+
+    func sourceMenuButtonDidTap() {
+        self.performSegue(withIdentifier: "newsSourceSegue", sender: self)
+    }
+
+    // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? NewsDetailViewController {
 
@@ -158,7 +170,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
 
-    // MARK: Unwind from Source View Controller
+    // MARK: - Unwind from Source View Controller
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
             setupSpinner()

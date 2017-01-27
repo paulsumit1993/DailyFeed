@@ -54,6 +54,51 @@ extension Date {
 
         return "Just now"
     }
+
+    var relativelyFormattedShort: String {
+
+        let now = Date()
+        let components = Calendar.autoupdatingCurrent.dateComponents([.year,
+                                                                      .month,
+                                                                      .weekOfYear,
+                                                                      .day,
+                                                                      .hour,
+                                                                      .minute,
+                                                                      .second],
+                                                                     from: self,
+                                                                     to: now)
+
+        if let years = components.year, years > 0 {
+            return " • \(years) y ago"
+        }
+
+        if let months = components.month, months > 0 {
+            return " • \(months) mo ago"
+        }
+
+        if let weeks = components.weekOfYear, weeks > 0 {
+            return " • \(weeks) w ago"
+        }
+        if let days = components.day, days > 0 {
+            guard days > 1 else { return " • Y'day" }
+
+            return " • \(days) d ago"
+        }
+
+        if let hours = components.hour, hours > 0 {
+            return " • \(hours) h ago"
+        }
+
+        if let minutes = components.minute, minutes > 0 {
+            return " • \(minutes) min ago"
+        }
+
+        if let seconds = components.second, seconds > 30 {
+            return " • \(seconds) s ago"
+        }
+
+        return "Just now"
+    }
 }
 
 extension String {

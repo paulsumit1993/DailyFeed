@@ -21,6 +21,7 @@ class DailyFeedItemListCell: UICollectionViewCell {
 
     @IBOutlet weak var newsArticleTitleLabel: UILabel!
     @IBOutlet weak var newsArticleAuthorLabel: UILabel!
+    @IBOutlet weak var newsArticleTimeLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

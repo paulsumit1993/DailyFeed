@@ -10,10 +10,10 @@ import UIKit
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
 
-    // MARK: Variable declaration
+    // MARK: - Variable declaration
     var sourceItems = [DailySourceModel]()
 
     var filteredSourceItems = [DailySourceModel]()
@@ -60,37 +60,38 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         resultsSearchController.searchBar.delegate = nil
     }
 
-    // MARK: Setup UI
+    // MARK: - Setup UI
     func setupUI() {
         setupSearch()
         setupSpinner()
     }
 
-    // MARK: Setup SearchBar
+    // MARK: - Setup SearchBar
     func setupSearch() {
         resultsSearchController.searchResultsUpdater = self
         navigationItem.titleView = resultsSearchController.searchBar
         definesPresentationContext = true
+        navigationController?.hidesBarsOnSwipe = true
     }
 
-    // MARK: Setup TableView
+    // MARK: -  Setup TableView
     func setupTableView() {
         sourceTableView.register(UINib(nibName: "DailySourceItemCell",
                                        bundle: nil),
                                  forCellReuseIdentifier: "DailySourceItemCell")
     }
 
-    // MARK: Setup Spinner
+    // MARK: -Setup Spinner
     func setupSpinner() {
         spinningActivityIndicator.setupTSActivityIndicator(container)
     }
 
-    // MARK: refresh news Source data
+    // MARK: - refresh news Source data
     func refreshData(_ sender: UIRefreshControl) {
         loadSourceData()
     }
 
-    // MARK: Load data from network
+    // MARK: - Load data from network
     func loadSourceData() {
 
         UIApplication.shared.beginIgnoringInteractionEvents()
@@ -118,28 +119,30 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    // MARK: Status Bar Color
+    // MARK: - Status Bar Color
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
 
-    // MARK: TableView Delegate Methods
+    // MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.resultsSearchController.isActive {
-            return self.filteredSourceItems.count
+            return self.filteredSourceItems.count + 1
         } else {
-            return self.sourceItems.count
+            return self.sourceItems.count + 1
         }
     }
+
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell",
                                                  for: indexPath) as? DailySourceItemCell
 
+        if indexPath.row == 0 { return DailySourceItemCell() }
         if self.resultsSearchController.isActive {
-            cell?.sourceImageView.downloadedFromLink(filteredSourceItems[indexPath.row].urlsToLogos)
+            cell?.sourceImageView.downloadedFromLink(filteredSourceItems[indexPath.row - 1].urlsToLogos)
         } else {
-            cell?.sourceImageView.downloadedFromLink(sourceItems[indexPath.row].urlsToLogos)
+            cell?.sourceImageView.downloadedFromLink(sourceItems[indexPath.row - 1].urlsToLogos)
         }
 
         return cell!
@@ -147,15 +150,15 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.resultsSearchController.isActive {
-            self.selectedItem = filteredSourceItems[indexPath.row]
+            self.selectedItem = filteredSourceItems[indexPath.row - 1]
         } else {
-            self.selectedItem = sourceItems[indexPath.row]
+            self.selectedItem = sourceItems[indexPath.row - 1]
         }
 
         self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
 
-    // MARK: SearchBar Delegate
+    // MARK: - SearchBar Delegate
     func updateSearchResults(for searchController: UISearchController) {
 
         filteredSourceItems.removeAll(keepingCapacity: false)

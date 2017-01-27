@@ -11,11 +11,11 @@ import SafariServices
 
 class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
-    // MARK: News data declaration
+    // MARK: - News data declaration
     var receivedNewsItem: DailyFeedModel?
     var receivedNewsSourceLogo: String?
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
 
     @IBOutlet weak var newsImageView: TSImageView! {
         didSet {
@@ -78,7 +78,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
         }
     }
-    // MARK: View Controller Lifecycle Methods
+    // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,12 +89,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
                                   locations: [0.0, 0.05, 0.85])
     }
 
-    // MARK: Status Bar Color
+    // MARK: - Status Bar Color
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
-    // MARK: Back Button Dismiss action
+    // MARK: - Back Button Dismiss action
     @IBAction func dismissButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -103,7 +103,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         self.dismiss(animated: true, completion: nil)
     }
 
-    // MARK: share article
+    // MARK: - share article
     @IBAction func shareArticle(_ sender: UIButton) {
 
         fadeUIElements(with: 0.0)
@@ -158,7 +158,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     }
 
-    // MARK: Open News URL in Safari Browser Action
+    // MARK: - Open News URL in Safari Browser Action
     @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {
         openInSafari()
     }

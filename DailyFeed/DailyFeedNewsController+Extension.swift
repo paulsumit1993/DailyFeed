@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: CollectionView Delegate Methods
+// MARK: - CollectionView Delegate Methods
 extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -42,14 +42,15 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         case is DailySourceItemListLayout:
                 listCell?.newsArticleTitleLabel.text = newsItems[indexPath.row].title
                 listCell?.newsArticleAuthorLabel.text = newsItems[indexPath.row].author
+                listCell?.newsArticleTimeLabel.text = newsItems[indexPath.row].publishedAt.dateFromTimestamp?.relativelyFormattedShort
                 listCell?.newsArticleImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
                 return listCell!
 
         default:
-            gridCell?.newsItemTitleLabel.text = newsItems[indexPath.row].title
-            gridCell?.newsItemSourceLabel.text = newsItems[indexPath.row].author
-            gridCell?.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
-            return gridCell!
+                gridCell?.newsItemTitleLabel.text = newsItems[indexPath.row].title
+                gridCell?.newsItemSourceLabel.text = newsItems[indexPath.row].author
+                gridCell?.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
+                return gridCell!
         }
     }
 
