@@ -13,6 +13,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
     
+    @IBOutlet weak var categoryButton: UIBarButtonItem!
     // MARK: - Variable declaration
     var sourceItems = [DailySourceModel]()
     
@@ -63,7 +64,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Setup UI
     func setupUI() {
         setupSearch()
-        setupSpinner()
+        
     }
 
     // MARK: - Setup SearchBar
@@ -71,7 +72,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         resultsSearchController.searchResultsUpdater = self
         navigationItem.titleView = resultsSearchController.searchBar
         definesPresentationContext = true
-        navigationController?.hidesBarsOnSwipe = true
     }
 
     // MARK: - Setup TableView
@@ -83,8 +83,11 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     // MARK: - Setup Spinner
-    func setupSpinner() {
+    func setupSpinner(hidden: Bool) {
+        container.isHidden = hidden
+        if !hidden {
         spinningActivityIndicator.setupTSActivityIndicator(container)
+        }
     }
 
     // MARK: - Show News Categories
@@ -112,14 +115,14 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Load data from network
     func loadSourceData(_ category: String?) {
-
+        setupSpinner(hidden: false)
         UIApplication.shared.beginIgnoringInteractionEvents()
         DailySourceModel.getNewsSource(category) { (newsItem, error) in
             
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async(execute: {
                     self.spinningActivityIndicator.stopAnimating()
-                    self.container.removeFromSuperview()
+                    self.setupSpinner(hidden: true)
                     UIApplication.shared.endIgnoringInteractionEvents()
                     self.showError(error?.localizedDescription ?? "", message: "") { _ in
                         self.dismiss(animated: true, completion: nil)
@@ -137,7 +140,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             DispatchQueue.main.async(execute: {
                 self.sourceTableView.reloadData()
                 self.spinningActivityIndicator.stopAnimating()
-                self.container.removeFromSuperview()
+                self.setupSpinner(hidden: true)
                 UIApplication.shared.endIgnoringInteractionEvents()
             })
         }
@@ -150,6 +153,10 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override var prefersStatusBarHidden: Bool {
         return navigationController?.isNavigationBarHidden ?? false
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
     }
 
     // MARK: - TableView Delegate Methods
@@ -186,6 +193,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     // MARK: - SearchBar Delegate
+    
     func updateSearchResults(for searchController: UISearchController) {
 
         filteredSourceItems.removeAll(keepingCapacity: false)

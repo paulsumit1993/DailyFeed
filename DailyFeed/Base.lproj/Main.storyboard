@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Your Feed ▼-->
+        <!--Your Feed ⋏-->
         <scene sceneID="WGJ-LH-q2G">
             <objects>
                 <collectionViewController storyboardIdentifier="DailyFeedNewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,7 +73,7 @@
                             <outlet property="delegate" destination="L6A-1a-6xf" id="Kzh-I1-kmP"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Your Feed ▼" id="a8j-37-xyQ">
+                    <navigationItem key="navigationItem" title="Your Feed ⋏" id="a8j-37-xyQ">
                         <barButtonItem key="rightBarButtonItem" image="list" id="hjs-ta-6GO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Opc-IS-oMj">
                                 <rect key="frame" x="315" y="0.0" width="44" height="44"/>
@@ -108,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6a-Xw-k4Z">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada">
@@ -130,19 +130,23 @@
                         <constraints>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="leading" secondItem="Yk7-G7-fGr" secondAttribute="leadingMargin" constant="-20" id="5up-eH-lGN"/>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="top" secondItem="Yk7-G7-fGr" secondAttribute="topMargin" id="PzI-Mf-J5p"/>
-                            <constraint firstItem="oRg-Id-Bve" firstAttribute="top" secondItem="z6a-Xw-k4Z" secondAttribute="bottom" id="W1M-YK-7gL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="z6a-Xw-k4Z" secondAttribute="trailing" constant="-20" id="YPc-3S-cUd"/>
+                            <constraint firstItem="oRg-Id-Bve" firstAttribute="top" secondItem="z6a-Xw-k4Z" secondAttribute="bottom" id="rSW-xS-01I"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="r66-GT-LNg">
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="ez7-e4-Tv8">
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zq4-GN-Ujf"/>
+                        <barButtonItem title="Select a Category" id="ez7-e4-Tv8">
                             <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
                             </connections>
                         </barButtonItem>
-                    </navigationItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ecB-9e-tHU"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="r66-GT-LNg"/>
                     <connections>
+                        <outlet property="categoryButton" destination="ez7-e4-Tv8" id="t0a-Rk-PxX"/>
                         <outlet property="sourceTableView" destination="z6a-Xw-k4Z" id="oa8-zs-3hI"/>
                         <segue destination="JIT-8k-TPL" kind="unwind" identifier="sourceUnwindSegue" unwindAction="unwindToDailyNewsFeed:" id="NX9-nv-rBf"/>
                     </connections>
@@ -328,13 +332,17 @@
         <!--Navigation Controller-->
         <scene sceneID="VqY-0o-oNm">
             <objects>
-                <navigationController storyboardIdentifier="SourceNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BLv-b4-OTF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SourceNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" hidesBarsOnSwipe="YES" id="BLv-b4-OTF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="awe-fH-f2C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.69999999999999996" contentMode="scaleToFill" id="0r4-84-hDt">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="bjF-yu-jQX" kind="relationship" relationship="rootViewController" id="557-vv-NOU"/>
                     </connections>
@@ -347,7 +355,6 @@
     <resources>
         <image name="back" width="36" height="36"/>
         <image name="list" width="24" height="24"/>
-        <image name="menu" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
 </document>

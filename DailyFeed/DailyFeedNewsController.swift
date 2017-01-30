@@ -93,7 +93,7 @@ class DailyFeedNewsController: UICollectionViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         let sourceMenuButton = UIButton(type: .custom)
         sourceMenuButton.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 4, height: 44)
-        sourceMenuButton.setTitle("YourFeed ▼", for: .normal)
+        sourceMenuButton.setTitle("Your Feed ⋏", for: .normal)
         sourceMenuButton.setTitleColor(.white, for: .normal)
         sourceMenuButton.addTarget(self, action: #selector(sourceMenuButtonDidTap), for: .touchUpInside)
         navigationItem.titleView = sourceMenuButton
