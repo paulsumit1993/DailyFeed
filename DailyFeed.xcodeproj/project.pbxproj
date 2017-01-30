@@ -99,6 +99,7 @@
 		06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedItemCell.swift; sourceTree = "<group>"; };
 		06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyFeedItemCell.xib; sourceTree = "<group>"; };
 		06D04C561E13948C0013B4AA /* TSImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSImageView.swift; sourceTree = "<group>"; };
+		06DFBE811E3F07010091A1BC /* DailyFeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DailyFeed.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +204,7 @@
 		06D04C1D1E1248DA0013B4AA /* DailyFeed */ = {
 			isa = PBXGroup;
 			children = (
+				06DFBE811E3F07010091A1BC /* DailyFeed.entitlements */,
 				06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */,
 				063504FE1E151D19002510B0 /* Model */,
 				063505001E151D40002510B0 /* View */,
@@ -306,6 +308,11 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = HVFYDRX3Z2;
 						LastSwiftMigration = 0820;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					06D04C2E1E1248DB0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
@@ -561,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DailyFeed/DailyFeed.entitlements;
 				DEVELOPMENT_TEAM = HVFYDRX3Z2;
 				INFOPLIST_FILE = DailyFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -575,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DailyFeed/DailyFeed.entitlements;
 				DEVELOPMENT_TEAM = HVFYDRX3Z2;
 				INFOPLIST_FILE = DailyFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -16,9 +16,33 @@ class DailyFeedNewsController: UICollectionViewController {
 
     var filteredNewsItems = [DailyFeedModel]()
 
-    var newsSourceUrlLogo: String? = "http://i.newsapi.org/the-wall-street-journal-s.png"
+    
+    var newsSourceUrlLogo: String? {
+        get {
+            guard let defaultSourceLogo = UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.string(forKey: "sourceLogo") else {
+                return "http://i.newsapi.org/the-wall-street-journal-m.png"
+            }
 
-    var source: String = "the-wall-street-journal"
+            return defaultSourceLogo
+        }
+        set {
+            guard let newSource = newValue else { return }
+            UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.set(newSource, forKey: "sourceLogo")
+        }
+    }
+
+    var source: String {
+        get {
+            guard let defaultSource = UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.string(forKey: "source") else {
+                return "the-wall-street-journal"
+            }
+
+            return defaultSource
+        }
+        set {
+           UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.set(newValue, forKey: "source")
+        }
+    }
 
     let spinningActivityIndicator = TSActivityIndicator()
 
