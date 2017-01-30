@@ -134,7 +134,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="z6a-Xw-k4Z" secondAttribute="trailing" constant="-20" id="YPc-3S-cUd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="r66-GT-LNg"/>
+                    <navigationItem key="navigationItem" id="r66-GT-LNg">
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="ez7-e4-Tv8">
+                            <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="sourceTableView" destination="z6a-Xw-k4Z" id="oa8-zs-3hI"/>
                         <segue destination="JIT-8k-TPL" kind="unwind" identifier="sourceUnwindSegue" unwindAction="unwindToDailyNewsFeed:" id="NX9-nv-rBf"/>
@@ -340,6 +347,7 @@
     <resources>
         <image name="back" width="36" height="36"/>
         <image name="list" width="24" height="24"/>
+        <image name="menu" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
 </document>

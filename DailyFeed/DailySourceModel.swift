@@ -31,9 +31,9 @@ public struct DailySourceModel {
 }
 
 extension DailySourceModel {
-    static func getNewsSource(_ completion: @escaping ([DailySourceModel]?, NSError?) -> Void) {
+    static func getNewsSource(_ category: String?, _ completion: @escaping ([DailySourceModel]?, NSError?) -> Void) {
 
-        let sourceURL = NewsAPI.sources.url
+        let sourceURL = NewsAPI.sources(category: category).url
 
         let baseUrlRequest = URLRequest(url: sourceURL)
 
@@ -54,7 +54,7 @@ extension DailySourceModel {
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
 
                 if let json = jsonData as? [String: AnyObject],
-                    let jsonDict = json[NewsAPI.sources.jsonKey] as? [[String: AnyObject]] {
+                    let jsonDict = json[NewsAPI.sources(category: nil).jsonKey] as? [[String: AnyObject]] {
 
                     newsItems = jsonDict.flatMap(DailySourceModel.init)
 

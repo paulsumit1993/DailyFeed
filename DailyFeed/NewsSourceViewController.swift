@@ -9,16 +9,18 @@
 import UIKit
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
-
+    
     // MARK: - IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
-
+    
     // MARK: - Variable declaration
     var sourceItems = [DailySourceModel]()
-
+    
     var filteredSourceItems = [DailySourceModel]()
-
+    
     var selectedItem: DailySourceModel?
+
+    var categories: [String] = []
 
     var resultsSearchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -30,24 +32,22 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         controller.searchBar.sizeToFit()
         return controller
     }()
-
+    
     let spinningActivityIndicator = TSActivityIndicator()
-
+    
     //Activity Indicator Container View
     let container = UIView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //setup UI
         setupUI()
 
         //Populate TableView Data
-        loadSourceData()
-
+        loadSourceData(nil)
         //setup TableView
         setupTableView()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -74,29 +74,48 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.hidesBarsOnSwipe = true
     }
 
-    // MARK: -  Setup TableView
+    // MARK: - Setup TableView
     func setupTableView() {
         sourceTableView.register(UINib(nibName: "DailySourceItemCell",
                                        bundle: nil),
                                  forCellReuseIdentifier: "DailySourceItemCell")
+        sourceTableView.tableFooterView = UIView()
     }
 
-    // MARK: -Setup Spinner
+    // MARK: - Setup Spinner
     func setupSpinner() {
         spinningActivityIndicator.setupTSActivityIndicator(container)
     }
 
-    // MARK: - refresh news Source data
-    func refreshData(_ sender: UIRefreshControl) {
-        loadSourceData()
+    // MARK: - Show News Categories
+
+    @IBAction func presentCategories(_ sender: Any) {
+        let categoryActivityVC = UIAlertController(title: "Select a Category",
+                                                   message: nil,
+                                                   preferredStyle: .actionSheet)
+
+        let cancelButton = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+        
+        _ = categories.map {
+            let categoryButton = UIAlertAction(title: $0, style: .default, handler: { action in
+                if let category = action.title {
+                    self.loadSourceData(category)
+                }
+            })
+            categoryActivityVC.addAction(categoryButton)
+        }
+        categoryActivityVC.addAction(cancelButton)
+        self.present(categoryActivityVC, animated: true, completion: nil)
     }
 
     // MARK: - Load data from network
-    func loadSourceData() {
+    func loadSourceData(_ category: String?) {
 
         UIApplication.shared.beginIgnoringInteractionEvents()
-        DailySourceModel.getNewsSource { (newsItem, error) in
-
+        DailySourceModel.getNewsSource(category) { (newsItem, error) in
+            
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async(execute: {
                     self.spinningActivityIndicator.stopAnimating()
@@ -108,8 +127,13 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
                 })
                 return
             }
-
             self.sourceItems = news
+            
+            // The code below helps in persisting category till the view controller id de-allocated
+            if category == nil {
+                self.categories = Array(Set(news.map { $0.category }))
+            }
+            
             DispatchQueue.main.async(execute: {
                 self.sourceTableView.reloadData()
                 self.spinningActivityIndicator.stopAnimating()
@@ -119,9 +143,13 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    // MARK: - Status Bar Color
+    // MARK: - Status Bar Color and swutching actions
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return navigationController?.isNavigationBarHidden ?? false
     }
 
     // MARK: - TableView Delegate Methods
@@ -132,7 +160,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             return self.sourceItems.count + 1
         }
     }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell",
@@ -166,7 +193,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         if let searchString = searchController.searchBar.text {
             let searchResults = sourceItems.filter { $0.name.lowercased().contains(searchString.lowercased()) }
             filteredSourceItems = searchResults
-
             self.sourceTableView.reloadData()
         }
     }
