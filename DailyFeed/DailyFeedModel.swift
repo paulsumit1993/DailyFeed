@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  DailyFeedModel.swift
 //  DailyFeed
 //
 //  Created by TrianzDev on 27/12/16.
@@ -40,9 +40,9 @@ extension DailyFeedModel {
 
     static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, NSError?) -> Void) {
 
-        let feedURL = NewsAPI.articles(source: source).url
+        let sourceURL = NewsAPI.articles(source: source).url
 
-        let baseUrlRequest = URLRequest(url: feedURL)
+        let baseUrlRequest = URLRequest(url: sourceURL)
 
         var newsItems = [DailyFeedModel]()
 
@@ -61,7 +61,7 @@ extension DailyFeedModel {
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
 
                 if let json = jsonData as? [String: AnyObject],
-                    let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [[String: AnyObject]] {
+                    let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? JSON {
 
                     newsItems = jsonDict.flatMap(DailyFeedModel.init)
 

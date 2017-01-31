@@ -11,16 +11,20 @@ import SafariServices
 
 class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
-    // MARK: - News data declaration
+    // MARK: - Variable declaration
+    
     var receivedNewsItem: DailyFeedModel?
+    
     var receivedNewsSourceLogo: String?
-
+    
+    var articleStringURL: String?
     // MARK: - IBOutlets
 
     @IBOutlet weak var newsImageView: TSImageView! {
         didSet {
-            newsImageView.downloadedFromLink((receivedNewsItem?.urlToImage)!)
             newsImageView.layer.masksToBounds = true
+            guard let imageURL = receivedNewsItem?.urlToImage else { return }
+            newsImageView.downloadedFromLink(imageURL)
         }
     }
 
@@ -65,7 +69,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     @IBOutlet weak var swipeLeftButton: UIButton! {
         didSet {
-            guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.relativelyFormatted else {
+            guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.relativelyFormatted(short: false) else {
                 return swipeLeftButton.setTitle("Read More...", for: .normal)
             }
             swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
@@ -74,7 +78,8 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     @IBOutlet weak var newsSourceImageView: TSImageView! {
         didSet {
-        newsSourceImageView.downloadedFromLink((receivedNewsSourceLogo)!)
+            guard let newsSourceLogo = receivedNewsSourceLogo else { return }
+            newsSourceImageView.downloadedFromLink(newsSourceLogo)
 
         }
     }
@@ -84,9 +89,14 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
         //Hide Nav bar
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        // Setting the newsImageView gradient
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor,
                                    UIColor(white: 0, alpha: 0.6).cgColor],
                                   locations: [0.0, 0.05, 0.85])
+
+        //Setting articleStringURL for state restoration
+        articleStringURL = receivedNewsItem?.url
     }
 
     // MARK: - Status Bar Color
@@ -96,11 +106,11 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     // MARK: - Back Button Dismiss action
     @IBAction func dismissButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 
     @IBAction func dismissSwipeAction() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 
     // MARK: - share article
@@ -111,9 +121,9 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         let delay = DispatchTime.now() + 0.11
         DispatchQueue.main.asyncAfter(deadline: delay) {
 
-            guard let articleURL = self.receivedNewsItem?.url, let articleImage = self.captureScreenShot() else {return}
+            guard let shareURL = self.articleStringURL, let articleImage = self.captureScreenShot() else {return}
 
-            let activityVC = UIActivityViewController(activityItems: [articleURL, articleImage],
+            let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage],
                                                       applicationActivities: nil)
 
             activityVC.excludedActivityTypes = [UIActivityType.saveToCameraRoll,
@@ -169,9 +179,76 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     // Helper method to open articles in Safari
     func openInSafari() {
-        guard let urlString = receivedNewsItem?.url, let url = URL(string: urlString) else { return }
+        guard let articleString = articleStringURL, let url = URL(string: articleString) else { return }
         let svc = MySafariViewController(url: url)
         svc.delegate = self
         self.present(svc, animated: true, completion: nil)
     }
+    
+    // MARK: - UIStateRestoring Delegate Methods
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let newsImage = newsImageView.image {
+            coder.encode(UIImageJPEGRepresentation(newsImage, 1.0), forKey:"newsImage")
+        }
+        
+        if let newsTitle = newsTitleLabel.text {
+            coder.encode(newsTitle, forKey: "newsTitle")
+        }
+        
+        if let contentText = contentTextView.text {
+            coder.encode(contentText, forKey: "contentText")
+        }
+        
+        if let newsAuthor = newsAuthorLabel.text {
+            coder.encode(newsAuthor, forKey: "newsAuthor")
+        }
+        
+        if let publishedDate = swipeLeftButton.titleLabel?.text {
+            coder.encode(publishedDate, forKey: "publishedDate")
+        }
+        
+        if let url = self.articleStringURL {
+            coder.encode(url, forKey: "newsURL")
+        }
+        
+        if let newsSourceImage = newsSourceImageView.image {
+            coder.encode(UIImagePNGRepresentation(newsSourceImage), forKey: "newsSourceImage")
+        }
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let newsImageData = coder.decodeObject(forKey: "newsImage") as? Data {
+            newsImageView.image = UIImage(data: newsImageData)
+        }
+        
+        if let newsTitleText = coder.decodeObject(forKey: "newsTitle") as? String {
+            newsTitleLabel.text = newsTitleText
+        }
+        
+        if let contentText = coder.decodeObject(forKey: "contentText") as? String {
+            contentTextView.text = contentText
+        }
+        
+        if let newsAuthorText = coder.decodeObject(forKey: "newsAuthor") as? String {
+            newsAuthorLabel.text = newsAuthorText
+        }
+        
+        if let publishedAtDate = coder.decodeObject(forKey: "publishedDate") as? String {
+            swipeLeftButton.setTitle(publishedAtDate, for: .normal)
+        }
+        
+        if let urlString = coder.decodeObject(forKey: "newsURL") as? String {
+            articleStringURL = urlString
+        }
+        
+        if let newsSourceImageData = coder.decodeObject(forKey: "newsSourceImage") as? Data {
+            newsSourceImageView.image = UIImage(data: newsSourceImageData)
+        }
+        
+        super.decodeRestorableState(with: coder)
+    }
+
 }

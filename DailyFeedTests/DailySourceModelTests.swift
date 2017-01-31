@@ -44,7 +44,7 @@ class DailySourceModelTests: XCTestCase {
         var dataModel = [DailySourceModel]()
         let exp = expectation(description: "Get Source Data")
 
-        DailySourceModel.getNewsSource { (items, _) in
+        DailySourceModel.getNewsSource(nil) { (items, _) in
             guard let items = items else {
                 XCTFail("Could not parse dailysource items")
                 return
@@ -53,7 +53,7 @@ class DailySourceModelTests: XCTestCase {
             exp.fulfill()
         }
 
-        self.waitForExpectations(timeout: 11) { error in
+        self.waitForExpectations(timeout: 4) { error in
             XCTAssertNil(error, "Fatal Error")
             XCTAssertGreaterThan(dataModel.count, 0)
         }

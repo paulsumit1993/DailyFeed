@@ -54,8 +54,8 @@ extension DailySourceModel {
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
 
                 if let json = jsonData as? [String: AnyObject],
-                    let jsonDict = json[NewsAPI.sources(category: nil).jsonKey] as? [[String: AnyObject]] {
-
+                    let jsonDict = json[NewsAPI.sources(category: nil).jsonKey] as? JSON {
+                    
                     newsItems = jsonDict.flatMap(DailySourceModel.init)
 
                     completion(newsItems, nil)

@@ -25,14 +25,14 @@
                             <constraint firstAttribute="width" secondItem="BaR-6a-Y4u" secondAttribute="height" multiplier="1:1" id="BNU-1f-WcS"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zM-c8-95C">
+                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9zM-c8-95C">
                         <rect key="frame" x="156" y="150" width="251" height="1"/>
                         <color key="backgroundColor" red="0.71372549019607845" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="VPM-Bf-r33"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="0.5" id="VPM-Bf-r33"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dai-pv-ArX">
+                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="dai-pv-ArX">
                         <rect key="frame" x="407" y="150" width="10" height="1"/>
                         <color key="backgroundColor" red="0.71372549019607845" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                     </view>

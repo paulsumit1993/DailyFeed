@@ -21,12 +21,12 @@ class NewsAPITests: XCTestCase {
     }
 
     func testNewsAPI() {
-        XCTAssertEqual(NewsAPI.sources.url, URL(string: "https://newsapi.org/v1/sources?language=en"))
+        XCTAssertEqual(NewsAPI.sources(category: nil).url, URL(string: "https://newsapi.org/v1/sources?category=&language=en"))
 
         XCTAssertEqual(NewsAPI.articles(source: "fortune").url,
                        URL(string: "https://newsapi.org/v1/articles?source=fortune&apiKey=53b8c0ba0ea24a199f790d660b73675f"))
 
         XCTAssertEqual(NewsAPI.articles(source: nil).jsonKey, "articles")
-        XCTAssertEqual(NewsAPI.sources.jsonKey, "sources")
+        XCTAssertEqual(NewsAPI.sources(category: nil).jsonKey, "sources")
     }
 }

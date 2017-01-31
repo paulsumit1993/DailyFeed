@@ -42,7 +42,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         case is DailySourceItemListLayout:
                 listCell?.newsArticleTitleLabel.text = newsItems[indexPath.row].title
                 listCell?.newsArticleAuthorLabel.text = newsItems[indexPath.row].author
-                listCell?.newsArticleTimeLabel.text = newsItems[indexPath.row].publishedAt.dateFromTimestamp?.relativelyFormattedShort
+                listCell?.newsArticleTimeLabel.text = newsItems[indexPath.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
                 listCell?.newsArticleImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
                 return listCell!
 

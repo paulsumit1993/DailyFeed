@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias JSON = [[String: AnyObject]]
+
 enum NewsAPI {
 
     case articles(source: String?)

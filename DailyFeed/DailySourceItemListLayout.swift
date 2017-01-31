@@ -24,7 +24,7 @@ class DailySourceItemListLayout: UICollectionViewFlowLayout {
      */
     func setupLayout() {
         minimumInteritemSpacing = 0
-        minimumLineSpacing = 0
+        minimumLineSpacing = 2
         scrollDirection = .vertical
     }
 
