@@ -2,8 +2,7 @@
 //  TSImageView.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 28/12/16.
-//  Copyright © 2016 trianz. All rights reserved.
+//  Created by Sumit Paul on 28/12/16.
 //
 
 import UIKit
@@ -53,7 +52,7 @@ class TSImageView: UIImageView {
     }
 
     //Image Appear Animation for Loading Images
-    func animateImageAppearance(_ duration: Double, option: UIViewAnimationOptions, alpha: CGFloat) {
+    fileprivate func animateImageAppearance(_ duration: Double, option: UIViewAnimationOptions, alpha: CGFloat) {
 
         UIView.animate(withDuration: duration, delay: 0, options: option, animations: {
             self.alpha = alpha

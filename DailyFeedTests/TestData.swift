@@ -2,8 +2,7 @@
 //  TestData.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 19/01/17.
-//  Copyright © 2017 trianz. All rights reserved.
+//  Created by Sumit Paul on 19/01/17.
 //
 
 import Foundation

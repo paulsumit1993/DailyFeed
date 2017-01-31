@@ -2,8 +2,7 @@
 //  NewsDetailViewControllerTests.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 19/01/17.
-//  Copyright © 2017 trianz. All rights reserved.
+//  Created by Sumit Paul on 19/01/17.
 //
 
 import XCTest
@@ -38,7 +37,7 @@ class NewsDetailViewControllerTests: XCTestCase {
         XCTAssertEqual(nvc.swipeLeftButton.alpha, 0.0)
     }
 
-    func testscreenShotMethodNotNil() {
+    func testscreenShotMethodNotNilAndOfTypeUIImage() {
         let image = nvc.captureScreenShot()
         XCTAssertNotNil(image)
         if type(of: image) == UIImage?.self {
@@ -47,4 +46,6 @@ class NewsDetailViewControllerTests: XCTestCase {
             XCTAssertFalse(true)
         }
     }
+    
+    
 }

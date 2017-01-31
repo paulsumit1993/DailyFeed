@@ -2,8 +2,7 @@
 //  ViewController.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 27/12/16.
-//  Copyright © 2016 trianz. All rights reserved.
+//  Created by Sumit Paul on 27/12/16.
 //
 
 import UIKit
@@ -50,8 +49,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
-        refresh.backgroundColor = .black
-        refresh.tintColor = .white
+        refresh.tintColor = .black
         return refresh
     }()
 

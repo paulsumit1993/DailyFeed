@@ -2,8 +2,7 @@
 //  DailyFeedNewsController+Extension.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 03/01/17.
-//  Copyright © 2017 trianz. All rights reserved.
+//  Created by Sumit Paul on 03/01/17.
 //
 
 import UIKit

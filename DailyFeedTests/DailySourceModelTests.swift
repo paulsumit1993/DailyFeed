@@ -3,7 +3,6 @@
 //  DailyFeed
 //
 //  Created by TrianzDev on 13/01/17.
-//  Copyright © 2017 trianz. All rights reserved.
 //
 
 import XCTest

@@ -2,8 +2,7 @@
 //  DailyFeedItemCell.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 28/12/16.
-//  Copyright © 2016 trianz. All rights reserved.
+//  Created by Sumit Paul on 28/12/16.
 //
 
 import UIKit

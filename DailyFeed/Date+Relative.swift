@@ -35,7 +35,7 @@ extension Date {
             return short ? " • \(weeks)w ago" : "\(weeks) week\(weeks == 1 ? "" : "s") ago"
         }
         if let days = components.day, days > 0 {
-            guard days > 1 else { return short ? " • Y'day" : "Yesterday" }
+            guard days > 1 else { return short ? " • y'day" : "yesterday" }
 
             return short ? " • \(days)d ago" : "\(days) day\(days == 1 ? "" : "s") ago"
         }
