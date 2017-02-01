@@ -27,7 +27,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todayCollectionView?.register(TodayImageCollectionViewCell.self,
+        todayCollectionView?.register(UINib(nibName: "TodayImageCollectionViewCell", bundle: nil),
                                  forCellWithReuseIdentifier: "todayImageCell")
 
                 loadNewsData(todaySource)
