@@ -57,8 +57,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        
-         completionHandler(NCUpdateResult.newData)
+        loadNewsData(todaySource)
+        completionHandler(NCUpdateResult.newData)
     }
     
     @available(iOSApplicationExtension 10.0, *)
