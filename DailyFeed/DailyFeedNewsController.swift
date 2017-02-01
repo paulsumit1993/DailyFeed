@@ -18,7 +18,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var newsSourceUrlLogo: String? {
         get {
-            guard let defaultSourceLogo = UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.string(forKey: "sourceLogo") else {
+            guard let defaultSourceLogo = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "sourceLogo") else {
                 return "http://i.newsapi.org/the-wall-street-journal-m.png"
             }
 
@@ -26,20 +26,20 @@ class DailyFeedNewsController: UICollectionViewController {
         }
         set {
             guard let newSource = newValue else { return }
-            UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.set(newSource, forKey: "sourceLogo")
+            UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newSource, forKey: "sourceLogo")
         }
     }
 
     var source: String {
         get {
-            guard let defaultSource = UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.string(forKey: "source") else {
+            guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
                 return "the-wall-street-journal"
             }
 
             return defaultSource
         }
         set {
-           UserDefaults(suiteName: "com.trianz.DailyFeed.today")?.set(newValue, forKey: "source")
+           UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newValue, forKey: "source")
         }
     }
 
