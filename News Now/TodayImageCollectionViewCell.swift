@@ -16,8 +16,22 @@ class TodayImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var newsTitleLabel: UILabel!
-    @IBOutlet weak var publishedAtLabel: UILabel!
+    @IBOutlet weak var newsTitleLabel: UILabel! {
+        didSet {
+            if #available(iOSApplicationExtension 10.0, *) {
+                newsTitleLabel.textColor = UIColor.black
+            }
+        }
+    }
+
+    @IBOutlet weak var publishedAtLabel: UILabel! {
+        didSet {
+            if #available(iOSApplicationExtension 10.0, *) {
+                publishedAtLabel.textColor = UIColor.black
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

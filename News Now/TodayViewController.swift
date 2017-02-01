@@ -27,7 +27,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todayCollectionView?.register(UINib(nibName: "TodayImageCollectionViewCell", bundle: nil),
+        todayCollectionView?.register(TodayImageCollectionViewCell.self,
                                  forCellWithReuseIdentifier: "todayImageCell")
 
                 loadNewsData(todaySource)
@@ -52,14 +52,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     }
 
 
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         
-        if todaySource != UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") {
-            loadNewsData(todaySource)
-            completionHandler(NCUpdateResult.newData)
-        } else {
          completionHandler(NCUpdateResult.noData)
-        }
     }
     
     @available(iOSApplicationExtension 10.0, *)
@@ -70,9 +69,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
         }
         else {
             print(maxSize.height)
-            self.preferredContentSize = CGSize(width: maxSize.width, height: 440)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 330)
         }
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return todayNewsItems.count
