@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationCenter
+import SafariServices
 
 class TodayViewController: UIViewController, NCWidgetProviding, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -51,7 +52,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
         }
     }
 
-
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
@@ -69,11 +69,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
         }
         else {
             print(maxSize.height)
-            self.preferredContentSize = CGSize(width: maxSize.width, height: 330)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 440)
         }
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return todayNewsItems.count
@@ -89,5 +87,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: todayCollectionView.bounds.width, height: 110)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let appURL = URL(string: todayNewsItems[indexPath.row].url) {
+        self.extensionContext?.open(appURL, completionHandler: nil)
+        }
     }
 }

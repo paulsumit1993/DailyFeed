@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias JSON = [[String: AnyObject]]
+public typealias JSONDictionary = [String: AnyObject]
 
 enum NewsAPI {
 

@@ -24,7 +24,6 @@ class DailyFeedItemListCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

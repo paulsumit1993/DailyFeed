@@ -8,7 +8,7 @@
 import Foundation
 
 //Data Model
-public struct DailyFeedModel {
+struct DailyFeedModel: Equatable {
 
     public let title: String
     public let author: String
@@ -17,7 +17,7 @@ public struct DailyFeedModel {
     public let description: String
     public let url: String
 
-    public init?(json: [String: AnyObject]) {
+    public init?(json: JSONDictionary) {
 
         guard let title = json["title"] as? String,
         let author      = json["author"] as? String,
@@ -33,41 +33,55 @@ public struct DailyFeedModel {
         self.description = description
         self.url         = url
     }
+    
+    // Equatable Conformance
+    
+    static func ==(lhs: DailyFeedModel, rhs: DailyFeedModel) -> Bool {
+        return lhs.title == rhs.title &&
+        lhs.author == rhs.author &&
+        lhs.publishedAt == rhs.publishedAt &&
+        lhs.urlToImage == rhs.urlToImage &&
+        lhs.description == rhs.description &&
+        lhs.url == rhs.url
+    }
 }
+
 
 extension DailyFeedModel {
 
-    static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, NSError?) -> Void) {
+    static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
 
         let sourceURL = NewsAPI.articles(source: source).url
 
         let baseUrlRequest = URLRequest(url: sourceURL)
+        
+        let session = URLSession.shared
 
-        var newsItems = [DailyFeedModel]()
 
-        URLSession.shared.dataTask(with: baseUrlRequest, completionHandler: { (data, _, error) in
+        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
+
+            var newsItems = [DailyFeedModel]()
 
             guard error == nil else {
-                completion(nil, error as NSError?)
+                completion(nil, error)
                 return
             }
 
             guard let data = data else {
-                completion(nil, error as NSError?)
+                completion(nil, error)
                 return
             }
 
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-
-                if let json = jsonData as? [String: AnyObject],
-                    let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? JSON {
+                
+                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [JSONDictionary] {
 
                     newsItems = jsonDict.flatMap(DailyFeedModel.init)
-
-                    completion(newsItems, nil)
-
                 }
             }
-            }) .resume()
+            
+            completion(newsItems, nil)
+
+        }).resume()
     }
 }

@@ -51,7 +51,7 @@ class TSImageView: UIImageView {
 
     }
 
-    //Image Appear Animation for Loading Images
+    //Helper for Image Appear Animation
     fileprivate func animateImageAppearance(_ duration: Double, option: UIViewAnimationOptions, alpha: CGFloat) {
 
         UIView.animate(withDuration: duration, delay: 0, options: option, animations: {
