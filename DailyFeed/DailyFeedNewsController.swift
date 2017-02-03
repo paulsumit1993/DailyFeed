@@ -58,7 +58,6 @@ class DailyFeedNewsController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //Setup UI
         setupUI()
 
