@@ -837,6 +837,7 @@
 				0618B77B1E40B74D00BC8096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06D04C161E1248DA0013B4AA /* Build configuration list for PBXProject "DailyFeed" */ = {
 			isa = XCConfigurationList;

@@ -62,7 +62,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         case UICollectionElementKindSectionHeader:
 
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "newsHeaderCell",
+                                                                             withReuseIdentifier: "newsHeaderView",
                                                                              for: indexPath) as? NewHeaderCollectionReusableView
 
             headerView?.newSourceImageView.downloadedFromLink(self.newsSourceUrlLogo!)
@@ -71,7 +71,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
 
         case UICollectionElementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "newsFooterCell",
+                                                                             withReuseIdentifier: "newsFooterView",
                                                                              for: indexPath)
 
             return footerView

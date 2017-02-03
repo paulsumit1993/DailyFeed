@@ -43,7 +43,7 @@ extension DailySourceModel {
     
     static func getNewsSource(_ category: String?, _ completion: @escaping ([DailySourceModel]?, Error?) -> Void) {
 
-        let sourceURL = NewsAPI.sources(category: category).url
+        guard let sourceURL = NewsAPI.sources(category: category).url else { return }
 
         let baseUrlRequest = URLRequest(url: sourceURL)
         

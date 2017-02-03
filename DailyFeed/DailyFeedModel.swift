@@ -51,12 +51,11 @@ extension DailyFeedModel {
 
     static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
 
-        let sourceURL = NewsAPI.articles(source: source).url
-
-        let baseUrlRequest = URLRequest(url: sourceURL)
+        guard let feedURL = NewsAPI.articles(source: source).url else { return }
+        print(feedURL)
+        let baseUrlRequest = URLRequest(url: feedURL)
         
         let session = URLSession.shared
-
 
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
 

@@ -14,18 +14,24 @@ enum NewsAPI {
     case articles(source: String?)
     case sources(category: String?)
 
-    static let baseURL = "https://newsapi.org/v1"
+    static var baseURL = URLComponents(string: "https://newsapi.org")
     static let apiToken = "53b8c0ba0ea24a199f790d660b73675f"
 
-    //URL Endpoints
-    var url: URL {
+    //NewsAPI.org API Endpoints
+    var url: URL? {
         switch self {
         case .articles(let source):
             let lSource = source ?? "the-wall-street-journal"
-            return URL(string: "\(NewsAPI.baseURL)/articles?source=\(lSource)&apiKey=\(NewsAPI.apiToken)")!
+            NewsAPI.baseURL?.path = "/v1/\(NewsAPI.articles(source: nil).jsonKey)"
+            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "source", value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            guard let url = NewsAPI.baseURL?.url else { return nil }
+            return url
         case .sources(let category):
             let lCategory = category ?? ""
-            return URL(string: "\(NewsAPI.baseURL)/sources?category=\(lCategory)&language=en")!
+            NewsAPI.baseURL?.path = "/v1/\(NewsAPI.sources(category: nil).jsonKey)"
+            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "category", value: lCategory), URLQueryItem(name: "language", value: "en")]
+            guard let url = NewsAPI.baseURL?.url else { return nil }
+            return url
         }
     }
 

@@ -12,9 +12,6 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - Variable declaration
 
     var newsItems = [DailyFeedModel]()
-
-    var filteredNewsItems = [DailyFeedModel]()
-
     
     var newsSourceUrlLogo: String? {
         get {

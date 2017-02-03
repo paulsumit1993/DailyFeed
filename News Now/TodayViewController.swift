@@ -31,8 +31,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
         todayCollectionView?.register(UINib(nibName: "TodayImageCollectionViewCell", bundle: nil),
                                  forCellWithReuseIdentifier: "todayImageCell")
 
-                loadNewsData(todaySource)
-        
         if #available(iOSApplicationExtension 10.0, *) {
             self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         }
@@ -65,10 +63,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if (activeDisplayMode == NCWidgetDisplayMode.compact) {
             self.preferredContentSize = maxSize
-            print(maxSize.height)
         }
         else {
-            print(maxSize.height)
             self.preferredContentSize = CGSize(width: maxSize.width, height: 440)
         }
     }

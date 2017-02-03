@@ -27,7 +27,7 @@
                             <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells/>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsHeaderCell" id="uDu-Sf-au3" customClass="NewHeaderCollectionReusableView" customModule="DailyFeed" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsHeaderView" id="uDu-Sf-au3" customClass="NewHeaderCollectionReusableView" customModule="DailyFeed" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -48,7 +48,7 @@
                                 <outlet property="newSourceImageView" destination="DbO-tM-PWE" id="xjd-ea-sz4"/>
                             </connections>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterCell" id="Gdd-r4-LOU">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterView" id="Gdd-r4-LOU">
                             <rect key="frame" x="0.0" y="55" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
