@@ -44,9 +44,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
             
             guard error == nil, let news = newsItem else { return }
             self.todayNewsItems = news
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 self.todayCollectionView?.reloadData()
-            })
+            }
         }
     }
 

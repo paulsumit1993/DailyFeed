@@ -13,10 +13,22 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var sourceTableView: UITableView!
     
     @IBOutlet weak var categoryButton: UIBarButtonItem!
-    // MARK: - Variable declaration
-    var sourceItems = [DailySourceModel]()
     
-    var filteredSourceItems = [DailySourceModel]()
+    // MARK: - Variable declaration
+    var sourceItems: [DailySourceModel] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.sourceTableView.reloadSections([0], with: .automatic)
+                self.setupSpinner(hidden: true)
+            }
+        }
+    }
+    
+    var filteredSourceItems: [DailySourceModel] = [] {
+        didSet {
+            self.sourceTableView.reloadSections([0], with: .automatic)
+        }
+    }
     
     var selectedItem: DailySourceModel?
 
@@ -34,6 +46,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     let spinningActivityIndicator = TSActivityIndicator()
+    
+    // MARK: - ViewController Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,14 +143,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             self.sourceItems = news
             
-            // The code below helps in persisting category till the view controller id de-allocated
+            // The code below helps in persisting category till the view controller is de-allocated
             if category == nil {
                 self.categories = Array(Set(news.map { $0.category }))
-            }
-            
-            DispatchQueue.main.async {
-                self.sourceTableView.reloadData()
-                self.setupSpinner(hidden: true)
             }
         }
     }
@@ -196,7 +205,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         if let searchString = searchController.searchBar.text {
             let searchResults = sourceItems.filter { $0.name.lowercased().contains(searchString.lowercased()) }
             filteredSourceItems = searchResults
-            self.sourceTableView.reloadData()
         }
     }
 }

@@ -11,7 +11,18 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Variable declaration
 
-    var newsItems = [DailyFeedModel]()
+    var newsItems: [DailyFeedModel] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView?.performBatchUpdates({
+                    self.collectionView?.reloadSections([0])
+                }, completion: { finished in
+                    self.refreshControl.endRefreshing()
+                    self.spinningActivityIndicator.stop()
+                })
+            }
+        }
+    }
     
     var newsSourceUrlLogo: String? {
         get {
@@ -80,9 +91,6 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
         let sourceMenuButton = UIButton(type: .custom)
         sourceMenuButton.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 4, height: 44)
         sourceMenuButton.setTitle("Your Feed ⋏", for: .normal)
@@ -98,7 +106,6 @@ class DailyFeedNewsController: UICollectionViewController {
         collectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil),
                                  forCellWithReuseIdentifier: "DailyFeedItemListCell")
         collectionView?.collectionViewLayout = DailySourceItemLayout()
-        collectionView?.alwaysBounceVertical = true
         collectionView?.addSubview(refreshControl)
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
@@ -131,12 +138,9 @@ class DailyFeedNewsController: UICollectionViewController {
                 }
             return
         }
+            
         self.newsItems = news
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-            self.refreshControl.endRefreshing()
-            self.spinningActivityIndicator.stop()
-            }
+            
         }
     }
 
@@ -157,10 +161,10 @@ class DailyFeedNewsController: UICollectionViewController {
     // Helper method for switching layouts and changing collectionview background color
     func switchCollectionViewLayout(for layout: UICollectionViewLayout) {
         collectionView?.collectionViewLayout.invalidateLayout()
-        UIView.animate(withDuration: 0.01, animations: {
+        UIView.animate(withDuration: 0.03) {
             self.collectionView?.setCollectionViewLayout(layout, animated: false)
             self.collectionView?.reloadItems(at: (self.collectionView?.indexPathsForVisibleItems)!)
-        })
+        }
     }
 
     // MARK: - sourceMenuButton Action method
