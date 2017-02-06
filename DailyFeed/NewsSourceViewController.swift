@@ -35,9 +35,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let spinningActivityIndicator = TSActivityIndicator()
     
-    //Activity Indicator Container View
-    let container = UIView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +59,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Setup UI
     func setupUI() {
+        
         setupSearch()
         
     }
@@ -83,9 +81,12 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Setup Spinner
     func setupSpinner(hidden: Bool) {
-        container.isHidden = hidden
+        spinningActivityIndicator.containerView.isHidden = hidden
         if !hidden {
-        spinningActivityIndicator.setupTSActivityIndicator(container)
+            spinningActivityIndicator.setupTSActivityIndicator()
+            spinningActivityIndicator.start()
+        } else {
+            spinningActivityIndicator.stop()
         }
     }
 
@@ -115,18 +116,15 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Load data from network
     func loadSourceData(_ category: String?) {
         setupSpinner(hidden: false)
-        UIApplication.shared.beginIgnoringInteractionEvents()
         DailySourceModel.getNewsSource(category) { (newsItem, error) in
             
             guard error == nil, let news = newsItem else {
-                DispatchQueue.main.async(execute: {
-                    self.spinningActivityIndicator.stopAnimating()
+                DispatchQueue.main.async {
                     self.setupSpinner(hidden: true)
-                    UIApplication.shared.endIgnoringInteractionEvents()
                     self.showError(error?.localizedDescription ?? "", message: "") { _ in
                         self.dismiss(animated: true, completion: nil)
                     }
-                })
+                }
                 return
             }
             self.sourceItems = news
@@ -136,16 +134,14 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.categories = Array(Set(news.map { $0.category }))
             }
             
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 self.sourceTableView.reloadData()
-                self.spinningActivityIndicator.stopAnimating()
                 self.setupSpinner(hidden: true)
-                UIApplication.shared.endIgnoringInteractionEvents()
-            })
+            }
         }
     }
 
-    // MARK: - Status Bar Color and swutching actions
+    // MARK: - Status Bar Color and switching actions
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }

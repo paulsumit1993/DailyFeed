@@ -42,8 +42,6 @@ class DailyFeedNewsController: UICollectionViewController {
 
     let spinningActivityIndicator = TSActivityIndicator()
 
-    let container = UIView()
-
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.tintColor = .black
@@ -109,7 +107,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup Spinner
     func setupSpinner() {
-        spinningActivityIndicator.setupTSActivityIndicator(container)
+        spinningActivityIndicator.setupTSActivityIndicator()
     }
 
     // MARK: - refresh news Source data
@@ -119,30 +117,26 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Load data from network
     func loadNewsData(_ source: String) {
-
-        UIApplication.shared.beginIgnoringInteractionEvents()
-
+        
+        spinningActivityIndicator.start()
+        
         DailyFeedModel.getNewsItems(source) { (newsItem, error) in
 
             guard error == nil, let news = newsItem else {
-                DispatchQueue.main.async(execute: {
-                    self.spinningActivityIndicator.stopAnimating()
-                    self.container.removeFromSuperview()
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                DispatchQueue.main.async {
+                    self.spinningActivityIndicator.stop()
                     self.showError(error?.localizedDescription ?? "", message: "") { _ in
-                        self.refreshControl.endRefreshing()
-                       }
-                    })
-                return
+                    self.refreshControl.endRefreshing()
+                    }
+                }
+            return
+        }
+        self.newsItems = news
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+            self.refreshControl.endRefreshing()
+            self.spinningActivityIndicator.stop()
             }
-            self.newsItems = news
-            DispatchQueue.main.async(execute: {
-                self.collectionView?.reloadData()
-                self.refreshControl.endRefreshing()
-                self.spinningActivityIndicator.stopAnimating()
-                self.container.removeFromSuperview()
-                UIApplication.shared.endIgnoringInteractionEvents()
-            })
         }
     }
 
@@ -191,8 +185,6 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - Unwind from Source View Controller
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
-            setupSpinner()
-            self.spinningActivityIndicator.startAnimating()
             self.newsSourceUrlLogo = sourceVC.selectedItem?.urlsToLogos
             self.source = sourceId
             loadNewsData(source)
