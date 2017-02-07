@@ -138,20 +138,17 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             activityVC.completionWithItemsHandler = {(activityType, completed: Bool, _, _) in
                 self.fadeUIElements(with: 1.0)
             }
-
             self.present(activityVC, animated: true, completion: nil)
         }
-
     }
 
     // Helper to toggle UI elements before and after screenshot capture
      func fadeUIElements(with alpha: CGFloat) {
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.1) {
             self.backButton.alpha = alpha
             self.shareButton.alpha = alpha
             self.swipeLeftButton.alpha = alpha
-
-        })
+        }
     }
 
     // Helper method to generate article screenshots

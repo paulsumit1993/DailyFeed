@@ -16,10 +16,7 @@ class DailyFeedNewsController: UICollectionViewController {
             DispatchQueue.main.async {
                 self.collectionView?.performBatchUpdates({
                     self.collectionView?.reloadSections([0])
-                }, completion: { finished in
-                    self.refreshControl.endRefreshing()
-                    self.spinningActivityIndicator.stop()
-                })
+                }, completion: nil)
             }
         }
     }
@@ -128,19 +125,21 @@ class DailyFeedNewsController: UICollectionViewController {
         spinningActivityIndicator.start()
         
         DailyFeedModel.getNewsItems(source) { (newsItem, error) in
-
+            
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async {
                     self.spinningActivityIndicator.stop()
-                    self.showError(error?.localizedDescription ?? "", message: "") { _ in
                     self.refreshControl.endRefreshing()
-                    }
+                    self.showError(error?.localizedDescription ?? "")
                 }
-            return
-        }
-            
-        self.newsItems = news
-            
+                return
+            }
+            self.newsItems = news
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.spinningActivityIndicator.stop()
+            }
+
         }
     }
 

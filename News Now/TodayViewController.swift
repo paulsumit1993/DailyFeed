@@ -13,7 +13,14 @@ import SafariServices
 class TodayViewController: UIViewController, NCWidgetProviding, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var todayCollectionView: UICollectionView!
-    var todayNewsItems = [DailyFeedModel]()
+    
+    var todayNewsItems: [DailyFeedModel] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.todayCollectionView?.reloadData()
+            }
+        }
+    }
     
     var todaySource: String {
         get {
@@ -44,9 +51,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
             
             guard error == nil, let news = newsItem else { return }
             self.todayNewsItems = news
-            DispatchQueue.main.async {
-                self.todayCollectionView?.reloadData()
-            }
         }
     }
 
@@ -68,6 +72,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
             self.preferredContentSize = CGSize(width: maxSize.width, height: 440)
         }
     }
+    
+    // MARK: - CollectionView Delegate Methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return todayNewsItems.count

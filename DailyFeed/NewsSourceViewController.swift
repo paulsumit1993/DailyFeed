@@ -135,7 +135,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async {
                     self.setupSpinner(hidden: true)
-                    self.showError(error?.localizedDescription ?? "", message: "") { _ in
+                    self.showError(error?.localizedDescription ?? "") { _ in
                         self.dismiss(animated: true, completion: nil)
                     }
                 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,19 +23,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xj8-AN-Veg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nFU-E6-fTD">
+                                <rect key="frame" x="75" y="221" width="225" height="225"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="YAt-ac-0Ct"/>
+                                    <constraint firstAttribute="width" secondItem="nFU-E6-fTD" secondAttribute="height" multiplier="1:1" id="1Wy-lB-MKn"/>
                                 </constraints>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xj8-AN-Veg" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="5R1-RO-aDc"/>
-                            <constraint firstItem="xj8-AN-Veg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="74W-4V-hgL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xj8-AN-Veg" secondAttribute="trailing" constant="-20" id="oBy-RZ-VQw"/>
+                            <constraint firstItem="nFU-E6-fTD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2AW-KT-MNt"/>
+                            <constraint firstItem="nFU-E6-fTD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ZAj-jJ-jrV"/>
+                            <constraint firstItem="nFU-E6-fTD" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.6" id="iYS-qr-Iel"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -43,4 +43,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="1024" height="1024"/>
+    </resources>
 </document>
