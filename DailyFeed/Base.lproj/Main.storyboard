@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Your Feed ⋏-->
+        <!--Daily Feed News Controller-->
         <scene sceneID="WGJ-LH-q2G">
             <objects>
                 <collectionViewController storyboardIdentifier="DailyFeedNewsController" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,7 +73,13 @@
                             <outlet property="delegate" destination="L6A-1a-6xf" id="Kzh-I1-kmP"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Your Feed ⋏" id="a8j-37-xyQ">
+                    <navigationItem key="navigationItem" id="a8j-37-xyQ">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1GA-uX-a3W">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" image="list" id="hjs-ta-6GO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Opc-IS-oMj">
                                 <rect key="frame" x="315" y="0.0" width="44" height="44"/>

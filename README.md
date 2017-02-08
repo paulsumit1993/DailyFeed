@@ -1,3 +1,5 @@
+<img src="/assets/logo.jpg">
+
 # DailyFeed
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5866404b6eba5b01006b3d99&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5866404b6eba5b01006b3d99/build/latest?branch=master)
 [![codebeat badge](https://codebeat.co/badges/04da4b78-253c-4cec-8ac9-04cfc7d26eb0)](https://codebeat.co/projects/github-com-paulsumit1993-dailyfeed)
@@ -21,3 +23,8 @@ iOS client for [NewsAPI.org](https://newsapi.org/)
 
 ##Screenshots
 <img src="/assets/screenshot.jpg">
+
+## Logo Design
+
+[Deepak M K](https://in.linkedin.com/in/deepak-mk-a5a62518)
+[Pratheek Punchathody](https://in.linkedin.com/in/pratheek-punchathody-00452983)

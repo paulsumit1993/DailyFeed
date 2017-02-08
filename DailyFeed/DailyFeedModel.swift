@@ -5,7 +5,6 @@
 //  Created by Sumit Paul on 27/12/16.
 //
 
-import Foundation
 
 //Data Model
 struct DailyFeedModel: Equatable {
@@ -43,44 +42,5 @@ struct DailyFeedModel: Equatable {
         lhs.urlToImage == rhs.urlToImage &&
         lhs.description == rhs.description &&
         lhs.url == rhs.url
-    }
-}
-
-
-extension DailyFeedModel {
-
-    static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
-
-        guard let feedURL = NewsAPI.articles(source: source).url else { return }
-
-        let baseUrlRequest = URLRequest(url: feedURL)
-        
-        let session = URLSession.shared
-
-        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
-
-            var newsItems = [DailyFeedModel]()
-
-            guard error == nil else {
-                completion(nil, error)
-                return
-            }
-
-            guard let data = data else {
-                completion(nil, error)
-                return
-            }
-
-            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                
-                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [JSONDictionary] {
-
-                    newsItems = jsonDict.flatMap(DailyFeedModel.init)
-                }
-            }
-            
-            completion(newsItems, nil)
-
-        }).resume()
     }
 }

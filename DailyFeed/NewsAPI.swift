@@ -43,4 +43,64 @@ enum NewsAPI {
             return "sources"
         }
     }
+    
+    // Get News articles from articles endpoint
+    static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
+        
+        guard let feedURL = NewsAPI.articles(source: source).url else { return }
+        let baseUrlRequest = URLRequest(url: feedURL)
+        let session = URLSession.shared
+        
+        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
+            var newsItems = [DailyFeedModel]()
+            
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            
+            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
+                
+                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [JSONDictionary] {
+                    newsItems = jsonDict.flatMap(DailyFeedModel.init)
+                }
+            }
+            completion(newsItems, nil)
+        }).resume()
+    }
+    
+    // Get News source from sources endpoint
+    static func getNewsSource(_ category: String?, _ completion: @escaping ([DailySourceModel]?, Error?) -> Void) {
+        
+        guard let sourceURL = NewsAPI.sources(category: category).url else { return }
+        let baseUrlRequest = URLRequest(url: sourceURL)
+        let session = URLSession.shared
+        
+        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
+            var sourceItems = [DailySourceModel]()
+            
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            
+            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
+                
+                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.sources(category: nil).jsonKey] as? [JSONDictionary] {
+                    sourceItems = jsonDict.flatMap(DailySourceModel.init)
+                }
+            }
+            completion(sourceItems, nil)
+        }).resume()
+    }
 }

@@ -78,20 +78,17 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup UI
     func setupUI() {
-
         setupNavigationBar()
-
         setupCollectionView()
-
-        setupSpinner()
     }
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
         let sourceMenuButton = UIButton(type: .custom)
-        sourceMenuButton.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 4, height: 44)
-        sourceMenuButton.setTitle("Your Feed ⋏", for: .normal)
-        sourceMenuButton.setTitleColor(.white, for: .normal)
+        sourceMenuButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        sourceMenuButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0)
+        sourceMenuButton.setImage(UIImage(named: "logo"), for: .normal)
+        sourceMenuButton.imageView?.contentMode = .scaleAspectFit
         sourceMenuButton.addTarget(self, action: #selector(sourceMenuButtonDidTap), for: .touchUpInside)
         navigationItem.titleView = sourceMenuButton
     }
@@ -122,9 +119,13 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - Load data from network
     func loadNewsData(_ source: String) {
         
+        if !self.refreshControl.isRefreshing {
+        setupSpinner()
+        }
+
         spinningActivityIndicator.start()
         
-        DailyFeedModel.getNewsItems(source) { (newsItem, error) in
+        NewsAPI.getNewsItems(source) { (newsItem, error) in
             
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async {

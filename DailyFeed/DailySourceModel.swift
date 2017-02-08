@@ -5,8 +5,7 @@
 //  Created by Sumit Paul on 30/12/16.
 //
 
-import UIKit
-
+//Data Model
 struct DailySourceModel: Equatable {
 
     public let sid: String
@@ -35,45 +34,5 @@ struct DailySourceModel: Equatable {
         lhs.name == rhs.name &&
         lhs.category == rhs.category &&
         lhs.urlsToLogos == rhs.urlsToLogos
-    }
-}
-
-extension DailySourceModel {
-    
-    
-    static func getNewsSource(_ category: String?, _ completion: @escaping ([DailySourceModel]?, Error?) -> Void) {
-
-        guard let sourceURL = NewsAPI.sources(category: category).url else { return }
-
-        let baseUrlRequest = URLRequest(url: sourceURL)
-        
-        let session = URLSession.shared
-
-
-        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
-
-            var sourceItems = [DailySourceModel]()
-
-            guard error == nil else {
-                completion(nil, error)
-                return
-            }
-
-            guard let data = data else {
-                completion(nil, error)
-                return
-            }
-
-            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                
-                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.sources(category: nil).jsonKey] as? [JSONDictionary] {
-                    
-                    sourceItems = jsonDict.flatMap(DailySourceModel.init)
-                }
-            }
-            
-            completion(sourceItems, nil)
-            
-        }).resume()
     }
 }

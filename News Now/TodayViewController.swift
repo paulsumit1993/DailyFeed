@@ -42,12 +42,17 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
             self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         }
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.view.layoutIfNeeded()
+    }
 
     // MARK: - Load data from network
     func loadNewsData(_ source: String) {
         
         
-        DailyFeedModel.getNewsItems(source) { (newsItem, error) in
+        NewsAPI.getNewsItems(source) { (newsItem, error) in
             
             guard error == nil, let news = newsItem else { return }
             self.todayNewsItems = news

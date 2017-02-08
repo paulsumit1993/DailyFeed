@@ -130,7 +130,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Load data from network
     func loadSourceData(_ category: String?) {
         setupSpinner(hidden: false)
-        DailySourceModel.getNewsSource(category) { (newsItem, error) in
+        NewsAPI.getNewsSource(category) { (newsItem, error) in
             
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async {
