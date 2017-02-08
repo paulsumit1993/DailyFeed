@@ -27,4 +27,5 @@ iOS client for [NewsAPI.org](https://newsapi.org/)
 ## Logo Design
 
 [Deepak M K](https://in.linkedin.com/in/deepak-mk-a5a62518)
+
 [Pratheek Punchathody](https://in.linkedin.com/in/pratheek-punchathody-00452983)
