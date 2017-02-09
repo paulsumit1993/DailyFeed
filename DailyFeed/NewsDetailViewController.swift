@@ -37,7 +37,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         didSet {
             contentTextView.text = receivedNewsItem?.description
             contentTextView.textColor = .gray
-            contentTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+            contentTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
             contentTextView.sizeToFit()
         }
     }
@@ -125,15 +125,15 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage],
                                                       applicationActivities: nil)
 
-            activityVC.excludedActivityTypes = [UIActivityType.saveToCameraRoll,
-                                                UIActivityType.copyToPasteboard,
-                                                UIActivityType.airDrop,
-                                                UIActivityType.addToReadingList,
-                                                UIActivityType.assignToContact,
-                                                UIActivityType.postToTencentWeibo,
-                                                UIActivityType.postToVimeo,
-                                                UIActivityType.print,
-                                                UIActivityType.postToWeibo]
+            activityVC.excludedActivityTypes = [.saveToCameraRoll,
+                                                .copyToPasteboard,
+                                                .airDrop,
+                                                .addToReadingList,
+                                                .assignToContact,
+                                                .postToTencentWeibo,
+                                                .postToVimeo,
+                                                .print,
+                                                .postToWeibo]
 
             activityVC.completionWithItemsHandler = {(activityType, completed: Bool, _, _) in
                 self.fadeUIElements(with: 1.0)

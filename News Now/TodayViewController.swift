@@ -23,13 +23,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     }
     
     var todaySource: String {
-        get {
-            guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
-                return "the-wall-street-journal"
-            }
-            
-            return defaultSource
+        guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
+            return "the-wall-street-journal"
         }
+        return defaultSource
     }
 
     override func viewDidLoad() {
@@ -50,10 +47,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
 
     // MARK: - Load data from network
     func loadNewsData(_ source: String) {
-        
-        
-        NewsAPI.getNewsItems(source) { (newsItem, error) in
-            
+            NewsAPI.getNewsItems(source) { (newsItem, error) in
             guard error == nil, let news = newsItem else { return }
             self.todayNewsItems = news
         }

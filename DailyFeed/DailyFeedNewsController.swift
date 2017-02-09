@@ -29,6 +29,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
             return defaultSourceLogo
         }
+        
         set {
             guard let newSource = newValue else { return }
             UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newSource, forKey: "sourceLogo")
@@ -43,6 +44,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
             return defaultSource
         }
+        
         set {
            UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newValue, forKey: "source")
         }
@@ -124,9 +126,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
 
         spinningActivityIndicator.start()
-        
         NewsAPI.getNewsItems(source) { (newsItem, error) in
-            
             guard error == nil, let news = newsItem else {
                 DispatchQueue.main.async {
                     self.spinningActivityIndicator.stop()
@@ -140,7 +140,6 @@ class DailyFeedNewsController: UICollectionViewController {
                 self.refreshControl.endRefreshing()
                 self.spinningActivityIndicator.stop()
             }
-
         }
     }
 
@@ -176,13 +175,10 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? NewsDetailViewController {
-
             guard let cell = sender as? UICollectionViewCell else { return }
-
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
-
-                vc.receivedNewsItem = newsItems[indexpath.row]
-                vc.receivedNewsSourceLogo = newsSourceUrlLogo
+            vc.receivedNewsItem = newsItems[indexpath.row]
+            vc.receivedNewsSourceLogo = newsSourceUrlLogo
         }
     }
 
