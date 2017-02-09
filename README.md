@@ -1,6 +1,7 @@
 <img src="/assets/logo.jpg">
 
 # DailyFeed
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/312c91f3576e40b08764be4bc5ee980b)](https://www.codacy.com/app/paulsumit1993/DailyFeed?utm_source=github.com&utm_medium=referral&utm_content=paulsumit1993/DailyFeed&utm_campaign=badger)
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5866404b6eba5b01006b3d99&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5866404b6eba5b01006b3d99/build/latest?branch=master)
 [![codebeat badge](https://codebeat.co/badges/04da4b78-253c-4cec-8ac9-04cfc7d26eb0)](https://codebeat.co/projects/github-com-paulsumit1993-dailyfeed)
 [![iOS](https://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](https://developer.apple.com/ios/)
