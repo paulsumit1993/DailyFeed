@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //BuddyBuild Setup
         BuddyBuildSDK.setup()
+        
+        //Realm Shared DB Setup
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.trianz.DailyFeed.today")
+        let realmURL = container?.appendingPathComponent("db.realm")
+        var config = Realm.Configuration()
+        config.fileURL = realmURL
+        config.schemaVersion = 3
+        config.migrationBlock = { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 3) {
+                
+            }
+        }
+        Realm.Configuration.defaultConfiguration = config
+        let _ = try! Realm()
         
         window?.tintColor = .black
         return true

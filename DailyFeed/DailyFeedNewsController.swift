@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class DailyFeedNewsController: UICollectionViewController {
 
@@ -50,7 +51,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
 
-    let spinningActivityIndicator = TSActivityIndicator()
+    let spinningActivityIndicator = TSSpinnerView()
 
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
@@ -68,7 +69,6 @@ class DailyFeedNewsController: UICollectionViewController {
         super.viewDidLoad()
         //Setup UI
         setupUI()
-
         //Populate CollectionView Data
         loadNewsData(source)
     }
@@ -86,11 +86,15 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
+        let view =  LOTAnimationView.animationNamed("Logo")
+        view?.contentMode = .scaleAspectFill
+        view?.isUserInteractionEnabled  = false
+        view?.loopAnimation = true
+        view?.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         let sourceMenuButton = UIButton(type: .custom)
-        sourceMenuButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        sourceMenuButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0)
-        sourceMenuButton.setImage(UIImage(named: "logo"), for: .normal)
-        sourceMenuButton.imageView?.contentMode = .scaleAspectFit
+        sourceMenuButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        sourceMenuButton.addSubview(view!)
+        view?.play()
         sourceMenuButton.addTarget(self, action: #selector(sourceMenuButtonDidTap), for: .touchUpInside)
         navigationItem.titleView = sourceMenuButton
     }
@@ -110,7 +114,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup Spinner
     func setupSpinner() {
-        spinningActivityIndicator.setupTSActivityIndicator()
+        spinningActivityIndicator.setupTSSpinnerView()
     }
 
     // MARK: - refresh news Source data
@@ -174,11 +178,13 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? NewsDetailViewController {
+        if segue.identifier == "newsDetailSegue" {
+            if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
             vc.receivedNewsItem = newsItems[indexpath.row]
             vc.receivedNewsSourceLogo = newsSourceUrlLogo
+            }
         }
     }
 

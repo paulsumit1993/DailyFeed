@@ -9,26 +9,16 @@
 import UIKit
 import NotificationCenter
 import SafariServices
+import RealmSwift
 
 class TodayViewController: UIViewController, NCWidgetProviding, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var todayCollectionView: UICollectionView!
     
-    var todayNewsItems: [DailyFeedModel] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.todayCollectionView?.reloadData()
-            }
-        }
-    }
+    var todayNewsItems: Results<DailyFeedModel>!
     
-    var todaySource: String {
-        guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
-            return "the-wall-street-journal"
-        }
-        return defaultSource
-    }
-
+    var notificationToken: NotificationToken? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,27 +28,56 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
         if #available(iOSApplicationExtension 10.0, *) {
             self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         }
+        observeDatabase()
+
     }
+    
+    func observeDatabase() {
+        //Realm Shared DB Setup
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.trianz.DailyFeed.today")
+        let realmURL = container?.appendingPathComponent("db.realm")
+        var config = Realm.Configuration()
+        config.fileURL = realmURL
+        config.schemaVersion = 3
+        config.migrationBlock = { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 3) {
+                
+            }
+        }
+        Realm.Configuration.defaultConfiguration = config
+        let realm = try! Realm()
+        todayNewsItems = realm.objects(DailyFeedModel.self)
+        notificationToken = todayNewsItems.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let collectionview = self?.todayCollectionView else { return }
+            switch changes {
+            case .initial:
+                collectionview.reloadData()
+                break
+            case .update( _, let deletions, let insertions, _):
+                collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                //bookmarkCollectionView
+                collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
+                break
+            case .error(let error):
+                fatalError("\(error)")
+                break
+            }
+        }
+    }
+    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.view.layoutIfNeeded()
     }
 
-    // MARK: - Load data from network
-    func loadNewsData(_ source: String) {
-            NewsAPI.getNewsItems(source) { (newsItem, error) in
-            guard error == nil, let news = newsItem else { return }
-            self.todayNewsItems = news
-        }
-    }
 
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        loadNewsData(todaySource)
+        observeDatabase()
         completionHandler(NCUpdateResult.newData)
     }
     
@@ -71,6 +90,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
             self.preferredContentSize = CGSize(width: maxSize.width, height: 440)
         }
     }
+    
+    deinit {
+        notificationToken?.stop()
+    }
+    
     
     // MARK: - CollectionView Delegate Methods
     

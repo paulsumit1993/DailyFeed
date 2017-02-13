@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
@@ -45,7 +46,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         return controller
     }()
     
-    let spinningActivityIndicator = TSActivityIndicator()
+    let spinningActivityIndicator = TSSpinnerView()
     
     // MARK: - ViewController Lifecycle methods
     
@@ -90,6 +91,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         sourceTableView.register(UINib(nibName: "DailySourceItemCell",
                                        bundle: nil),
                                  forCellReuseIdentifier: "DailySourceItemCell")
+        
+        sourceTableView.emptyDataSetSource = self
+        sourceTableView.emptyDataSetDelegate = self
         sourceTableView.tableFooterView = UIView()
     }
 
@@ -97,7 +101,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     func setupSpinner(hidden: Bool) {
         spinningActivityIndicator.containerView.isHidden = hidden
         if !hidden {
-            spinningActivityIndicator.setupTSActivityIndicator()
+            spinningActivityIndicator.setupTSSpinnerView()
             spinningActivityIndicator.start()
         } else {
             spinningActivityIndicator.stop()
@@ -195,8 +199,29 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
-
+    
     // MARK: - SearchBar Delegate
+
+
+    // MARK: - DZNEmptyDataSet Delegate Methods
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Welcome"
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Tap the button below to add your first grokkleglob."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
+        let ac = UIAlertController(title: "Button tapped!", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Hurray", style: .default))
+        present(ac, animated: true)
+    }
     
     func updateSearchResults(for searchController: UISearchController) {
 

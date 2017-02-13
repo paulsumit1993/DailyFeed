@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import RealmSwift
 
 class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
@@ -35,7 +36,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     @IBOutlet weak var contentTextView: UITextView! {
         didSet {
-            contentTextView.text = receivedNewsItem?.description
+            contentTextView.text = receivedNewsItem?.articleDescription
             contentTextView.textColor = .gray
             contentTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
             contentTextView.sizeToFit()
@@ -120,11 +121,13 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         let delay = DispatchTime.now() + 0.11
         DispatchQueue.main.asyncAfter(deadline: delay) {
 
-            guard let shareURL = self.articleStringURL, let articleImage = self.captureScreenShot() else {return}
+            guard let shareURL = self.articleStringURL, let articleImage = self.captureScreenShot(), let articleToBookmarkData = self.receivedNewsItem else {return}
 
-            let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage],
-                                                      applicationActivities: nil)
-
+            let bookmarkactivity = BookmarkActivity()
+            
+            let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage, articleToBookmarkData],
+                                                      applicationActivities: [bookmarkactivity])
+            
             activityVC.excludedActivityTypes = [.saveToCameraRoll,
                                                 .copyToPasteboard,
                                                 .airDrop,

@@ -67,7 +67,17 @@ enum NewsAPI {
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
                 
                 if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [JSONDictionary] {
-                    newsItems = jsonDict.flatMap(DailyFeedModel.init)
+                    
+                    newsItems = jsonDict.map { item in
+                        let dailymodel = DailyFeedModel()
+                            dailymodel.title              = item["title"] as? String ?? ""
+                            dailymodel.author             = item["author"] as? String ?? ""
+                            dailymodel.publishedAt        = item["publishedAt"] as? String ?? ""
+                            dailymodel.urlToImage         = item["urlToImage"] as? String ?? ""
+                            dailymodel.articleDescription = item["description"] as? String ?? ""
+                            dailymodel.url                = item["url"] as? String ?? ""
+                        return dailymodel
+                    }
                 }
             }
             completion(newsItems, nil)
