@@ -208,7 +208,6 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK : ScrollView delegate method
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print(scrollView.panGestureRecognizer.translation(in: scrollView).y)
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             toggleTabBar(hidden: true, animated: true)
         } else {
@@ -216,7 +215,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
     
-    // Helper funtion to toggle TabBar Controller Visibility
+    // Helper funtion to toggle TabBar visibility
     
     func toggleTabBar(hidden: Bool, animated: Bool) {
         let tabBar = self.tabBarController?.tabBar

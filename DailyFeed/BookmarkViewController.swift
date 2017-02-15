@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import CoreSpotlight
+import MobileCoreServices
 
 class BookmarkViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -47,9 +49,16 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
                 collectionview.reloadData()
                 break
             case .update( _, let deletions, let insertions, _):
-                collectionview.performBatchUpdates({ 
-                    collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                collectionview.performBatchUpdates({
                     collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
+                    _ = deletions.map {
+                        self?.deindex(item: $0)
+                    }
+                    collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                    _ = insertions.map {
+                        self?.index(item: $0)
+                    }
+
                 }, completion: nil)
 
                 break
@@ -111,6 +120,37 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         self.performSegue(withIdentifier: "bookmarkSourceSegue", sender: cell)
-        
     }
+    
+    
+    // MARK: - CoreSpotlight Indexing and deindexing methods
+    
+    func index(item: Int) {
+        let project = newsItems[item]
+        
+        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        attributeSet.title = project.title
+        attributeSet.contentDescription = project.author
+        
+        let item = CSSearchableItem(uniqueIdentifier: "\(item)", domainIdentifier: "com.trianz", attributeSet: attributeSet)
+        item.expirationDate = Date.distantFuture
+        CSSearchableIndex.default().indexSearchableItems([item]) { error in
+            if let error = error {
+                print("Indexing error: \(error.localizedDescription)")
+            } else {
+                print("Search item successfully indexed!")
+            }
+        }
+    }
+    
+    func deindex(item: Int) {
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: ["\(item)"]) { error in
+            if let error = error {
+                print("Deindexing error: \(error.localizedDescription)")
+            } else {
+                print("Search item successfully removed!")
+            }
+        }
+    }
+    
 }

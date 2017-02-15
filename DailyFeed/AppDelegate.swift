@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,6 +63,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if userActivity.activityType == CSSearchableItemActionType {
+            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                if let tabBarController = window?.rootViewController as? UITabBarController,
+                    let bookmarkController = tabBarController.viewControllers?.last as? BookmarkViewController {
+                    let indexpath = IndexPath(item: Int(uniqueIdentifier)!, section: 0)
+                    bookmarkController.collectionView(bookmarkController.bookmarkCollectionView, didSelectItemAt: indexpath)
+                }
+            }
+        }
         return true
     }
 }

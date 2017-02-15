@@ -88,7 +88,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
             self.preferredContentSize = maxSize
         }
         else {
-            self.preferredContentSize = CGSize(width: maxSize.width, height: 440)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 330)
         }
     }
     

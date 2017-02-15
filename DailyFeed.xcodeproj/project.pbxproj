@@ -155,7 +155,7 @@
 		06CB47891E4C5437007D1897 /* best.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = best.json; sourceTree = "<group>"; };
 		06CB478B1E4C6C82007D1897 /* IconTransitions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = IconTransitions.json; sourceTree = "<group>"; };
 		06D04C1B1E1248DA0013B4AA /* DailyFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		06D04C201E1248DB0013B4AA /* DailyFeedNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedNewsController.swift; sourceTree = "<group>"; };
 		06D04C231E1248DB0013B4AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06D04C251E1248DB0013B4AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
