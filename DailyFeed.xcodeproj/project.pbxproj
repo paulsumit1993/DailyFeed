@@ -32,10 +32,14 @@
 		063505101E1BAF13002510B0 /* DailyFeedNewsController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050F1E1BAF13002510B0 /* DailyFeedNewsController+UICollectionView.swift */; };
 		064FA8EE1E4C95B200693D12 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA8ED1E4C95B200693D12 /* BookmarkViewController.swift */; };
 		064FA8F01E4DB76100693D12 /* BookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA8EF1E4DB76000693D12 /* BookmarkActivity.swift */; };
+		064FA8F31E52D48900693D12 /* BookmarkItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA8F11E52D48800693D12 /* BookmarkItemsCell.swift */; };
+		064FA8F41E52D48900693D12 /* BookmarkItemsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 064FA8F21E52D48800693D12 /* BookmarkItemsCell.xib */; };
+		064FA8F61E54209F00693D12 /* DailyFeedRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA8F51E54209F00693D12 /* DailyFeedRealmModel.swift */; };
+		064FA8F71E5421F700693D12 /* DailyFeedRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA8F51E54209F00693D12 /* DailyFeedRealmModel.swift */; };
+		064FA8F81E54228500693D12 /* DailySourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050B1E165EA0002510B0 /* DailySourceModel.swift */; };
 		06529E7D1E408DC6003DA45B /* NewsDetailViewController+StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06529E7C1E408DC6003DA45B /* NewsDetailViewController+StateRestoration.swift */; };
 		068496AC1E23AA2900DBD5A6 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068496AB1E23AA2900DBD5A6 /* UIViewControllerExtension.swift */; };
 		06A310381E4B24F30011E827 /* DailySourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050B1E165EA0002510B0 /* DailySourceModel.swift */; };
-		06A3103A1E4B25290011E827 /* DailySourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050B1E165EA0002510B0 /* DailySourceModel.swift */; };
 		06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C38FCF1E35E43C004429DD /* Date+Relative.swift */; };
 		06CAC5961E28A1EC00EF72BB /* DailyFeedModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5951E28A1EC00EF72BB /* DailyFeedModelTests.swift */; };
 		06CAC5981E28A3D600EF72BB /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5971E28A3D600EF72BB /* NewsAPI.swift */; };
@@ -136,6 +140,9 @@
 		0635050F1E1BAF13002510B0 /* DailyFeedNewsController+UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DailyFeedNewsController+UICollectionView.swift"; sourceTree = "<group>"; };
 		064FA8ED1E4C95B200693D12 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		064FA8EF1E4DB76000693D12 /* BookmarkActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkActivity.swift; sourceTree = "<group>"; };
+		064FA8F11E52D48800693D12 /* BookmarkItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkItemsCell.swift; sourceTree = "<group>"; };
+		064FA8F21E52D48800693D12 /* BookmarkItemsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkItemsCell.xib; sourceTree = "<group>"; };
+		064FA8F51E54209F00693D12 /* DailyFeedRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedRealmModel.swift; sourceTree = "<group>"; };
 		06529E7C1E408DC6003DA45B /* NewsDetailViewController+StateRestoration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsDetailViewController+StateRestoration.swift"; sourceTree = "<group>"; };
 		068496AB1E23AA2900DBD5A6 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		06C38FCF1E35E43C004429DD /* Date+Relative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Relative.swift"; sourceTree = "<group>"; };
@@ -290,6 +297,7 @@
 			children = (
 				06D04C4C1E1249430013B4AA /* DailyFeedModel.swift */,
 				0635050B1E165EA0002510B0 /* DailySourceModel.swift */,
+				064FA8F51E54209F00693D12 /* DailyFeedRealmModel.swift */,
 				06CAC5971E28A3D600EF72BB /* NewsAPI.swift */,
 			);
 			name = Model;
@@ -318,6 +326,8 @@
 				06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */,
 				060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */,
 				060D64891E31EB540053F2AB /* DailySourceItemListLayout.swift */,
+				064FA8F11E52D48800693D12 /* BookmarkItemsCell.swift */,
+				064FA8F21E52D48800693D12 /* BookmarkItemsCell.xib */,
 				062169571E260AE800ECB0AB /* DailySourceItemCell.swift */,
 				060D64831E31E6E50053F2AB /* DailyFeedItemListCell.swift */,
 				060D64841E31E6E50053F2AB /* DailyFeedItemListCell.xib */,
@@ -582,6 +592,7 @@
 			files = (
 				06CB478C1E4C6C82007D1897 /* IconTransitions.json in Resources */,
 				06D04C551E13945D0013B4AA /* DailyFeedItemCell.xib in Resources */,
+				064FA8F41E52D48900693D12 /* BookmarkItemsCell.xib in Resources */,
 				06D04C291E1248DB0013B4AA /* LaunchScreen.storyboard in Resources */,
 				06CB47871E4C4CEE007D1897 /* Logo.json in Resources */,
 				06D04C261E1248DB0013B4AA /* Assets.xcassets in Resources */,
@@ -794,12 +805,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				064FA8F71E5421F700693D12 /* DailyFeedRealmModel.swift in Sources */,
 				0618B7861E40BA1B00BC8096 /* TodayImageCollectionViewCell.swift in Sources */,
 				0618B78D1E42083800BC8096 /* DailyFeedModel.swift in Sources */,
-				06A3103A1E4B25290011E827 /* DailySourceModel.swift in Sources */,
 				0618B7721E40B74D00BC8096 /* TodayViewController.swift in Sources */,
 				0618B78F1E42084A00BC8096 /* TSImageView.swift in Sources */,
 				0618B7901E42084E00BC8096 /* Date+Relative.swift in Sources */,
+				064FA8F81E54228500693D12 /* DailySourceModel.swift in Sources */,
 				0618B78E1E42084300BC8096 /* NewsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,7 +837,9 @@
 				06D04C511E126BD40013B4AA /* UIImageExtension.swift in Sources */,
 				060D64881E31EB400053F2AB /* DailySourceItemLayout.swift in Sources */,
 				060D648A1E31EB540053F2AB /* DailySourceItemListLayout.swift in Sources */,
+				064FA8F61E54209F00693D12 /* DailyFeedRealmModel.swift in Sources */,
 				06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */,
+				064FA8F31E52D48900693D12 /* BookmarkItemsCell.swift in Sources */,
 				062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */,
 				06529E7D1E408DC6003DA45B /* NewsDetailViewController+StateRestoration.swift in Sources */,
 				068496AC1E23AA2900DBD5A6 /* UIViewControllerExtension.swift in Sources */,

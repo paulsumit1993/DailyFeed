@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Daily Feed News Controller-->
+        <!--DailyFeed-->
         <scene sceneID="WGJ-LH-q2G">
             <objects>
                 <collectionViewController storyboardIdentifier="DailyFeedNewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7N7-o2-reM">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7N7-o2-reM">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,7 +73,7 @@
                             <outlet property="delegate" destination="L6A-1a-6xf" id="Kzh-I1-kmP"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="bAh-f5-MHG"/>
+                    <tabBarItem key="tabBarItem" title="DailyFeed" image="logo" id="bAh-f5-MHG"/>
                     <navigationItem key="navigationItem" id="a8j-37-xyQ">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1GA-uX-a3W">
@@ -160,7 +160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAK-n4-oSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="JIT-8k-TPL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4055.1999999999998" y="1211.2443778110946"/>
+            <point key="canvasLocation" x="3978" y="1325"/>
         </scene>
         <!--News Detail View Controller-->
         <scene sceneID="215-4y-uX3">
@@ -315,30 +315,35 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3452" y="447"/>
+            <point key="canvasLocation" x="3402" y="436"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--DailyFeed-->
         <scene sceneID="loe-6Q-P3R">
             <objects>
                 <navigationController storyboardIdentifier="InitialNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oWo-5U-Bje" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="xue-dU-KaD"/>
+                    <tabBarItem key="tabBarItem" title="DailyFeed" image="logo" id="xue-dU-KaD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="DE7-ZW-YwF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lgm-sv-wIW">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="L6A-1a-6xf" kind="relationship" relationship="rootViewController" id="Li6-5x-REb"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="li0-xW-Zoi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="504"/>
+            <point key="canvasLocation" x="1324" y="436"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6Lw-D9-i9k">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8h-a5-ppX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tPD-2t-72W" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Kcz-MB-Qpb"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HEa-Dg-PRw">
@@ -351,11 +356,10 @@
                         <segue destination="Vjv-Em-Web" kind="relationship" relationship="viewControllers" id="j6K-g5-Gha"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H8h-a5-ppX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="500" y="532"/>
+            <point key="canvasLocation" x="506" y="436"/>
         </scene>
-        <!--Bookmark View Controller-->
+        <!--Bookmarks-->
         <scene sceneID="NqL-UD-vrJ">
             <objects>
                 <viewController storyboardIdentifier="BookmarkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vjv-Em-Web" customClass="BookmarkViewController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -368,13 +372,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IME-lT-8Hu">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="8" y="20" width="359" height="598"/>
+                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kfD-BC-OtO">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
@@ -390,18 +394,18 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="90O-ax-YLa" firstAttribute="top" secondItem="IME-lT-8Hu" secondAttribute="bottom" id="CGh-VI-7Da"/>
                             <constraint firstItem="cDc-C1-F4o" firstAttribute="leading" secondItem="zkJ-mD-q6T" secondAttribute="leading" id="eKY-jL-t6q"/>
-                            <constraint firstAttribute="trailing" secondItem="IME-lT-8Hu" secondAttribute="trailing" id="heZ-rS-7kq"/>
+                            <constraint firstAttribute="trailing" secondItem="IME-lT-8Hu" secondAttribute="trailing" constant="8" id="heZ-rS-7kq"/>
                             <constraint firstItem="IME-lT-8Hu" firstAttribute="top" secondItem="duw-UH-gFB" secondAttribute="bottom" id="lCR-HB-KB6"/>
-                            <constraint firstItem="IME-lT-8Hu" firstAttribute="leading" secondItem="zkJ-mD-q6T" secondAttribute="leading" id="mUz-Nu-SoY"/>
+                            <constraint firstItem="IME-lT-8Hu" firstAttribute="leading" secondItem="zkJ-mD-q6T" secondAttribute="leading" constant="8" id="mUz-Nu-SoY"/>
                             <constraint firstAttribute="trailing" secondItem="cDc-C1-F4o" secondAttribute="trailing" id="nk5-Kr-gbv"/>
                             <constraint firstItem="cDc-C1-F4o" firstAttribute="top" secondItem="zkJ-mD-q6T" secondAttribute="top" id="urq-h2-JCg"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="0Ct-8c-rLu"/>
+                    <tabBarItem key="tabBarItem" title="Bookmarks" image="bookmark" id="0Ct-8c-rLu"/>
                     <connections>
                         <outlet property="bookmarkCollectionView" destination="IME-lT-8Hu" id="PRo-Ro-xdd"/>
                         <segue destination="1yk-sL-YYJ" kind="presentation" identifier="bookmarkSourceSegue" modalTransitionStyle="crossDissolve" id="w5m-To-g4E"/>
@@ -409,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHV-y6-7y5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2149.5999999999999" y="1190.5547226386807"/>
+            <point key="canvasLocation" x="2156" y="1325"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VqY-0o-oNm">
@@ -431,12 +435,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwj-Al-Uyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3116" y="1325"/>
+            <point key="canvasLocation" x="3278" y="1325"/>
         </scene>
     </scenes>
     <resources>
         <image name="back" width="36" height="36"/>
+        <image name="bookmark" width="24" height="24"/>
         <image name="list" width="24" height="24"/>
+        <image name="logo" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>

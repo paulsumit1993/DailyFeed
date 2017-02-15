@@ -10,13 +10,13 @@ import Foundation
 public typealias JSONDictionary = [String: AnyObject]
 
 enum NewsAPI {
-
+    
     case articles(source: String?)
     case sources(category: String?)
-
+    
     static var baseURL = URLComponents(string: "https://newsapi.org")
     static let apiToken = "53b8c0ba0ea24a199f790d660b73675f"
-
+    
     //NewsAPI.org API Endpoints
     var url: URL? {
         switch self {
@@ -34,7 +34,7 @@ enum NewsAPI {
             return url
         }
     }
-
+    
     var jsonKey: String {
         switch self {
         case .articles:
@@ -67,17 +67,7 @@ enum NewsAPI {
             if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
                 
                 if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [JSONDictionary] {
-                    
-                    newsItems = jsonDict.map { item in
-                        let dailymodel = DailyFeedModel()
-                            dailymodel.title              = item["title"] as? String ?? ""
-                            dailymodel.author             = item["author"] as? String ?? ""
-                            dailymodel.publishedAt        = item["publishedAt"] as? String ?? ""
-                            dailymodel.urlToImage         = item["urlToImage"] as? String ?? ""
-                            dailymodel.articleDescription = item["description"] as? String ?? ""
-                            dailymodel.url                = item["url"] as? String ?? ""
-                        return dailymodel
-                    }
+                    newsItems = jsonDict.flatMap(DailyFeedModel.init)
                 }
             }
             completion(newsItems, nil)

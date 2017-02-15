@@ -1,14 +1,17 @@
 //
-//  DailyFeedItemListCell.swift
+//  BookmarkItemsCell.swift
 //  DailyFeed
 //
-//  Created by Sumit Paul on 20/01/17.
+//  Created by TrianzDev on 14/02/17.
+//  Copyright © 2017 trianz. All rights reserved.
 //
 
 import UIKit
 
-class DailyFeedItemListCell: UICollectionViewCell {
-    
+class BookmarkItemsCell: UICollectionViewCell {
+
+    var cellTapped: ((UICollectionViewCell) -> Void)? = nil
+
     @IBOutlet weak var newsArticleImageView: TSImageView! {
         didSet {
             newsArticleImageView.layer.cornerRadius = 5.0
@@ -17,12 +20,18 @@ class DailyFeedItemListCell: UICollectionViewCell {
             newsArticleImageView.clipsToBounds = true
         }
     }
-
+    
     @IBOutlet weak var newsArticleTitleLabel: UILabel!
     @IBOutlet weak var newsArticleAuthorLabel: UILabel!
     @IBOutlet weak var newsArticleTimeLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.cornerRadius = 4
     }
+    
+    @IBAction func deleteBookmarkArticle(_ sender: UIButton) {
+        cellTapped?(self)
+    }
+
 }

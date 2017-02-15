@@ -13,21 +13,32 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     @IBOutlet weak var bookmarkCollectionView: UICollectionView!
 
-    var newsItems: Results<DailyFeedModel>!
+    var newsItems: Results<DailyFeedRealmModel>!
     
     var notificationToken: NotificationToken? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bookmarkCollectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil),
-                                         forCellWithReuseIdentifier: "DailyFeedItemListCell")
+        bookmarkCollectionView?.register(UINib(nibName: "BookmarkItemsCell", bundle: nil),
+                                         forCellWithReuseIdentifier: "BookmarkItemsCell")
         observeDatabase()
     }
 
     func observeDatabase() {
+        //Realm Shared DB Setup
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.trianz.DailyFeed.today")
+        let realmURL = container?.appendingPathComponent("db.realm")
+        var config = Realm.Configuration()
+        config.fileURL = realmURL
+        config.schemaVersion = 3
+        config.migrationBlock = { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 3) {
+                
+            }
+        }
+        Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
-
-        newsItems = realm.objects(DailyFeedModel.self)
+        newsItems = realm.objects(DailyFeedRealmModel.self)
         
         notificationToken = newsItems.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let collectionview = self?.bookmarkCollectionView else { return }
@@ -36,9 +47,11 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
                 collectionview.reloadData()
                 break
             case .update( _, let deletions, let insertions, _):
-                collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
-                //bookmarkCollectionView
-                collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
+                collectionview.performBatchUpdates({ 
+                    collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                    collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
+                }, completion: nil)
+
                 break
             case .error(let error):
                 fatalError("\(error)")
@@ -73,11 +86,21 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let newsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemListCell", for: indexPath) as? DailyFeedItemListCell
+        let newsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookmarkItemsCell", for: indexPath) as? BookmarkItemsCell
         newsCell?.newsArticleTitleLabel.text = newsItems[indexPath.row].title
         newsCell?.newsArticleAuthorLabel.text = newsItems[indexPath.row].author
         newsCell?.newsArticleTimeLabel.text = newsItems[indexPath.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
         newsCell?.newsArticleImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
+        newsCell?.cellTapped = { cell in
+            if let cellToDelete = self.bookmarkCollectionView.indexPath(for: cell)?.row {
+            let item = self.newsItems[cellToDelete]
+            let realm = try! Realm()
+                try! realm.write {
+                    realm.delete(item)
+                }
+                
+            }
+        }
         return newsCell!
     }
     

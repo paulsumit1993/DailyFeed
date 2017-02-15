@@ -13,7 +13,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     // MARK: - Variable declaration
     
-    var receivedNewsItem: DailyFeedModel?
+    var receivedNewsItem: DailyFeedRealmModel?
     
     var receivedNewsSourceLogo: String?
     
@@ -121,8 +121,10 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         let delay = DispatchTime.now() + 0.11
         DispatchQueue.main.asyncAfter(deadline: delay) {
 
-            guard let shareURL = self.articleStringURL, let articleImage = self.captureScreenShot(), let articleToBookmarkData = self.receivedNewsItem else {return}
-
+            guard let shareURL = self.articleStringURL,
+                let articleImage = self.captureScreenShot(),
+                let articleToBookmarkData = self.receivedNewsItem else {return}
+            
             let bookmarkactivity = BookmarkActivity()
             
             let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage, articleToBookmarkData],

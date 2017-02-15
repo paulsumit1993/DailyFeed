@@ -182,8 +182,15 @@ class DailyFeedNewsController: UICollectionViewController {
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
-            vc.receivedNewsItem = newsItems[indexpath.row]
-            vc.receivedNewsSourceLogo = newsSourceUrlLogo
+                let item = DailyFeedRealmModel()
+                item.title = newsItems[indexpath.row].title
+                item.articleDescription = newsItems[indexpath.row].description
+                item.author = newsItems[indexpath.row].author
+                item.url = newsItems[indexpath.row].url
+                item.urlToImage = newsItems[indexpath.row].urlToImage
+                item.publishedAt = newsItems[indexpath.row].publishedAt
+                vc.receivedNewsItem = item
+                vc.receivedNewsSourceLogo = newsSourceUrlLogo
             }
         }
     }
@@ -196,4 +203,37 @@ class DailyFeedNewsController: UICollectionViewController {
             loadNewsData(source)
         }
     }
+    
+    
+    // MARK : ScrollView delegate method
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print(scrollView.panGestureRecognizer.translation(in: scrollView).y)
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            toggleTabBar(hidden: true, animated: true)
+        } else {
+            toggleTabBar(hidden: false, animated: true)
+        }
+    }
+    
+    // Helper funtion to toggle TabBar Controller Visibility
+    
+    func toggleTabBar(hidden: Bool, animated: Bool) {
+        let tabBar = self.tabBarController?.tabBar
+        if tabBar!.isHidden == hidden { return }
+        let frame = tabBar?.frame
+        let offset = (hidden ? (frame?.size.height)! : -(frame?.size.height)!)
+        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+        tabBar?.isHidden = false
+        if frame != nil
+        {
+            UIView.animate(withDuration: duration,
+                                       animations: {
+                                        tabBar!.frame = frame!.offsetBy(dx: 0, dy: offset)},
+                                       completion: {
+                                        if $0 {tabBar?.isHidden = hidden}
+            })
+        }
+    }
+    
 }

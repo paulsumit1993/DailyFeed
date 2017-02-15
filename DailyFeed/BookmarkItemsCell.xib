@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookmarkItemsCell" id="WW4-PG-lwG" userLabel="Bookmark Items Cell" customClass="BookmarkItemsCell" customModule="DailyFeed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="417" height="151"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="417" height="151"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xc5-X6-m21" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="131" height="131"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="xc5-X6-m21" secondAttribute="height" multiplier="1:1" id="pCh-fE-Waj"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PDz-8K-bwz">
+                        <rect key="frame" x="151" y="5" width="224" height="141"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xa-xF-jTH">
+                                <rect key="frame" x="0.0" y="0.0" width="224" height="125"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qe-Nq-hWU">
+                                <rect key="frame" x="0.0" y="125" width="224" height="16"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3j-Zk-sQQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-lY-RKs">
+                                        <rect key="frame" x="33" y="0.0" width="191" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vw6-XQ-w6J">
+                        <rect key="frame" x="381" y="0.0" width="36" height="151"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="MpL-hG-vyZ"/>
+                        </constraints>
+                        <state key="normal" image="delete"/>
+                        <connections>
+                            <action selector="deleteBookmarkArticle:" destination="WW4-PG-lwG" eventType="touchUpInside" id="Kmy-jZ-d6J"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Cq-8I-ir0">
+                        <rect key="frame" x="380" y="4.5" width="1" height="141"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="0.5" id="eK2-V6-SVy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vw6-XQ-w6J" secondAttribute="bottom" id="3vA-Ll-bW4"/>
+                <constraint firstAttribute="bottom" secondItem="PDz-8K-bwz" secondAttribute="bottom" constant="5" id="7aD-fe-Fie"/>
+                <constraint firstAttribute="bottom" secondItem="xc5-X6-m21" secondAttribute="bottom" constant="10" id="CJs-KR-QTE"/>
+                <constraint firstItem="8Cq-8I-ir0" firstAttribute="centerY" secondItem="WW4-PG-lwG" secondAttribute="centerY" id="HeC-R9-wyh"/>
+                <constraint firstItem="PDz-8K-bwz" firstAttribute="top" secondItem="WW4-PG-lwG" secondAttribute="top" constant="5" id="QuJ-eh-nXW"/>
+                <constraint firstItem="8Cq-8I-ir0" firstAttribute="height" secondItem="PDz-8K-bwz" secondAttribute="height" id="XdY-CY-Okp"/>
+                <constraint firstItem="xc5-X6-m21" firstAttribute="leading" secondItem="WW4-PG-lwG" secondAttribute="leading" constant="10" id="YBd-b4-SE6"/>
+                <constraint firstItem="vw6-XQ-w6J" firstAttribute="top" secondItem="WW4-PG-lwG" secondAttribute="top" id="Z4g-pT-dAR"/>
+                <constraint firstItem="vw6-XQ-w6J" firstAttribute="leading" secondItem="8Cq-8I-ir0" secondAttribute="trailing" id="at0-ox-JaS"/>
+                <constraint firstItem="PDz-8K-bwz" firstAttribute="leading" secondItem="xc5-X6-m21" secondAttribute="trailing" constant="10" id="lll-UC-cc7"/>
+                <constraint firstItem="xc5-X6-m21" firstAttribute="top" secondItem="WW4-PG-lwG" secondAttribute="top" constant="10" id="o9T-lt-u0F"/>
+                <constraint firstAttribute="trailing" secondItem="vw6-XQ-w6J" secondAttribute="trailing" id="v37-bV-9qK"/>
+                <constraint firstItem="8Cq-8I-ir0" firstAttribute="leading" secondItem="PDz-8K-bwz" secondAttribute="trailing" constant="5" id="yhc-7Q-gJj"/>
+            </constraints>
+            <size key="customSize" width="417" height="151"/>
+            <connections>
+                <outlet property="newsArticleAuthorLabel" destination="s3j-Zk-sQQ" id="Z8b-28-Lmz"/>
+                <outlet property="newsArticleImageView" destination="xc5-X6-m21" id="wEr-Hm-B0B"/>
+                <outlet property="newsArticleTimeLabel" destination="jgm-lY-RKs" id="ojR-k3-WVD"/>
+                <outlet property="newsArticleTitleLabel" destination="9xa-xF-jTH" id="5kC-Zb-eKU"/>
+            </connections>
+            <point key="canvasLocation" x="-218.5" y="-116.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="delete" width="24" height="24"/>
+    </resources>
+</document>
