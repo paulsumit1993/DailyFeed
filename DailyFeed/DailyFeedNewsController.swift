@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import DZNEmptyDataSet
 
 class DailyFeedNewsController: UICollectionViewController {
 
@@ -15,9 +16,7 @@ class DailyFeedNewsController: UICollectionViewController {
     var newsItems: [DailyFeedModel] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.collectionView?.performBatchUpdates({
-                    self.collectionView?.reloadSections([0])
-                }, completion: nil)
+                self.collectionView?.reloadData()
             }
         }
     }
@@ -110,6 +109,8 @@ class DailyFeedNewsController: UICollectionViewController {
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
                                  for: UIControlEvents.valueChanged)
+        collectionView?.emptyDataSetDelegate = self
+        collectionView?.emptyDataSetSource = self
     }
 
     // MARK: - Setup Spinner
@@ -145,6 +146,11 @@ class DailyFeedNewsController: UICollectionViewController {
                 self.spinningActivityIndicator.stop()
             }
         }
+    }
+    
+    deinit {
+        collectionView?.delegate = nil
+        collectionView?.dataSource = nil
     }
 
     // MARK: - Toggle Layout
@@ -236,3 +242,30 @@ class DailyFeedNewsController: UICollectionViewController {
     }
     
 }
+
+extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    
+    // MARK: - DZNEmptyDataSet Delegate Methods
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "No News available"
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Try another source using N logo above"
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return #imageLiteral(resourceName: "placeholder")
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+}
+

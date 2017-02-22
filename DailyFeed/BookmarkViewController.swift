@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import CoreSpotlight
 import MobileCoreServices
+import DZNEmptyDataSet
 
 class BookmarkViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -23,6 +24,9 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         bookmarkCollectionView?.register(UINib(nibName: "BookmarkItemsCell", bundle: nil),
                                          forCellWithReuseIdentifier: "BookmarkItemsCell")
+        bookmarkCollectionView.emptyDataSetDelegate = self
+        bookmarkCollectionView.emptyDataSetSource = self
+        
         observeDatabase()
     }
 
@@ -60,7 +64,8 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
                     }
 
                 }, completion: nil)
-
+                
+                if self?.newsItems.count == 0 || self?.newsItems.count == 1 { collectionview.reloadData() }
                 break
             case .error(let error):
                 fatalError("\(error)")
@@ -153,4 +158,33 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+}
+
+extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    // MARK: - DZNEmptyDataSet Delegate Methods
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "No Articles Bookmarked"
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Your Bookmarked articles will appear here."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return #imageLiteral(resourceName: "bookmark")
+    }
+    
+    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return UIColor.lightGray
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
 }

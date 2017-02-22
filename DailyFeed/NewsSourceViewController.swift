@@ -8,7 +8,7 @@
 import UIKit
 import DZNEmptyDataSet
 
-class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     // MARK: - IBOutlets
     @IBOutlet weak var sourceTableView: UITableView!
@@ -19,7 +19,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     var sourceItems: [DailySourceModel] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.sourceTableView.reloadSections([0], with: .automatic)
+                self.sourceTableView.reloadData()
                 self.setupSpinner(hidden: true)
             }
         }
@@ -27,7 +27,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var filteredSourceItems: [DailySourceModel] = [] {
         didSet {
-            self.sourceTableView.reloadSections([0], with: .automatic)
+            self.sourceTableView.reloadData()
         }
     }
     
@@ -91,9 +91,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         sourceTableView.register(UINib(nibName: "DailySourceItemCell",
                                        bundle: nil),
                                  forCellReuseIdentifier: "DailySourceItemCell")
-        
-        sourceTableView.emptyDataSetSource = self
-        sourceTableView.emptyDataSetDelegate = self
         sourceTableView.tableFooterView = UIView()
     }
 
@@ -106,6 +103,11 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             spinningActivityIndicator.stop()
         }
+    }
+    
+    deinit {
+        self.sourceTableView.delegate = nil
+        self.sourceTableView.dataSource = nil
     }
 
     // MARK: - Show News Categories
@@ -147,7 +149,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             self.sourceItems = news
             
-            // The code below helps in persisting category till the view controller is de-allocated
+            // The code below helps in persisting category items till the view controller is de-allocated
             if category == nil {
                 self.categories = Array(Set(news.map { $0.category }))
             }
@@ -200,29 +202,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
     
+  
     // MARK: - SearchBar Delegate
 
-
-    // MARK: - DZNEmptyDataSet Delegate Methods
-    
-    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "Welcome"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
-        return NSAttributedString(string: str, attributes: attrs)
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "Tap the button below to add your first grokkleglob."
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
-        return NSAttributedString(string: str, attributes: attrs)
-    }
-    
-    func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
-        let ac = UIAlertController(title: "Button tapped!", message: nil, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Hurray", style: .default))
-        present(ac, animated: true)
-    }
-    
     func updateSearchResults(for searchController: UISearchController) {
 
         filteredSourceItems.removeAll(keepingCapacity: false)

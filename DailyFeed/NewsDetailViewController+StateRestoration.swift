@@ -28,7 +28,7 @@ extension NewsDetailViewController {
             coder.encode(newsAuthor, forKey: "newsAuthor")
         }
         
-        if let publishedDate = swipeLeftButton.titleLabel?.text {
+        if let publishedDate = receivedNewsItem?.publishedAt {
             coder.encode(publishedDate, forKey: "publishedDate")
         }
         
@@ -61,7 +61,7 @@ extension NewsDetailViewController {
         }
         
         if let publishedAtDate = coder.decodeObject(forKey: "publishedDate") as? String {
-            swipeLeftButton.setTitle(publishedAtDate, for: .normal)
+            swipeLeftButton.setTitle(publishedAtDate.dateFromTimestamp?.relativelyFormatted(short: false), for: .normal)
         }
         
         if let urlString = coder.decodeObject(forKey: "newsURL") as? String {
