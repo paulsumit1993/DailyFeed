@@ -16,7 +16,7 @@
         <scene sceneID="WGJ-LH-q2G">
             <objects>
                 <collectionViewController storyboardIdentifier="DailyFeedNewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7N7-o2-reM">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7N7-o2-reM">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,25 +48,9 @@
                                 <outlet property="newSourceImageView" destination="DbO-tM-PWE" id="xjd-ea-sz4"/>
                             </connections>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterView" id="Gdd-r4-LOU">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newsFooterView" id="ytn-bC-NhV">
                             <rect key="frame" x="0.0" y="55" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by NewsAPI.org" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZc-Js-chO">
-                                    <rect key="frame" x="101.5" y="16.5" width="172" height="18"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                    <variation key="heightClass=regular-widthClass=regular">
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                    </variation>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="ZZc-Js-chO" firstAttribute="centerX" secondItem="Gdd-r4-LOU" secondAttribute="centerX" id="9Yi-xi-AQ2"/>
-                                <constraint firstItem="ZZc-Js-chO" firstAttribute="centerY" secondItem="Gdd-r4-LOU" secondAttribute="centerY" id="KCS-SY-lxg"/>
-                            </constraints>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="L6A-1a-6xf" id="W3z-WT-pDe"/>
@@ -121,7 +105,7 @@
                                         <rect key="frame" x="0.0" y="28" width="383" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XSz-yC-ada" id="aKz-78-YEH">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -343,7 +327,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6Lw-D9-i9k">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H8h-a5-ppX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tPD-2t-72W" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Kcz-MB-Qpb"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HEa-Dg-PRw">
@@ -356,6 +339,7 @@
                         <segue destination="Vjv-Em-Web" kind="relationship" relationship="viewControllers" id="j6K-g5-Gha"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8h-a5-ppX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="506" y="436"/>
         </scene>
@@ -446,6 +430,6 @@
         <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w5m-To-g4E"/>
+        <segue reference="ico-Xt-3Zc"/>
     </inferredMetricsTieBreakers>
 </document>

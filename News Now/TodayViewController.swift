@@ -46,7 +46,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
         }
         Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
-        print(Realm.Configuration.defaultConfiguration.fileURL)
         todayNewsItems = realm.objects(DailyFeedRealmModel.self)
         notificationToken = todayNewsItems.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let collectionview = self?.todayCollectionView else { return }

@@ -17,8 +17,9 @@ iOS client for [NewsAPI.org](https://newsapi.org/)
 [DailyFeed App](https://applivery.com/dailyfeed)
 
 ##Installation
-- `git clone https://github.com/paulsumit1993/dailyfeed`
-- `open DailyFeed/DailyFeed.xcodeproj/`
+- git clone develop branch
+- `pod install` in root directory
+- `open DailyFeed/DailyFeed.xcworkspace`
 - <kbd>CTRL</kbd> + <kbd>R</kbd>
 
 ##Screenshots
