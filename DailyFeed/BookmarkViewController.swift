@@ -43,6 +43,7 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
         Realm.Configuration.defaultConfiguration = config
+        
         let realm = try! Realm()
         newsItems = realm.objects(DailyFeedRealmModel.self)
         
@@ -65,7 +66,7 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
 
                 }, completion: nil)
                 
-                if self?.newsItems.count == 0 || self?.newsItems.count == 1 { collectionview.reloadData() }
+                if self?.newsItems.count == 0 || self?.newsItems.count == 1 { collectionview.reloadEmptyDataSet() }
                 break
             case .error(let error):
                 fatalError("\(error)")
@@ -171,7 +172,7 @@ extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "Your Bookmarked articles will appear here."
+        let str = "Your Bookmarks will appear here."
         let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
         return NSAttributedString(string: str, attributes: attrs)
     }
