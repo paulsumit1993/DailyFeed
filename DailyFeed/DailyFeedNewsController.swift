@@ -172,7 +172,7 @@ class DailyFeedNewsController: UICollectionViewController {
         collectionView?.collectionViewLayout.invalidateLayout()
         UIView.animate(withDuration: 0.03) {
             self.collectionView?.setCollectionViewLayout(layout, animated: false)
-            self.collectionView?.reloadItems(at: (self.collectionView?.indexPathsForVisibleItems)!)
+            self.collectionView?.reloadData()
         }
     }
 
