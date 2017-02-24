@@ -209,38 +209,6 @@ class DailyFeedNewsController: UICollectionViewController {
             loadNewsData(source)
         }
     }
-    
-    
-    // MARK : ScrollView delegate method
-    
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-            toggleTabBar(hidden: true, animated: true)
-        } else {
-            toggleTabBar(hidden: false, animated: true)
-        }
-    }
-    
-    // Helper funtion to toggle TabBar visibility
-    
-    func toggleTabBar(hidden: Bool, animated: Bool) {
-        let tabBar = self.tabBarController?.tabBar
-        if tabBar!.isHidden == hidden { return }
-        let frame = tabBar?.frame
-        let offset = (hidden ? (frame?.size.height)! : -(frame?.size.height)!)
-        let duration:TimeInterval = (animated ? 0.5 : 0.0)
-        tabBar?.isHidden = false
-        if frame != nil
-        {
-            UIView.animate(withDuration: duration,
-                                       animations: {
-                                        tabBar!.frame = frame!.offsetBy(dx: 0, dy: offset)},
-                                       completion: {
-                                        if $0 {tabBar?.isHidden = hidden}
-            })
-        }
-    }
-    
 }
 
 extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
