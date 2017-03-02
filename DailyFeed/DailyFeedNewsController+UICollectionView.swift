@@ -87,4 +87,10 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 8)
     }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
+            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 10)
+    }
 }
