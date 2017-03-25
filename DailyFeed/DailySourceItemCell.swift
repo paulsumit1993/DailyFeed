@@ -15,5 +15,5 @@ class DailySourceItemCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle  = .none
     }
-
+    
 }

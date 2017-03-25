@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TodayImageCollectionViewCell: UICollectionViewCell {
 
@@ -40,6 +41,12 @@ class TodayImageCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         todayNewsImageView.clipsToBounds = true
+    }
+    
+    func configure(with todaynewsitems: Results<DailyFeedRealmModel>, index: IndexPath) {
+        self.todayNewsImageView.downloadedFromLink(todaynewsitems[index.row].urlToImage)
+        self.newsTitleLabel.text = todaynewsitems[index.row].title
+        self.publishedAtLabel.text = todaynewsitems[index.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
     }
     
 }

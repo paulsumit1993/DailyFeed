@@ -105,9 +105,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let todayCell = collectionView.dequeueReusableCell(withReuseIdentifier: "todayImageCell", for: indexPath) as? TodayImageCollectionViewCell
-        todayCell?.todayNewsImageView.downloadedFromLink(todayNewsItems[indexPath.row].urlToImage)
-        todayCell?.newsTitleLabel.text = todayNewsItems[indexPath.row].title
-        todayCell?.publishedAtLabel.text = todayNewsItems[indexPath.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
+        todayCell?.configure(with: todayNewsItems, index: indexPath)
         return todayCell!
     }
     

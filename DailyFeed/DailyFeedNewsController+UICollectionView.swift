@@ -39,16 +39,11 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         switch collectionView.collectionViewLayout {
 
         case is DailySourceItemListLayout:
-                listCell?.newsArticleTitleLabel.text = newsItems[indexPath.row].title
-                listCell?.newsArticleAuthorLabel.text = newsItems[indexPath.row].author
-                listCell?.newsArticleTimeLabel.text = newsItems[indexPath.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
-                listCell?.newsArticleImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
+                listCell?.configure(with: newsItems, index: indexPath)
                 return listCell!
 
         default:
-                gridCell?.newsItemTitleLabel.text = newsItems[indexPath.row].title
-                gridCell?.newsItemSourceLabel.text = newsItems[indexPath.row].author
-                gridCell?.newsItemImageView.downloadedFromLink(newsItems[indexPath.row].urlToImage)
+                gridCell?.configure(with: newsItems, index: indexPath)
                 return gridCell!
         }
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BookmarkItemsCell: UICollectionViewCell {
 
@@ -28,6 +29,13 @@ class BookmarkItemsCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 4
+    }
+    
+    func configure(with newsitems: Results<DailyFeedRealmModel>, index: IndexPath) {
+        self.newsArticleTitleLabel.text = newsitems[index.row].title
+        self.newsArticleAuthorLabel.text = newsitems[index.row].author
+        self.newsArticleTimeLabel.text = newsitems[index.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
+        self.newsArticleImageView.downloadedFromLink(newsitems[index.row].urlToImage)
     }
     
     @IBAction func deleteBookmarkArticle(_ sender: UIButton) {

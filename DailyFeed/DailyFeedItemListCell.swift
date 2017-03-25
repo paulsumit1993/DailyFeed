@@ -25,4 +25,11 @@ class DailyFeedItemListCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    func configure(with newsitem: [DailyFeedModel], index: IndexPath) {
+        self.newsArticleTitleLabel.text = newsitem[index.row].title
+        self.newsArticleAuthorLabel.text = newsitem[index.row].author
+        self.newsArticleTimeLabel.text = newsitem[index.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
+        self.newsArticleImageView.downloadedFromLink(newsitem[index.row].urlToImage)
+    }
 }

@@ -23,6 +23,13 @@ class DailyFeedItemCell: UICollectionViewCell {
 
         addGradient()
     }
+    
+    func configure(with newsitems: [DailyFeedModel], index: IndexPath) {
+        self.newsItemTitleLabel.text = newsitems[index.row].title
+        self.newsItemSourceLabel.text = newsitems[index.row].author
+        self.newsItemImageView.downloadedFromLink(newsitems[index.row].urlToImage)
+    }
+
 
     func addGradient() {
         guard newsItemImageView.layer.sublayers?.count == nil else { return }
