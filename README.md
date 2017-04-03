@@ -9,20 +9,23 @@
 
 iOS client for [NewsAPI.org](https://newsapi.org/)
 
-## Features
+# Features
 - DailyFeed iOS App
 - News Now Today Widget
 - Bookmarks Spotlight Search
 
-##Installation
+# Installation
 - `git clone https://github.com/paulsumit1993/dailyfeed`
 - `open DailyFeed/DailyFeed.xcodeproj/`
 - <kbd>CTRL</kbd> + <kbd>R</kbd>
 
-##Screenshots
+# Screenshots
 <img src="/assets/screenshot.jpg">
 
-## Logo Design
+# Contributing
+We would ❤️ for you to contribute to this repo. To do so, please fork the project and submit pull requests.
+
+# Logo Design
 
 [Deepak M K](https://in.linkedin.com/in/deepak-mk-a5a62518)
 
