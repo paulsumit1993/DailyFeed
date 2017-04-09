@@ -26,10 +26,10 @@ class DailyFeedItemListCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with newsitem: [DailyFeedModel], index: IndexPath) {
-        self.newsArticleTitleLabel.text = newsitem[index.row].title
-        self.newsArticleAuthorLabel.text = newsitem[index.row].author
-        self.newsArticleTimeLabel.text = newsitem[index.row].publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
-        self.newsArticleImageView.downloadedFromLink(newsitem[index.row].urlToImage)
+    func configure(with newsitem: DailyFeedModel) {
+        self.newsArticleTitleLabel.text = newsitem.title
+        self.newsArticleAuthorLabel.text = newsitem.author
+        self.newsArticleTimeLabel.text = newsitem.publishedAt.dateFromTimestamp?.relativelyFormatted(short: true)
+        self.newsArticleImageView.downloadedFromLink(newsitem.urlToImage)
     }
 }

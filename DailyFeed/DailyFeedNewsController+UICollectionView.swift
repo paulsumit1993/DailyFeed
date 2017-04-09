@@ -39,11 +39,11 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         switch collectionView.collectionViewLayout {
 
         case is DailySourceItemListLayout:
-                listCell?.configure(with: newsItems, index: indexPath)
+                listCell?.configure(with: newsItems[indexPath.row])
                 return listCell!
 
         default:
-                gridCell?.configure(with: newsItems, index: indexPath)
+                gridCell?.configure(with: newsItems[indexPath.row])
                 return gridCell!
         }
     }

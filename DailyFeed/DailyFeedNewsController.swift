@@ -180,7 +180,9 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - sourceMenuButton Action method
 
     func sourceMenuButtonDidTap() {
-        animationView?.pause()
+        if animationView?.isAnimationPlaying == .some(true) {
+            animationView?.pause()
+        }
         self.performSegue(withIdentifier: "newsSourceSegue", sender: self)
     }
 

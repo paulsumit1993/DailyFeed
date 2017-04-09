@@ -102,7 +102,7 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let newsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookmarkItemsCell", for: indexPath) as? BookmarkItemsCell
-        newsCell?.configure(with: newsItems, index: indexPath)
+        newsCell?.configure(with: newsItems[indexPath.row])
         newsCell?.cellTapped = { cell in
             if let cellToDelete = self.bookmarkCollectionView.indexPath(for: cell)?.row {
             let item = self.newsItems[cellToDelete]
