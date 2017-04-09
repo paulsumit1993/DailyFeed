@@ -57,6 +57,8 @@ class DailyFeedNewsController: UICollectionViewController {
         refresh.tintColor = .black
         return refresh
     }()
+    
+    let animationView =  LOTAnimationView(name: "Logo")
 
     // MARK: - IBOutlets
 
@@ -85,15 +87,14 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
-        let view =  LOTAnimationView(name: "Logo")
-        view?.contentMode = .scaleAspectFill
-        view?.isUserInteractionEnabled  = false
-        view?.loopAnimation = true
-        view?.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        animationView?.contentMode = .scaleAspectFill
+        animationView?.isUserInteractionEnabled  = false
+        animationView?.loopAnimation = true
+        animationView?.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         let sourceMenuButton = UIButton(type: .custom)
         sourceMenuButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        sourceMenuButton.addSubview(view!)
-        view?.play()
+        sourceMenuButton.addSubview(animationView!)
+        animationView?.play()
         sourceMenuButton.addTarget(self, action: #selector(sourceMenuButtonDidTap), for: .touchUpInside)
         navigationItem.titleView = sourceMenuButton
     }
@@ -179,6 +180,7 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - sourceMenuButton Action method
 
     func sourceMenuButtonDidTap() {
+        animationView?.pause()
         self.performSegue(withIdentifier: "newsSourceSegue", sender: self)
     }
 

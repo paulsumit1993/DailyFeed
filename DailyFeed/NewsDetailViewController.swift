@@ -101,22 +101,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        updateNewsImageView(20.0)
-    }
-    
-    //MARK: - newsImageView cutoff method
-    
-    func updateNewsImageView(_ cutoff: CGFloat) {
-        
-        let newsImageMaskLayer = CAShapeLayer()
-        newsImageView.layer.mask = newsImageMaskLayer
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: newsImageView.bounds.width, y: 0))
-        path.addLine(to: CGPoint(x: newsImageView.bounds.width, y: newsImageView.bounds.height))
-        path.addLine(to: CGPoint(x: 0, y: newsImageView.bounds.height - cutoff))
-        newsImageMaskLayer.path = path.cgPath
+        newsImageView.updateNewsImageView(24.0)
     }
     
     // MARK: - Status Bar Color
