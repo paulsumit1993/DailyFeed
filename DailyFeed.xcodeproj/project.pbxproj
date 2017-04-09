@@ -1054,7 +1054,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1078,7 +1077,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

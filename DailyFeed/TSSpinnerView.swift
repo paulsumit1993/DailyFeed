@@ -14,7 +14,7 @@ class TSSpinnerView: UIView {
     
     let loadingView = UIView()
     
-    let bestView = LOTAnimationView.animationNamed("IconTransitions")
+    let bestView = LOTAnimationView(name: "IconTransitions")
 
     override func awakeFromNib() {
         super.awakeFromNib()

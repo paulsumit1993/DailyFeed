@@ -29,6 +29,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "06D04C2E1E1248DB0013B4AA"
+               BuildableName = "DailyFeedTests.xctest"
+               BlueprintName = "DailyFeedTests"
+               ReferencedContainer = "container:DailyFeed.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "06D04C391E1248DB0013B4AA"
+               BuildableName = "DailyFeedUITests.xctest"
+               BlueprintName = "DailyFeedUITests"
+               ReferencedContainer = "container:DailyFeed.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

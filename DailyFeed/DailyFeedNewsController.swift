@@ -85,7 +85,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
-        let view =  LOTAnimationView.animationNamed("Logo")
+        let view =  LOTAnimationView(name: "Logo")
         view?.contentMode = .scaleAspectFill
         view?.isUserInteractionEnabled  = false
         view?.loopAnimation = true
