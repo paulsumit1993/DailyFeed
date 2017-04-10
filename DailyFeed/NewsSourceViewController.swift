@@ -188,8 +188,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             cell?.sourceImageView.downloadedFromLink(sourceItems[indexPath.row - 1].urlsToLogos)
         }
-        cell?.sourceImageView.image = #imageLiteral(resourceName: "placeholder")
-
         return cell!
     }
 
