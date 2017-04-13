@@ -16,4 +16,15 @@ class DailyFeedRealmModel: Object {
     dynamic var urlToImage: String = ""
     dynamic var articleDescription: String = ""
     dynamic var url: String = ""
+    
+    class func toDailyFeedRealmModel(from: DailyFeedModel) -> DailyFeedRealmModel {
+        let item = DailyFeedRealmModel()
+        item.title = from.title
+        item.articleDescription = from.description
+        item.author = from.author
+        item.url = from.url
+        item.urlToImage = from.urlToImage
+        item.publishedAt = from.publishedAt
+        return item
+    }
 }

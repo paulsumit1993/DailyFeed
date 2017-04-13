@@ -18,6 +18,8 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     var receivedNewsSourceLogo: String?
     
     var articleStringURL: String?
+    
+    var receivedItemNumber: Int?
 
     // MARK: - IBOutlets
     @IBOutlet weak var newsImageView: TSImageView! {
@@ -83,6 +85,17 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
         }
     }
+    
+    @IBOutlet weak var newsItemNumberLabel: UILabel!{
+        didSet {
+            guard let newsItemNumber = receivedItemNumber else { return }
+            newsItemNumberLabel.text = String(newsItemNumber)
+            newsItemNumberLabel.clipsToBounds = true
+            newsItemNumberLabel.layer.cornerRadius = 5.0
+        }
+    }
+
+    
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +114,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        newsImageView.updateNewsImageView(24.0)
+        newsImageView.updateNewsImageView(25.0)
     }
     
     // MARK: - Status Bar Color
@@ -114,9 +127,6 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         self.dismiss(animated: false, completion: nil)
     }
 
-    @IBAction func dismissSwipeAction() {
-        self.dismiss(animated: false, completion: nil)
-    }
 
     // MARK: - share article
     @IBAction func shareArticle(_ sender: UIButton) {
@@ -172,11 +182,6 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
         return image
 
-    }
-
-    // MARK: - Open News URL in Safari Browser Action
-    @IBAction func openNewInSafari(_ sender: UISwipeGestureRecognizer) {
-        openInSafari()
     }
 
     @IBAction func openArticleInSafari(_ sender: UIButton) {

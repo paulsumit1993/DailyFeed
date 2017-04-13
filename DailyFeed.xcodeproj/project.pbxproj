@@ -63,6 +63,8 @@
 		06D04C571E13948C0013B4AA /* TSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C561E13948C0013B4AA /* TSImageView.swift */; };
 		06DFBE831E406C880091A1BC /* Date+RelativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFBE821E406C870091A1BC /* Date+RelativeTests.swift */; };
 		18ED43F60A376F539342E24E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAE988B87D0616DEA014085 /* CoreMedia.framework */; };
+		207A5C251E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */; };
+		207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */; };
 		29839D439F10D0BBA2B5A3CE /* Pods_News_Now.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3839392D2356ACF37A1F7 /* Pods_News_Now.framework */; };
 		30828F9DA4A0B36D5D24F984 /* Pods_DailyFeedUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EA0AEF3558331B8AD9B3DC /* Pods_DailyFeedUITests.framework */; };
 		33209811F6D956499D3007EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B13AAE731CC3C2827E2B0C2 /* SystemConfiguration.framework */; };
@@ -177,6 +179,8 @@
 		0BAE988B87D0616DEA014085 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		0CE71099B985DFA7F61C07BE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		1721C260D75D69EF09A4D02A /* Pods-DailyFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedDetailItemCell.swift; sourceTree = "<group>"; };
+		207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyFeedDetailItemCell.xib; sourceTree = "<group>"; };
 		227CEC5EC28E895F3ED03F69 /* Pods-DailyFeedUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedUITests/Pods-DailyFeedUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F4B271DBAED1076F1C63A67 /* Pods-DailyFeedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedTests/Pods-DailyFeedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5539A81DBCC7A45D01F5CCB3 /* Pods-DailyFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.release.xcconfig"; sourceTree = "<group>"; };
@@ -323,17 +327,9 @@
 			children = (
 				06D04C221E1248DB0013B4AA /* Main.storyboard */,
 				06D04C271E1248DB0013B4AA /* LaunchScreen.storyboard */,
-				06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */,
 				060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */,
 				060D64891E31EB540053F2AB /* DailySourceItemListLayout.swift */,
-				064FA8F11E52D48800693D12 /* BookmarkItemsCell.swift */,
-				064FA8F21E52D48800693D12 /* BookmarkItemsCell.xib */,
-				062169571E260AE800ECB0AB /* DailySourceItemCell.swift */,
-				060D64831E31E6E50053F2AB /* DailyFeedItemListCell.swift */,
-				060D64841E31E6E50053F2AB /* DailyFeedItemListCell.xib */,
-				062169581E260AE800ECB0AB /* DailySourceItemCell.xib */,
 				063505091E165C83002510B0 /* NewHeaderCollectionReusableView.swift */,
-				06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -379,6 +375,7 @@
 				06DFBE811E3F07010091A1BC /* DailyFeed.entitlements */,
 				06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */,
 				063504FE1E151D19002510B0 /* Model */,
+				207A5C221E9C1B8900E4FC45 /* Cells */,
 				063505001E151D40002510B0 /* View */,
 				06CB47881E4C4CFB007D1897 /* Assets */,
 				063504FD1E151CFD002510B0 /* Controller */,
@@ -409,6 +406,23 @@
 				06D04C401E1248DC0013B4AA /* Info.plist */,
 			);
 			path = DailyFeedUITests;
+			sourceTree = "<group>";
+		};
+		207A5C221E9C1B8900E4FC45 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */,
+				064FA8F11E52D48800693D12 /* BookmarkItemsCell.swift */,
+				064FA8F21E52D48800693D12 /* BookmarkItemsCell.xib */,
+				062169571E260AE800ECB0AB /* DailySourceItemCell.swift */,
+				207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */,
+				207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */,
+				060D64841E31E6E50053F2AB /* DailyFeedItemListCell.xib */,
+				062169581E260AE800ECB0AB /* DailySourceItemCell.xib */,
+				06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */,
+				060D64831E31E6E50053F2AB /* DailyFeedItemListCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		3EEEBD274CB31BA2841191D5 /* Pods */ = {
@@ -599,6 +613,7 @@
 				0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */,
 				060D64861E31E6E50053F2AB /* DailyFeedItemListCell.xib in Resources */,
 				06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */,
+				207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */,
 				06CB478A1E4C5437007D1897 /* best.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -837,6 +852,7 @@
 				06D04C511E126BD40013B4AA /* UIImageExtension.swift in Sources */,
 				060D64881E31EB400053F2AB /* DailySourceItemLayout.swift in Sources */,
 				060D648A1E31EB540053F2AB /* DailySourceItemListLayout.swift in Sources */,
+				207A5C251E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift in Sources */,
 				064FA8FA1E5DA98000693D12 /* DailyFeedRealmModel.swift in Sources */,
 				06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */,
 				064FA8F31E52D48900693D12 /* BookmarkItemsCell.swift in Sources */,

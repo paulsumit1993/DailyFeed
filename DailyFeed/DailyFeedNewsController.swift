@@ -21,21 +21,6 @@ class DailyFeedNewsController: UICollectionViewController {
         }
     }
     
-    var newsSourceUrlLogo: String? {
-        get {
-            guard let defaultSourceLogo = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "sourceLogo") else {
-                return "http://i.newsapi.org/the-wall-street-journal-m.png"
-            }
-
-            return defaultSourceLogo
-        }
-        
-        set {
-            guard let newSource = newValue else { return }
-            UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newSource, forKey: "sourceLogo")
-        }
-    }
-
     var source: String {
         get {
             guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
@@ -59,6 +44,8 @@ class DailyFeedNewsController: UICollectionViewController {
     }()
     
     let animationView =  LOTAnimationView(name: "Logo")
+    
+    var selectedIndexPath: IndexPath?
 
     // MARK: - IBOutlets
 
@@ -192,15 +179,10 @@ class DailyFeedNewsController: UICollectionViewController {
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
-                let item = DailyFeedRealmModel()
-                item.title = newsItems[indexpath.row].title
-                item.articleDescription = newsItems[indexpath.row].description
-                item.author = newsItems[indexpath.row].author
-                item.url = newsItems[indexpath.row].url
-                item.urlToImage = newsItems[indexpath.row].urlToImage
-                item.publishedAt = newsItems[indexpath.row].publishedAt
-                vc.receivedNewsItem = item
-                vc.receivedNewsSourceLogo = newsSourceUrlLogo
+            
+                vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
+                vc.receivedItemNumber = indexpath.row + 1
+                vc.receivedNewsSourceLogo = NewsAPI.fetchSourceNewsLogo(source: self.source)
             }
         }
     }
@@ -208,7 +190,6 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - Unwind from Source View Controller
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
-            self.newsSourceUrlLogo = sourceVC.selectedItem?.urlsToLogos
             self.source = sourceId
             loadNewsData(source)
         }

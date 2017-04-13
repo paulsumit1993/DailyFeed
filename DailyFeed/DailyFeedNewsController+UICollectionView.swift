@@ -22,7 +22,8 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
-
+        selectedIndexPath = indexPath
+        collectionView.performBatchUpdates(nil, completion: nil)
         let cell = collectionView.cellForItem(at: indexPath)
         self.performSegue(withIdentifier: "newsDetailSegue", sender: cell)
 
@@ -59,8 +60,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "newsHeaderView",
                                                                              for: indexPath) as? NewHeaderCollectionReusableView
-
-            headerView?.newSourceImageView.downloadedFromLink(self.newsSourceUrlLogo!)
+            headerView?.newSourceImageView.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: self.source))
             headerView?.layer.masksToBounds = true
             return headerView!
 

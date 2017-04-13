@@ -20,12 +20,14 @@ enum NewsAPI {
     //NewsAPI.org API Endpoints
     var url: URL? {
         switch self {
+            
         case .articles(let source):
             let lSource = source ?? "the-wall-street-journal"
             NewsAPI.baseURL?.path = "/v1/\(NewsAPI.articles(source: nil).jsonKey)"
             NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "source", value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
+            
         case .sources(let category):
             let lCategory = category ?? ""
             NewsAPI.baseURL?.path = "/v1/\(NewsAPI.sources(category: nil).jsonKey)"
@@ -42,6 +44,13 @@ enum NewsAPI {
         case .sources:
             return "sources"
         }
+    }
+    
+    //Fetch NewsSourceLogo from Cloudinary
+    
+    static func fetchSourceNewsLogo(source: String) -> String {
+        let sourceLogoUrl = "http://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
+        return sourceLogoUrl
     }
     
     // Get News articles from articles endpoint

@@ -7,23 +7,27 @@
 [![swift3](https://img.shields.io/badge/swift3-compatible-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![Xcode 8.2](https://img.shields.io/badge/Xcode-8.2-blue.svg?style=flat)](https://developer.apple.com/xcode)
 
-iOS client for [NewsAPI.org](https://newsapi.org/)
+iOS client for [NewsAPI.org](https://newsapi.org/). 
+Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 👉 at your fingertips 🎉.
 
 # Features
-- DailyFeed iOS App
-- News Now Today Widget
-- Bookmarks Spotlight Search
+- DailyFeed iOS App.
+- News Now Today Widget.
+- Bookmarks Spotlight Search.
 
 # Installation
-- `git clone https://github.com/paulsumit1993/dailyfeed`
-- `open DailyFeed/DailyFeed.xcodeproj/`
-- <kbd>CTRL</kbd> + <kbd>R</kbd>
+- `git clone https://github.com/paulsumit1993/dailyfeed`.
+- open `DailyFeed` folder.
+- open `terminal` and `cd` to DailyFeed folder root.
+- run `pod install` (install Cocoapods for this command to work [here](https://cocoapods.org/)).
+- open `DailyFeed.xcworkspace`.
+- <kbd>CTRL</kbd> + <kbd>R</kbd>.
 
 # Screenshots
 <img src="/assets/screenshot.jpg">
 
 # Contributing
-We would ❤️ for you to contribute to this repo. To do so, please fork the project and submit pull requests.
+We would ❤️ for you to contribute to this repo. To do so, please fork the project and submit pull requests. Report bugs or issues by opening issues above. Made with ❤️ in Bengaluru.
 
 # Logo Design
 

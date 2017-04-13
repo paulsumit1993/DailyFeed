@@ -184,9 +184,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
         if indexPath.row == 0 { return DailySourceItemCell() }
         if self.resultsSearchController.isActive {
-            cell?.sourceImageView.downloadedFromLink(filteredSourceItems[indexPath.row - 1].urlsToLogos)
+            cell?.sourceImageView.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: filteredSourceItems[indexPath.row - 1].sid))
         } else {
-            cell?.sourceImageView.downloadedFromLink(sourceItems[indexPath.row - 1].urlsToLogos)
+            cell?.sourceImageView.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: sourceItems[indexPath.row - 1].sid))
         }
         return cell!
     }
