@@ -11,7 +11,7 @@ import RealmSwift
 
 class BookmarkItemsCell: UICollectionViewCell {
 
-    var cellTapped: ((UICollectionViewCell) -> Void)? = nil
+    var cellTapped: ((UICollectionViewCell) -> Void)?
 
     @IBOutlet weak var newsArticleImageView: TSImageView! {
         didSet {

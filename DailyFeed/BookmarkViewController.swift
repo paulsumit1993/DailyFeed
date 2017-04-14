@@ -81,6 +81,7 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.bookmarkCollectionView.indexPath(for: cell) else { return }
+            vc.receivedItemNumber = indexpath.row + 1
             vc.receivedNewsItem = newsItems[indexpath.row]
             }
         }

@@ -46,18 +46,18 @@ enum NewsAPI {
         }
     }
     
-    //Fetch NewsSourceLogo from Cloudinary
+    //Fetch NewsSourceLogo from Cloudinary as news source logo is deprecated by newsapi.org
     
     static func fetchSourceNewsLogo(source: String) -> String {
         let sourceLogoUrl = "http://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
         return sourceLogoUrl
     }
     
-    // Get News articles from articles endpoint
+    // Get News articles from /articles endpoint
     static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
         
         guard let feedURL = NewsAPI.articles(source: source).url else { return }
-        let baseUrlRequest = URLRequest(url: feedURL)
+        let baseUrlRequest = URLRequest(url: feedURL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 1800)
         let session = URLSession.shared
         
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
@@ -83,11 +83,12 @@ enum NewsAPI {
         }).resume()
     }
     
-    // Get News source from sources endpoint
+    // Get News source from /sources endpoint
     static func getNewsSource(_ category: String?, _ completion: @escaping ([DailySourceModel]?, Error?) -> Void) {
         
         guard let sourceURL = NewsAPI.sources(category: category).url else { return }
-        let baseUrlRequest = URLRequest(url: sourceURL)
+        
+        let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 172800)
         let session = URLSession.shared
         
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in

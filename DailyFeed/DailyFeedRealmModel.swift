@@ -17,6 +17,8 @@ class DailyFeedRealmModel: Object {
     dynamic var articleDescription: String = ""
     dynamic var url: String = ""
     
+    //Helper to convert DailyFeedModel to DailyFeedRealmModel
+    
     class func toDailyFeedRealmModel(from: DailyFeedModel) -> DailyFeedRealmModel {
         let item = DailyFeedRealmModel()
         item.title = from.title

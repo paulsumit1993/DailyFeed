@@ -4,8 +4,8 @@
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5866404b6eba5b01006b3d99&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5866404b6eba5b01006b3d99/build/latest?branch=master)
 [![codebeat badge](https://codebeat.co/badges/04da4b78-253c-4cec-8ac9-04cfc7d26eb0)](https://codebeat.co/projects/github-com-paulsumit1993-dailyfeed)
 [![iOS](https://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](https://developer.apple.com/ios/)
-[![swift3](https://img.shields.io/badge/swift3-compatible-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
-[![Xcode 8.2](https://img.shields.io/badge/Xcode-8.2-blue.svg?style=flat)](https://developer.apple.com/xcode)
+[![swift3](https://img.shields.io/badge/swift3.1-compatible-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
+[![Xcode 8.2](https://img.shields.io/badge/Xcode-8.3.1-blue.svg?style=flat)](https://developer.apple.com/xcode)
 
 iOS client for [NewsAPI.org](https://newsapi.org/). 
 Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 👉 at your fingertips 🎉.
