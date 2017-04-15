@@ -22,6 +22,7 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - run `pod install` (install Cocoapods for this command to work [here](https://cocoapods.org/)).
 - open `DailyFeed.xcworkspace`.
 - <kbd>CTRL</kbd> + <kbd>R</kbd>.
+- Enjoy and don't forget to ★ the repo.
 
 # Screenshots
 <img src="/assets/screenshot.jpg">

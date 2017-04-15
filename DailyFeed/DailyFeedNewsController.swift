@@ -59,6 +59,8 @@ class DailyFeedNewsController: UICollectionViewController {
         setupUI()
         //Populate CollectionView Data
         loadNewsData(source)
+        
+        Reach().monitorReachabilityChanges()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -190,11 +192,20 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - Unwind from Source View Controller
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
-            self.source = sourceId
-            loadNewsData(source)
+            let status = Reach().connectionStatus()
+            switch status {
+            case .unknown, .offline:
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                    self.showError("Your Internet Connection seems to be offline.")
+                })
+            case .online(.wwan), .online(.wiFi):
+                self.source = sourceId
+                loadNewsData(source)
+            }
         }
     }
 }
+
 
 extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
