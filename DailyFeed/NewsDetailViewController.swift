@@ -75,6 +75,14 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
                 return swipeLeftButton.setTitle("Read More...", for: .normal)
             }
             swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
+            switch Reach().connectionStatus() {
+            case .unknown, .offline:
+                swipeLeftButton.isEnabled = false
+                swipeLeftButton.backgroundColor = .lightGray
+                
+            case .online(_):
+                swipeLeftButton.isEnabled = true
+            }
         }
     }
 

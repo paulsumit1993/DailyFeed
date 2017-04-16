@@ -161,7 +161,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAK-n4-oSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="JIT-8k-TPL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3978" y="1325"/>
+            <point key="canvasLocation" x="3401" y="1345"/>
         </scene>
         <!--News Detail View Controller-->
         <scene sceneID="215-4y-uX3">
@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxL-QF-YTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3400.8000000000002" y="435.83208395802103"/>
+            <point key="canvasLocation" x="3401" y="436"/>
         </scene>
         <!--DailyFeed-->
         <scene sceneID="loe-6Q-P3R">
@@ -423,7 +423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHV-y6-7y5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2156" y="1325"/>
+            <point key="canvasLocation" x="505" y="1269"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VqY-0o-oNm">
@@ -445,7 +445,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwj-Al-Uyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3278" y="1325"/>
+            <point key="canvasLocation" x="2230" y="1346"/>
         </scene>
     </scenes>
     <resources>
@@ -456,6 +456,6 @@
         <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ico-Xt-3Zc"/>
+        <segue reference="w5m-To-g4E"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -115,25 +115,34 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Load data from network
     func loadNewsData(_ source: String) {
+        switch Reach().connectionStatus() {
         
-        if !self.refreshControl.isRefreshing {
-        setupSpinner()
-        }
-
-        spinningActivityIndicator.start()
-        NewsAPI.getNewsItems(source) { (newsItem, error) in
-            guard error == nil, let news = newsItem else {
-                DispatchQueue.main.async {
-                    self.spinningActivityIndicator.stop()
-                    self.refreshControl.endRefreshing()
-                    self.showError(error?.localizedDescription ?? "")
-                }
-                return
-            }
-            self.newsItems = news
-            DispatchQueue.main.async {
+        case .offline, .unknown:
+            self.showError("Internet connection appears to be offline", message: nil, handler: { _ in
                 self.refreshControl.endRefreshing()
-                self.spinningActivityIndicator.stop()
+            })
+            
+        case .online(_):
+            
+            if !self.refreshControl.isRefreshing {
+                setupSpinner()
+            }
+            
+            spinningActivityIndicator.start()
+            NewsAPI.getNewsItems(source) { (newsItem, error) in
+                guard error == nil, let news = newsItem else {
+                    DispatchQueue.main.async {
+                        self.spinningActivityIndicator.stop()
+                        self.refreshControl.endRefreshing()
+                        self.showError(error?.localizedDescription ?? "")
+                    }
+                    return
+                }
+                self.newsItems = news
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                    self.spinningActivityIndicator.stop()
+                }
             }
         }
     }
@@ -196,7 +205,7 @@ class DailyFeedNewsController: UICollectionViewController {
             switch status {
             case .unknown, .offline:
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-                    self.showError("Your Internet Connection seems to be offline.")
+                    self.showError("Your Internet Connection appears to be offline.")
                 })
             case .online(.wwan), .online(.wiFi):
                 self.source = sourceId

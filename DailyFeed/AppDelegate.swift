@@ -68,13 +68,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         if userActivity.activityType == CSSearchableItemActionType {
-            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-                if let tabBarController = window?.rootViewController as? UITabBarController,
-                    let bookmarkController = tabBarController.viewControllers?.last as? BookmarkViewController {
-                    let indexpath = IndexPath(item: Int(uniqueIdentifier)!, section: 0)
+            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String,
+                let tabBarController = window?.rootViewController as? UITabBarController,
+                let bookmarkController = tabBarController.viewControllers?.last as? BookmarkViewController {
+                    let uniqueIdentifierInteger = Int(uniqueIdentifier)!
+                    let sb = UIStoryboard(name: "Main", bundle: nil)
+                    let newsDetailViewController = sb.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
+                    let realm = try! Realm()
+                    newsDetailViewController.receivedNewsItem = realm.objects(DailyFeedRealmModel.self)[uniqueIdentifierInteger]
+                    newsDetailViewController.receivedItemNumber = uniqueIdentifierInteger
+                    self.window?.rootViewController = tabBarController
+                    tabBarController.selectedViewController = bookmarkController
+                    let indexpath = IndexPath(item: uniqueIdentifierInteger, section: 0)
                     bookmarkController.collectionView(bookmarkController.bookmarkCollectionView, didSelectItemAt: indexpath)
+                    self.window?.makeKeyAndVisible()
                 }
-            }
         }
         return true
     }
