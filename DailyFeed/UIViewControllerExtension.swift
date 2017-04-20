@@ -35,5 +35,11 @@ public extension UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
+    public func showErrorWithDelay(_ title: String) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { 
+            self.showError(title)
+        }
+    }
+    
     
 }

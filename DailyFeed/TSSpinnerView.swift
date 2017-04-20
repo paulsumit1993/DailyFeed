@@ -32,9 +32,11 @@ class TSSpinnerView: UIView {
         loadingView.center = containerView.center
         loadingView.backgroundColor = .black
         loadingView.clipsToBounds = true
+        
         loadingView.layer.cornerRadius = loadingView.bounds.width / 2
         bestView?.frame = CGRect(x: 0, y: 0, width: loadingView.frame.size.width, height: loadingView.frame.size.height)
         bestView?.loopAnimation = true
+        print(bestView?.animationDuration)
         bestView?.contentMode = .scaleAspectFill
         loadingView.addSubview(bestView!)
         containerView.addSubview(loadingView)

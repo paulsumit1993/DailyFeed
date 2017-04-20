@@ -57,7 +57,7 @@ enum NewsAPI {
     static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
         
         guard let feedURL = NewsAPI.articles(source: source).url else { return }
-        let baseUrlRequest = URLRequest(url: feedURL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 1800)
+        let baseUrlRequest = URLRequest(url: feedURL)
         let session = URLSession.shared
         
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
@@ -88,7 +88,7 @@ enum NewsAPI {
         
         guard let sourceURL = NewsAPI.sources(category: category).url else { return }
         
-        let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 172800)
+        let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad)
         let session = URLSession.shared
         
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in

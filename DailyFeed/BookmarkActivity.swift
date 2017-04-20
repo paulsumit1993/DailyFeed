@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class BookmarkActivity: UIActivity {
+    var bookMarkSuccessful: (() -> Void)? = nil
     
     override var activityTitle: String? {
         return "Bookmark"
@@ -35,6 +36,7 @@ class BookmarkActivity: UIActivity {
                 let realm = try! Realm()
                 try! realm.write {
                     realm.add(activity)
+                    bookMarkSuccessful?()
                 }
                 break
             }

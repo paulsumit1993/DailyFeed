@@ -150,6 +150,10 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             
             let bookmarkactivity = BookmarkActivity()
             
+            bookmarkactivity.bookMarkSuccessful = {
+                self.showErrorWithDelay("Bookmarked Successfully!")
+            }
+            
             let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage, articleToBookmarkData],
                                                       applicationActivities: [bookmarkactivity])
             
