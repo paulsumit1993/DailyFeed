@@ -170,6 +170,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             activityVC.completionWithItemsHandler = {(activityType, completed: Bool, _, _) in
                 self.fadeUIElements(with: 1.0)
             }
+            
+            // Popover for iPad only
+
+            let popOver = activityVC.popoverPresentationController
+            popOver?.sourceView = self.shareButton
+            popOver?.sourceRect = self.shareButton.bounds
             self.present(activityVC, animated: true, completion: nil)
         }
     }
