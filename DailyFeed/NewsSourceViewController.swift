@@ -130,6 +130,12 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             categoryActivityVC.addAction(categoryButton)
         }
         categoryActivityVC.addAction(cancelButton)
+        
+        // Popover for iPad only
+        
+        let popOver = categoryActivityVC.popoverPresentationController
+        popOver?.barButtonItem = categoryButton
+        popOver?.sourceRect = view.bounds
         self.present(categoryActivityVC, animated: true, completion: nil)
     }
 
