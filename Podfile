@@ -8,7 +8,6 @@ target 'DailyFeed' do
   # Pods for DailyFeed
   pod 'lottie-ios'
   pod 'DZNEmptyDataSet'
-  pod 'DeckTransition'
   
   target 'DailyFeedTests' do
     inherit! :search_paths

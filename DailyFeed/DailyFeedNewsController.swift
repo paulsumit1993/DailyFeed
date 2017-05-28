@@ -94,7 +94,7 @@ class DailyFeedNewsController: UICollectionViewController {
                                  forCellWithReuseIdentifier: "DailyFeedItemCell")
         collectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil),
                                  forCellWithReuseIdentifier: "DailyFeedItemListCell")
-        collectionView?.collectionViewLayout = DailySourceItemLayout()
+        collectionView?.collectionViewLayout = UIDevice.current.userInterfaceIdiom == .phone ? DailySourceItemLayout() : DailySourceItemiPadLayout()
         collectionView?.addSubview(refreshControl)
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
@@ -156,13 +156,18 @@ class DailyFeedNewsController: UICollectionViewController {
     @IBAction func toggleArticlesLayout(_ sender: UIButton) {
 
         switch collectionView?.collectionViewLayout {
-        case is DailySourceItemLayout:
-            toggleButton.setImage(UIImage(named: "grid"), for: .normal)
-            switchCollectionViewLayout(for: DailySourceItemListLayout())
+            
+        case is DailySourceItemListLayout:
+            toggleButton.setImage(UIImage(named: "list"), for: .normal)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                switchCollectionViewLayout(for: DailySourceItemiPadLayout())
+            } else {
+                switchCollectionViewLayout(for: DailySourceItemLayout())
+            }
 
         default:
-            toggleButton.setImage(UIImage(named: "list"), for: .normal)
-            switchCollectionViewLayout(for: DailySourceItemLayout())
+            toggleButton.setImage(UIImage(named: "grid"), for: .normal)
+            switchCollectionViewLayout(for: DailySourceItemListLayout())
         }
     }
 

@@ -95,7 +95,7 @@
                     <connections>
                         <outlet property="toggleButton" destination="Opc-IS-oMj" id="hXI-Bg-kOW"/>
                         <segue destination="1yk-sL-YYJ" kind="presentation" identifier="newsDetailSegue" modalTransitionStyle="crossDissolve" id="ico-Xt-3Zc"/>
-                        <segue destination="BLv-b4-OTF" kind="custom" identifier="newsSourceSegue" customClass="DeckSegue" customModule="DeckTransition" id="M3e-Uq-SzC"/>
+                        <segue destination="BLv-b4-OTF" kind="custom" identifier="newsSourceSegue" customClass="DeckSegue" customModule="DailyFeed" customModuleProvider="target" id="M3e-Uq-SzC"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaA-tc-RMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
