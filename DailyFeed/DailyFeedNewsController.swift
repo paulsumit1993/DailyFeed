@@ -179,6 +179,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     func sourceMenuButtonDidTap() {
         if animationView?.isAnimationPlaying == .some(true) {
+            animationView?.animationProgress = 0.4
             animationView?.pause()
         }
         self.performSegue(withIdentifier: "newsSourceSegue", sender: self)

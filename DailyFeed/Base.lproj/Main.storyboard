@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -95,7 +95,7 @@
                     <connections>
                         <outlet property="toggleButton" destination="Opc-IS-oMj" id="hXI-Bg-kOW"/>
                         <segue destination="1yk-sL-YYJ" kind="presentation" identifier="newsDetailSegue" modalTransitionStyle="crossDissolve" id="ico-Xt-3Zc"/>
-                        <segue destination="BLv-b4-OTF" kind="presentation" identifier="newsSourceSegue" modalTransitionStyle="coverVertical" id="M3e-Uq-SzC"/>
+                        <segue destination="BLv-b4-OTF" kind="custom" identifier="newsSourceSegue" customClass="DeckSegue" customModule="DeckTransition" id="M3e-Uq-SzC"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaA-tc-RMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -293,6 +293,7 @@
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="top" secondItem="tZc-3f-epY" secondAttribute="bottom" constant="-20" id="LK7-wh-en7"/>
                             <constraint firstAttribute="bottom" secondItem="WZl-Jh-bM7" secondAttribute="bottom" constant="4" id="NVv-3v-QaD"/>
                             <constraint firstAttribute="trailing" secondItem="aCH-mL-TaE" secondAttribute="trailing" constant="10" id="OZx-GE-Ndo"/>
+                            <constraint firstItem="0OI-zn-fNx" firstAttribute="height" relation="greaterThanOrEqual" secondItem="jP3-ch-vay" secondAttribute="height" multiplier="0.35" id="SZx-yr-HFZ"/>
                             <constraint firstItem="Zw2-wF-wcO" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leadingMargin" constant="-20" id="Xud-7B-ask"/>
                             <constraint firstItem="DwB-pn-gnh" firstAttribute="height" secondItem="Zw2-wF-wcO" secondAttribute="height" multiplier="0.55" id="a9o-UB-QHj"/>
                             <constraint firstItem="WZl-Jh-bM7" firstAttribute="centerX" secondItem="jP3-ch-vay" secondAttribute="centerX" id="cVa-0h-RpD"/>

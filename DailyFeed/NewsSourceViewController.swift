@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DeckTransition
 import DZNEmptyDataSet
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
@@ -213,4 +214,28 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             filteredSourceItems = searchResults
         }
     }
+    
+    // MARK: -  ScrollViewDelegate (DeckTransition)
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isEqual(self.sourceTableView) else {
+            return
+        }
+        
+        if let delegate = transitioningDelegate as? DeckTransitioningDelegate {
+            if scrollView.contentOffset.y > 0 {
+                scrollView.bounces = true
+                delegate.isDismissEnabled = false
+            } else {
+                if scrollView.isDecelerating {
+                    view.transform = CGAffineTransform(translationX: 0, y: -scrollView.contentOffset.y)
+                    scrollView.transform = CGAffineTransform(translationX: 0, y: scrollView.contentOffset.y)
+                } else {
+                    scrollView.bounces = false
+                    delegate.isDismissEnabled = true
+                }
+            }
+        }
+    }
+
 }
