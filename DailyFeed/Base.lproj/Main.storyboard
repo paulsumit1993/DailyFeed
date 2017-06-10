@@ -38,7 +38,7 @@
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Ouj-XG-PjB" firstAttribute="centerY" secondItem="uDu-Sf-au3" secondAttribute="centerY" id="71v-OF-TtF"/>
                                 <constraint firstItem="Ouj-XG-PjB" firstAttribute="centerX" secondItem="uDu-Sf-au3" secondAttribute="centerX" id="LG2-T6-648"/>
@@ -63,7 +63,7 @@
                                     </variation>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="ZZc-Js-chO" firstAttribute="centerX" secondItem="Gdd-r4-LOU" secondAttribute="centerX" id="9Yi-xi-AQ2"/>
                                 <constraint firstItem="ZZc-Js-chO" firstAttribute="centerY" secondItem="Gdd-r4-LOU" secondAttribute="centerY" id="KCS-SY-lxg"/>
@@ -457,6 +457,6 @@
         <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w5m-To-g4E"/>
+        <segue reference="ico-Xt-3Zc"/>
     </inferredMetricsTieBreakers>
 </document>
