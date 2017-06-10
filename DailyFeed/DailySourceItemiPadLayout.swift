@@ -23,20 +23,19 @@ class DailySourceItemiPadLayout: UICollectionViewFlowLayout {
      */
     func setupLayout() {
         
-        minimumInteritemSpacing = 0
-        minimumLineSpacing = 7
+        minimumLineSpacing = 30
         scrollDirection = .vertical
-        sectionInset = UIEdgeInsets(top: 5, left: 6, bottom: 0, right: 6)
-        headerReferenceSize = CGSize(width: 200, height: 20)
+        sectionInset = UIEdgeInsets(top: 10, left: 25, bottom: 0, right: 25)
+        headerReferenceSize = CGSize(width: 200, height: 40)
         footerReferenceSize = CGSize(width: 200, height: 20)
     }
     
     func itemHeight() -> CGFloat {
-        return (collectionView!.bounds.width / 2) - 10
+        return (collectionView!.bounds.width / 1.9)
     }
     
     func itemWidth() -> CGFloat {
-        return (collectionView!.bounds.width / 3) - 10
+        return (collectionView!.bounds.width / 2) - 40
     }
     
     override var itemSize: CGSize {
