@@ -25,7 +25,7 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - Enjoy and don't forget to ★ the repo.
 - Running on real device
  - Change the Bundle identifier of the project.
- - Enable App Groups entitlement (Paid Apple developer account required).
+ - Enable App Groups entitlement for Today widget to work (Paid Apple developer account required).
  - Change the Realm Shared DB setup `forSecurityApplicationGroupIdentifier` to the App groups identifier.
 
 # Screenshots
