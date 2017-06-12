@@ -23,6 +23,10 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - open `DailyFeed.xcworkspace`.
 - <kbd>CTRL</kbd> + <kbd>R</kbd>.
 - Enjoy and don't forget to ★ the repo.
+- Running on real device
+ - Change the Bundle identifier of the project.
+ - Enable App Groups entitlement (Paid Apple developer account required).
+ - Change the Realm Shared DB setup `forSecurityApplicationGroupIdentifier` to the App groups identifier.
 
 # Screenshots
 <img src="/assets/screenshot.jpg">
