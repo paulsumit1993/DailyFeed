@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 import RealmSwift
 
-class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
+class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Variable declaration
     
@@ -94,7 +94,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         }
     }
     
-    @IBOutlet weak var newsItemNumberLabel: UILabel!{
+    @IBOutlet weak var newsItemNumberLabel: UILabel! {
         didSet {
             guard let newsItemNumber = receivedItemNumber else { return }
             newsItemNumberLabel.text = String(newsItemNumber)
@@ -109,8 +109,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         super.viewDidLoad()
 
         //Hide Nav bar
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        navigationController?.setNavigationBarHidden(true, animated: true)
         // Setting the newsImageView gradient
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor,
                                    UIColor(white: 0, alpha: 0.6).cgColor],
@@ -119,7 +118,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         //Setting articleStringURL for state restoration
         articleStringURL = receivedNewsItem?.url
     }
-
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         newsImageView.updateNewsImageView(25.0)
@@ -134,8 +133,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBAction func dismissButtonTapped() {
         self.dismiss(animated: false, completion: nil)
     }
-
-
+    
+    // MARK: - Back dismiss swipe
+    @IBAction func swipeToDismiss(_ sender: UISwipeGestureRecognizer) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     // MARK: - share article
     @IBAction func shareArticle(_ sender: UIButton) {
 

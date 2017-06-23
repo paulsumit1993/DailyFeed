@@ -2,8 +2,7 @@
 //  DailyFeedUITests.swift
 //  DailyFeedUITests
 //
-//  Created by TrianzDev on 27/12/16.
-//  Copyright © 2016 trianz. All rights reserved.
+//  Created by Sumit Paul on 27/12/16.
 //
 
 import XCTest

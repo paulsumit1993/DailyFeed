@@ -25,9 +25,7 @@ class DailySourceItemLayout: UICollectionViewFlowLayout {
 
         minimumLineSpacing = 30
         scrollDirection = .vertical
-        sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 0, right: 5)
-        headerReferenceSize = CGSize(width: 200, height: 30)
-        footerReferenceSize = CGSize(width: 200, height: 20)
+        sectionInset = UIEdgeInsets(top: 20, left: 5, bottom: 0, right: 5)
     }
 
     func itemHeight() -> CGFloat {

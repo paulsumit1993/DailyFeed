@@ -49,42 +49,48 @@ enum NewsAPI {
     //Fetch NewsSourceLogo from Cloudinary as news source logo is deprecated by newsapi.org
     
     static func fetchSourceNewsLogo(source: String) -> String {
-        let sourceLogoUrl = "http://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
+        let sourceLogoUrl = "https://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
         return sourceLogoUrl
     }
     
     // Get News articles from /articles endpoint
-    static func getNewsItems(_ source: String, completion: @escaping ([DailyFeedModel]?, Error?) -> Void) {
+    static func getNewsItems(_ source: String, completion: @escaping (ResultType<Articles>) -> Void) {
         
         guard let feedURL = NewsAPI.articles(source: source).url else { return }
         let baseUrlRequest = URLRequest(url: feedURL)
         let session = URLSession.shared
         
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
-            var newsItems = [DailyFeedModel]()
-            
             guard error == nil else {
-                completion(nil, error)
+                completion(ResultType.Failure(e: error!))
                 return
             }
             
             guard let data = data else {
-                completion(nil, error)
+                completion(ResultType.Failure(e: error!))
                 return
             }
             
-            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                
-                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.articles(source: nil).jsonKey] as? [JSONDictionary] {
-                    newsItems = jsonDict.flatMap(DailyFeedModel.init)
-                }
+            
+            do {
+                let jsonFromData =  try JSONDecoder().decode(Articles.self, from: data)
+                completion(ResultType.Success(jsonFromData))
+            } catch DecodingError.dataCorrupted(let context) {
+                completion(ResultType.Failure(e: DecodingError.dataCorrupted(context)))
+            } catch DecodingError.keyNotFound(let key, let context) {
+                completion(ResultType.Failure(e: DecodingError.keyNotFound(key, context)))
+            } catch DecodingError.typeMismatch(let type, let context) {
+                completion(ResultType.Failure(e: DecodingError.typeMismatch(type, context)))
+            } catch DecodingError.valueNotFound(let value, let context) {
+                completion(ResultType.Failure(e: DecodingError.valueNotFound(value, context)))
+            } catch {
+                completion(ResultType.Failure(e:JSONDecodingError.unknownError))
             }
-            completion(newsItems, nil)
         }).resume()
     }
     
-    // Get News source from /sources endpoint
-    static func getNewsSource(_ category: String?, _ completion: @escaping ([DailySourceModel]?, Error?) -> Void) {
+    // Get News source from /sources endpoint of NewsAPI
+    static func getNewsSource(_ category: String?, _ completion: @escaping (ResultType<Sources>) -> Void) {
         
         guard let sourceURL = NewsAPI.sources(category: category).url else { return }
         
@@ -92,25 +98,49 @@ enum NewsAPI {
         let session = URLSession.shared
         
         session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
-            var sourceItems = [DailySourceModel]()
-            
             guard error == nil else {
-                completion(nil, error)
+                completion(ResultType.Failure(e: error!))
                 return
             }
             
             guard let data = data else {
-                completion(nil, error)
+                completion(ResultType.Failure(e: error!))
                 return
             }
             
-            if let jsonData =  try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                
-                if let json = jsonData as? JSONDictionary, let jsonDict = json[NewsAPI.sources(category: nil).jsonKey] as? [JSONDictionary] {
-                    sourceItems = jsonDict.flatMap(DailySourceModel.init)
-                }
+            do {
+                let jsonFromData =  try JSONDecoder().decode(Sources.self, from: data)
+                completion(ResultType.Success(jsonFromData))
+            } catch DecodingError.dataCorrupted(let context) {
+                completion(ResultType.Failure(e: DecodingError.dataCorrupted(context)))
+            } catch DecodingError.keyNotFound(let key, let context) {
+                completion(ResultType.Failure(e: DecodingError.keyNotFound(key, context)))
+            } catch DecodingError.typeMismatch(let type, let context) {
+                completion(ResultType.Failure(e: DecodingError.typeMismatch(type, context)))
+            } catch DecodingError.valueNotFound(let value, let context) {
+                completion(ResultType.Failure(e: DecodingError.valueNotFound(value, context)))
+            } catch {
+                completion(ResultType.Failure(e:JSONDecodingError.unknownError))
             }
-            completion(sourceItems, nil)
+            
+            
         }).resume()
     }
+    
+//    static func decodeJSON(from data: Data, to type: Codable, completion: Completion) {
+//        do {
+//            let jsonFromData =  try JSONDecoder().decode(Sources.self, from: data)
+//            completion(ResultType.Success(jsonFromData))
+//        } catch DecodingError.dataCorrupted(let context) {
+//            completion(ResultType.Failure(e: DecodingError.dataCorrupted(context)))
+//        } catch DecodingError.keyNotFound(let key, let context) {
+//            completion(ResultType.Failure(e: DecodingError.keyNotFound(key, context)))
+//        } catch DecodingError.typeMismatch(let type, let context) {
+//            completion(ResultType.Failure(e: DecodingError.typeMismatch(type, context)))
+//        } catch DecodingError.valueNotFound(let value, let context) {
+//            completion(ResultType.Failure(e: DecodingError.valueNotFound(value, context)))
+//        } catch {
+//            completion(ResultType.Failure(e:JSONDecodingError.unknownError))
+//        }
+//    }
 }

@@ -1,11 +1,11 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
-  - lottie-ios (1.5.1)
-  - Realm (2.8.0):
-    - Realm/Headers (= 2.8.0)
-  - Realm/Headers (2.8.0)
-  - RealmSwift (2.8.0):
-    - Realm (= 2.8.0)
+  - lottie-ios (1.5.2)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
@@ -14,10 +14,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  lottie-ios: f680a7c4cb7a567ecf258fde0f967913aff111b8
-  Realm: 929243ad2b618b3232e70658bedc61110e7563f1
-  RealmSwift: 5b7079b891f2833d1849294161ba3e092bbda3f6
+  lottie-ios: 255a0e95973a5c4424e809d7a5c19f7384c73e84
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
 
-PODFILE CHECKSUM: 2c4487b3a23cbd200c955f501afdaa945c24ab3f
+PODFILE CHECKSUM: 09e08987958d7b0f70e352dd25af9e703364b18e
 
 COCOAPODS: 1.2.1

@@ -16,8 +16,8 @@ extension NewsDetailViewController {
             coder.encode(UIImageJPEGRepresentation(newsImage, 1.0), forKey:"newsImage")
         }
         
-        if let newsTitle = newsTitleLabel.text {
-            coder.encode(newsTitle, forKey: "newsTitle")
+        if let title = newsTitleLabel.text {
+            coder.encode(title, forKey: "title")
         }
         
         if let contentText = contentTextView.text {
@@ -48,8 +48,8 @@ extension NewsDetailViewController {
             newsImageView.image = UIImage(data: newsImageData)
         }
         
-        if let newsTitleText = coder.decodeObject(forKey: "newsTitle") as? String {
-            newsTitleLabel.text = newsTitleText
+        if let title = coder.decodeObject(forKey: "title") as? String {
+            newsTitleLabel.text = title
         }
         
         if let contentText = coder.decodeObject(forKey: "contentText") as? String {

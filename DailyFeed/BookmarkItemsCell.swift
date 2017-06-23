@@ -2,8 +2,7 @@
 //  BookmarkItemsCell.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 14/02/17.
-//  Copyright © 2017 trianz. All rights reserved.
+//  Created by Sumit Paul on 14/02/17.
 //
 
 import UIKit
