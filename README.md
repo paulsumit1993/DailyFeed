@@ -20,10 +20,10 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - open `DailyFeed.xcworkspace` in Xcode 9 Beta.
 - <kbd>CTRL</kbd> + <kbd>R</kbd>.
 
-# Video
-![Dailyfeed iPhone ios 11](https://raw.githubusercontent.com/paulsumit1993/DailyFeed/master/assets/iphone_dailyfeed.jpg)
+# Screenshots
+<img src="/assets/iphone_dailyfeed.jpg">
 
-![Dailyfeed iPad ios 11](https://raw.githubusercontent.com/paulsumit1993/DailyFeed/master/assets/ipad_dailyfeed.jpg)
+<img src="/assets/ipad_dailyfeed.jpg">
 
 # Contributing
 We would ❤️ for you to contribute to this repo. To do so, please fork the project and submit pull requests. Report bugs or issues by opening issues above. Made with ❤️ in Bengaluru.
