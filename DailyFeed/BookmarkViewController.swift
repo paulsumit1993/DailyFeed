@@ -115,13 +115,13 @@ extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "No Articles Bookmarked"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "Your Bookmarks will appear here."
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -140,10 +140,10 @@ extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 
 // MARK: - Drop Delegate Methods
 
-@available(iOS 11.0, *)
-extension BookmarkViewController: UICollectionViewDropDelegate {
-    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-        
+//@available(iOS 11.0, *)
+//extension BookmarkViewController: UICollectionViewDropDelegate {
+//    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+//        
 //        for coordinatorItem in coordinator.items {
 //            let itemProvider = coordinatorItem.dragItem.itemProvider
 //            if itemProvider.canLoadObject(ofClass: DailyFeedModel.self) {
@@ -161,5 +161,6 @@ extension BookmarkViewController: UICollectionViewDropDelegate {
 //                }
 //            }
 //        }
-    }
-}
+//    }
+//}
+

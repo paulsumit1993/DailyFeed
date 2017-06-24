@@ -50,7 +50,6 @@
 		208C18271EA3CD81007BC052 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 208C18261EA3CD81007BC052 /* Settings.bundle */; };
 		208FBB5B1EDB1C36009C2539 /* DailySourceItemiPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FBB5A1EDB1C36009C2539 /* DailySourceItemiPadLayout.swift */; };
 		20EA15751EA28C6700047523 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EA15741EA28C6700047523 /* Reach.swift */; };
-		30828F9DA4A0B36D5D24F984 /* Pods_DailyFeedUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EA0AEF3558331B8AD9B3DC /* Pods_DailyFeedUITests.framework */; };
 		33209811F6D956499D3007EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B13AAE731CC3C2827E2B0C2 /* SystemConfiguration.framework */; };
 		37A35D0A29C62FF6FC306ADE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99DAE9BB0A7EFABFF566249 /* CoreTelephony.framework */; };
 		3B2CC50282DC134448F3A58A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D938716CB2644F8FE6904C /* QuartzCore.framework */; };
@@ -146,7 +145,6 @@
 		208C18261EA3CD81007BC052 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		208FBB5A1EDB1C36009C2539 /* DailySourceItemiPadLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemiPadLayout.swift; sourceTree = "<group>"; };
 		20EA15741EA28C6700047523 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
-		227CEC5EC28E895F3ED03F69 /* Pods-DailyFeedUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedUITests/Pods-DailyFeedUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F4B271DBAED1076F1C63A67 /* Pods-DailyFeedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedTests/Pods-DailyFeedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5539A81DBCC7A45D01F5CCB3 /* Pods-DailyFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.release.xcconfig"; sourceTree = "<group>"; };
 		56EA0AEF3558331B8AD9B3DC /* Pods_DailyFeedUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeedUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +157,6 @@
 		8B13AAE731CC3C2827E2B0C2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A531524C2A570ADFDBDA0451 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1414136B4D47660F4D789A2 /* Pods-DailyFeedUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedUITests/Pods-DailyFeedUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D1D7734AD5DFC5D8F8DD5CB0 /* Pods-News Now.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News Now.release.xcconfig"; path = "Pods/Target Support Files/Pods-News Now/Pods-News Now.release.xcconfig"; sourceTree = "<group>"; };
 		D6D938716CB2644F8FE6904C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E18B06086150616A4B3A60A3 /* Pods-News Now.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News Now.debug.xcconfig"; path = "Pods/Target Support Files/Pods-News Now/Pods-News Now.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,7 +193,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30828F9DA4A0B36D5D24F984 /* Pods_DailyFeedUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,8 +373,6 @@
 				5539A81DBCC7A45D01F5CCB3 /* Pods-DailyFeed.release.xcconfig */,
 				3F4B271DBAED1076F1C63A67 /* Pods-DailyFeedTests.debug.xcconfig */,
 				7314A561F80C2D11A6AB0E63 /* Pods-DailyFeedTests.release.xcconfig */,
-				227CEC5EC28E895F3ED03F69 /* Pods-DailyFeedUITests.debug.xcconfig */,
-				D1414136B4D47660F4D789A2 /* Pods-DailyFeedUITests.release.xcconfig */,
 				E18B06086150616A4B3A60A3 /* Pods-News Now.debug.xcconfig */,
 				D1D7734AD5DFC5D8F8DD5CB0 /* Pods-News Now.release.xcconfig */,
 			);
@@ -435,12 +429,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06D04C491E1248DC0013B4AA /* Build configuration list for PBXNativeTarget "DailyFeedUITests" */;
 			buildPhases = (
-				D9CFACC400E318521EC6E929 /* [CP] Check Pods Manifest.lock */,
 				06D04C361E1248DB0013B4AA /* Sources */,
 				06D04C371E1248DB0013B4AA /* Frameworks */,
 				06D04C381E1248DB0013B4AA /* Resources */,
-				199EF1908114F4FB7565099F /* [CP] Embed Pods Frameworks */,
-				5C040724B603B97C8997F8DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -465,7 +456,7 @@
 					06D04C1A1E1248DA0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = DPJNX69R5W;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -479,7 +470,7 @@
 					};
 					06D04C391E1248DB0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						TestTargetID = 06D04C1A1E1248DA0013B4AA;
 					};
 				};
@@ -568,36 +559,6 @@
 			shellPath = /bin/sh;
 			shellScript = "";
 		};
-		199EF1908114F4FB7565099F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DailyFeedUITests/Pods-DailyFeedUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C040724B603B97C8997F8DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DailyFeedUITests/Pods-DailyFeedUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6D231186B76E5C15DC1569A6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -671,21 +632,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D9CFACC400E318521EC6E929 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -883,7 +829,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.llc.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -905,7 +852,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.llc.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -921,7 +869,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyFeed.app/DailyFeed";
 			};
 			name = Debug;
@@ -936,33 +885,34 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyFeed.app/DailyFeed";
 			};
 			name = Release;
 		};
 		06D04C4A1E1248DC0013B4AA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 227CEC5EC28E895F3ED03F69 /* Pods-DailyFeedUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = DailyFeedUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DailyFeed;
 			};
 			name = Debug;
 		};
 		06D04C4B1E1248DC0013B4AA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1414136B4D47660F4D789A2 /* Pods-DailyFeedUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = DailyFeedUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DailyFeed;
 			};
 			name = Release;

@@ -11,12 +11,12 @@ import RealmSwift
 
 class DailyFeedRealmModel: Object {
         
-    dynamic var title: String = ""
-    dynamic var author: String = ""
-    dynamic var publishedAt: String = ""
-    dynamic var urlToImage: String = ""
-    dynamic var articleDescription: String = ""
-    dynamic var url: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var author: String = ""
+    @objc dynamic var publishedAt: String = ""
+    @objc dynamic var urlToImage: String = ""
+    @objc dynamic var articleDescription: String = ""
+    @objc dynamic var url: String = ""
     
     //Helper to convert DailyFeedModel to DailyFeedRealmModel
     

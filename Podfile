@@ -14,9 +14,4 @@ target 'DailyFeed' do
     # Pods for testing
   end
 
-  target 'DailyFeedUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

@@ -61,25 +61,16 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
 extension DailyFeedNewsController: UICollectionViewDragDelegate {
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.clipsToBounds = true
-        let draggedNewsItem = newsItems[indexPath.row]
-        let itemProvider = NSItemProvider(object: draggedNewsItem)
-        return [UIDragItem(itemProvider: itemProvider)]
+        return dragItems(indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.clipsToBounds = true
-        let additionalDraggedNewsItem = newsItems[indexPath.row]
-        let itemProvider = NSItemProvider(object: additionalDraggedNewsItem)
-        return [UIDragItem(itemProvider: itemProvider)]
+        return dragItems(indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
         let dragPreviewParameters = UIDragPreviewParameters()
         if let cell = collectionView.cellForItem(at: indexPath) {
-            cell.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             dragPreviewParameters.backgroundColor = UIColor.white
             dragPreviewParameters.visiblePath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius)
             
@@ -87,8 +78,12 @@ extension DailyFeedNewsController: UICollectionViewDragDelegate {
         return dragPreviewParameters
     }
     
-    func collectionView(_ collectionView: UICollectionView, dragSessionDidEnd session: UIDragSession) {
-        
+    func dragItems(indexPath: IndexPath) -> [UIDragItem] {
+        let cell = collectionView?.cellForItem(at: indexPath)
+        cell?.clipsToBounds = true
+        let draggedNewsItem = newsItems[indexPath.row]
+        let itemProvider = NSItemProvider(object: draggedNewsItem)
+        return [UIDragItem(itemProvider: itemProvider)]
     }
 }
 

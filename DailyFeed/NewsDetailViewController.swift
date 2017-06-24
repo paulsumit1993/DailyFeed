@@ -117,6 +117,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
         //Setting articleStringURL for state restoration
         articleStringURL = receivedNewsItem?.url
+        
+        if #available(iOS 11.0, *) {
+            let dragInteraction = UIDragInteraction(delegate: self)
+            dragInteraction.isEnabled = true
+            newsImageView.addInteraction(dragInteraction)
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -216,4 +222,16 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         svc.delegate = self
         self.present(svc, animated: true, completion: nil)
     }
+}
+
+@available(iOS 11.0, *)
+extension NewsDetailViewController: UIDragInteractionDelegate {
+    
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        guard let image = newsImageView.image else { return [] }
+        let provider = NSItemProvider(object: image)
+        let item = UIDragItem(itemProvider: provider)
+        return [item]
+    }
+    
 }

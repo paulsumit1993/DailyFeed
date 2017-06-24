@@ -107,7 +107,7 @@ class DailyFeedNewsController: UICollectionViewController {
     }
 
     // MARK: - refresh news Source data
-    func refreshData(_ sender: UIRefreshControl) {
+    @objc func refreshData(_ sender: UIRefreshControl) {
         loadNewsData(self.source)
     }
 
@@ -154,7 +154,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - sourceMenuButton Action method
 
-    func sourceMenuButtonDidTap() {
+    @objc func sourceMenuButtonDidTap() {
         self.performSegue(withIdentifier: "newsSourceSegue", sender: self)
     }
 
@@ -195,13 +195,13 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "No Content 😥"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "Connect to Internet or try another source."
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
