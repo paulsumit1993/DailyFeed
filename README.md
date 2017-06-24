@@ -21,8 +21,8 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - <kbd>CTRL</kbd> + <kbd>R</kbd>.
 
 # Video
-![Dailyfeed iPhone ios 11](https://github.com/paulsumit1993/DailyFeed/tree/ios11/assets/iphone_dailyfeed.gif)
-![Dailyfeed iPad ios 11](https://github.com/paulsumit1993/DailyFeed/tree/ios11/assets/ipad_dailyfeed.gif)
+![Dailyfeed iPhone ios 11](https://raw.githubusercontent.com/paulsumit1993/DailyFeed/master/assets/iphone_dailyfeed.gif)
+![Dailyfeed iPad ios 11](https://raw.githubusercontent.com/paulsumit1993/DailyFeed/master/assets/ipad_dailyfeed.gif)
 
 # Contributing
 We would ❤️ for you to contribute to this repo. To do so, please fork the project and submit pull requests. Report bugs or issues by opening issues above. Made with ❤️ in Bengaluru.
