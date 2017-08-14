@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 
-class DailyFeedRealmModel: Object {
+final class DailyFeedRealmModel: Object {
         
     @objc dynamic var title: String = ""
     @objc dynamic var author: String = ""

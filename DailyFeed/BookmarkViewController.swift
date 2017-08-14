@@ -25,6 +25,9 @@ class BookmarkViewController: UIViewController {
                                          forCellWithReuseIdentifier: "BookmarkItemsCell")
         bookmarkCollectionView.emptyDataSetDelegate = self
         bookmarkCollectionView.emptyDataSetSource = self
+        if #available(iOS 11.0, *) {
+            bookmarkCollectionView?.dropDelegate = self
+        }
         observeDatabase()
     }
     
@@ -140,27 +143,28 @@ extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 
 // MARK: - Drop Delegate Methods
 
-//@available(iOS 11.0, *)
-//extension BookmarkViewController: UICollectionViewDropDelegate {
-//    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-//        
-//        for coordinatorItem in coordinator.items {
-//            let itemProvider = coordinatorItem.dragItem.itemProvider
-//            if itemProvider.canLoadObject(ofClass: DailyFeedModel.self) {
-//                itemProvider.loadObject(ofClass: DailyFeedModel.self) { (object, error) in
-//                    DispatchQueue.main.async {
-//                        if let dailyfeedmodel = object as? DailyFeedModel {
-//                            let dailyfeedRealmModel = DailyFeedRealmModel.toDailyFeedRealmModel(from: dailyfeedmodel)
-//                            try! realm.write {
-//                                realm.add(dailyfeedRealmModel)
-//                            }
-//                        } else {
-//                            self.displayError(error)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+@available(iOS 11.0, *)
+extension BookmarkViewController: UICollectionViewDropDelegate {
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        for coordinatorItem in coordinator.items {
+            let itemProvider = coordinatorItem.dragItem.itemProvider
+            if itemProvider.canLoadObject(ofClass: DailyFeedModel.self) {
+                itemProvider.loadObject(ofClass: DailyFeedModel.self) { (object, error) in
+                    DispatchQueue.main.async {
+                        let realm = try! Realm()
+                        if let dailyfeedmodel = object as? DailyFeedModel {
+                            let dailyfeedRealmModel = DailyFeedRealmModel.toDailyFeedRealmModel(from: dailyfeedmodel)
+                            try! realm.write {
+                                realm.add(dailyfeedRealmModel)
+                            }
+                        } else {
+                            //self.displayError(error)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 

@@ -21,7 +21,7 @@ struct Articles: Codable {
 }
 
 //Data Model
-class DailyFeedModel: NSObject, Serializable {
+final class DailyFeedModel: NSObject, Serializable {
     
     public var title: String = ""
     public var author: String?
@@ -34,27 +34,9 @@ class DailyFeedModel: NSObject, Serializable {
         case articleDescription = "description"
         case title, author, publishedAt, urlToImage, url
     }
-    
-    
-//    static var readableTypeIdentifiersForItemProvider: [String] = [DailyFeedModelUTI.kUUTTypeDailyFeedModel]
-//
-//    required init(itemProviderData data: Data, typeIdentifier: String) throws {
-//        if typeIdentifier == DailyFeedModelUTI.kUUTTypeDailyFeedModel {
-//            if let dailyFeedModel = try self.deserialize(data: data) {
-//                self.title = dailyFeedModel.title
-//                self.author = dailyFeedModel.author
-//                self.publishedAt = dailyFeedModel.publishedAt
-//                self.urlToImage = dailyFeedModel.urlToImage
-//                self.articleDescription = dailyFeedModel.articleDescription
-//                self.url = dailyFeedModel.url
-//            } else {
-//                throw DailyFeedModelError.invalidDailyFeedModel
-//            }
-//        } else {
-//            throw DailyFeedModelError.invalidTypeIdentifier
-//        }
-//    }
 }
+
+// MARK :- NSProvider read/write method implementations
 
 extension DailyFeedModel: NSItemProviderWriting {
     
@@ -72,5 +54,24 @@ extension DailyFeedModel: NSItemProviderWriting {
     }
 }
 
-//extension DailyFeedModel: NSItemProviderReading { }
+extension DailyFeedModel: NSItemProviderReading {
+    
+    static var readableTypeIdentifiersForItemProvider: [String] {
+        return [DailyFeedModelUTI.kUUTTypeDailyFeedModel]
+    }
+    
+    static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> DailyFeedModel {
+        if typeIdentifier == DailyFeedModelUTI.kUUTTypeDailyFeedModel {
+            let dfm = DailyFeedModel()
+            do {
+                let dailyFeedModel = try dfm.deserialize(data: data)
+                return dailyFeedModel
+            } catch {
+                throw DailyFeedModelError.invalidDailyFeedModel
+            }
+        } else {
+            throw DailyFeedModelError.invalidTypeIdentifier
+        }
+    }
+}
 
