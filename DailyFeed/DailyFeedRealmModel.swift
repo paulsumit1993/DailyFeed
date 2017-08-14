@@ -18,6 +18,10 @@ final class DailyFeedRealmModel: Object {
     @objc dynamic var articleDescription: String = ""
     @objc dynamic var url: String = ""
     
+    override static func primaryKey() -> String? {
+        return "title"
+    }
+    
     //Helper to convert DailyFeedModel to DailyFeedRealmModel
     
     class func toDailyFeedRealmModel(from: DailyFeedModel) -> DailyFeedRealmModel {

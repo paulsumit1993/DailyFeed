@@ -156,7 +156,7 @@ extension BookmarkViewController: UICollectionViewDropDelegate {
                         if let dailyfeedmodel = object as? DailyFeedModel {
                             let dailyfeedRealmModel = DailyFeedRealmModel.toDailyFeedRealmModel(from: dailyfeedmodel)
                             try! realm.write {
-                                realm.add(dailyfeedRealmModel)
+                                realm.add(dailyfeedRealmModel, update: true)
                             }
                         } else {
                             //self.displayError(error)
