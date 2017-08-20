@@ -47,6 +47,9 @@
                                 <constraint firstItem="ZZc-Js-chO" firstAttribute="centerY" secondItem="Gdd-r4-LOU" secondAttribute="centerY" id="KCS-SY-lxg"/>
                             </constraints>
                         </collectionReusableView>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="L6A-1a-6xf" id="W3z-WT-pDe"/>
                             <outlet property="delegate" destination="L6A-1a-6xf" id="Kzh-I1-kmP"/>
@@ -54,8 +57,11 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="DailyFeed" image="logo" id="bAh-f5-MHG"/>
                     <navigationItem key="navigationItem" title="Dailyfeed" largeTitleDisplayMode="always" id="a8j-37-xyQ"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="1yk-sL-YYJ" kind="presentation" identifier="newsDetailSegue" modalTransitionStyle="crossDissolve" id="ico-Xt-3Zc"/>
+                        <segue destination="1yk-sL-YYJ" kind="presentation" identifier="newsDetailSegue" id="ico-Xt-3Zc"/>
                         <segue destination="BLv-b4-OTF" kind="show" identifier="newsSourceSegue" id="M3e-Uq-SzC"/>
                     </connections>
                 </collectionViewController>
@@ -107,7 +113,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ecB-9e-tHU"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Sources" largeTitleDisplayMode="always" id="r66-GT-LNg">
-                        <barButtonItem key="rightBarButtonItem" image="list" id="ez7-e4-Tv8">
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="ez7-e4-Tv8">
                             <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
@@ -139,6 +145,9 @@
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="0OI-zn-fNx" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="image"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kd6-Lt-aaU">
                                 <rect key="frame" x="13" y="279" width="352" height="40"/>
@@ -148,6 +157,9 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="title"/>
+                                        </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
                                         </variation>
@@ -272,11 +284,17 @@
                             <constraint firstItem="YUA-ug-DBv" firstAttribute="top" secondItem="Zw2-wF-wcO" secondAttribute="bottom" id="vPj-AE-ftB"/>
                             <constraint firstItem="0OI-zn-fNx" firstAttribute="leading" secondItem="jP3-ch-vay" secondAttribute="leading" id="vVq-Gp-KLe"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="QAF-kJ-4bC" appends="YES" id="sza-iR-eNq"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="B6b-G8-lHI"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="backButton" destination="1nz-Or-miM" id="QNC-ze-ZER"/>
                         <outlet property="contentTextView" destination="aCH-mL-TaE" id="gfj-Lr-6In"/>
@@ -290,7 +308,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxL-QF-YTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="QAF-kJ-4bC">
+                <swipeGestureRecognizer direction="down" id="QAF-kJ-4bC">
                     <connections>
                         <action selector="swipeToDismiss:" destination="1yk-sL-YYJ" id="AIM-bP-m6b"/>
                     </connections>
@@ -420,7 +438,7 @@
     <resources>
         <image name="back" width="36" height="36"/>
         <image name="bookmark" width="24" height="24"/>
-        <image name="list" width="24" height="24"/>
+        <image name="filter" width="24" height="24"/>
         <image name="logo" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>

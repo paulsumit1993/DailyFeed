@@ -26,8 +26,10 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
                                  didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
         collectionView.performBatchUpdates(nil, completion: nil)
-        let cell = collectionView.cellForItem(at: indexPath)
-        self.performSegue(withIdentifier: "newsDetailSegue", sender: cell)
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            selectedCell = cell
+            self.performSegue(withIdentifier: "newsDetailSegue", sender: cell)
+        }
 
     }
 

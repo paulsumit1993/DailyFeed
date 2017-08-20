@@ -43,6 +43,10 @@ class DailyFeedNewsController: UICollectionViewController {
     }()
     
     var selectedIndexPath: IndexPath?
+    
+    let transition = NewsDetailPopAnimator()
+    
+    var selectedCell = UICollectionViewCell()
 
     // MARK: - IBOutlets
 
@@ -77,8 +81,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
-        let sourceMenuButton = UIBarButtonItem(title: "Sources", style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
-        //sourceMenuButton.tintColor = .white
+        let sourceMenuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "sources"), style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
         navigationItem.rightBarButtonItem = sourceMenuButton
         navBarSourceImage.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: self.source), contentMode: .scaleAspectFit)
         navigationItem.titleView = navBarSourceImage
@@ -165,6 +168,7 @@ class DailyFeedNewsController: UICollectionViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
             
+                vc.transitioningDelegate = self
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
                 vc.receivedNewsSourceLogo = NewsAPI.fetchSourceNewsLogo(source: self.source)
@@ -211,6 +215,22 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
+    }
+}
+
+extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
+    
+    // MARK: - UIViewController Transitioning Delegate Methods
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.originFrame = selectedCell.superview!.convert(selectedCell.frame, to: nil)
+        transition.presenting = true
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }
 

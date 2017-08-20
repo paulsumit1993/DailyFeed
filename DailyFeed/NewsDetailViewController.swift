@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 import RealmSwift
 
-class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate, UINavigationControllerDelegate {
+class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate, UIViewControllerTransitioningDelegate {
 
     // MARK: - Variable declaration
     
@@ -107,7 +107,6 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //Hide Nav bar
         navigationController?.setNavigationBarHidden(true, animated: true)
         // Setting the newsImageView gradient
@@ -137,12 +136,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     // MARK: - Back Button Dismiss action
     @IBAction func dismissButtonTapped() {
-        self.dismiss(animated: false, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Back dismiss swipe
     @IBAction func swipeToDismiss(_ sender: UISwipeGestureRecognizer) {
-        self.dismiss(animated: false, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - share article

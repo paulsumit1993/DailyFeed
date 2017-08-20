@@ -21,7 +21,7 @@ enum JSONDecodingError: Error, LocalizedError {
 }
 
 // Extension on Decoding Error to provide better and concise debug description
-extension DecodingError: LocalizedError {
+extension DecodingError {
     
     public var errorDescription: String? {
         switch  self {
