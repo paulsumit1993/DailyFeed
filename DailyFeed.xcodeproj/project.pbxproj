@@ -24,8 +24,6 @@
 		06A310381E4B24F30011E827 /* DailySourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050B1E165EA0002510B0 /* DailySourceModel.swift */; };
 		06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C38FCF1E35E43C004429DD /* Date+Relative.swift */; };
 		06CAC5981E28A3D600EF72BB /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5971E28A3D600EF72BB /* NewsAPI.swift */; };
-		06CB47871E4C4CEE007D1897 /* Logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 06CB47861E4C4CEE007D1897 /* Logo.json */; };
-		06CB478A1E4C5437007D1897 /* best.json in Resources */ = {isa = PBXBuildFile; fileRef = 06CB47891E4C5437007D1897 /* best.json */; };
 		06CB478C1E4C6C82007D1897 /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 06CB478B1E4C6C82007D1897 /* IconTransitions.json */; };
 		06D04C1F1E1248DB0013B4AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */; };
 		06D04C211E1248DB0013B4AA /* DailyFeedNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C201E1248DB0013B4AA /* DailyFeedNewsController.swift */; };
@@ -111,8 +109,6 @@
 		068496AB1E23AA2900DBD5A6 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		06C38FCF1E35E43C004429DD /* Date+Relative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Relative.swift"; sourceTree = "<group>"; };
 		06CAC5971E28A3D600EF72BB /* NewsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAPI.swift; sourceTree = "<group>"; };
-		06CB47861E4C4CEE007D1897 /* Logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Logo.json; sourceTree = "<group>"; };
-		06CB47891E4C5437007D1897 /* best.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = best.json; sourceTree = "<group>"; };
 		06CB478B1E4C6C82007D1897 /* IconTransitions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = IconTransitions.json; sourceTree = "<group>"; };
 		06D04C1B1E1248DA0013B4AA /* DailyFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -282,9 +278,7 @@
 		06CB47881E4C4CFB007D1897 /* Lottie-Assets */ = {
 			isa = PBXGroup;
 			children = (
-				06CB47891E4C5437007D1897 /* best.json */,
 				06CB478B1E4C6C82007D1897 /* IconTransitions.json */,
-				06CB47861E4C4CEE007D1897 /* Logo.json */,
 			);
 			name = "Lottie-Assets";
 			sourceTree = "<group>";
@@ -505,12 +499,10 @@
 				064FA8F41E52D48900693D12 /* BookmarkItemsCell.xib in Resources */,
 				06D04C291E1248DB0013B4AA /* LaunchScreen.storyboard in Resources */,
 				208C18271EA3CD81007BC052 /* Settings.bundle in Resources */,
-				06CB47871E4C4CEE007D1897 /* Logo.json in Resources */,
 				06D04C261E1248DB0013B4AA /* Assets.xcassets in Resources */,
 				0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */,
 				06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */,
 				207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */,
-				06CB478A1E4C5437007D1897 /* best.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import UIKit
 
 final class NewsDetailPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let duration = 0.4
+    let duration = 0.5
     var presenting = true
     var originFrame = CGRect.zero
     
@@ -44,6 +44,7 @@ final class NewsDetailPopAnimator: NSObject, UIViewControllerAnimatedTransitioni
                 y: initialFrame.midY)
              newsDetailView.layer.cornerRadius = 20.0
              newsDetailView.clipsToBounds = true
+            newsDetailView.alpha = 0.0
         }
         
         containerView.addSubview(toView)
