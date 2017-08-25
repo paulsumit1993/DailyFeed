@@ -33,6 +33,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var newsTitleLabel: UILabel! {
         didSet {
             newsTitleLabel.text = receivedNewsItem?.title
+            newsTitleLabel.alpha = 0.0
         }
     }
 
@@ -40,6 +41,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         didSet {
             contentTextView.text = receivedNewsItem?.articleDescription
             contentTextView.textColor = .gray
+            contentTextView.alpha = 0.0
             contentTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
             contentTextView.sizeToFit()
         }
@@ -48,6 +50,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var newsAuthorLabel: UILabel! {
         didSet {
             newsAuthorLabel.text = receivedNewsItem?.author
+            newsAuthorLabel.alpha = 0.0
         }
     }
 
@@ -98,6 +101,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         didSet {
             guard let newsItemNumber = receivedItemNumber else { return }
             newsItemNumberLabel.text = String(newsItemNumber)
+            newsItemNumberLabel.alpha = 1.0
             newsItemNumberLabel.clipsToBounds = true
             newsItemNumberLabel.layer.cornerRadius = 5.0
         }
@@ -122,6 +126,18 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             dragInteraction.isEnabled = true
             newsImageView.addInteraction(dragInteraction)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.07, delay: 0.0, options: .curveEaseIn, animations: {
+            self.newsTitleLabel.alpha = 1.0
+            self.newsAuthorLabel.alpha = 1.0
+            self.newsItemNumberLabel.alpha = 1.0
+        })
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.contentTextView.alpha = 1.0
+        })
     }
     
     override func viewWillLayoutSubviews() {
