@@ -130,12 +130,19 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        newsTitleLabel.center.y += 20
+        newsAuthorLabel.center.y += 20
+        contentTextView.center.y += 20
+
         UIView.animate(withDuration: 0.07, delay: 0.0, options: .curveEaseIn, animations: {
             self.newsTitleLabel.alpha = 1.0
+            self.newsTitleLabel.center.y -= 20
             self.newsAuthorLabel.alpha = 1.0
+            self.newsAuthorLabel.center.y -= 20
             self.newsItemNumberLabel.alpha = 1.0
         })
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.contentTextView.center.y -= 20
             self.contentTextView.alpha = 1.0
         })
     }
