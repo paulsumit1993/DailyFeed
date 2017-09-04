@@ -12,9 +12,9 @@ public typealias JSONDictionary = [String: AnyObject]
 enum NewsAPI {
     
     case articles(source: String?)
-    case sources(category: String?)
+    case sources(category: String?, language: String?)
     
-    static var baseURL = URLComponents(string: "https://newsapi.org")
+    static var baseURL = URLComponents(string: "http://beta.newsapi.org")
     static let apiToken = "53b8c0ba0ea24a199f790d660b73675f"
     
     //NewsAPI.org API Endpoints
@@ -23,15 +23,15 @@ enum NewsAPI {
             
         case .articles(let source):
             let lSource = source ?? "the-wall-street-journal"
-            NewsAPI.baseURL?.path = "/v1/\(NewsAPI.articles(source: nil).jsonKey)"
-            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "source", value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            NewsAPI.baseURL?.path = "/v2/top-headlines"
+            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
             
-        case .sources(let category):
-            let lCategory = category ?? ""
-            NewsAPI.baseURL?.path = "/v1/\(NewsAPI.sources(category: nil).jsonKey)"
-            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "category", value: lCategory), URLQueryItem(name: "language", value: "en")]
+        case .sources(let category, let language):
+            //let lCategory = category ?? ""
+            NewsAPI.baseURL?.path = "/v2/\(NewsAPI.sources(category: nil, language: nil).jsonKey)"
+            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "category", value: category), URLQueryItem(name: "language", value: language), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
         }
@@ -39,9 +39,7 @@ enum NewsAPI {
     
     var jsonKey: String {
         switch self {
-        case .articles:
-            return "articles"
-        case .sources:
+        case .articles, .sources:
             return "sources"
         }
     }
@@ -90,9 +88,9 @@ enum NewsAPI {
     }
     
     // Get News source from /sources endpoint of NewsAPI
-    static func getNewsSource(_ category: String?, _ completion: @escaping (ResultType<Sources>) -> Void) {
+    static func getNewsSource(_ category: String?, language lang: String?, _ completion: @escaping (ResultType<Sources>) -> Void) {
         
-        guard let sourceURL = NewsAPI.sources(category: category).url else { return }
+        guard let sourceURL = NewsAPI.sources(category: category, language: lang).url else { return }
         
         let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad)
         let session = URLSession.shared

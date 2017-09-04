@@ -47,6 +47,8 @@ class DailyFeedNewsController: UICollectionViewController {
     let transition = NewsDetailPopAnimator()
     
     var selectedCell = UICollectionViewCell()
+    
+    var isLanguageRightToLeft = Bool()
 
     // MARK: - IBOutlets
 
@@ -172,6 +174,7 @@ class DailyFeedNewsController: UICollectionViewController {
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
                 vc.receivedNewsSourceLogo = NewsAPI.fetchSourceNewsLogo(source: self.source)
+                vc.isLanguageRightToLeftDetailView = isLanguageRightToLeft
             }
         }
     }
@@ -180,6 +183,7 @@ class DailyFeedNewsController: UICollectionViewController {
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
             let status = Reach().connectionStatus()
+            isLanguageRightToLeft = sourceVC.selectedItem?.isoLanguageCode.direction == .rightToLeft
             switch status {
             case .unknown, .offline:
                 self.showErrorWithDelay("Your Internet Connection appears to be offline.")

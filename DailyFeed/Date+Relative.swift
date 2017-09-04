@@ -62,6 +62,15 @@ extension String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         let date = dateFormatter.date(from: self)
         return date
-
+    }
+    
+    var languageStringFromISOCode: String {
+        let locale = Locale.current
+        guard let languageString = locale.localizedString(forLanguageCode: self) else { return self }
+        return languageString
+    }
+    
+    var direction: Locale.LanguageDirection {
+        return NSLocale.characterDirection(forLanguage: self)
     }
 }

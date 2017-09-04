@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let _ = try! Realm()
         
         window?.tintColor = .black
+        application.extendStateRestoration()
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) {

@@ -20,6 +20,8 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     var articleStringURL: String?
     
     var receivedItemNumber: Int?
+    
+    var isLanguageRightToLeftDetailView: Bool = false
 
     // MARK: - IBOutlets
     @IBOutlet weak var newsImageView: TSImageView! {
@@ -34,6 +36,11 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         didSet {
             newsTitleLabel.text = receivedNewsItem?.title
             newsTitleLabel.alpha = 0.0
+            if isLanguageRightToLeftDetailView {
+                newsTitleLabel.textAlignment = .right
+            } else {
+                newsTitleLabel.textAlignment = .left
+            }
         }
     }
 
@@ -44,6 +51,11 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             contentTextView.alpha = 0.0
             contentTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
             contentTextView.sizeToFit()
+            if isLanguageRightToLeftDetailView {
+                contentTextView.textAlignment = .right
+            } else {
+                contentTextView.textAlignment = .left
+            }
         }
     }
 
@@ -51,6 +63,11 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         didSet {
             newsAuthorLabel.text = receivedNewsItem?.author
             newsAuthorLabel.alpha = 0.0
+            if isLanguageRightToLeftDetailView {
+                newsAuthorLabel.textAlignment = .right
+            } else {
+                newsAuthorLabel.textAlignment = .left
+            }
         }
     }
 

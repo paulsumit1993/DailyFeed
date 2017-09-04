@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -113,15 +114,24 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ecB-9e-tHU"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Sources" largeTitleDisplayMode="always" id="r66-GT-LNg">
-                        <barButtonItem key="rightBarButtonItem" image="filter" id="ez7-e4-Tv8">
-                            <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="filter" id="ez7-e4-Tv8">
+                                <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="language" id="B3l-X5-D5X">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="presentNewsLanguages:" destination="bjF-yu-jQX" id="gln-5c-VLW"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="categoryButton" destination="ez7-e4-Tv8" id="t0a-Rk-PxX"/>
+                        <outlet property="languageButton" destination="B3l-X5-D5X" id="Tas-li-Joo"/>
                         <outlet property="sourceTableView" destination="z6a-Xw-k4Z" id="oa8-zs-3hI"/>
                         <segue destination="JIT-8k-TPL" kind="unwind" identifier="sourceUnwindSegue" unwindAction="unwindToDailyNewsFeed:" id="NX9-nv-rBf"/>
                     </connections>
@@ -439,6 +449,7 @@
         <image name="back" width="36" height="36"/>
         <image name="bookmark" width="24" height="24"/>
         <image name="filter" width="24" height="24"/>
+        <image name="language" width="24" height="24"/>
         <image name="logo" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>

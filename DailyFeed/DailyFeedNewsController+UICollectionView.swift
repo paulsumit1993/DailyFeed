@@ -38,7 +38,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
 
         let gridCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemCell",
                                                           for: indexPath) as? DailyFeedItemCell
-        gridCell?.configure(with: newsItems[indexPath.row])
+        gridCell?.configure(with: newsItems[indexPath.row], ltr: isLanguageRightToLeft)
         return gridCell!
     }
     override func collectionView(_ collectionView: UICollectionView,

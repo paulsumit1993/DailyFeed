@@ -15,6 +15,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var categoryButton: UIBarButtonItem!
     
+    @IBOutlet weak var languageButton: UIBarButtonItem!
+    
     // MARK: - Variable declaration
     var sourceItems: [DailySourceModel] = [] {
         didSet {
@@ -32,8 +34,12 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     var selectedItem: DailySourceModel?
-
+    
     var categories: [String] = []
+    
+    var languages: [String] = []
+    
+    var areFiltersPopulated: Bool = false
 
     var resultsSearchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -57,7 +63,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         setupUI()
 
         //Populate TableView Data
-        loadSourceData(nil)
+        loadSourceData(nil, language: nil)
         //setup TableView
         setupTableView()
     }
@@ -128,15 +134,16 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
                                          style: .cancel,
                                          handler: nil)
         
+        categoryActivityVC.addAction(cancelButton)
+
         _ = categories.map {
             let categoryButton = UIAlertAction(title: $0, style: .default, handler: { action in
                 if let category = action.title {
-                    self.loadSourceData(category)
+                    self.loadSourceData(category, language: nil)
                 }
             })
             categoryActivityVC.addAction(categoryButton)
         }
-        categoryActivityVC.addAction(cancelButton)
         
         // Popover for iPad only
         
@@ -146,17 +153,50 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(categoryActivityVC, animated: true, completion: nil)
     }
 
+    // MARK: - Show news languages
+
+    @IBAction func presentNewsLanguages(_ sender: UIBarButtonItem) {
+        let languageActivityVC = UIAlertController(title: "Select a language",
+                                                   message: nil,
+                                                   preferredStyle: .actionSheet)
+        
+        let cancelButton = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+
+        languageActivityVC.addAction(cancelButton)
+
+        for lang in languages {
+            let languageButton = UIAlertAction(title: lang.languageStringFromISOCode, style: .default, handler: { _ in
+                self.loadSourceData(nil, language: lang)
+            })
+            languageActivityVC.addAction(languageButton)
+        }
+        
+        // Popover for iPad only
+        
+        let popOver = languageActivityVC.popoverPresentationController
+        popOver?.barButtonItem = languageButton
+        popOver?.sourceRect = view.bounds
+        self.present(languageActivityVC, animated: true, completion: nil)
+    }
+    
     // MARK: - Load data from network
-    func loadSourceData(_ category: String?) {
+    func loadSourceData(_ category: String?, language: String?) {
         setupSpinner(hidden: false)
         
-        NewsAPI.getNewsSource(category) { (results) in
+        NewsAPI.getNewsSource(category, language: language) { (results) in
             switch results {
             case .Success(let value):
                 self.setupSpinner(hidden: true)
                 self.sourceItems = value.sources
-                // The code below helps in persisting category items till the view controller is de-allocated
-                if category == nil { self.categories = Array(Set(value.sources.map { $0.category })) }
+                // The code below helps in persisting category and language items till the view controller is de-allocated
+                if !self.areFiltersPopulated {
+                    self.categories = Array(Set(value.sources.map { $0.category }))
+                    self.languages = Array(Set(value.sources.map { $0.isoLanguageCode }))
+                    self.areFiltersPopulated = true
+                }
+
             case .Failure(let error):
                 self.setupSpinner(hidden: true)
                 self.showError(error.localizedDescription) { _ in
@@ -198,7 +238,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             self.selectedItem = sourceItems[indexPath.row]
         }
-
         self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
     
