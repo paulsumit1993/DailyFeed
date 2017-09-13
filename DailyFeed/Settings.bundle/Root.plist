@@ -30,9 +30,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Clear Cache</string>
+			<string></string>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string></string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

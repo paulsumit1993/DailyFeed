@@ -5,41 +5,73 @@
 //  Created by Sumit Paul on 27/12/16.
 //
 
+import MobileCoreServices
+
+enum DailyFeedModelUTI {
+    static let kUUTTypeDailyFeedModel = "kUUTTypeDailyFeedModel"
+}
+
+enum DailyFeedModelError: Error {
+    case invalidTypeIdentifier
+    case invalidDailyFeedModel
+}
+
+struct Articles: Codable {
+    var articles: [DailyFeedModel]
+}
+
 //Data Model
-struct DailyFeedModel: Equatable {
+final class DailyFeedModel: NSObject, Serializable {
     
-    public let title: String
-    public let author: String
-    public let publishedAt: String
-    public let urlToImage: String
-    public let description: String
-    public let url: String
+    public var title: String = ""
+    public var author: String?
+    public var publishedAt: String?
+    public var urlToImage: String?
+    public var articleDescription: String?
+    public var url: String?
     
-    public init?(json: JSONDictionary) {
-        
-        guard let title = json["title"] as? String,
-            let author      = json["author"] as? String,
-            let publishedAt = json["publishedAt"] as? String,
-            let urlToImage  = json["urlToImage"] as? String,
-            let description = json["description"] as? String,
-            let url         = json["url"] as? String else { return nil }
-        
-        self.title       = title
-        self.author      = author
-        self.publishedAt = publishedAt
-        self.urlToImage  = urlToImage
-        self.description = description
-        self.url         = url
-    }
-    
-    // Equatable Conformance
-    
-    static func ==(lhs: DailyFeedModel, rhs: DailyFeedModel) -> Bool {
-        return lhs.title == rhs.title &&
-            lhs.author == rhs.author &&
-            lhs.publishedAt == rhs.publishedAt &&
-            lhs.urlToImage == rhs.urlToImage &&
-            lhs.description == rhs.description &&
-            lhs.url == rhs.url
+    private enum CodingKeys: String, CodingKey {
+        case articleDescription = "description"
+        case title, author, publishedAt, urlToImage, url
     }
 }
+
+// MARK :- NSProvider read/write method implementations
+
+extension DailyFeedModel: NSItemProviderWriting {
+    
+    static var writableTypeIdentifiersForItemProvider: [String] = [DailyFeedModelUTI.kUUTTypeDailyFeedModel, kUTTypeUTF8PlainText as String]
+    
+    func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
+        if typeIdentifier == DailyFeedModelUTI.kUUTTypeDailyFeedModel {
+            completionHandler(self.serialize(), nil)
+        } else if typeIdentifier == kUTTypeUTF8PlainText as String {
+            completionHandler(self.url?.data(using: .utf8), nil)
+        } else {
+            completionHandler(nil, DailyFeedModelError.invalidDailyFeedModel)
+        }
+        return nil
+    }
+}
+
+extension DailyFeedModel: NSItemProviderReading {
+    
+    static var readableTypeIdentifiersForItemProvider: [String] {
+        return [DailyFeedModelUTI.kUUTTypeDailyFeedModel]
+    }
+    
+    static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> DailyFeedModel {
+        if typeIdentifier == DailyFeedModelUTI.kUUTTypeDailyFeedModel {
+            let dfm = DailyFeedModel()
+            do {
+                let dailyFeedModel = try dfm.deserialize(data: data)
+                return dailyFeedModel
+            } catch {
+                throw DailyFeedModelError.invalidDailyFeedModel
+            }
+        } else {
+            throw DailyFeedModelError.invalidTypeIdentifier
+        }
+    }
+}
+

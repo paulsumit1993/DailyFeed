@@ -34,21 +34,21 @@ class TSSpinnerView: UIView {
         loadingView.clipsToBounds = true
         
         loadingView.layer.cornerRadius = loadingView.bounds.width / 2
-        bestView?.frame = CGRect(x: 0, y: 0, width: loadingView.frame.size.width, height: loadingView.frame.size.height)
-        bestView?.loopAnimation = true
-        bestView?.contentMode = .scaleAspectFill
-        loadingView.addSubview(bestView!)
+        bestView.frame = CGRect(x: 0, y: 0, width: loadingView.frame.size.width, height: loadingView.frame.size.height)
+        bestView.loopAnimation = true
+        bestView.contentMode = .scaleAspectFill
+        loadingView.addSubview(bestView)
         containerView.addSubview(loadingView)
         window?.addSubview(containerView)
     }
     
     func start() {
-        bestView?.play()
+        bestView.play()
         UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     func stop() {
-        bestView?.pause()
+        bestView.pause()
         self.containerView.removeFromSuperview()
         UIApplication.shared.endIgnoringInteractionEvents()
     }

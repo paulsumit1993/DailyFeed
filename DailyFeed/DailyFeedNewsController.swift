@@ -39,13 +39,16 @@ class DailyFeedNewsController: UICollectionViewController {
 
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
-        refresh.tintColor = .black
         return refresh
     }()
     
-    let animationView =  LOTAnimationView(name: "Logo")
-    
     var selectedIndexPath: IndexPath?
+    
+    let transition = NewsDetailPopAnimator()
+    
+    var selectedCell = UICollectionViewCell()
+    
+    var isLanguageRightToLeft = Bool()
 
     // MARK: - IBOutlets
 
@@ -59,10 +62,14 @@ class DailyFeedNewsController: UICollectionViewController {
         setupUI()
         //Populate CollectionView Data
         loadNewsData(source)
-        
         Reach().monitorReachabilityChanges()
     }
-
+    
+    let navBarSourceImage: TSImageView = {
+        let image = TSImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 36))
+        return image
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -76,24 +83,16 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup navigationBar
     func setupNavigationBar() {
-        animationView?.contentMode = .scaleAspectFill
-        animationView?.isUserInteractionEnabled  = false
-        animationView?.loopAnimation = true
-        animationView?.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        let sourceMenuButton = UIButton(type: .custom)
-        sourceMenuButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        sourceMenuButton.addSubview(animationView!)
-        animationView?.play()
-        sourceMenuButton.addTarget(self, action: #selector(sourceMenuButtonDidTap), for: .touchUpInside)
-        navigationItem.titleView = sourceMenuButton
+        let sourceMenuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "sources"), style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
+        navigationItem.rightBarButtonItem = sourceMenuButton
+        navBarSourceImage.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: self.source), contentMode: .scaleAspectFit)
+        navigationItem.titleView = navBarSourceImage
     }
 
     // MARK: - Setup CollectionView
     func setupCollectionView() {
         collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil),
                                  forCellWithReuseIdentifier: "DailyFeedItemCell")
-        collectionView?.register(UINib(nibName: "DailyFeedItemListCell", bundle: nil),
-                                 forCellWithReuseIdentifier: "DailyFeedItemListCell")
         collectionView?.collectionViewLayout = UIDevice.current.userInterfaceIdiom == .phone ? DailySourceItemLayout() : DailySourceItemiPadLayout()
         collectionView?.addSubview(refreshControl)
         refreshControl.addTarget(self,
@@ -101,6 +100,10 @@ class DailyFeedNewsController: UICollectionViewController {
                                  for: UIControlEvents.valueChanged)
         collectionView?.emptyDataSetDelegate = self
         collectionView?.emptyDataSetSource = self
+        if #available(iOS 11.0, *) {
+            collectionView?.dragDelegate = self
+            collectionView?.dragInteractionEnabled = true
+        }
     }
 
     // MARK: - Setup Spinner
@@ -109,7 +112,7 @@ class DailyFeedNewsController: UICollectionViewController {
     }
 
     // MARK: - refresh news Source data
-    func refreshData(_ sender: UIRefreshControl) {
+    @objc func refreshData(_ sender: UIRefreshControl) {
         loadNewsData(self.source)
     }
 
@@ -129,21 +132,23 @@ class DailyFeedNewsController: UICollectionViewController {
             }
             
             spinningActivityIndicator.start()
-            NewsAPI.getNewsItems(source) { (newsItem, error) in
-                guard error == nil, let news = newsItem else {
+           NewsAPI.getNewsItems(source, completion: { results in
+                switch results {
+                case .Success(let value):
+                    self.newsItems = value.articles
+                    DispatchQueue.main.async {
+                    self.navBarSourceImage.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: self.source), contentMode: .scaleAspectFit)
+                    self.refreshControl.endRefreshing()
+                    self.spinningActivityIndicator.stop()
+                   }
+                case .Failure(let error):
                     DispatchQueue.main.async {
                         self.spinningActivityIndicator.stop()
                         self.refreshControl.endRefreshing()
-                        self.showError(error?.localizedDescription ?? "")
+                        self.showError(error.localizedDescription)
                     }
-                    return
                 }
-                self.newsItems = news
-                DispatchQueue.main.async {
-                    self.refreshControl.endRefreshing()
-                    self.spinningActivityIndicator.stop()
-                }
-            }
+            })
         }
     }
     
@@ -152,41 +157,9 @@ class DailyFeedNewsController: UICollectionViewController {
         collectionView?.dataSource = nil
     }
 
-    // MARK: - Toggle Layout
-    @IBAction func toggleArticlesLayout(_ sender: UIButton) {
-
-        switch collectionView?.collectionViewLayout {
-            
-        case is DailySourceItemListLayout:
-            toggleButton.setImage(UIImage(named: "list"), for: .normal)
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                switchCollectionViewLayout(for: DailySourceItemiPadLayout())
-            } else {
-                switchCollectionViewLayout(for: DailySourceItemLayout())
-            }
-
-        default:
-            toggleButton.setImage(UIImage(named: "grid"), for: .normal)
-            switchCollectionViewLayout(for: DailySourceItemListLayout())
-        }
-    }
-
-    // Helper method for switching layouts and changing collectionview background color
-    func switchCollectionViewLayout(for layout: UICollectionViewLayout) {
-        collectionView?.collectionViewLayout.invalidateLayout()
-        UIView.animate(withDuration: 0.03) {
-            self.collectionView?.setCollectionViewLayout(layout, animated: false)
-            self.collectionView?.reloadData()
-        }
-    }
-
     // MARK: - sourceMenuButton Action method
 
-    func sourceMenuButtonDidTap() {
-        if animationView?.isAnimationPlaying == .some(true) {
-            animationView?.animationProgress = 0.4
-            animationView?.pause()
-        }
+    @objc func sourceMenuButtonDidTap() {
         self.performSegue(withIdentifier: "newsSourceSegue", sender: self)
     }
 
@@ -197,9 +170,11 @@ class DailyFeedNewsController: UICollectionViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
             
+                vc.transitioningDelegate = self
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
                 vc.receivedNewsSourceLogo = NewsAPI.fetchSourceNewsLogo(source: self.source)
+                vc.isLanguageRightToLeftDetailView = isLanguageRightToLeft
             }
         }
     }
@@ -208,6 +183,7 @@ class DailyFeedNewsController: UICollectionViewController {
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
             let status = Reach().connectionStatus()
+            isLanguageRightToLeft = sourceVC.selectedItem?.isoLanguageCode.direction == .rightToLeft
             switch status {
             case .unknown, .offline:
                 self.showErrorWithDelay("Your Internet Connection appears to be offline.")
@@ -227,13 +203,13 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "No Content 😥"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "Connect to Internet or try another source."
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -243,6 +219,22 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
+    }
+}
+
+extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
+    
+    // MARK: - UIViewController Transitioning Delegate Methods
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.originFrame = selectedCell.superview!.convert(selectedCell.frame, to: nil)
+        transition.presenting = true
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }
 

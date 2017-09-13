@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 import RealmSwift
 
-class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate {
+class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate, UIViewControllerTransitioningDelegate {
 
     // MARK: - Variable declaration
     
@@ -20,6 +20,8 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     var articleStringURL: String?
     
     var receivedItemNumber: Int?
+    
+    var isLanguageRightToLeftDetailView: Bool = false
 
     // MARK: - IBOutlets
     @IBOutlet weak var newsImageView: TSImageView! {
@@ -33,6 +35,12 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var newsTitleLabel: UILabel! {
         didSet {
             newsTitleLabel.text = receivedNewsItem?.title
+            newsTitleLabel.alpha = 0.0
+            if isLanguageRightToLeftDetailView {
+                newsTitleLabel.textAlignment = .right
+            } else {
+                newsTitleLabel.textAlignment = .left
+            }
         }
     }
 
@@ -40,14 +48,26 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         didSet {
             contentTextView.text = receivedNewsItem?.articleDescription
             contentTextView.textColor = .gray
+            contentTextView.alpha = 0.0
             contentTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
             contentTextView.sizeToFit()
+            if isLanguageRightToLeftDetailView {
+                contentTextView.textAlignment = .right
+            } else {
+                contentTextView.textAlignment = .left
+            }
         }
     }
 
     @IBOutlet weak var newsAuthorLabel: UILabel! {
         didSet {
             newsAuthorLabel.text = receivedNewsItem?.author
+            newsAuthorLabel.alpha = 0.0
+            if isLanguageRightToLeftDetailView {
+                newsAuthorLabel.textAlignment = .right
+            } else {
+                newsAuthorLabel.textAlignment = .left
+            }
         }
     }
 
@@ -74,6 +94,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.relativelyFormatted(short: false) else {
                 return swipeLeftButton.setTitle("Read More...", for: .normal)
             }
+            swipeLeftButton.layer.cornerRadius = 10.0
             swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
             switch Reach().connectionStatus() {
             case .unknown, .offline:
@@ -89,15 +110,16 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var newsSourceImageView: TSImageView! {
         didSet {
             guard let newsSourceLogo = receivedNewsSourceLogo else { return }
-            newsSourceImageView.downloadedFromLink(newsSourceLogo)
+            //newsSourceImageView.downloadedFromLink(newsSourceLogo)
 
         }
     }
     
-    @IBOutlet weak var newsItemNumberLabel: UILabel!{
+    @IBOutlet weak var newsItemNumberLabel: UILabel! {
         didSet {
             guard let newsItemNumber = receivedItemNumber else { return }
             newsItemNumberLabel.text = String(newsItemNumber)
+            newsItemNumberLabel.alpha = 1.0
             newsItemNumberLabel.clipsToBounds = true
             newsItemNumberLabel.layer.cornerRadius = 5.0
         }
@@ -107,10 +129,8 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     // MARK: - View Controller Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //Hide Nav bar
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        navigationController?.setNavigationBarHidden(true, animated: true)
         // Setting the newsImageView gradient
         newsImageView.addGradient([UIColor(white: 0, alpha: 0.6).cgColor, UIColor.clear.cgColor,
                                    UIColor(white: 0, alpha: 0.6).cgColor],
@@ -118,24 +138,53 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
         //Setting articleStringURL for state restoration
         articleStringURL = receivedNewsItem?.url
+        
+        if #available(iOS 11.0, *) {
+            let dragInteraction = UIDragInteraction(delegate: self)
+            dragInteraction.isEnabled = true
+            newsImageView.addInteraction(dragInteraction)
+        }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        newsTitleLabel.center.y += 20
+        newsAuthorLabel.center.y += 20
+        contentTextView.center.y += 20
 
+        UIView.animate(withDuration: 0.07, delay: 0.0, options: .curveEaseIn, animations: {
+            self.newsTitleLabel.alpha = 1.0
+            self.newsTitleLabel.center.y -= 20
+            self.newsAuthorLabel.alpha = 1.0
+            self.newsAuthorLabel.center.y -= 20
+            self.newsItemNumberLabel.alpha = 1.0
+        })
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.contentTextView.center.y -= 20
+            self.contentTextView.alpha = 1.0
+        })
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         newsImageView.updateNewsImageView(25.0)
     }
     
     // MARK: - Status Bar Color
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
     // MARK: - Back Button Dismiss action
     @IBAction func dismissButtonTapped() {
-        self.dismiss(animated: false, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
-
-
+    
+    // MARK: - Back dismiss swipe
+    @IBAction func swipeToDismiss(_ sender: UISwipeGestureRecognizer) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - share article
     @IBAction func shareArticle(_ sender: UIButton) {
 
@@ -213,4 +262,16 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         svc.delegate = self
         self.present(svc, animated: true, completion: nil)
     }
+}
+
+@available(iOS 11.0, *)
+extension NewsDetailViewController: UIDragInteractionDelegate {
+    
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        guard let image = newsImageView.image else { return [] }
+        let provider = NSItemProvider(object: image)
+        let item = UIDragItem(itemProvider: provider)
+        return [item]
+    }
+    
 }

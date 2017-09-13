@@ -2,8 +2,7 @@
 //  BookmarkActivity.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 10/02/17.
-//  Copyright © 2017 trianz. All rights reserved.
+//  Created by Sumit Paul on 10/02/17.
 //
 
 import UIKit
@@ -35,7 +34,7 @@ class BookmarkActivity: UIActivity {
             if let activity = activity as? DailyFeedRealmModel {
                 let realm = try! Realm()
                 try! realm.write {
-                    realm.add(activity)
+                    realm.add(activity, update: true)
                     bookMarkSuccessful?()
                 }
                 break

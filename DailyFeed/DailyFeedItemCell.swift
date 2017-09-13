@@ -12,20 +12,11 @@ class DailyFeedItemCell: UICollectionViewCell {
     @IBOutlet weak var newsItemImageView: TSImageView!
     @IBOutlet weak var newsItemTitleLabel: UILabel!
     @IBOutlet weak var newsItemSourceLabel: UILabel!
-
+    @IBOutlet weak var newsItemPublishedAtLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.layer.cornerRadius = 10.0
-        self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.borderColor = UIColor.clear.cgColor
-        self.contentView.layer.masksToBounds = true;
-        
-        self.layer.shadowColor = UIColor.lightGray.cgColor
-        self.layer.shadowOffset = CGSize(width:5.0,height: 15.0)
-        self.layer.shadowRadius = 20.0
-        self.layer.shadowOpacity = 1.0
-        self.layer.masksToBounds = false;
-        //self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.contentView.layer.cornerRadius).cgPath
+        setupCell()
         
     }
 
@@ -35,10 +26,25 @@ class DailyFeedItemCell: UICollectionViewCell {
         addGradient()
     }
     
-    func configure(with newsitems: DailyFeedModel) {
+    func setupCell() {
+        self.contentView.layer.cornerRadius = 10.0
+        self.contentView.layer.masksToBounds = true
+    }
+    
+    func configure(with newsitems: DailyFeedModel, ltr: Bool) {
         self.newsItemTitleLabel.text = newsitems.title
         self.newsItemSourceLabel.text = newsitems.author
-        self.newsItemImageView.downloadedFromLink(newsitems.urlToImage)
+        self.newsItemPublishedAtLabel.text = newsitems.publishedAt?.dateFromTimestamp?.relativelyFormatted(short: true)
+        if let imageURL = newsitems.urlToImage {
+            self.newsItemImageView.downloadedFromLink(imageURL)
+        }
+        if ltr {
+            self.newsItemTitleLabel.textAlignment = .right
+            self.newsItemSourceLabel.textAlignment = .right
+        } else {
+            self.newsItemTitleLabel.textAlignment = .left
+            self.newsItemSourceLabel.textAlignment = .left
+        }
     }
 
 

@@ -2,8 +2,7 @@
 //  BookmarkViewController.swift
 //  DailyFeed
 //
-//  Created by TrianzDev on 09/02/17.
-//  Copyright © 2017 trianz. All rights reserved.
+//  Created by Sumit Paul on 09/02/17.
 //
 
 import UIKit
@@ -12,37 +11,27 @@ import CoreSpotlight
 import MobileCoreServices
 import DZNEmptyDataSet
 
-class BookmarkViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+class BookmarkViewController: UIViewController {
+    
     @IBOutlet weak var bookmarkCollectionView: UICollectionView!
-
+    
     var newsItems: Results<DailyFeedRealmModel>!
     
     var notificationToken: NotificationToken? = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bookmarkCollectionView?.register(UINib(nibName: "BookmarkItemsCell", bundle: nil),
                                          forCellWithReuseIdentifier: "BookmarkItemsCell")
         bookmarkCollectionView.emptyDataSetDelegate = self
         bookmarkCollectionView.emptyDataSetSource = self
-        
+        if #available(iOS 11.0, *) {
+            bookmarkCollectionView?.dropDelegate = self
+        }
         observeDatabase()
     }
-
+    
     func observeDatabase() {
-        //Realm Shared DB Setup
-        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.trianz.DailyFeed.today")
-        let realmURL = container?.appendingPathComponent("db.realm")
-        var config = Realm.Configuration()
-        config.fileURL = realmURL
-        config.schemaVersion = 3
-        config.migrationBlock = { migration, oldSchemaVersion in
-            if (oldSchemaVersion < 3) {
-                
-            }
-        }
-        Realm.Configuration.defaultConfiguration = config
         
         let realm = try! Realm()
         newsItems = realm.objects(DailyFeedRealmModel.self)
@@ -56,14 +45,9 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
             case .update( _, let deletions, let insertions, _):
                 collectionview.performBatchUpdates({
                     collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
-                    _ = deletions.map {
-                        self?.deindex(item: $0)
-                    }
+                    
                     collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
-                    _ = insertions.map {
-                        self?.index(item: $0)
-                    }
-
+                    
                 }, completion: nil)
                 
                 if self?.newsItems.count == 0 || self?.newsItems.count == 1 { collectionview.reloadEmptyDataSet() }
@@ -75,14 +59,13 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bookmarkSourceSegue" {
             if let vc = segue.destination as? NewsDetailViewController {
-            guard let cell = sender as? UICollectionViewCell else { return }
-            guard let indexpath = self.bookmarkCollectionView.indexPath(for: cell) else { return }
-            vc.receivedItemNumber = indexpath.row + 1
-            vc.receivedNewsItem = newsItems[indexpath.row]
+                guard let cell = sender as? UICollectionViewCell else { return }
+                guard let indexpath = self.bookmarkCollectionView.indexPath(for: cell) else { return }
+                vc.receivedItemNumber = indexpath.row + 1
+                vc.receivedNewsItem = newsItems[indexpath.row]
             }
         }
     }
@@ -94,8 +77,11 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    // MARK: - CollectionView Delegate Methods
+}
+
+// MARK: - CollectionView Delegate Methods
+
+extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return newsItems.count
@@ -106,8 +92,8 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
         newsCell?.configure(with: newsItems[indexPath.row])
         newsCell?.cellTapped = { cell in
             if let cellToDelete = self.bookmarkCollectionView.indexPath(for: cell)?.row {
-            let item = self.newsItems[cellToDelete]
-            let realm = try! Realm()
+                let item = self.newsItems[cellToDelete]
+                let realm = try! Realm()
                 try! realm.write {
                     realm.delete(item)
                 }
@@ -121,57 +107,24 @@ class BookmarkViewController: UIViewController, UICollectionViewDelegate, UIColl
         return CGSize(width: bookmarkCollectionView.bounds.width, height: bookmarkCollectionView.bounds.height / 5)
     }
     
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         self.performSegue(withIdentifier: "bookmarkSourceSegue", sender: cell)
     }
-    
-    
-    // MARK: - CoreSpotlight Indexing and deindexing methods
-    
-    func index(item: Int) {
-        let project = newsItems[item]
-        
-        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
-        attributeSet.title = project.title
-        attributeSet.contentDescription = project.author
-        
-        let item = CSSearchableItem(uniqueIdentifier: "\(item)", domainIdentifier: "com.trianz", attributeSet: attributeSet)
-        item.expirationDate = Date.distantFuture
-        CSSearchableIndex.default().indexSearchableItems([item]) { error in
-            if let error = error {
-                print("Indexing error: \(error.localizedDescription)")
-            } else {
-                print("Search item successfully indexed!")
-            }
-        }
-    }
-    
-    func deindex(item: Int) {
-        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: ["\(item)"]) { error in
-            if let error = error {
-                print("Deindexing error: \(error.localizedDescription)")
-            } else {
-                print("Search item successfully removed!")
-            }
-        }
-    }
-    
 }
 
+// MARK: - DZNEmptyDataSet Delegate Methods
 extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
-    // MARK: - DZNEmptyDataSet Delegate Methods
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "No Articles Bookmarked"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let str = "Your Bookmarks will appear here."
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -187,3 +140,31 @@ extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
         return true
     }
 }
+
+// MARK: - Drop Delegate Methods
+
+@available(iOS 11.0, *)
+extension BookmarkViewController: UICollectionViewDropDelegate {
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        for coordinatorItem in coordinator.items {
+            let itemProvider = coordinatorItem.dragItem.itemProvider
+            if itemProvider.canLoadObject(ofClass: DailyFeedModel.self) {
+                itemProvider.loadObject(ofClass: DailyFeedModel.self) { (object, error) in
+                    DispatchQueue.main.async {
+                        let realm = try! Realm()
+                        if let dailyfeedmodel = object as? DailyFeedModel {
+                            let dailyfeedRealmModel = DailyFeedRealmModel.toDailyFeedRealmModel(from: dailyfeedmodel)
+                            try! realm.write {
+                                realm.add(dailyfeedRealmModel, update: true)
+                            }
+                        } else {
+                            //self.displayError(error)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

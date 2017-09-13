@@ -24,32 +24,32 @@ extension Date {
                                                                      to: now)
 
         if let years = components.year, years > 0 {
-            return short ? " • \(years)y" : "\(years) year\(years == 1 ? "" : "s") ago"
+            return short ? "\(years)y" : "\(years) year\(years == 1 ? "" : "s") ago"
         }
 
         if let months = components.month, months > 0 {
-            return short ? " • \(months)mo" : "\(months) month\(months == 1 ? "" : "s") ago"
+            return short ? "\(months)mo" : "\(months) month\(months == 1 ? "" : "s") ago"
         }
 
         if let weeks = components.weekOfYear, weeks > 0 {
-            return short ? " • \(weeks)w" : "\(weeks) week\(weeks == 1 ? "" : "s") ago"
+            return short ? "\(weeks)w" : "\(weeks) week\(weeks == 1 ? "" : "s") ago"
         }
         if let days = components.day, days > 0 {
-            guard days > 1 else { return short ? " • y'day" : "yesterday" }
+            guard days > 1 else { return short ? "  y'day" : "yesterday" }
 
-            return short ? " • \(days)d" : "\(days) day\(days == 1 ? "" : "s") ago"
+            return short ? "\(days)d" : "\(days) day\(days == 1 ? "" : "s") ago"
         }
 
         if let hours = components.hour, hours > 0 {
-            return short ? " • \(hours)h" : "\(hours) hour\(hours == 1 ? "" : "s") ago"
+            return short ? "\(hours)h" : "\(hours) hour\(hours == 1 ? "" : "s") ago"
         }
 
         if let minutes = components.minute, minutes > 0 {
-            return short ? " • \(minutes) min" : "\(minutes) minute\(minutes == 1 ? "" : "s") ago"
+            return short ? "\(minutes) min" : "\(minutes) minute\(minutes == 1 ? "" : "s") ago"
         }
 
         if let seconds = components.second, seconds > 30 {
-            return short ? " • \(seconds)s" : "\(seconds) second\(seconds == 1 ? "" : "s") ago"
+            return short ? "\(seconds)s" : "\(seconds) second\(seconds == 1 ? "" : "s") ago"
         }
 
         return "Just now"
@@ -62,6 +62,15 @@ extension String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         let date = dateFormatter.date(from: self)
         return date
-
+    }
+    
+    var languageStringFromISOCode: String {
+        let locale = Locale.current
+        guard let languageString = locale.localizedString(forLanguageCode: self) else { return self }
+        return languageString
+    }
+    
+    var direction: Locale.LanguageDirection {
+        return NSLocale.characterDirection(forLanguage: self)
     }
 }
