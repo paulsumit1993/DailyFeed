@@ -94,6 +94,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
             guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.relativelyFormatted(short: false) else {
                 return swipeLeftButton.setTitle("Read More...", for: .normal)
             }
+            swipeLeftButton.layer.cornerRadius = 10.0
             swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
             switch Reach().connectionStatus() {
             case .unknown, .offline:
@@ -109,7 +110,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var newsSourceImageView: TSImageView! {
         didSet {
             guard let newsSourceLogo = receivedNewsSourceLogo else { return }
-            newsSourceImageView.downloadedFromLink(newsSourceLogo)
+            //newsSourceImageView.downloadedFromLink(newsSourceLogo)
 
         }
     }
@@ -170,8 +171,8 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     }
     
     // MARK: - Status Bar Color
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
     // MARK: - Back Button Dismiss action
