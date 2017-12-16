@@ -21,6 +21,8 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - <kbd>CTRL</kbd> + <kbd>R</kbd>.
 
 # Screenshots
+<img src="/assets/iphonex_dailyfeed.jpg">
+
 <img src="/assets/iphone_dailyfeed.jpg">
 
 <img src="/assets/ipad_dailyfeed.jpg">
