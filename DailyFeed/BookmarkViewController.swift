@@ -36,7 +36,7 @@ class BookmarkViewController: UIViewController {
         let realm = try! Realm()
         newsItems = realm.objects(DailyFeedRealmModel.self)
         
-        notificationToken = newsItems.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        notificationToken = newsItems.observe { [weak self] (changes: RealmCollectionChange) in
             guard let collectionview = self?.bookmarkCollectionView else { return }
             switch changes {
             case .initial:
@@ -71,7 +71,7 @@ class BookmarkViewController: UIViewController {
     }
     
     deinit {
-        notificationToken?.stop()
+        notificationToken?.invalidate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

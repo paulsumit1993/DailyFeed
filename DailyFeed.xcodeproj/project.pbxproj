@@ -449,7 +449,7 @@
 				TargetAttributes = {
 					06D04C1A1E1248DA0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = DPJNX69R5W;
+						DevelopmentTeam = NHZDL4B86K;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -810,7 +810,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DPJNX69R5W;
+				DEVELOPMENT_TEAM = NHZDL4B86K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -833,7 +833,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DPJNX69R5W;
+				DEVELOPMENT_TEAM = NHZDL4B86K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
