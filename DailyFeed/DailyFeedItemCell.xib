@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,6 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="176" height="159"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
+                    <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dj7-EX-KO8">
+                        <rect key="frame" x="0.0" y="0.0" width="176" height="159"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cU-x5-Vmt">
                         <rect key="frame" x="10" y="93" width="156" height="26.5"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
@@ -54,13 +58,17 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Dj7-EX-KO8" secondAttribute="bottom" id="068-Rk-kNu"/>
                 <constraint firstAttribute="bottom" secondItem="F0f-SR-SVQ" secondAttribute="bottom" id="2f6-Zd-Nb7"/>
+                <constraint firstItem="Dj7-EX-KO8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9VI-5R-sMV"/>
                 <constraint firstAttribute="trailing" secondItem="i8c-wf-69r" secondAttribute="trailing" constant="15" id="E5C-Hx-3P7"/>
                 <constraint firstItem="A3u-J2-aGH" firstAttribute="top" secondItem="8cU-x5-Vmt" secondAttribute="bottom" constant="10" id="GS5-BJ-V6Z"/>
                 <constraint firstAttribute="trailing" secondItem="A3u-J2-aGH" secondAttribute="trailing" constant="10" id="Gxj-O9-J75"/>
                 <constraint firstItem="F0f-SR-SVQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" multiplier="0.8" id="O1Q-T3-eQE"/>
+                <constraint firstAttribute="trailing" secondItem="Dj7-EX-KO8" secondAttribute="trailing" id="Q1p-q3-rZe"/>
                 <constraint firstItem="8cU-x5-Vmt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="RV7-yb-4Pq"/>
                 <constraint firstAttribute="bottom" secondItem="A3u-J2-aGH" secondAttribute="bottom" constant="10" id="Wrf-nW-FrC"/>
+                <constraint firstItem="Dj7-EX-KO8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cY3-w0-Wli"/>
                 <constraint firstItem="i8c-wf-69r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="g4d-D8-hhA"/>
                 <constraint firstAttribute="trailing" secondItem="8cU-x5-Vmt" secondAttribute="trailing" constant="10" id="iHF-zo-B2S"/>
                 <constraint firstAttribute="trailing" secondItem="F0f-SR-SVQ" secondAttribute="trailing" id="lXL-EN-Aog"/>

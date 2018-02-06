@@ -93,7 +93,6 @@ class DailyFeedNewsController: UICollectionViewController {
     func setupCollectionView() {
         collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil),
                                  forCellWithReuseIdentifier: "DailyFeedItemCell")
-        collectionView?.collectionViewLayout = UIDevice.current.userInterfaceIdiom == .phone ? DailySourceItemLayout() : DailySourceItemiPadLayout()
         collectionView?.refreshControl = refreshControl
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
@@ -197,6 +196,23 @@ class DailyFeedNewsController: UICollectionViewController {
     }
 }
 
+extension DailyFeedNewsController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        switch (traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass) {
+            
+        case (.regular, .regular), (.compact, .regular), (.compact, .compact):
+            collectionView?.collectionViewLayout.invalidateLayout()
+            collectionView?.collectionViewLayout = DailySourceItemiPadLayout()
+            
+        default:
+            collectionView?.collectionViewLayout.invalidateLayout()
+            collectionView?.collectionViewLayout = DailySourceItemLayout()
+            
+        }
+    }
+}
 
 extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     

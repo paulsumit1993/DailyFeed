@@ -19,12 +19,6 @@ class DailyFeedItemCell: UICollectionViewCell {
         setupCell()
         
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        addGradient()
-    }
     
     func setupCell() {
         self.contentView.layer.cornerRadius = 10.0
@@ -45,14 +39,5 @@ class DailyFeedItemCell: UICollectionViewCell {
             self.newsItemTitleLabel.textAlignment = .left
             self.newsItemSourceLabel.textAlignment = .left
         }
-    }
-
-
-    func addGradient() {
-        guard newsItemImageView.layer.sublayers?.count == nil else { return }
-
-        newsItemImageView.addGradient([UIColor(white: 0, alpha: 0.5).cgColor,
-                                       UIColor(white: 0, alpha: 0.5).cgColor],
-                                      locations: [0.0, 1.0])
     }
 }
