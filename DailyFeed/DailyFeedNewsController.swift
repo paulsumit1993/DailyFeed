@@ -172,6 +172,7 @@ class DailyFeedNewsController: UICollectionViewController {
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
             
                 vc.transitioningDelegate = self
+                vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
                 vc.receivedNewsSourceLogo = NewsAPI.getSourceNewsLogoUrl(source: self.source)
@@ -238,4 +239,5 @@ extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
         return transition
     }
 }
+
 

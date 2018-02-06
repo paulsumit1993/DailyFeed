@@ -21,8 +21,8 @@ final class NewsDetailPopAnimator: NSObject, UIViewControllerAnimatedTransitioni
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         let containerView = transitionContext.containerView
-        let fromView = transitionContext.view(forKey: .from)!
-        let toView = transitionContext.view(forKey: .to)!
+        let fromView = transitionContext.view(forKey: .from) ?? UIView()
+        let toView = transitionContext.view(forKey: .to) ?? UIView()
         let newsDetailView = presenting ? toView : fromView
 
         let initialFrame = presenting ? originFrame : newsDetailView.frame
@@ -33,7 +33,8 @@ final class NewsDetailPopAnimator: NSObject, UIViewControllerAnimatedTransitioni
         
         let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
         
-        let cornerRadius = presenting ? CGFloat(0.0) : CGFloat(20.0)
+        let presentingCornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? 10.0 : 0.0
+        let cornerRadius = presenting ? CGFloat(presentingCornerRadius) : CGFloat(20.0)
         
         let alpha = presenting ? CGFloat(1.0) : CGFloat(0.0)
         
