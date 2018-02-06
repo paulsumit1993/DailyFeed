@@ -29,7 +29,7 @@ class DailySourceItemiPadLayout: UICollectionViewFlowLayout {
     }
     
     func itemHeight() -> CGFloat {
-        return (collectionView!.bounds.width / 1.9)
+        return (collectionView!.bounds.width / 2.0)
     }
     
     func itemWidth() -> CGFloat {

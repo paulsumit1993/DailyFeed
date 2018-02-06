@@ -65,6 +65,11 @@ class DailyFeedNewsController: UICollectionViewController {
         Reach().monitorReachabilityChanges()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+    
     let navBarSourceImage: TSImageView = {
         let image = TSImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 36))
         return image

@@ -167,7 +167,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        newsImageView.updateNewsImageView(25.0)
+
     }
     
     // MARK: - Status Bar Color
