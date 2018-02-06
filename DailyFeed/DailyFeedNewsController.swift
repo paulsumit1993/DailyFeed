@@ -85,7 +85,7 @@ class DailyFeedNewsController: UICollectionViewController {
     func setupNavigationBar() {
         let sourceMenuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "sources"), style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
         navigationItem.rightBarButtonItem = sourceMenuButton
-        navBarSourceImage.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: self.source), contentMode: .scaleAspectFit)
+        navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
         navigationItem.titleView = navBarSourceImage
     }
 
@@ -94,7 +94,7 @@ class DailyFeedNewsController: UICollectionViewController {
         collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil),
                                  forCellWithReuseIdentifier: "DailyFeedItemCell")
         collectionView?.collectionViewLayout = UIDevice.current.userInterfaceIdiom == .phone ? DailySourceItemLayout() : DailySourceItemiPadLayout()
-        collectionView?.addSubview(refreshControl)
+        collectionView?.refreshControl = refreshControl
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
                                  for: UIControlEvents.valueChanged)
@@ -137,7 +137,8 @@ class DailyFeedNewsController: UICollectionViewController {
                 case .Success(let value):
                     self.newsItems = value.articles
                     DispatchQueue.main.async {
-                    self.navBarSourceImage.downloadedFromLink(NewsAPI.fetchSourceNewsLogo(source: self.source), contentMode: .scaleAspectFit)
+                    self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
+                    self.navigationItem.title = self.source
                     self.refreshControl.endRefreshing()
                     self.spinningActivityIndicator.stop()
                    }
@@ -173,7 +174,7 @@ class DailyFeedNewsController: UICollectionViewController {
                 vc.transitioningDelegate = self
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
-                vc.receivedNewsSourceLogo = NewsAPI.fetchSourceNewsLogo(source: self.source)
+                vc.receivedNewsSourceLogo = NewsAPI.getSourceNewsLogoUrl(source: self.source)
                 vc.isLanguageRightToLeftDetailView = isLanguageRightToLeft
             }
         }

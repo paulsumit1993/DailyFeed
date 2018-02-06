@@ -46,7 +46,7 @@ enum NewsAPI {
     
     //Fetch NewsSourceLogo from Cloudinary as news source logo is deprecated by newsapi.org
     
-    static func fetchSourceNewsLogo(source: String) -> String {
+    static func getSourceNewsLogoUrl(source: String) -> String {
         let sourceLogoUrl = "https://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
         return sourceLogoUrl
     }
