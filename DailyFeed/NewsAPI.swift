@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 public typealias JSONDictionary = [String: AnyObject]
 
@@ -52,93 +53,66 @@ enum NewsAPI {
     }
     
     // Get News articles from /articles endpoint
-    static func getNewsItems(_ source: String, completion: @escaping (ResultType<Articles>) -> Void) {
+    
+    static func getNewsItems(_ source: String) -> Promise<Articles> {
         
-        guard let feedURL = NewsAPI.articles(source: source).url else { return }
-        let baseUrlRequest = URLRequest(url: feedURL)
-        let session = URLSession.shared
+        return Promise { seal in
+            guard let feedURL = NewsAPI.articles(source: source).url else { seal.reject(JSONDecodingError.unknownError); return }
+            let baseUrlRequest = URLRequest(url: feedURL)
+            let session = URLSession.shared
         
-        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
-            guard error == nil else {
-                completion(ResultType.Failure(e: error!))
-                return
-            }
-            
-            guard let data = data else {
-                completion(ResultType.Failure(e: error!))
-                return
-            }
-            
-            
-            do {
-                let jsonFromData =  try JSONDecoder().decode(Articles.self, from: data)
-                completion(ResultType.Success(jsonFromData))
-            } catch DecodingError.dataCorrupted(let context) {
-                completion(ResultType.Failure(e: DecodingError.dataCorrupted(context)))
-            } catch DecodingError.keyNotFound(let key, let context) {
-                completion(ResultType.Failure(e: DecodingError.keyNotFound(key, context)))
-            } catch DecodingError.typeMismatch(let type, let context) {
-                completion(ResultType.Failure(e: DecodingError.typeMismatch(type, context)))
-            } catch DecodingError.valueNotFound(let value, let context) {
-                completion(ResultType.Failure(e: DecodingError.valueNotFound(value, context)))
-            } catch {
-                completion(ResultType.Failure(e:JSONDecodingError.unknownError))
-            }
-        }).resume()
+            session.dataTask(with: baseUrlRequest) { (data, response, error) in
+                
+                guard error == nil else { seal.reject(error!); return }
+                
+                guard let data = data else { seal.reject(error!); return }
+                
+                do {
+                    let jsonFromData =  try JSONDecoder().decode(Articles.self, from: data)
+                    seal.fulfill(jsonFromData)
+                } catch DecodingError.dataCorrupted(let context) {
+                    seal.reject(DecodingError.dataCorrupted(context))
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    seal.reject(DecodingError.keyNotFound(key, context))
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    seal.reject(DecodingError.typeMismatch(type, context))
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    seal.reject(DecodingError.valueNotFound(value, context))
+                } catch {
+                    seal.reject(JSONDecodingError.unknownError)
+                }
+            }.resume()
+        }
     }
     
     // Get News source from /sources endpoint of NewsAPI
-    static func getNewsSource(_ category: String?, language lang: String?, _ completion: @escaping (ResultType<Sources>) -> Void) {
-        
-        guard let sourceURL = NewsAPI.sources(category: category, language: lang).url else { return }
-        
-        let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad)
-        let session = URLSession.shared
-        
-        session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
-            guard error == nil else {
-                completion(ResultType.Failure(e: error!))
-                return
-            }
+    static func getNewsSource(_ category: String?, language lang: String?) -> Promise<Sources> {
+        return Promise { seal in
+            guard let sourceURL = NewsAPI.sources(category: category, language: lang).url else { seal.reject(JSONDecodingError.unknownError); return }
             
-            guard let data = data else {
-                completion(ResultType.Failure(e: error!))
-                return
-            }
+            let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad)
+            let session = URLSession.shared
             
-            do {
-                let jsonFromData =  try JSONDecoder().decode(Sources.self, from: data)
-                completion(ResultType.Success(jsonFromData))
-            } catch DecodingError.dataCorrupted(let context) {
-                completion(ResultType.Failure(e: DecodingError.dataCorrupted(context)))
-            } catch DecodingError.keyNotFound(let key, let context) {
-                completion(ResultType.Failure(e: DecodingError.keyNotFound(key, context)))
-            } catch DecodingError.typeMismatch(let type, let context) {
-                completion(ResultType.Failure(e: DecodingError.typeMismatch(type, context)))
-            } catch DecodingError.valueNotFound(let value, let context) {
-                completion(ResultType.Failure(e: DecodingError.valueNotFound(value, context)))
-            } catch {
-                completion(ResultType.Failure(e:JSONDecodingError.unknownError))
-            }
-            
-            
-        }).resume()
+            session.dataTask(with: baseUrlRequest, completionHandler: { (data, response, error) in
+                guard error == nil else { seal.reject(error!); return }
+                
+                guard let data = data else { seal.reject(error!); return }
+                
+                do {
+                    let jsonFromData =  try JSONDecoder().decode(Sources.self, from: data)
+                    seal.fulfill(jsonFromData)
+                } catch DecodingError.dataCorrupted(let context) {
+                    seal.reject(DecodingError.dataCorrupted(context))
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    seal.reject(DecodingError.keyNotFound(key, context))
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    seal.reject(DecodingError.typeMismatch(type, context))
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    seal.reject(DecodingError.valueNotFound(value, context))
+                } catch {
+                    seal.reject(JSONDecodingError.unknownError)
+                }
+            }).resume()
+        }
     }
-    
-//    static func decodeJSON(from data: Data, to type: Codable, completion: Completion) {
-//        do {
-//            let jsonFromData =  try JSONDecoder().decode(Sources.self, from: data)
-//            completion(ResultType.Success(jsonFromData))
-//        } catch DecodingError.dataCorrupted(let context) {
-//            completion(ResultType.Failure(e: DecodingError.dataCorrupted(context)))
-//        } catch DecodingError.keyNotFound(let key, let context) {
-//            completion(ResultType.Failure(e: DecodingError.keyNotFound(key, context)))
-//        } catch DecodingError.typeMismatch(let type, let context) {
-//            completion(ResultType.Failure(e: DecodingError.typeMismatch(type, context)))
-//        } catch DecodingError.valueNotFound(let value, let context) {
-//            completion(ResultType.Failure(e: DecodingError.valueNotFound(value, context)))
-//        } catch {
-//            completion(ResultType.Failure(e:JSONDecodingError.unknownError))
-//        }
-//    }
 }

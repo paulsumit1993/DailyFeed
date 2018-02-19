@@ -7,6 +7,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import PromiseKit
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
@@ -90,7 +91,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         resultsSearchController.searchResultsUpdater = self
         if #available(iOS 11.0, *) {
             navigationItem.searchController = resultsSearchController
-            navigationItem.hidesSearchBarWhenScrolling = false
+            navigationItem.hidesSearchBarWhenScrolling = true
         } else {
             navigationItem.titleView = resultsSearchController.searchBar
         }
@@ -184,24 +185,21 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Load data from network
     func loadSourceData(_ category: String?, language: String?) {
         setupSpinner(hidden: false)
-        
-        NewsAPI.getNewsSource(category, language: language) { (results) in
-            switch results {
-            case .Success(let value):
-                self.setupSpinner(hidden: true)
-                self.sourceItems = value.sources
-                // The code below helps in persisting category and language items till the view controller is de-allocated
-                if !self.areFiltersPopulated {
-                    self.categories = Array(Set(value.sources.map { $0.category }))
-                    self.languages = Array(Set(value.sources.map { $0.isoLanguageCode }))
-                    self.areFiltersPopulated = true
-                }
-
-            case .Failure(let error):
-                self.setupSpinner(hidden: true)
-                self.showError(error.localizedDescription) { _ in
-                    self.dismiss(animated: true, completion: nil)
-                }
+        firstly {
+            NewsAPI.getNewsSource(category, language: language)
+        }.done { result in
+            self.sourceItems = result.sources
+            // The code below helps in persisting category and language items till the view controller is de-allocated
+            if !self.areFiltersPopulated {
+                self.categories = Array(Set(result.sources.map { $0.category }))
+                self.languages = Array(Set(result.sources.map { $0.isoLanguageCode }))
+                self.areFiltersPopulated = true
+            }
+        }.ensure {
+            self.setupSpinner(hidden: true)
+        }.catch { err in
+            self.showError(err.localizedDescription) { _ in
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 import DZNEmptyDataSet
+import PromiseKit
 
 class DailyFeedNewsController: UICollectionViewController {
 
@@ -136,24 +137,18 @@ class DailyFeedNewsController: UICollectionViewController {
             }
             
             spinningActivityIndicator.start()
-           NewsAPI.getNewsItems(source, completion: { results in
-                switch results {
-                case .Success(let value):
-                    self.newsItems = value.articles
-                    DispatchQueue.main.async {
-                    self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
-                    self.navigationItem.title = self.source
-                    self.refreshControl.endRefreshing()
-                    self.spinningActivityIndicator.stop()
-                   }
-                case .Failure(let error):
-                    DispatchQueue.main.async {
-                        self.spinningActivityIndicator.stop()
-                        self.refreshControl.endRefreshing()
-                        self.showError(error.localizedDescription)
-                    }
-                }
-            })
+            
+            firstly {
+               NewsAPI.getNewsItems(source)
+            }.done { result in
+                self.newsItems = result.articles
+                self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
+            }.ensure(on: .main) {
+                self.spinningActivityIndicator.stop()
+                self.refreshControl.endRefreshing()
+                }.catch(on: .main) { err in
+                self.showError(err.localizedDescription)
+            }
         }
     }
     
