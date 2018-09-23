@@ -16,8 +16,9 @@ class MySafariViewController: SFSafariViewController {
             self.preferredControlTintColor = .black
         }
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
     }
 }
