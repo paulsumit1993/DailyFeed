@@ -1,20 +1,20 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
   - lottie-ios (2.5.0)
-  - PromiseKit (6.0.3):
-    - PromiseKit/CorePromise (= 6.0.3)
-    - PromiseKit/Foundation (= 6.0.3)
-    - PromiseKit/UIKit (= 6.0.3)
-  - PromiseKit/CorePromise (6.0.3)
-  - PromiseKit/Foundation (6.0.3):
+  - PromiseKit (6.3.4):
+    - PromiseKit/CorePromise (= 6.3.4)
+    - PromiseKit/Foundation (= 6.3.4)
+    - PromiseKit/UIKit (= 6.3.4)
+  - PromiseKit/CorePromise (6.3.4)
+  - PromiseKit/Foundation (6.3.4):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.0.3):
+  - PromiseKit/UIKit (6.3.4):
     - PromiseKit/CorePromise
-  - Realm (3.1.1):
-    - Realm/Headers (= 3.1.1)
-  - Realm/Headers (3.1.1)
-  - RealmSwift (3.1.1):
-    - Realm (= 3.1.1)
+  - Realm (3.7.4):
+    - Realm/Headers (= 3.7.4)
+  - Realm/Headers (3.7.4)
+  - RealmSwift (3.7.4):
+    - Realm (= 3.7.4)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
@@ -22,13 +22,21 @@ DEPENDENCIES:
   - PromiseKit
   - RealmSwift
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DZNEmptyDataSet
+    - lottie-ios
+    - PromiseKit
+    - Realm
+    - RealmSwift
+
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
-  PromiseKit: bd8438964c03690e4d5bfde3e7cf9bebc5dc2599
-  Realm: 42d1c38a5b1bbcc828b48a7ce702cb86fc68adf4
-  RealmSwift: d31937ca6a6ee54acde64ec839523c0a3c04924b
+  PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
+  Realm: a469bb59e33f9926102ccaea4349822c53b9117e
+  RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
 
 PODFILE CHECKSUM: 41befcd2cad2aded643e50e60ca8acea64d9a91e
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.5.3
