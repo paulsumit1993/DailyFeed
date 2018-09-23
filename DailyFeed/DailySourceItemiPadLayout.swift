@@ -28,20 +28,20 @@ class DailySourceItemiPadLayout: UICollectionViewFlowLayout {
         sectionInset = UIEdgeInsets(top: 20, left: 25, bottom: 0, right: 25)
     }
     
-    func itemHeight() -> CGFloat {
+    var itemHeight: CGFloat {
         return (collectionView!.bounds.width / 2.0)
     }
     
-    func itemWidth() -> CGFloat {
+    var itemWidth: CGFloat {
         return (collectionView!.bounds.width / 2) - 40
     }
     
     override var itemSize: CGSize {
         set {
-            self.itemSize = CGSize(width: itemWidth(), height: itemHeight())
+            self.itemSize = CGSize(width: itemWidth, height: itemHeight)
         }
         get {
-            return CGSize(width: itemWidth(), height: itemHeight())
+            return CGSize(width: itemWidth, height: itemHeight)
         }
     }
     
