@@ -1,5 +1,5 @@
 //
-//  MySafariViewController.swift
+//  DFSafariViewController.swift
 //  DailyFeed
 //
 //  Created by Sumit Paul on 29/12/16.
@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class MySafariViewController: SFSafariViewController {
+class DFSafariViewController: SFSafariViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -258,7 +258,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     // Helper method to open articles in Safari
     func openInSafari() {
         guard let articleString = articleStringURL, let url = URL(string: articleString) else { return }
-        let svc = MySafariViewController(url: url)
+        let svc = DFSafariViewController(url: url)
         svc.delegate = self
         self.present(svc, animated: true, completion: nil)
     }
