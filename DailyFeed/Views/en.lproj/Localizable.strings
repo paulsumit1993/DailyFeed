@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  DailyFeed
+
+  Created by Filippos Sakellaropoulos on 04/01/2019.
+  Copyright © 2019 trianz. All rights reserved.
+*/
+"%d years ago"="%d years ago";
+"Last year"="Last year";
+"%d months ago"="%d months ago";
+"Last month"="Last month";
+"%d weeks ago"="%d weeks ago";
+"Last week"="Last week";
+"%d days ago"="%d days ago";
+"Yesterday"="Yesterday";
+"%d hours ago"="%d hours ago";
+"An hour ago"="An hour ago";
+"%d minutes ago"="%d minutes ago";
+"A minute ago"="A minute ago";
+"%d seconds ago"="%d seconds ago";
+"Just now"="Just now";

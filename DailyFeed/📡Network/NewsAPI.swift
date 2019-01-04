@@ -16,7 +16,7 @@ enum NewsAPI {
     case sources(category: String?, language: String?)
     
     static var baseURL = URLComponents(string: "https://newsapi.org")
-    static let apiToken = "adbe34f12ddf47719766fb9b79adb637" // phisakel@gmail.com	
+    static let apiToken = "adbe34f12ddf47719766fb9b79adb637" // phisakel@gmail.com
     
     //NewsAPI.org API Endpoints
     var url: URL? {
@@ -25,7 +25,12 @@ enum NewsAPI {
         case .articles(let source):
             let lSource = source ?? "the-wall-street-journal"
             NewsAPI.baseURL?.path = "/v2/top-headlines"
-            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            let langStr:String? = ""// Locale.current.languageCode
+            if langStr?.starts(with: "el") ?? false {
+                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "country", value: "gr"), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            } else {
+                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            }
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
             

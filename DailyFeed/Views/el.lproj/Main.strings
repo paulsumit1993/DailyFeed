@@ -1,0 +1,36 @@
+
+/* Class = "UITabBarItem"; title = "Bookmarks"; ObjectID = "0Ct-8c-rLu"; */
+"0Ct-8c-rLu.title" = "Bookmarks";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "DwB-pn-gnh"; */
+"DwB-pn-gnh.text" = "1";
+
+/* Class = "UILabel"; text = "Powered by NewsAPI.org"; ObjectID = "ZZc-Js-chO"; */
+"ZZc-Js-chO.text" = "Powered by NewsAPI.org";
+
+/* Class = "UIButton"; normalTitle = "59 Minutes ago • Read More..."; ObjectID = "Zw2-wF-wcO"; */
+"Zw2-wF-wcO.normalTitle" = "59 Minutes ago • Read More...";
+
+/* Class = "UINavigationItem"; title = "Dailyfeed"; ObjectID = "a8j-37-xyQ"; */
+"a8j-37-xyQ.title" = "Dailyfeed";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "aCH-mL-TaE"; */
+"aCH-mL-TaE.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITabBarItem"; title = "DailyFeed"; ObjectID = "bAh-f5-MHG"; */
+"bAh-f5-MHG.title" = "DailyFeed";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hbq-CR-c0C"; */
+"hbq-CR-c0C.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Bookmarks"; ObjectID = "m7o-Sj-Jyi"; */
+"m7o-Sj-Jyi.title" = "Bookmarks";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qaK-t0-JZk"; */
+"qaK-t0-JZk.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Sources"; ObjectID = "r66-GT-LNg"; */
+"r66-GT-LNg.title" = "Sources";
+
+/* Class = "UITabBarItem"; title = "DailyFeed"; ObjectID = "xue-dU-KaD"; */
+"xue-dU-KaD.title" = "DailyFeed";
