@@ -39,7 +39,6 @@
 		18ED43F60A376F539342E24E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAE988B87D0616DEA014085 /* CoreMedia.framework */; };
 		2027D8AB1EEF2FDC00FE145B /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2027D8AA1EEF2FDC00FE145B /* Serializable.swift */; };
 		2038F9761F49AA3C0097503D /* NewsDetailPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038F9751F49AA3C0097503D /* NewsDetailPopAnimator.swift */; };
-		2077278E1EEFFA940006266D /* DailyFeedNewsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077278D1EEFFA940006266D /* DailyFeedNewsControllerTests.swift */; };
 		207A5C251E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */; };
 		207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */; };
 		2085CBC41EF9216900D26594 /* JSONDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2085CBC31EF9216900D26594 /* JSONDecodingError.swift */; };
@@ -55,18 +54,10 @@
 		7A069BDE14BC48BF6EF444E6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE71099B985DFA7F61C07BE /* CoreVideo.framework */; };
 		953C685821A071CC006750F8 /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 953C685721A071CC006750F8 /* IconTransitions.json */; };
 		BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */; };
-		E02D8BF84F06F394B5519221 /* Pods_DailyFeedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B2007D05E7918650A75085 /* Pods_DailyFeedTests.framework */; };
 		EC7250BD6730BFE124454F2F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579D7A0A06BC46128FF3D16 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		06D04C301E1248DB0013B4AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 06D04C131E1248DA0013B4AA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06D04C1A1E1248DA0013B4AA;
-			remoteInfo = DailyFeed;
-		};
 		06D04C3B1E1248DB0013B4AA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 06D04C131E1248DA0013B4AA /* Project object */;
@@ -116,8 +107,6 @@
 		06D04C251E1248DB0013B4AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06D04C281E1248DB0013B4AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06D04C2A1E1248DB0013B4AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06D04C2F1E1248DB0013B4AA /* DailyFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		06D04C351E1248DB0013B4AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06D04C3A1E1248DB0013B4AA /* DailyFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D04C3E1E1248DC0013B4AA /* DailyFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedUITests.swift; sourceTree = "<group>"; };
 		06D04C401E1248DC0013B4AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,7 +121,6 @@
 		1721C260D75D69EF09A4D02A /* Pods-DailyFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		2027D8AA1EEF2FDC00FE145B /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		2038F9751F49AA3C0097503D /* NewsDetailPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailPopAnimator.swift; sourceTree = "<group>"; };
-		2077278D1EEFFA940006266D /* DailyFeedNewsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedNewsControllerTests.swift; sourceTree = "<group>"; };
 		207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedDetailItemCell.swift; sourceTree = "<group>"; };
 		207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyFeedDetailItemCell.xib; sourceTree = "<group>"; };
 		2085CBC31EF9216900D26594 /* JSONDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingError.swift; sourceTree = "<group>"; };
@@ -177,14 +165,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		06D04C2C1E1248DB0013B4AA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E02D8BF84F06F394B5519221 /* Pods_DailyFeedTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		06D04C371E1248DB0013B4AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				06D04C1D1E1248DA0013B4AA /* DailyFeed */,
-				06D04C321E1248DB0013B4AA /* DailyFeedTests */,
 				06D04C3D1E1248DC0013B4AA /* DailyFeedUITests */,
 				0618B76D1E40B74D00BC8096 /* Frameworks */,
 				06D04C1C1E1248DA0013B4AA /* Products */,
@@ -234,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				06D04C1B1E1248DA0013B4AA /* DailyFeed.app */,
-				06D04C2F1E1248DB0013B4AA /* DailyFeedTests.xctest */,
 				06D04C3A1E1248DB0013B4AA /* DailyFeedUITests.xctest */,
 			);
 			name = Products;
@@ -252,15 +230,6 @@
 				06D04C2A1E1248DB0013B4AA /* Info.plist */,
 			);
 			path = DailyFeed;
-			sourceTree = "<group>";
-		};
-		06D04C321E1248DB0013B4AA /* DailyFeedTests */ = {
-			isa = PBXGroup;
-			children = (
-				06D04C351E1248DB0013B4AA /* Info.plist */,
-				2077278D1EEFFA940006266D /* DailyFeedNewsControllerTests.swift */,
-			);
-			path = DailyFeedTests;
 			sourceTree = "<group>";
 		};
 		06D04C3D1E1248DC0013B4AA /* DailyFeedUITests */ = {
@@ -397,25 +366,6 @@
 			productReference = 06D04C1B1E1248DA0013B4AA /* DailyFeed.app */;
 			productType = "com.apple.product-type.application";
 		};
-		06D04C2E1E1248DB0013B4AA /* DailyFeedTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 06D04C461E1248DC0013B4AA /* Build configuration list for PBXNativeTarget "DailyFeedTests" */;
-			buildPhases = (
-				77956D026F66BEF98BCFC1A8 /* [CP] Check Pods Manifest.lock */,
-				06D04C2B1E1248DB0013B4AA /* Sources */,
-				06D04C2C1E1248DB0013B4AA /* Frameworks */,
-				06D04C2D1E1248DB0013B4AA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				06D04C311E1248DB0013B4AA /* PBXTargetDependency */,
-			);
-			name = DailyFeedTests;
-			productName = DailyFeedTests;
-			productReference = 06D04C2F1E1248DB0013B4AA /* DailyFeedTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		06D04C391E1248DB0013B4AA /* DailyFeedUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06D04C491E1248DC0013B4AA /* Build configuration list for PBXNativeTarget "DailyFeedUITests" */;
@@ -441,27 +391,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = trianz;
 				TargetAttributes = {
 					06D04C1A1E1248DA0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = NHZDL4B86K;
-						LastSwiftMigration = 0900;
+						DevelopmentTeam = 5T7UHW36CL;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
 							};
 						};
 					};
-					06D04C2E1E1248DB0013B4AA = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0900;
-						TestTargetID = 06D04C1A1E1248DA0013B4AA;
-					};
 					06D04C391E1248DB0013B4AA = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						TestTargetID = 06D04C1A1E1248DA0013B4AA;
 					};
 				};
@@ -480,7 +425,6 @@
 			projectRoot = "";
 			targets = (
 				06D04C1A1E1248DA0013B4AA /* DailyFeed */,
-				06D04C2E1E1248DB0013B4AA /* DailyFeedTests */,
 				06D04C391E1248DB0013B4AA /* DailyFeedUITests */,
 			);
 		};
@@ -500,13 +444,6 @@
 				0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */,
 				06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */,
 				207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		06D04C2D1E1248DB0013B4AA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,24 +482,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-DailyFeed-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		77956D026F66BEF98BCFC1A8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DailyFeedTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -634,14 +553,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		06D04C2B1E1248DB0013B4AA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2077278E1EEFFA940006266D /* DailyFeedNewsControllerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		06D04C361E1248DB0013B4AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,11 +564,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		06D04C311E1248DB0013B4AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 06D04C1A1E1248DA0013B4AA /* DailyFeed */;
-			targetProxy = 06D04C301E1248DB0013B4AA /* PBXContainerItemProxy */;
-		};
 		06D04C3C1E1248DB0013B4AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 06D04C1A1E1248DA0013B4AA /* DailyFeed */;
@@ -694,14 +600,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -741,14 +655,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -777,21 +699,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1721C260D75D69EF09A4D02A /* Pods-DailyFeed.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NHZDL4B86K;
+				DEVELOPMENT_TEAM = 5T7UHW36CL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.llc.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -800,55 +721,21 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5539A81DBCC7A45D01F5CCB3 /* Pods-DailyFeed.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NHZDL4B86K;
+				DEVELOPMENT_TEAM = 5T7UHW36CL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.llc.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		06D04C471E1248DC0013B4AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F4B271DBAED1076F1C63A67 /* Pods-DailyFeedTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = DailyFeedTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyFeed.app/DailyFeed";
-			};
-			name = Debug;
-		};
-		06D04C481E1248DC0013B4AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7314A561F80C2D11A6AB0E63 /* Pods-DailyFeedTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = DailyFeedTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyFeed.app/DailyFeed";
 			};
 			name = Release;
 		};
@@ -859,8 +746,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DailyFeed;
 			};
 			name = Debug;
@@ -872,8 +758,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DailyFeed;
 			};
 			name = Release;
@@ -895,15 +780,6 @@
 			buildConfigurations = (
 				06D04C441E1248DC0013B4AA /* Debug */,
 				06D04C451E1248DC0013B4AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		06D04C461E1248DC0013B4AA /* Build configuration list for PBXNativeTarget "DailyFeedTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				06D04C471E1248DC0013B4AA /* Debug */,
-				06D04C481E1248DC0013B4AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

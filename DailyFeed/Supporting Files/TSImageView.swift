@@ -13,18 +13,18 @@ class TSImageView: UIImageView {
 
     var imageUrlString: String?
 
-    func downloadedFromLink(_ urlString: String, contentMode mode: UIViewContentMode = .scaleAspectFill) {
+    func downloadedFromLink(_ urlString: String, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
         guard let url = URL(string: urlString) else { return }
 
         imageUrlString = urlString
 
         self.image = UIImage(named: "")
-        self.animateImageAppearance(0.25, option: UIViewAnimationOptions.curveEaseIn, alpha: 0.4)
+        self.animateImageAppearance(0.25, option: UIView.AnimationOptions.curveEaseIn, alpha: 0.4)
         contentMode = mode
 
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             self.image = imageFromCache
-            self.animateImageAppearance(0.4, option: UIViewAnimationOptions.curveEaseOut, alpha: 1.0)
+            self.animateImageAppearance(0.4, option: UIView.AnimationOptions.curveEaseOut, alpha: 1.0)
             return
         }
 
@@ -41,10 +41,10 @@ class TSImageView: UIImageView {
 
                 if self.imageUrlString == urlString {
                     self.image = imageToCache
-                    self.animateImageAppearance(0.4, option: UIViewAnimationOptions.curveEaseOut, alpha: 1.0)
+                    self.animateImageAppearance(0.4, option: UIView.AnimationOptions.curveEaseOut, alpha: 1.0)
                 }
                 imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
-                self.animateImageAppearance(0.4, option: UIViewAnimationOptions.curveEaseOut, alpha: 1.0)
+                self.animateImageAppearance(0.4, option: UIView.AnimationOptions.curveEaseOut, alpha: 1.0)
             })
 
             }) .resume()
@@ -52,7 +52,7 @@ class TSImageView: UIImageView {
     }
 
     //Helper for Image Appear Animation
-    fileprivate func animateImageAppearance(_ duration: Double, option: UIViewAnimationOptions, alpha: CGFloat) {
+    fileprivate func animateImageAppearance(_ duration: Double, option: UIView.AnimationOptions, alpha: CGFloat) {
 
         UIView.animate(withDuration: duration, delay: 0, options: option, animations: {
             self.alpha = alpha

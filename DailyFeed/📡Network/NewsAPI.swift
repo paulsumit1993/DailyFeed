@@ -16,7 +16,7 @@ enum NewsAPI {
     case sources(category: String?, language: String?)
     
     static var baseURL = URLComponents(string: "https://newsapi.org")
-    static let apiToken = "53b8c0ba0ea24a199f790d660b73675f"
+    static let apiToken = "adbe34f12ddf47719766fb9b79adb637" // phisakel@gmail.com	
     
     //NewsAPI.org API Endpoints
     var url: URL? {

@@ -20,7 +20,7 @@ public extension UIViewController {
         }
 
         let attributedString = NSAttributedString(string: title,
-                                                  attributes: [ NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                                  attributes: [ NSAttributedString.Key.foregroundColor: UIColor.gray])
 
         let controller = UIAlertController(title: "", message: "",
                                            preferredStyle: .alert)

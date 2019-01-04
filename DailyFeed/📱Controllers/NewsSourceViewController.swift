@@ -193,6 +193,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             if !self.areFiltersPopulated {
                 self.categories = Array(Set(result.sources.map { $0.category }))
                 self.languages = Array(Set(result.sources.map { $0.isoLanguageCode }))
+                self.languages.insert("el", at: 0)
                 self.areFiltersPopulated = true
             }
         }.ensure {

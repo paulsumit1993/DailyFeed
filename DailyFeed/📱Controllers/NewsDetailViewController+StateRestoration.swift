@@ -13,7 +13,7 @@ extension NewsDetailViewController {
     
     override func encodeRestorableState(with coder: NSCoder) {
         if let newsImage = newsImageView.image {
-            coder.encode(UIImageJPEGRepresentation(newsImage, 1.0), forKey:"newsImage")
+            coder.encode(newsImage.jpegData(compressionQuality: 1.0), forKey:"newsImage")
         }
         
         if let title = newsTitleLabel.text {
@@ -37,7 +37,7 @@ extension NewsDetailViewController {
         }
         
         if let newsSourceImage = newsSourceImageView.image {
-            coder.encode(UIImagePNGRepresentation(newsSourceImage), forKey: "newsSourceImage")
+            coder.encode(newsSourceImage.jpegData(compressionQuality: 1.0), forKey: "newsSourceImage")
         }
         
         super.encodeRestorableState(with: coder)
