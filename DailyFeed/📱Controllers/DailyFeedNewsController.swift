@@ -187,7 +187,7 @@ class DailyFeedNewsController: UICollectionViewController {
             isLanguageRightToLeft = sourceVC.selectedItem?.isoLanguageCode.direction == .rightToLeft
             switch status {
             case .unknown, .offline:
-                self.showErrorWithDelay("Your Internet Connection appears to be offline.")
+                self.showErrorWithDelay(NSLocalizedString("Your Internet Connection appears to be offline.", comment: "Your Internet Connection appears to be offline."))
             case .online(.wwan), .online(.wiFi):
                 self.source = sourceId
                 loadNewsData(source)
@@ -220,13 +220,13 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
     // MARK: - DZNEmptyDataSet Delegate Methods
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "No Content 😥"
+        let str = NSLocalizedString("No Content", comment: "No Content")
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "Connect to Internet or try another source."
+        let str = NSLocalizedString("Connect to Internet or try another source.", comment: "Connect to Internet or try another source.")
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)]
         return NSAttributedString(string: str, attributes: attrs)
     }

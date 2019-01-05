@@ -19,3 +19,21 @@
 "A minute ago"="A minute ago";
 "%d seconds ago"="%d seconds ago";
 "Just now"="Just now";
+"%dy"="%dy";
+"%dmo"="%dmo";
+"%dw"="%dw";
+"%dd"="%dd";
+"%dh"="%dh";
+"%d min"="%dmin";
+"%ds"="%ds";
+"No Articles Bookmarked"="No Articles Bookmarked";
+"Your Bookmarks will appear here."="Your Bookmarks will appear here.";
+"Your Internet Connection appears to be offline."="Your Internet Connection appears to be offline.";
+"No Content"="No Content";
+"Connect to Internet or try another source."="Connect to Internet or try another source.";
+"Read More..."="Read More...";
+"Search Sources..."="Search Sources...";
+"Select a Category"="Select a Category";
+"Select a language"="Select a language";
+"Cancel"="Cancel";
+

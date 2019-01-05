@@ -92,10 +92,11 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var swipeLeftButton: UIButton! {
         didSet {
             swipeLeftButton.layer.cornerRadius = 10.0
-            guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.relativelyFormatted(short: false) else {
-                return swipeLeftButton.setTitle("Read More...", for: .normal)
+            let moreText = NSLocalizedString("Read More...", comment: "Read More...")
+            guard let publishedDate = receivedNewsItem?.publishedAt.dateFromTimestamp?.timeAgoSince() else {
+                return swipeLeftButton.setTitle(moreText, for: .normal)
             }
-            swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
+            swipeLeftButton.setTitle("\(publishedDate) - \(moreText)", for: .normal)
             switch Reach().connectionStatus() {
             case .unknown, .offline:
                 swipeLeftButton.isEnabled = false

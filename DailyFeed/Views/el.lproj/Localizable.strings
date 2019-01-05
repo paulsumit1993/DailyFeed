@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  DailyFeed
+
+  Created by Filippos Sakellaropoulos on 05/01/2019.
+  Copyright © 2019 trianz. All rights reserved.
+*/
+"%d years ago"="%d έτη πριν";
+"Last year"="Ενα έτος πριν";
+"%d months ago"="%d μήνες πριν";
+"Last month"="Ενα μήνα πριν";
+"%d weeks ago"="%d βδομάδες πριν";
+"Last week"="Μία εβδομάδα πριν";
+"%d days ago"="%d ημέρες πριν";
+"Yesterday"="Χθές";
+"%d hours ago"="%d ώρες πριν";
+"An hour ago"="Μία ώρα πριν";
+"%d minutes ago"="%d λεπτά πριν";
+"A minute ago"="Ενα λεπτό πριν";
+"%d seconds ago"="%d δεύτερα πριν";
+"Just now"="Μόλις τώρα";
+"%dy"="%d χρ.";
+"%dmo"="%d μ.";
+"%dw"="%d ε.";
+"%dd"="%d η.";
+"%dh"="%d ώ.";
+"%d min"="%d λ.";
+"%ds"="%d δ.";
+"No Articles Bookmarked"="Δεν βρέθηκαν άρθρα";
+"Your Bookmarks will appear here."="Τα Bookmarks θα εμφανιστούν εδώ.";
+"Your Internet Connection appears to be offline."="Δεν υπάρχει σύνδεση στοInternet.";
+"No Content"="Δεν υπάρχει περιεχόμενο";
+"Connect to Internet or try another source."="Συνδεθείτε στο Internet.";
+"Read More..."="Περισσότερα...";
+"Search Sources..."="Αναζήτηση πηγών...";
+"Select a Category"="Επιλογή κατηγορίας";
+"Select a language"="Επιλογή γλώσσας";
+"Cancel"="Ακύρωση";

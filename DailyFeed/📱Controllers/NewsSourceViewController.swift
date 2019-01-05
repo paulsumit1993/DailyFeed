@@ -46,7 +46,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         let controller = UISearchController(searchResultsController: nil)
         controller.dimsBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = true
-        controller.searchBar.placeholder = "Search Sources..."
+        controller.searchBar.placeholder = NSLocalizedString("Search Sources...", comment: "Search Sources...")
         controller.searchBar.searchBarStyle = .minimal
         controller.searchBar.tintColor = .black
         controller.searchBar.sizeToFit()
@@ -127,7 +127,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Show News Categories
 
     @IBAction func presentCategories(_ sender: Any) {
-        let categoryActivityVC = UIAlertController(title: "Select a Category",
+        let categoryActivityVC = UIAlertController(title: NSLocalizedString("Select a Category", comment: "Select a Category"),
                                                    message: nil,
                                                    preferredStyle: .actionSheet)
 
@@ -157,11 +157,11 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Show news languages
 
     @IBAction func presentNewsLanguages(_ sender: UIBarButtonItem) {
-        let languageActivityVC = UIAlertController(title: "Select a language",
+        let languageActivityVC = UIAlertController(title: NSLocalizedString("Select a language", comment: "Select a language"),
                                                    message: nil,
                                                    preferredStyle: .actionSheet)
         
-        let cancelButton = UIAlertAction(title: "Cancel",
+        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),
                                          style: .cancel,
                                          handler: nil)
 

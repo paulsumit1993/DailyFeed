@@ -61,10 +61,11 @@ extension NewsDetailViewController {
         }
         
         if let publishedAtDate = coder.decodeObject(forKey: "publishedDate") as? String {
-            guard let publishedDate = publishedAtDate.dateFromTimestamp?.relativelyFormatted(short: false) else {
-                return swipeLeftButton.setTitle("Read More...", for: .normal)
+            let moreText = NSLocalizedString("Read More...", comment: "Read More...")
+            guard let publishedDate = publishedAtDate.dateFromTimestamp?.timeAgoSince() else {
+                return swipeLeftButton.setTitle(moreText, for: .normal)
             }
-            swipeLeftButton.setTitle("\(publishedDate) • Read More...", for: .normal)
+            swipeLeftButton.setTitle("\(publishedDate) - \(moreText)", for: .normal)
         }
         
         if let urlString = coder.decodeObject(forKey: "newsURL") as? String {

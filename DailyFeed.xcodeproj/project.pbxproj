@@ -145,6 +145,7 @@
 		B03AE22821DF3ED300816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Views/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B0B6C61121DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Main.strings; sourceTree = "<group>"; };
 		B0B6C61221DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B0D980F521E0329000BB2BA5 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Views/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1D7734AD5DFC5D8F8DD5CB0 /* Pods-News Now.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News Now.release.xcconfig"; path = "Pods/Target Support Files/Pods-News Now/Pods-News Now.release.xcconfig"; sourceTree = "<group>"; };
 		D6D938716CB2644F8FE6904C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -604,6 +605,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B03AE22821DF3ED300816B1E /* en */,
+				B0D980F521E0329000BB2BA5 /* el */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -659,7 +661,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -709,7 +711,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
