@@ -23,11 +23,10 @@ enum NewsAPI {
         switch self {
             
         case .articles(let source):
-            let lSource = source ?? "the-wall-street-journal"
+            let lSource = source ?? ""
             NewsAPI.baseURL?.path = "/v2/top-headlines"
-            let langStr:String? = ""// Locale.current.languageCode
-            if langStr?.starts(with: "el") ?? false {
-                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "country", value: "gr"), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            if lSource.isEmpty {
+                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "country", value: Locale.current.regionCode), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             } else {
                 NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             }
@@ -53,13 +52,16 @@ enum NewsAPI {
     //Fetch NewsSourceLogo from Cloudinary as news source logo is deprecated by newsapi.org
     
     static func getSourceNewsLogoUrl(source: String) -> String {
+        guard source.count > 2 else {
+            return "language"
+        }
         let sourceLogoUrl = "https://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
         return sourceLogoUrl
     }
     
     // Get News articles from /articles endpoint
     
-    static func getNewsItems(_ source: String) -> Promise<Articles> {
+    static func getNewsItems(source: String, language: String?) -> Promise<Articles> {
         
         return Promise { seal in
             guard let feedURL = NewsAPI.articles(source: source).url else { seal.reject(JSONDecodingError.unknownError); return }
@@ -104,7 +106,11 @@ enum NewsAPI {
                 guard let data = data else { seal.reject(error!); return }
                 
                 do {
-                    let jsonFromData =  try JSONDecoder().decode(Sources.self, from: data)
+                    var jsonFromData: Sources = try JSONDecoder().decode(Sources.self, from: data)
+                    if jsonFromData.sources.count == 0 {
+                        let langSource = DailySourceModel(langCode: lang ?? "")
+                        jsonFromData.sources = [langSource]
+                    }
                     seal.fulfill(jsonFromData)
                 } catch DecodingError.dataCorrupted(let context) {
                     seal.reject(DecodingError.dataCorrupted(context))

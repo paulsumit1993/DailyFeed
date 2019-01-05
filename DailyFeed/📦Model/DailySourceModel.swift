@@ -8,7 +8,7 @@
 //Data Model
 
 struct Sources: Codable {
-    public let sources: [DailySourceModel]
+    public var sources: [DailySourceModel]
 }
 
 struct DailySourceModel: Codable {
@@ -17,6 +17,14 @@ struct DailySourceModel: Codable {
     public let category: String
     public let description: String
     public let isoLanguageCode: String
+    
+    init(langCode: String) {
+        isoLanguageCode = langCode
+        category = ""
+        name = langCode
+        sid = ""
+        description = langCode
+    }
     
     private enum CodingKeys: String, CodingKey {
         case sid = "id"

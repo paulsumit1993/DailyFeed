@@ -131,7 +131,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
                                                    message: nil,
                                                    preferredStyle: .actionSheet)
 
-        let cancelButton = UIAlertAction(title: "Cancel",
+        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),
                                          style: .cancel,
                                          handler: nil)
         
@@ -154,21 +154,21 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(categoryActivityVC, animated: true, completion: nil)
     }
 
-    // MARK: - Show news languages
+    // MARK: - Show news language-s
 
     @IBAction func presentNewsLanguages(_ sender: UIBarButtonItem) {
         let languageActivityVC = UIAlertController(title: NSLocalizedString("Select a language", comment: "Select a language"),
-                                                   message: nil,
-                                                   preferredStyle: .actionSheet)
+                                                   message: nil,preferredStyle: .actionSheet)
         
         let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),
-                                         style: .cancel,
-                                         handler: nil)
+                                         style: .cancel, handler: nil)
 
         languageActivityVC.addAction(cancelButton)
 
         for lang in languages {
-            let languageButton = UIAlertAction(title: lang.languageStringFromISOCode, style: .default, handler: { _ in
+            let langStr: String = lang.languageStringFromISOCode
+            if langStr == lang { continue }
+            let languageButton = UIAlertAction(title: langStr, style: .default, handler: { _ in
                 self.loadSourceData(nil, language: lang)
             })
             languageActivityVC.addAction(languageButton)
@@ -193,7 +193,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             if !self.areFiltersPopulated {
                 self.categories = Array(Set(result.sources.map { $0.category }))
                 self.languages = Array(Set(result.sources.map { $0.isoLanguageCode }))
-                self.languages.insert("el", at: 0)
+                if let lcode = Locale.current.languageCode, !self.languages.contains(lcode) {
+                    self.languages.insert(lcode, at: 0)
+                }
                 self.areFiltersPopulated = true
             }
         }.ensure {

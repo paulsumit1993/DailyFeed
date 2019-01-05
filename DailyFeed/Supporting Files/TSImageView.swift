@@ -27,6 +27,10 @@ class TSImageView: UIImageView {
             self.animateImageAppearance(0.4, option: UIView.AnimationOptions.curveEaseOut, alpha: 1.0)
             return
         }
+        if !urlString.starts(with: "http") {
+            self.image = UIImage(named: urlString)
+            return
+        }
 
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             guard

@@ -25,7 +25,7 @@ class DailyFeedNewsController: UICollectionViewController {
     var source: String {
         get {
             guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
-                return "the-wall-street-journal"
+                return ""
             }
 
             return defaultSource
@@ -62,7 +62,7 @@ class DailyFeedNewsController: UICollectionViewController {
         //Setup UI
         setupUI()
         //Populate CollectionView Data
-        loadNewsData(source)
+        loadNewsData(source, Locale.current.languageCode)
         Reach().monitorReachabilityChanges()
     }
     
@@ -118,11 +118,11 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - refresh news Source data
     @objc func refreshData(_ sender: UIRefreshControl) {
-        loadNewsData(self.source)
+        loadNewsData(self.source, Locale.current.languageCode)
     }
 
     // MARK: - Load data from network
-    func loadNewsData(_ source: String) {
+    func loadNewsData(_ source: String, _ language: String?) {
         switch Reach().connectionStatus() {
         
         case .offline, .unknown:
@@ -139,7 +139,7 @@ class DailyFeedNewsController: UICollectionViewController {
             spinningActivityIndicator.start()
             
             firstly {
-               NewsAPI.getNewsItems(source)
+                NewsAPI.getNewsItems(source: source, language: language)
             }.done { result in
                 self.newsItems = result.articles
                 self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
@@ -190,7 +190,7 @@ class DailyFeedNewsController: UICollectionViewController {
                 self.showErrorWithDelay(NSLocalizedString("Your Internet Connection appears to be offline.", comment: "Your Internet Connection appears to be offline."))
             case .online(.wwan), .online(.wiFi):
                 self.source = sourceId
-                loadNewsData(source)
+                loadNewsData(source, Locale.current.languageCode)
             }
         }
     }

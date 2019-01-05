@@ -27,8 +27,9 @@
 "%d min"="%d λ.";
 "%ds"="%d δ.";
 "No Articles Bookmarked"="Δεν βρέθηκαν άρθρα";
-"Your Bookmarks will appear here."="Τα Bookmarks θα εμφανιστούν εδώ.";
-"Your Internet Connection appears to be offline."="Δεν υπάρχει σύνδεση στοInternet.";
+"Bookmarked Successfully!"="Δημιουργήθηκε σελιδοδείκτης";
+"Your Bookmarks will appear here."="Οι σελιδοδείκτες θα εμφανιστούν εδώ.";
+"Your Internet Connection appears to be offline."="Δεν υπάρχει σύνδεση στο Internet.";
 "No Content"="Δεν υπάρχει περιεχόμενο";
 "Connect to Internet or try another source."="Συνδεθείτε στο Internet.";
 "Read More..."="Περισσότερα...";
