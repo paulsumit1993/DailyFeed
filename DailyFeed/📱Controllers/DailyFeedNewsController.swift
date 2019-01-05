@@ -24,7 +24,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var source: String {
         get {
-            guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
+            guard let defaultSource = UserDefaults().string(forKey: "source") else {
                 return ""
             }
 
@@ -32,7 +32,7 @@ class DailyFeedNewsController: UICollectionViewController {
         }
         
         set {
-           UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newValue, forKey: "source")
+           UserDefaults().set(newValue, forKey: "source")
         }
     }
 

@@ -53,6 +53,7 @@
 		6F6DD4998898C72CE44E9E77 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AED84813097317D8F7BC76F /* BuddyBuildSDK.framework */; };
 		7A069BDE14BC48BF6EF444E6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE71099B985DFA7F61C07BE /* CoreVideo.framework */; };
 		953C685821A071CC006750F8 /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 953C685721A071CC006750F8 /* IconTransitions.json */; };
+		B012C5D521E0E09B0084C974 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */; };
 		B03AE22921DF3ED300816B1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B03AE22721DF3ED300816B1E /* Localizable.strings */; };
 		BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */; };
 		EC7250BD6730BFE124454F2F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579D7A0A06BC46128FF3D16 /* CoreText.framework */; };
@@ -141,6 +142,7 @@
 		8B13AAE731CC3C2827E2B0C2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		953C685721A071CC006750F8 /* IconTransitions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = IconTransitions.json; sourceTree = "<group>"; };
 		A531524C2A570ADFDBDA0451 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		B03AE22321DF3E0800816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B03AE22821DF3ED300816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Views/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B0B6C61121DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Main.strings; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		06D04C3D1E1248DC0013B4AA /* DailyFeedUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */,
 				06D04C3E1E1248DC0013B4AA /* DailyFeedUITests.swift */,
 				06D04C401E1248DC0013B4AA /* Info.plist */,
 			);
@@ -568,6 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06D04C3F1E1248DC0013B4AA /* DailyFeedUITests.swift in Sources */,
+				B012C5D521E0E09B0084C974 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,7 +665,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -711,7 +715,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -733,7 +737,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -758,7 +762,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -774,7 +778,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = DailyFeedUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DailyFeed;
@@ -786,7 +790,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = DailyFeedUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.trianz.DailyFeedUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DailyFeed;

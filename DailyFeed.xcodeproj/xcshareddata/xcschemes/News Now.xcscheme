@@ -88,15 +88,9 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0618B76B1E40B74D00BC8096"
-            BuildableName = "News Now.appex"
-            BlueprintName = "News Now"
-            ReferencedContainer = "container:DailyFeed.xcodeproj">
-         </BuildableReference>
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "gr.phisakel.DailyFeed"
+         RemotePath = "/Users/ffeli/Library/Developer/CoreSimulator/Devices/003CA98A-1345-4E06-97A1-FCFC3553A49E/data/Containers/Bundle/Application/EF6FAFD9-C17C-421D-95C5-D91F55137412/DailyFeed.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference

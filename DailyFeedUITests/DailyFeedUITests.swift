@@ -12,7 +12,25 @@ class DailyFeedUITests: XCTestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        XCUIApplication().launch()
+        let app = XCUIApplication()
+        setupSnapshot(app)
+        app.launch()
+    }
+    
+    func testArticle() {
+        let app = XCUIApplication()
+        snapshot("0Launch")
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Newsit").children(matching: .other).element.tap()
+        snapshot("0Launch")
+        app.buttons["Μία ώρα πριν - Περισσότερα..."].tap()
+        snapshot("0Launch")
+    }
+    
+    func testSources()  {
+        let app = XCUIApplication()
+        snapshot("0Launch")
+        app.navigationBars["Νέα της ημέρας"].buttons["sources"].tap()
+        snapshot("0Launch")
     }
 
     override func tearDown() {
