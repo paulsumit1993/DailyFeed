@@ -55,6 +55,7 @@
 		953C685821A071CC006750F8 /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 953C685721A071CC006750F8 /* IconTransitions.json */; };
 		B012C5D521E0E09B0084C974 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */; };
 		B03AE22921DF3ED300816B1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B03AE22721DF3ED300816B1E /* Localizable.strings */; };
+		B092791C21E9B03300882D25 /* SourceTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */; };
 		BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */; };
 		EC7250BD6730BFE124454F2F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579D7A0A06BC46128FF3D16 /* CoreText.framework */; };
 /* End PBXBuildFile section */
@@ -145,6 +146,7 @@
 		B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		B03AE22321DF3E0800816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B03AE22821DF3ED300816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Views/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceTableCellTableViewCell.swift; sourceTree = "<group>"; };
 		B0B6C61121DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Main.strings; sourceTree = "<group>"; };
 		B0B6C61221DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B0D980F521E0329000BB2BA5 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Views/el.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */,
 				062169581E260AE800ECB0AB /* DailySourceItemCell.xib */,
 				06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */,
+				B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				06D04C4F1E1262460013B4AA /* NewsDetailViewController.swift in Sources */,
 				2027D8AB1EEF2FDC00FE145B /* Serializable.swift in Sources */,
 				06A310381E4B24F30011E827 /* DailySourceModel.swift in Sources */,
+				B092791C21E9B03300882D25 /* SourceTableCellTableViewCell.swift in Sources */,
 				06D04C211E1248DB0013B4AA /* DailyFeedNewsController.swift in Sources */,
 				063504FC1E151C4A002510B0 /* DFSafariViewController.swift in Sources */,
 				06D04C571E13948C0013B4AA /* TSImageView.swift in Sources */,

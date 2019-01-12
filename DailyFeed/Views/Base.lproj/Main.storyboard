@@ -79,13 +79,30 @@
                                 <rect key="frame" x="0.0" y="111" width="320" height="457"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada" customClass="SourceTableCellTableViewCell" customModule="DailyFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XSz-yC-ada" id="aKz-78-YEH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-JN-TF7">
+                                                    <rect key="frame" x="15" y="11" width="290" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fGr-JN-TF7" firstAttribute="top" secondItem="aKz-78-YEH" secondAttribute="topMargin" id="9SU-KE-bTK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fGr-JN-TF7" secondAttribute="bottom" id="JSf-FW-pXZ"/>
+                                                <constraint firstItem="fGr-JN-TF7" firstAttribute="leading" secondItem="aKz-78-YEH" secondAttribute="leadingMargin" id="JXb-az-VpZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fGr-JN-TF7" secondAttribute="trailing" id="v1A-7t-c2N"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="fGr-JN-TF7" id="a6q-jp-BGd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -449,6 +466,6 @@
         <image name="share" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ico-Xt-3Zc"/>
+        <segue reference="w5m-To-g4E"/>
     </inferredMetricsTieBreakers>
 </document>

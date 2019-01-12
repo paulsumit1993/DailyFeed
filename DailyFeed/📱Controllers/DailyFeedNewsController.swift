@@ -25,7 +25,7 @@ class DailyFeedNewsController: UICollectionViewController {
     var source: String {
         get {
             guard let defaultSource = UserDefaults().string(forKey: "source") else {
-                return ""
+                return "general"
             }
 
             return defaultSource
@@ -62,7 +62,7 @@ class DailyFeedNewsController: UICollectionViewController {
         //Setup UI
         setupUI()
         //Populate CollectionView Data
-        loadNewsData(source, Locale.current.languageCode)
+        loadNewsData(source)
         Reach().monitorReachabilityChanges()
     }
     
@@ -91,8 +91,9 @@ class DailyFeedNewsController: UICollectionViewController {
     func setupNavigationBar() {
         let sourceMenuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "sources"), style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
         navigationItem.rightBarButtonItem = sourceMenuButton
-        navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
-        navigationItem.titleView = navBarSourceImage
+        //navBarSourceImage.image = UIImage.init(named: "logo") // .downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
+        //navigationItem.titleView = navBarSourceImage
+        navigationItem.title = NSLocalizedString("category_\(self.source)", comment: self.source) // "\(Locale.current.localizedString(forRegionCode: Locale.current.regionCode!)!)"
     }
 
     // MARK: - Setup CollectionView
@@ -118,11 +119,11 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - refresh news Source data
     @objc func refreshData(_ sender: UIRefreshControl) {
-        loadNewsData(self.source, Locale.current.languageCode)
+        loadNewsData(self.source)
     }
 
     // MARK: - Load data from network
-    func loadNewsData(_ source: String, _ language: String?) {
+    func loadNewsData(_ source: String) {
         switch Reach().connectionStatus() {
         
         case .offline, .unknown:
@@ -139,10 +140,11 @@ class DailyFeedNewsController: UICollectionViewController {
             spinningActivityIndicator.start()
             
             firstly {
-                NewsAPI.getNewsItems(source: source, language: language)
+                NewsAPI.getNewsItems(category: source)
             }.done { result in
                 self.newsItems = result.articles
-                self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
+                self.navigationItem.title = NSLocalizedString("category_\(self.source)", comment: self.source) 
+                // self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
             }.ensure(on: .main) {
                 self.spinningActivityIndicator.stop()
                 self.refreshControl.endRefreshing()
@@ -174,7 +176,7 @@ class DailyFeedNewsController: UICollectionViewController {
                 vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
-                vc.receivedNewsSourceLogo = NewsAPI.getSourceNewsLogoUrl(source: self.source)
+                // vc.receivedNewsSourceLogo = NewsAPI.getSourceNewsLogoUrl(source: self.source)
                 vc.isLanguageRightToLeftDetailView = isLanguageRightToLeft
             }
         }
@@ -182,7 +184,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Unwind from Source View Controller
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
-        if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
+        if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.category {
             let status = Reach().connectionStatus()
             isLanguageRightToLeft = sourceVC.selectedItem?.isoLanguageCode.direction == .rightToLeft
             switch status {
@@ -190,7 +192,7 @@ class DailyFeedNewsController: UICollectionViewController {
                 self.showErrorWithDelay(NSLocalizedString("Your Internet Connection appears to be offline.", comment: "Your Internet Connection appears to be offline."))
             case .online(.wwan), .online(.wiFi):
                 self.source = sourceId
-                loadNewsData(source, Locale.current.languageCode)
+                loadNewsData(source)
             }
         }
     }

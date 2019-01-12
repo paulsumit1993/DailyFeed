@@ -8,6 +8,9 @@
 //Data Model
 
 struct Sources: Codable {
+    init(sources: [DailySourceModel]) {
+        self.sources = sources
+    }
     public var sources: [DailySourceModel]
 }
 
@@ -24,6 +27,13 @@ struct DailySourceModel: Codable {
         name = langCode
         sid = ""
         description = langCode
+    }
+    init(langCode: String, category: String, description: String) {
+        self.isoLanguageCode = langCode
+        self.category = category
+        name = category
+        sid=""
+        self.description = description
     }
     
     private enum CodingKeys: String, CodingKey {

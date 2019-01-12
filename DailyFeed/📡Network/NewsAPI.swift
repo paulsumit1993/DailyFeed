@@ -12,7 +12,7 @@ public typealias JSONDictionary = [String: AnyObject]
 
 enum NewsAPI {
     
-    case articles(source: String?)
+    case articles(category: String?)
     case sources(category: String?, language: String?)
     
     static var baseURL = URLComponents(string: "https://newsapi.org")
@@ -22,14 +22,14 @@ enum NewsAPI {
     var url: URL? {
         switch self {
             
-        case .articles(let source):
-            let lSource = source ?? ""
+        case .articles(let category):
+            //let lSource = source ?? ""
             NewsAPI.baseURL?.path = "/v2/top-headlines"
-            if lSource.isEmpty {
-                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "country", value: Locale.current.regionCode), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
-            } else {
-                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
-            }
+            //if lSource.isEmpty {
+                NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "country", value: Locale.current.regionCode), URLQueryItem(name: "category", value: category!), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            //} else {
+            //    NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil, category: nil).jsonKey, value: lSource), ///URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            //}
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
             
@@ -50,21 +50,21 @@ enum NewsAPI {
     }
     
     //Fetch NewsSourceLogo from Cloudinary as news source logo is deprecated by newsapi.org
-    
+    /*
     static func getSourceNewsLogoUrl(source: String) -> String {
         guard source.count > 2 else {
             return "language"
         }
         let sourceLogoUrl = "https://res.cloudinary.com/newsapi-logos/image/upload/v1492104667/\(source).png"
         return sourceLogoUrl
-    }
+    } */
     
     // Get News articles from /articles endpoint
     
-    static func getNewsItems(source: String, language: String?) -> Promise<Articles> {
+    static func getNewsItems(category: String) -> Promise<Articles> {
         
         return Promise { seal in
-            guard let feedURL = NewsAPI.articles(source: source).url else { seal.reject(JSONDecodingError.unknownError); return }
+            guard let feedURL = NewsAPI.articles(category: category).url else { seal.reject(JSONDecodingError.unknownError); return }
             let baseUrlRequest = URLRequest(url: feedURL)
             let session = URLSession.shared
         
@@ -95,6 +95,11 @@ enum NewsAPI {
     // Get News source from /sources endpoint of NewsAPI
     static func getNewsSource(_ category: String?, language lang: String?) -> Promise<Sources> {
         return Promise { seal in
+            let catIDs = ["general","business", "entertainment", "health", "science", "sport", "technology"]
+            let catSources = catIDs.map { c in DailySourceModel(langCode: Locale.current.languageCode!, category: c, description: NSLocalizedString("category_\(c)", comment: c)) }
+            let fixesSources = Sources(sources: catSources)
+             seal.fulfill(fixesSources)
+            /*
             guard let sourceURL = NewsAPI.sources(category: category, language: lang).url else { seal.reject(JSONDecodingError.unknownError); return }
             
             let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad)
@@ -124,6 +129,7 @@ enum NewsAPI {
                     seal.reject(JSONDecodingError.unknownError)
                 }
             }).resume()
+             */
         }
     }
 }

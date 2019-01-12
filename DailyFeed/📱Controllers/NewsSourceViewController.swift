@@ -42,6 +42,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var areFiltersPopulated: Bool = false
 
+    /*
     var resultsSearchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.dimsBackgroundDuringPresentation = false
@@ -51,7 +52,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         controller.searchBar.tintColor = .black
         controller.searchBar.sizeToFit()
         return controller
-    }()
+    }()  */
     
     let spinningActivityIndicator = TSSpinnerView()
     
@@ -62,7 +63,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //setup UI
         setupUI()
-
+        self.navigationItem.rightBarButtonItems?.remove(at: 1) // hide lang button
         //Populate TableView Data
         loadSourceData(nil, language: nil)
         //setup TableView
@@ -75,8 +76,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        resultsSearchController.delegate = nil
-        resultsSearchController.searchBar.delegate = nil
+        //resultsSearchController.delegate = nil
+        //resultsSearchController.searchBar.delegate = nil
     }
 
     // MARK: - Setup UI
@@ -88,21 +89,19 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Setup SearchBar
     func setupSearch() {
-        resultsSearchController.searchResultsUpdater = self
+        //resultsSearchController.searchResultsUpdater = self
         if #available(iOS 11.0, *) {
-            navigationItem.searchController = resultsSearchController
+            //navigationItem.searchController = resultsSearchController
             navigationItem.hidesSearchBarWhenScrolling = true
         } else {
-            navigationItem.titleView = resultsSearchController.searchBar
+            //navigationItem.titleView = resultsSearchController.searchBar
         }
         definesPresentationContext = true
     }
 
     // MARK: - Setup TableView
     func setupTableView() {
-        sourceTableView.register(UINib(nibName: "DailySourceItemCell",
-                                       bundle: nil),
-                                 forCellReuseIdentifier: "DailySourceItemCell")
+        //sourceTableView.register(UINib(nibName: "DailySourceItemCell",bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
         sourceTableView.tableFooterView = UIView()
     }
 
@@ -214,31 +213,33 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.resultsSearchController.isActive {
-            return self.filteredSourceItems.count
-        } else {
+        //if self.resultsSearchController.isActive {
+        //    return self.filteredSourceItems.count
+        //} else {
             return self.sourceItems.count
-        }
+        //}
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell",
-                                                 for: indexPath) as? DailySourceItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SourceCell",
+                                                 for: indexPath) as? SourceTableCellTableViewCell
 
-        if self.resultsSearchController.isActive {
-            cell?.sourceImageView.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: filteredSourceItems[indexPath.row].sid))
-        } else {
-            cell?.sourceImageView.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: sourceItems[indexPath.row].sid))
-        }
+        //if self.resultsSearchController.isActive {
+            //cell?.sourceImageView.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: filteredSourceItems[indexPath.row].sid))
+        //} else {
+            //cell?.sourceImageView.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: sourceItems[indexPath.row].sid))
+        //}
+        cell?.categoryLabel.text = //self.resultsSearchController.isActive ? filteredSourceItems[indexPath.row].description :
+            sourceItems[indexPath.row].description
         return cell!
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.resultsSearchController.isActive {
-            self.selectedItem = filteredSourceItems[indexPath.row]
-        } else {
+        //if self.resultsSearchController.isActive {
+        //    self.selectedItem = filteredSourceItems[indexPath.row]
+        //} else {
             self.selectedItem = sourceItems[indexPath.row]
-        }
+        //}
         self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
     
