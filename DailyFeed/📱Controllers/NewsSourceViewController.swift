@@ -64,6 +64,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         //setup UI
         setupUI()
         self.navigationItem.rightBarButtonItems?.remove(at: 1) // hide lang button
+        self.navigationItem.rightBarButtonItems?.remove(at: 0) // hide lang button
         //Populate TableView Data
         loadSourceData(nil, language: nil)
         //setup TableView
