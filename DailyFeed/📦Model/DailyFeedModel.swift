@@ -6,6 +6,7 @@
 //
 
 import MobileCoreServices
+import Foundation
 
 enum DailyFeedModelUTI {
     static let kUUTTypeDailyFeedModel = "kUUTTypeDailyFeedModel"

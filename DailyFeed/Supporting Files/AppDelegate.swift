@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //BuddyBuild Setup
-        BuddyBuildSDK.setup()
+        //BuddyBuildSDK.setup()
 
         let _ = try! Realm()
         
