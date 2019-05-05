@@ -117,6 +117,13 @@
                                             <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="tDy-Sb-9aP"/>
+                                    <barButtonItem image="search" style="plain" id="JQy-W2-43I">
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <connections>
+                                            <action selector="activateSearch:" destination="bjF-yu-jQX" id="0oP-PV-KlE"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="S4u-Pa-1Uw"/>
                                 </items>
                             </toolbar>
@@ -460,6 +467,7 @@
         <image name="filter" width="24" height="24"/>
         <image name="language" width="24" height="24"/>
         <image name="logo" width="24" height="24"/>
+        <image name="search" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>

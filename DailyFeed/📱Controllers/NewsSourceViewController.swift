@@ -103,7 +103,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Setup TableView
     private func setupTableView() {
         sourceTableView.register(R.nib.dailySourceItemCell)
-        sourceTableView.tableFooterView = UIView()
+        sourceTableView.tableFooterView = UIView(frame: CGRect.init(x: 0, y: 0, width: sourceTableView.bounds.width, height: 50))
     }
 
     // MARK: - Setup Spinner
@@ -211,6 +211,11 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         popOver?.barButtonItem = countryBarButton
         popOver?.sourceRect = view.bounds
         self.present(countriesActivityVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func activateSearch(_ sender: UIBarButtonItem) {
+        guard resultsSearchController.isActive != true else { return }
+        resultsSearchController.isActive = true
     }
     
     // MARK: - Load data from network
