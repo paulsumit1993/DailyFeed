@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,39 +93,52 @@
                                     <outlet property="delegate" destination="bjF-yu-jQX" id="ho7-ij-fRf"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dL-K1-Pf8">
+                                <rect key="frame" x="0.0" y="475" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OC8-cI-Zhv"/>
+                                    <barButtonItem image="country" id="1KR-Je-8di" userLabel="Country Button">
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <connections>
+                                            <action selector="presentCountries:" destination="bjF-yu-jQX" id="uIw-zz-v6z"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="oVE-UL-rh0"/>
+                                    <barButtonItem image="language" id="B3l-X5-D5X">
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <connections>
+                                            <action selector="presentNewsLanguages:" destination="bjF-yu-jQX" id="gln-5c-VLW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UcK-YN-E97"/>
+                                    <barButtonItem image="filter" id="ez7-e4-Tv8">
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <connections>
+                                            <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="S4u-Pa-1Uw"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="leading" secondItem="Yk7-G7-fGr" secondAttribute="leading" id="5up-eH-lGN"/>
+                            <constraint firstItem="2dL-K1-Pf8" firstAttribute="leading" secondItem="XnL-HH-KUJ" secondAttribute="leading" id="Ndr-rg-j4j"/>
                             <constraint firstItem="z6a-Xw-k4Z" firstAttribute="top" secondItem="XnL-HH-KUJ" secondAttribute="top" id="PzI-Mf-J5p"/>
                             <constraint firstAttribute="trailing" secondItem="z6a-Xw-k4Z" secondAttribute="trailing" id="YPc-3S-cUd"/>
+                            <constraint firstItem="XnL-HH-KUJ" firstAttribute="bottom" secondItem="2dL-K1-Pf8" secondAttribute="bottom" id="aPK-lN-XFf"/>
                             <constraint firstAttribute="bottom" secondItem="z6a-Xw-k4Z" secondAttribute="bottom" id="rSW-xS-01I"/>
+                            <constraint firstItem="2dL-K1-Pf8" firstAttribute="trailing" secondItem="XnL-HH-KUJ" secondAttribute="trailing" id="uQp-fy-t2b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XnL-HH-KUJ"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zq4-GN-Ujf"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ecB-9e-tHU"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Sources" largeTitleDisplayMode="always" id="r66-GT-LNg">
-                        <rightBarButtonItems>
-                            <barButtonItem image="filter" id="ez7-e4-Tv8">
-                                <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="presentCategories:" destination="bjF-yu-jQX" id="j2u-ay-81Z"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="language" id="B3l-X5-D5X">
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <connections>
-                                    <action selector="presentNewsLanguages:" destination="bjF-yu-jQX" id="gln-5c-VLW"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Sources" largeTitleDisplayMode="always" id="r66-GT-LNg"/>
                     <connections>
-                        <outlet property="categoryButton" destination="ez7-e4-Tv8" id="t0a-Rk-PxX"/>
-                        <outlet property="languageButton" destination="B3l-X5-D5X" id="Tas-li-Joo"/>
+                        <outlet property="categoryBarButton" destination="ez7-e4-Tv8" id="t0a-Rk-PxX"/>
+                        <outlet property="countryBarButton" destination="1KR-Je-8di" id="MuM-Ek-bTO"/>
+                        <outlet property="languageBarButton" destination="B3l-X5-D5X" id="Tas-li-Joo"/>
                         <outlet property="sourceTableView" destination="z6a-Xw-k4Z" id="oa8-zs-3hI"/>
                         <segue destination="JIT-8k-TPL" kind="unwind" identifier="sourceUnwindSegue" unwindAction="unwindToDailyNewsFeed:" id="NX9-nv-rBf"/>
                     </connections>
@@ -441,12 +454,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="72" height="72"/>
-        <image name="bookmark" width="48" height="48"/>
-        <image name="filter" width="48" height="48"/>
-        <image name="language" width="48" height="48"/>
-        <image name="logo" width="11.520000457763672" height="11.520000457763672"/>
-        <image name="share" width="48" height="48"/>
+        <image name="back" width="36" height="36"/>
+        <image name="bookmark" width="24" height="24"/>
+        <image name="country" width="24" height="24"/>
+        <image name="filter" width="24" height="24"/>
+        <image name="language" width="24" height="24"/>
+        <image name="logo" width="24" height="24"/>
+        <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="w5m-To-g4E"/>

@@ -70,6 +70,25 @@ extension String {
         return languageString
     }
     
+    var formattedCountryDescription: String {
+        return countryFlagFromCountryCode + " " + countryStringFromCountryCode
+    }
+    
+    var countryStringFromCountryCode: String {
+        let locale = Locale.current
+        guard let languageString = locale.localizedString(forRegionCode: self) else { return self }
+        return languageString
+    }
+    
+    var countryFlagFromCountryCode: String {
+        let base : UInt32 = 127397
+        var s = ""
+        for v in self.uppercased().unicodeScalars {
+            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        }
+        return s
+    }
+    
     var direction: Locale.LanguageDirection {
         return NSLocale.characterDirection(forLanguage: self)
     }

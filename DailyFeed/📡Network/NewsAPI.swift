@@ -8,12 +8,10 @@
 import Foundation
 import PromiseKit
 
-public typealias JSONDictionary = [String: AnyObject]
-
 enum NewsAPI {
     
     case articles(source: String?)
-    case sources(category: String?, language: String?)
+    case sources(category: String?, language: String?, country: String?)
     
     static var baseURL = URLComponents(string: "https://newsapi.org")
     static let apiToken = "53b8c0ba0ea24a199f790d660b73675f"
@@ -21,18 +19,20 @@ enum NewsAPI {
     //NewsAPI.org API Endpoints
     var url: URL? {
         switch self {
-            
         case .articles(let source):
             let lSource = source ?? "the-wall-street-journal"
             NewsAPI.baseURL?.path = "/v2/top-headlines"
-            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: NewsAPI.articles(source: nil).jsonKey, value: lSource),
+                                           URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
             
-        case .sources(let category, let language):
-            //let lCategory = category ?? ""
-            NewsAPI.baseURL?.path = "/v2/\(NewsAPI.sources(category: nil, language: nil).jsonKey)"
-            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "category", value: category), URLQueryItem(name: "language", value: language), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
+        case .sources(let category, let language, let country):
+            NewsAPI.baseURL?.path = "/v2/\(NewsAPI.sources(category: nil, language: nil, country: nil).jsonKey)"
+            NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "category", value: category),
+                                           URLQueryItem(name: "language", value: language),
+                                           URLQueryItem(name: "country", value: country),
+                                           URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             guard let url = NewsAPI.baseURL?.url else { return nil }
             return url
         }
@@ -54,7 +54,7 @@ enum NewsAPI {
     
     // Get News articles from /articles endpoint
     
-    static func getNewsItems(_ source: String) -> Promise<Articles> {
+    static func getNewsItems(source: String) -> Promise<Articles> {
         
         return Promise { seal in
             guard let feedURL = NewsAPI.articles(source: source).url else { seal.reject(JSONDecodingError.unknownError); return }
@@ -86,9 +86,11 @@ enum NewsAPI {
     }
     
     // Get News source from /sources endpoint of NewsAPI
-    static func getNewsSource(_ category: String?, language lang: String?) -> Promise<Sources> {
+    static func getNewsSource(sourceRequestParams: NewsSourceParameters) -> Promise<Sources> {
         return Promise { seal in
-            guard let sourceURL = NewsAPI.sources(category: category, language: lang).url else { seal.reject(JSONDecodingError.unknownError); return }
+            guard let sourceURL = NewsAPI.sources(category: sourceRequestParams.category,
+                                                  language: sourceRequestParams.language,
+                                                  country: sourceRequestParams.country).url else { seal.reject(JSONDecodingError.unknownError); return }
             
             let baseUrlRequest = URLRequest(url: sourceURL, cachePolicy: .returnCacheDataElseLoad)
             let session = URLSession.shared
