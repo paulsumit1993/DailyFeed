@@ -14,7 +14,7 @@ class TSSpinnerView: UIView {
     
     let loadingView = UIView()
     
-    let bestView = AnimationView(name: "IconTransitions")
+    let bestView = AnimationView(name: R.file.iconTransitionsJson.name)
 
     override func awakeFromNib() {
         super.awakeFromNib()

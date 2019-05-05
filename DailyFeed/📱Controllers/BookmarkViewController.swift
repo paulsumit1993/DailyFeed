@@ -21,8 +21,7 @@ class BookmarkViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bookmarkCollectionView?.register(UINib(nibName: "BookmarkItemsCell", bundle: nil),
-                                         forCellWithReuseIdentifier: "BookmarkItemsCell")
+        bookmarkCollectionView.register(R.nib.bookmarkItemsCell)
         bookmarkCollectionView.emptyDataSetDelegate = self
         bookmarkCollectionView.emptyDataSetSource = self
         if #available(iOS 11.0, *) {
@@ -60,7 +59,7 @@ class BookmarkViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "bookmarkSourceSegue" {
+        if segue.identifier == R.segue.bookmarkViewController.bookmarkSourceSegue.identifier {
             if let vc = segue.destination as? NewsDetailViewController {
                 guard let cell = sender as? UICollectionViewCell else { return }
                 guard let indexpath = self.bookmarkCollectionView.indexPath(for: cell) else { return }
@@ -88,7 +87,7 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let newsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookmarkItemsCell", for: indexPath) as? BookmarkItemsCell
+        let newsCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.bookmarkItemsCell, for: indexPath)
         newsCell?.configure(with: newsItems[indexPath.row])
         newsCell?.cellTapped = { cell in
             if let cellToDelete = self.bookmarkCollectionView.indexPath(for: cell)?.row {
@@ -109,7 +108,7 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        self.performSegue(withIdentifier: "bookmarkSourceSegue", sender: cell)
+        self.performSegue(withIdentifier: R.segue.bookmarkViewController.bookmarkSourceSegue, sender: cell)
     }
 }
 

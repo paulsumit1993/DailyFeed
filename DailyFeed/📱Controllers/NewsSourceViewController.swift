@@ -102,9 +102,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Setup TableView
     private func setupTableView() {
-        sourceTableView.register(UINib(nibName: "DailySourceItemCell",
-                                       bundle: nil),
-                                 forCellReuseIdentifier: "DailySourceItemCell")
+        sourceTableView.register(R.nib.dailySourceItemCell)
         sourceTableView.tableFooterView = UIView()
     }
 
@@ -253,9 +251,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DailySourceItemCell",
-                                                 for: indexPath) as? DailySourceItemCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.dailySourceItemCell, for: indexPath)
         if self.resultsSearchController.isActive {
             cell?.sourceImageView.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: filteredSourceItems[indexPath.row].sid))
         } else {

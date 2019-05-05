@@ -28,7 +28,8 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         collectionView.performBatchUpdates(nil, completion: nil)
         if let cell = collectionView.cellForItem(at: indexPath) {
             selectedCell = cell
-            self.performSegue(withIdentifier: "newsDetailSegue", sender: cell)
+            self.performSegue(withIdentifier: R.segue.dailyFeedNewsController.newsDetailSegue,
+                              sender: cell)
         }
 
     }
@@ -36,8 +37,8 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let gridCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyFeedItemCell",
-                                                          for: indexPath) as? DailyFeedItemCell
+        let gridCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.dailyFeedItemCell,
+                                                          for: indexPath)
         gridCell?.configure(with: newsItems[indexPath.row], ltr: isLanguageRightToLeft)
         return gridCell!
     }
@@ -45,7 +46,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "newsFooterView", for: indexPath)
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: R.reuseIdentifier.newsFooterView.identifier, for: indexPath)
             
         return footerView
     }
