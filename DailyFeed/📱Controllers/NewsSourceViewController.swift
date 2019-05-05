@@ -216,6 +216,10 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func activateSearch(_ sender: UIBarButtonItem) {
         guard resultsSearchController.isActive != true else { return }
         resultsSearchController.isActive = true
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) { [weak self] in
+            let searchTextField = self?.resultsSearchController.searchBar.subviews.first?.subviews.filter { return $0 is UITextField }.first
+            searchTextField?.becomeFirstResponder()
+        }
     }
     
     // MARK: - Load data from network
@@ -227,9 +231,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             self.sourceItems = result.sources
             // The code below helps in persisting category and language items till the view controller is de-allocated
             if !self.areFiltersPopulated {
-                self.categories = Array(Set(result.sources.map { $0.category }))
-                self.languages = Array(Set(result.sources.map { $0.isoLanguageCode }))
-                self.countries = Array(Set(result.sources.map { $0.country }))
+                self.categories = Array(result.sources.map { $0.category })
+                self.languages = Array(result.sources.map { $0.isoLanguageCode })
+                self.countries = Array(result.sources.map { $0.country })
                 self.areFiltersPopulated = true
             }
         }.ensure {
