@@ -5,6 +5,8 @@
 //  Created by Sumit Paul on 13/06/17.
 //
 
+import Foundation
+
 protocol Serializable: Codable {
     func serialize() -> Data?
 }
