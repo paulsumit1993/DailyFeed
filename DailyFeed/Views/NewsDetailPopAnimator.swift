@@ -49,7 +49,7 @@ final class NewsDetailPopAnimator: NSObject, UIViewControllerAnimatedTransitioni
         }
         
         containerView.addSubview(toView)
-        containerView.bringSubview(toFront: newsDetailView)
+        containerView.bringSubviewToFront(newsDetailView)
         
         let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.75) {
             newsDetailView.transform = self.presenting ? .identity : scaleTransform

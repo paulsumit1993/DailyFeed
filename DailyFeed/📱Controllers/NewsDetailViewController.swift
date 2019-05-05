@@ -109,7 +109,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
 
     @IBOutlet weak var newsSourceImageView: TSImageView! {
         didSet {
-            guard let newsSourceLogo = receivedNewsSourceLogo else { return }
+            guard receivedNewsSourceLogo != nil else { return }
             //newsSourceImageView.downloadedFromLink(newsSourceLogo)
 
         }

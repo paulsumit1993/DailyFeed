@@ -11,7 +11,7 @@ import UIKit
 public extension UIViewController {
 
     /// shows an UIAlertController alert with error title and message
-    public func showError(_ title: String, message: String? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
+    func showError(_ title: String, message: String? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
         if !Thread.current.isMainThread {
             DispatchQueue.main.async { [weak self] in
                 self?.showError(title, message: message, handler: handler)
@@ -20,7 +20,7 @@ public extension UIViewController {
         }
 
         let attributedString = NSAttributedString(string: title,
-                                                  attributes: [ NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                                  attributes: [ NSAttributedString.Key.foregroundColor: UIColor.gray])
 
         let controller = UIAlertController(title: "", message: "",
                                            preferredStyle: .alert)
@@ -35,7 +35,7 @@ public extension UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
-    public func showErrorWithDelay(_ title: String) {
+    func showErrorWithDelay(_ title: String) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { 
             self.showError(title)
         }

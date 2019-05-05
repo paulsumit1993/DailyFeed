@@ -10,7 +10,7 @@ iOS client for [NewsAPI.org](https://newsapi.org/).
 Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 👉 at your fingertips 🎉.
 
 # Features
-- DailyFeed iOS App designed to support iOS 11 Beta.
+- DailyFeed iOS App designed to support iOS 10+.
 
 # Installation
 - Clone this repo.
