@@ -20,6 +20,10 @@ class DailyFeedItemCell: UICollectionViewCell {
         
     }
     
+    override func prepareForReuse() {
+        newsItemImageView.image = nil
+    }
+    
     func setupCell() {
         self.contentView.layer.cornerRadius = 10.0
         self.contentView.layer.masksToBounds = true
