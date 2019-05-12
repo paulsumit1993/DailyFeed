@@ -231,9 +231,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             self.sourceItems = result.sources
             // The code below helps in persisting category and language items till the view controller is de-allocated
             if !self.areFiltersPopulated {
-                self.categories = Array(result.sources.map { $0.category })
-                self.languages = Array(result.sources.map { $0.isoLanguageCode })
-                self.countries = Array(result.sources.map { $0.country })
+                self.categories = Array(Set(result.sources.map { $0.category }))
+                self.languages = Array(Set(result.sources.map { $0.isoLanguageCode }))
+                self.countries = Array(Set(result.sources.map { $0.country }))
                 self.areFiltersPopulated = true
             }
         }.ensure {
