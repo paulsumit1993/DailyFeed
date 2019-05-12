@@ -17,7 +17,7 @@ Now access latest 🗞 from Best News Agencies and 📰 from around the 🌎 �
 - open `DailyFeed` folder.
 - open `terminal` and `cd` to DailyFeed folder root.
 - run `pod install` (install Cocoapods for this command to work [here](https://cocoapods.org/)).
-- open `DailyFeed.xcworkspace` in Xcode 9 Beta.
+- open `DailyFeed.xcworkspace` in Xcode 10.
 - <kbd>CTRL</kbd> + <kbd>R</kbd>.
 
 # Screenshots

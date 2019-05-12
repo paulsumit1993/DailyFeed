@@ -17,10 +17,11 @@ struct DailySourceModel: Codable {
     public let category: String
     public let description: String
     public let isoLanguageCode: String
+    public let country: String
     
     private enum CodingKeys: String, CodingKey {
         case sid = "id"
-        case name, category, description
+        case name, category, description, country
         case isoLanguageCode = "language"
     }
 }

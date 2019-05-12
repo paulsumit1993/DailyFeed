@@ -10,6 +10,9 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
   - Realm (3.14.2):
     - Realm/Headers (= 3.14.2)
   - Realm/Headers (3.14.2)
@@ -20,6 +23,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - lottie-ios
   - PromiseKit
+  - R.swift
   - RealmSwift
 
 SPEC REPOS:
@@ -27,6 +31,8 @@ SPEC REPOS:
     - DZNEmptyDataSet
     - lottie-ios
     - PromiseKit
+    - R.swift
+    - R.swift.Library
     - Realm
     - RealmSwift
 
@@ -34,9 +40,11 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Realm: 179c6706e3a49dbfe112e572fd3c03d3169bea35
   RealmSwift: 1797f272fb51c555b764fada32e82159a2c65247
 
-PODFILE CHECKSUM: 41befcd2cad2aded643e50e60ca8acea64d9a91e
+PODFILE CHECKSUM: 928ede145a7ba371a5bca03c517ac7ce77217f06
 
 COCOAPODS: 1.5.3

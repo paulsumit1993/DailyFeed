@@ -97,8 +97,7 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup CollectionView
     func setupCollectionView() {
-        collectionView?.register(UINib(nibName: "DailyFeedItemCell", bundle: nil),
-                                 forCellWithReuseIdentifier: "DailyFeedItemCell")
+        collectionView?.register(R.nib.dailyFeedItemCell)
         collectionView?.refreshControl = refreshControl
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
@@ -139,7 +138,7 @@ class DailyFeedNewsController: UICollectionViewController {
             spinningActivityIndicator.start()
             
             firstly {
-               NewsAPI.getNewsItems(source)
+                NewsAPI.getNewsItems(source: source)
             }.done { result in
                 self.newsItems = result.articles
                 self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
@@ -160,16 +159,15 @@ class DailyFeedNewsController: UICollectionViewController {
     // MARK: - sourceMenuButton Action method
 
     @objc func sourceMenuButtonDidTap() {
-        self.performSegue(withIdentifier: "newsSourceSegue", sender: self)
+        self.performSegue(withIdentifier: R.segue.dailyFeedNewsController.newsSourceSegue, sender: self)
     }
 
     // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newsDetailSegue" {
+        if segue.identifier == R.segue.dailyFeedNewsController.newsDetailSegue.identifier {
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
-            
                 vc.transitioningDelegate = self
                 vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])

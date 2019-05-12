@@ -9,6 +9,7 @@ target 'DailyFeed' do
   pod 'lottie-ios'
   pod 'DZNEmptyDataSet'
   pod 'PromiseKit'
+  pod 'R.swift'
   
   target 'DailyFeedTests' do
     inherit! :search_paths

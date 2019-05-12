@@ -22,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //BuddyBuild Setup
-        BuddyBuildSDK.setup()
-
         let _ = try! Realm()
         
         window?.tintColor = .black
