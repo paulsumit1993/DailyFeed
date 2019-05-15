@@ -10,19 +10,19 @@ import Foundation
 import MobileCoreServices
 
 // MARK: - CollectionView Delegate Methods
-extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
+extension DailyFeedNewsController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
 
             return self.newsItems.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
         collectionView.performBatchUpdates(nil, completion: nil)
@@ -34,7 +34,7 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
 
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let gridCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.dailyFeedItemCell,
@@ -42,7 +42,8 @@ extension DailyFeedNewsController: UICollectionViewDelegateFlowLayout {
         gridCell?.configure(with: newsItems[indexPath.row], ltr: isLanguageRightToLeft)
         return gridCell!
     }
-    override func collectionView(_ collectionView: UICollectionView,
+    
+    func collectionView(_ collectionView: UICollectionView,
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -82,7 +83,7 @@ extension DailyFeedNewsController: UICollectionViewDragDelegate {
     }
     
     func dragItems(indexPath: IndexPath) -> [UIDragItem] {
-        let cell = collectionView?.cellForItem(at: indexPath)
+        let cell = newsCollectionView?.cellForItem(at: indexPath)
         cell?.clipsToBounds = true
         let draggedNewsItem = newsItems[indexPath.row]
         let itemProvider = NSItemProvider(object: draggedNewsItem)

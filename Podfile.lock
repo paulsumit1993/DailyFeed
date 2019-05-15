@@ -11,6 +11,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
+  - PullToReach (0.1.1)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - Kingfisher
   - lottie-ios
   - PromiseKit
+  - PullToReach
   - R.swift
   - RealmSwift
 
@@ -34,6 +36,7 @@ SPEC REPOS:
     - Kingfisher
     - lottie-ios
     - PromiseKit
+    - PullToReach
     - R.swift
     - R.swift.Library
     - Realm
@@ -44,11 +47,12 @@ SPEC CHECKSUMS:
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
+  PullToReach: 4dc40ef9d8aac6a10dccc3129b110bfce2eee0a7
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Realm: 179c6706e3a49dbfe112e572fd3c03d3169bea35
   RealmSwift: 1797f272fb51c555b764fada32e82159a2c65247
 
-PODFILE CHECKSUM: 4d971984dea5d2e1a526f2b0c1a2ee395cf9f9eb
+PODFILE CHECKSUM: b8ff91a72f4d32731863be7b5e685f24a83dcdce
 
 COCOAPODS: 1.5.3

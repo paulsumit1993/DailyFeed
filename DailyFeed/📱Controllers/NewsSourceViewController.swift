@@ -8,20 +8,35 @@
 import UIKit
 import DZNEmptyDataSet
 import PromiseKit
+import PullToReach
 
-class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, PullToReach {
+    
+    var scrollView: UIScrollView {
+        return sourceTableView
+    }
     
     // MARK: - IBOutlets
     @IBOutlet weak private var sourceTableView: UITableView!
     
-    @IBOutlet weak private var categoryBarButton: UIBarButtonItem!
+    private lazy var categoryBarButton =
+        UIBarButtonItem(image: R.image.filter(), style: .plain,
+                        target: self, action: #selector(NewsSourceViewController.presentCategories))
     
-    @IBOutlet weak private var languageBarButton: UIBarButtonItem!
+    private lazy var languageBarButton =
+        UIBarButtonItem(image: R.image.language(), style: .plain,
+                        target: self, action: #selector(NewsSourceViewController.presentNewsLanguages))
     
-    @IBOutlet weak private var countryBarButton: UIBarButtonItem!
+    private lazy var countryBarButton =
+        UIBarButtonItem(image: R.image.country(), style: .plain,
+                        target: self, action: #selector(NewsSourceViewController.presentCountries))
+    
+    private lazy var closeBarButton =
+        UIBarButtonItem(image: R.image.close(), style: .plain,
+                        target: self, action: #selector(NewsSourceViewController.dismissViewController))
     
     // MARK: - Variable declaration
-    var sourceItems: [DailySourceModel] = [] {
+    private var sourceItems: [DailySourceModel] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.sourceTableView.reloadSections([0], with: .automatic)
@@ -30,7 +45,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    private  var filteredSourceItems: [DailySourceModel] = [] {
+    private var filteredSourceItems: [DailySourceModel] = [] {
         didSet {
             self.sourceTableView.reloadSections([0], with: .automatic)
         }
@@ -63,14 +78,9 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //setup UI
         setupUI()
-
-        //Populate TableView Data
         loadSourceData(sourceRequestParams: NewsSourceParameters())
-        //setup TableView
-        setupTableView()
+        setupPullToReach()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -86,6 +96,17 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Setup UI
     private func setupUI() {
         setupSearch()
+        setupTableView()
+    }
+    
+    private func setupPullToReach() {
+        self.navigationItem.rightBarButtonItems = [
+            closeBarButton,
+            categoryBarButton,
+            languageBarButton,
+            countryBarButton
+        ]
+        self.activatePullToReach(on: navigationItem)
     }
 
     // MARK: - Setup SearchBar
@@ -126,7 +147,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Show News Categories
 
-    @IBAction private func presentCategories(_ sender: Any) {
+    @objc private func presentCategories() {
         let categoryActivityVC = UIAlertController(title: "Select a Category",
                                                    message: nil,
                                                    preferredStyle: .actionSheet)
@@ -157,7 +178,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - Show news languages
 
-    @IBAction private func presentNewsLanguages(_ sender: UIBarButtonItem) {
+    @objc private func presentNewsLanguages() {
         let languageActivityVC = UIAlertController(title: "Select a language",
                                                    message: nil,
                                                    preferredStyle: .actionSheet)
@@ -184,7 +205,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(languageActivityVC, animated: true, completion: nil)
     }
     
-    @IBAction private func presentCountries(_ sender: UIBarButtonItem) {
+    @objc private func presentCountries() {
         let countriesActivityVC = UIAlertController(title: "Select a country",
                                                    message: nil,
                                                    preferredStyle: .actionSheet)
@@ -213,13 +234,8 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(countriesActivityVC, animated: true, completion: nil)
     }
     
-    @IBAction func activateSearch(_ sender: UIBarButtonItem) {
-        guard resultsSearchController.isActive != true else { return }
-        resultsSearchController.isActive = true
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) { [weak self] in
-            let searchTextField = self?.resultsSearchController.searchBar.subviews.first?.subviews.filter { return $0 is UITextField }.first
-            searchTextField?.becomeFirstResponder()
-        }
+    @objc private func dismissViewController() {
+        self.performSegue(withIdentifier: "sourceUnwindSegue", sender: self)
     }
     
     // MARK: - Load data from network

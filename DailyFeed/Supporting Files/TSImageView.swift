@@ -12,7 +12,10 @@ class TSImageView: UIImageView {
     func downloadedFromLink(_ urlString: String, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
         guard let url = URL(string: urlString) else { return }
         self.contentMode = mode
-        self.kf.setImage(with: url, options: [.transition(.fade(0.4))])
+        self.kf.setImage(with: url, options: [
+            .transition(.fade(0.4)),
+            .cacheOriginalImage
+            ])
         self.animateImageAppearance(0.4, option: UIView.AnimationOptions.curveEaseOut, alpha: 1.0)
     }
     

@@ -10,14 +10,14 @@ import Lottie
 import DZNEmptyDataSet
 import PromiseKit
 
-class DailyFeedNewsController: UICollectionViewController {
+class DailyFeedNewsController: UIViewController {
 
     // MARK: - Variable declaration
 
     var newsItems: [DailyFeedModel] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.collectionView?.reloadData()
+                self.newsCollectionView?.reloadData()
             }
         }
     }
@@ -45,7 +45,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var selectedIndexPath: IndexPath?
     
-    let transition = NewsDetailPopAnimator()
+    private let transition = NewsDetailPopAnimator()
     
     var selectedCell = UICollectionViewCell()
     
@@ -53,7 +53,11 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet weak var toggleButton: UIButton!
+    @IBOutlet weak var newsCollectionView: UICollectionView! {
+        didSet {
+            setupCollectionView()
+        }
+    }
 
     // MARK: - View Controller Lifecycle Methods
 
@@ -68,7 +72,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        collectionView?.collectionViewLayout.invalidateLayout()
+        newsCollectionView?.collectionViewLayout.invalidateLayout()
     }
     
     let navBarSourceImage: TSImageView = {
@@ -97,16 +101,17 @@ class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Setup CollectionView
     func setupCollectionView() {
-        collectionView?.register(R.nib.dailyFeedItemCell)
-        collectionView?.refreshControl = refreshControl
+        newsCollectionView?.register(R.nib.dailyFeedItemCell)
+        newsCollectionView?.refreshControl = refreshControl
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
                                  for: UIControl.Event.valueChanged)
-        collectionView?.emptyDataSetDelegate = self
-        collectionView?.emptyDataSetSource = self
+        newsCollectionView?.emptyDataSetDelegate = self
+        newsCollectionView?.emptyDataSetSource = self
+
         if #available(iOS 11.0, *) {
-            collectionView?.dragDelegate = self
-            collectionView?.dragInteractionEnabled = true
+            newsCollectionView?.dragDelegate = self
+            newsCollectionView?.dragInteractionEnabled = true
         }
     }
 
@@ -152,8 +157,8 @@ class DailyFeedNewsController: UICollectionViewController {
     }
     
     deinit {
-        collectionView?.delegate = nil
-        collectionView?.dataSource = nil
+        newsCollectionView?.delegate = nil
+        newsCollectionView?.dataSource = nil
     }
 
     // MARK: - sourceMenuButton Action method
@@ -167,7 +172,7 @@ class DailyFeedNewsController: UICollectionViewController {
         if segue.identifier == R.segue.dailyFeedNewsController.newsDetailSegue.identifier {
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
-            guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
+            guard let indexpath = self.newsCollectionView?.indexPath(for: cell) else { return }
                 vc.transitioningDelegate = self
                 vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
@@ -201,12 +206,12 @@ extension DailyFeedNewsController {
         switch (traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass) {
             
         case (.regular, .regular), (.compact, .regular), (.compact, .compact):
-            collectionView?.collectionViewLayout.invalidateLayout()
-            collectionView?.collectionViewLayout = DailySourceItemiPadLayout()
+            newsCollectionView?.collectionViewLayout.invalidateLayout()
+            newsCollectionView?.collectionViewLayout = DailySourceItemiPadLayout()
             
         default:
-            collectionView?.collectionViewLayout.invalidateLayout()
-            collectionView?.collectionViewLayout = DailySourceItemLayout()
+            newsCollectionView?.collectionViewLayout.invalidateLayout()
+            newsCollectionView?.collectionViewLayout = DailySourceItemLayout()
             
         }
     }
