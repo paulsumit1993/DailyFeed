@@ -29,9 +29,7 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
     }
-    
-    var selectedItem: DailySearchModel?
-    
+        
     private let transition = NewsDetailPopAnimator()
 
     private var selectedCell = UICollectionViewCell()
