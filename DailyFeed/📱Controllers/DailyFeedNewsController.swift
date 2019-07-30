@@ -44,9 +44,7 @@ class DailyFeedNewsController: UIViewController {
     }()
     
     var selectedIndexPath: IndexPath?
-    
-    private let transition = NewsDetailPopAnimator()
-    
+        
     var selectedCell = UICollectionViewCell()
     
     var isLanguageRightToLeft = Bool()
@@ -70,11 +68,6 @@ class DailyFeedNewsController: UIViewController {
         Reach().monitorReachabilityChanges()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        newsCollectionView?.collectionViewLayout.invalidateLayout()
-    }
-    
     let navBarSourceImage: TSImageView = {
         let image = TSImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 36))
         return image
@@ -83,6 +76,19 @@ class DailyFeedNewsController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        switch (traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass) {
+            
+        case (.regular, .regular), (.compact, .regular), (.compact, .compact):
+            newsCollectionView.collectionViewLayout = DailySourceItemiPadLayout()
+            
+        default:
+            newsCollectionView.collectionViewLayout = DailySourceItemLayout()
+            
+        }
     }
 
     // MARK: - Setup UI
@@ -173,7 +179,6 @@ class DailyFeedNewsController: UIViewController {
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.newsCollectionView?.indexPath(for: cell) else { return }
-                vc.transitioningDelegate = self
                 vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
@@ -195,24 +200,6 @@ class DailyFeedNewsController: UIViewController {
                 self.source = sourceId
                 loadNewsData(source)
             }
-        }
-    }
-}
-
-extension DailyFeedNewsController {
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        switch (traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass) {
-            
-        case (.regular, .regular), (.compact, .regular), (.compact, .compact):
-            newsCollectionView?.collectionViewLayout.invalidateLayout()
-            newsCollectionView?.collectionViewLayout = DailySourceItemiPadLayout()
-            
-        default:
-            newsCollectionView?.collectionViewLayout.invalidateLayout()
-            newsCollectionView?.collectionViewLayout = DailySourceItemLayout()
-            
         }
     }
 }
@@ -242,21 +229,3 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
         return true
     }
 }
-
-extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
-    
-    // MARK: - UIViewController Transitioning Delegate Methods
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = selectedCell.superview!.convert(selectedCell.frame, to: nil)
-        transition.presenting = true
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.presenting = false
-        return transition
-    }
-}
-
-

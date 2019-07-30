@@ -8,9 +8,8 @@
 import UIKit
 import DZNEmptyDataSet
 import PromiseKit
-import PullToReach
 
-class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, PullToReach {
+class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     var scrollView: UIScrollView {
         return sourceTableView
@@ -106,7 +105,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
             languageBarButton,
             countryBarButton
         ]
-        self.activatePullToReach(on: navigationItem)
     }
 
     // MARK: - Setup SearchBar

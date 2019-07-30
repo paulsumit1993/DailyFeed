@@ -187,55 +187,36 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     // MARK: - share article
     @IBAction func shareArticle(_ sender: UIButton) {
-
-        fadeUIElements(with: 0.0)
-
-        let delay = DispatchTime.now() + 0.11
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-
-            guard let shareURL = self.articleStringURL,
-                let articleImage = self.captureScreenShot(),
-                let articleToBookmarkData = self.receivedNewsItem else {return}
-            
-            let bookmarkactivity = BookmarkActivity()
-            
-            bookmarkactivity.bookMarkSuccessful = {
-                self.showErrorWithDelay("Bookmarked Successfully!")
-            }
-            
-            let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage, articleToBookmarkData],
-                                                      applicationActivities: [bookmarkactivity])
-            
-            activityVC.excludedActivityTypes = [.saveToCameraRoll,
-                                                .copyToPasteboard,
-                                                .airDrop,
-                                                .addToReadingList,
-                                                .assignToContact,
-                                                .postToTencentWeibo,
-                                                .postToVimeo,
-                                                .print,
-                                                .postToWeibo]
-
-            activityVC.completionWithItemsHandler = {(activityType, completed: Bool, _, _) in
-                self.fadeUIElements(with: 1.0)
-            }
-            
-            // Popover for iPad only
-
-            let popOver = activityVC.popoverPresentationController
-            popOver?.sourceView = self.shareButton
-            popOver?.sourceRect = self.shareButton.bounds
-            self.present(activityVC, animated: true, completion: nil)
+        
+        guard let shareURL = self.articleStringURL,
+            let articleImage = self.captureScreenShot(),
+            let articleToBookmarkData = self.receivedNewsItem else {return}
+        
+        let bookmarkactivity = BookmarkActivity()
+        
+        bookmarkactivity.bookMarkSuccessful = {
+            self.showErrorWithDelay("Bookmarked Successfully!")
         }
-    }
-
-    // Helper to toggle UI elements before and after screenshot capture
-     func fadeUIElements(with alpha: CGFloat) {
-        UIView.animate(withDuration: 0.1) {
-            self.backButton.alpha = alpha
-            self.shareButton.alpha = alpha
-            self.swipeLeftButton.alpha = alpha
-        }
+        
+        let activityVC = UIActivityViewController(activityItems: [shareURL, articleImage, articleToBookmarkData],
+                                                  applicationActivities: [bookmarkactivity])
+        
+        activityVC.excludedActivityTypes = [.saveToCameraRoll,
+                                            .copyToPasteboard,
+                                            .airDrop,
+                                            .addToReadingList,
+                                            .assignToContact,
+                                            .postToTencentWeibo,
+                                            .postToVimeo,
+                                            .print,
+                                            .postToWeibo]
+        
+        // Popover for iPad only
+        
+        let popOver = activityVC.popoverPresentationController
+        popOver?.sourceView = self.shareButton
+        popOver?.sourceRect = self.shareButton.bounds
+        self.present(activityVC, animated: true, completion: nil)
     }
 
     // Helper method to generate article screenshots
@@ -260,6 +241,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         guard let articleString = articleStringURL, let url = URL(string: articleString) else { return }
         let svc = DFSafariViewController(url: url)
         svc.delegate = self
+        svc.modalPresentationStyle = .formSheet
         self.present(svc, animated: true, completion: nil)
     }
 }

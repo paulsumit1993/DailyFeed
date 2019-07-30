@@ -40,7 +40,6 @@
 		1DD3CDCD227F14AF00C374BC /* NewsSourceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3CDCC227F14AF00C374BC /* NewsSourceParameters.swift */; };
 		1DD3CDD0227F295900C374BC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3CDCF227F295900C374BC /* R.generated.swift */; };
 		2027D8AB1EEF2FDC00FE145B /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2027D8AA1EEF2FDC00FE145B /* Serializable.swift */; };
-		2038F9761F49AA3C0097503D /* NewsDetailPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038F9751F49AA3C0097503D /* NewsDetailPopAnimator.swift */; };
 		2077278E1EEFFA940006266D /* DailyFeedNewsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077278D1EEFFA940006266D /* DailyFeedNewsControllerTests.swift */; };
 		207A5C251E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */; };
 		207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */; };
@@ -126,7 +125,6 @@
 		1DD3CDCC227F14AF00C374BC /* NewsSourceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourceParameters.swift; sourceTree = "<group>"; };
 		1DD3CDCF227F295900C374BC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		2027D8AA1EEF2FDC00FE145B /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
-		2038F9751F49AA3C0097503D /* NewsDetailPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailPopAnimator.swift; sourceTree = "<group>"; };
 		2077278D1EEFFA940006266D /* DailyFeedNewsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFeedNewsControllerTests.swift; sourceTree = "<group>"; };
 		207A5C231E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedDetailItemCell.swift; sourceTree = "<group>"; };
 		207A5C241E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyFeedDetailItemCell.xib; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 				06D04C221E1248DB0013B4AA /* Main.storyboard */,
 				06D04C271E1248DB0013B4AA /* LaunchScreen.storyboard */,
 				060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */,
-				2038F9751F49AA3C0097503D /* NewsDetailPopAnimator.swift */,
 				208FBB5A1EDB1C36009C2539 /* DailySourceItemiPadLayout.swift */,
 			);
 			path = Views;
@@ -517,7 +514,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -569,7 +566,6 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/PullToReach/PullToReach.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -580,7 +576,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToReach.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -622,7 +617,6 @@
 				064FA8FA1E5DA98000693D12 /* DailyFeedRealmModel.swift in Sources */,
 				20EA15751EA28C6700047523 /* Reach.swift in Sources */,
 				06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */,
-				2038F9761F49AA3C0097503D /* NewsDetailPopAnimator.swift in Sources */,
 				064FA8F31E52D48900693D12 /* BookmarkItemsCell.swift in Sources */,
 				2085CBC41EF9216900D26594 /* JSONDecodingError.swift in Sources */,
 				062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */,

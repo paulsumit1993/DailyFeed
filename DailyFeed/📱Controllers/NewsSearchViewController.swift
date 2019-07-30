@@ -29,9 +29,7 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
     }
-        
-    private let transition = NewsDetailPopAnimator()
-
+    
     private var selectedCell = UICollectionViewCell()
 
 
@@ -66,6 +64,21 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
         super.viewWillDisappear(animated)
         resultsSearchController.delegate = nil
         resultsSearchController.searchBar.delegate = nil
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        switch (traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass) {
+            
+        case (.regular, .regular), (.compact, .regular), (.compact, .compact):
+            searchCollectionView?.collectionViewLayout.invalidateLayout()
+            searchCollectionView?.collectionViewLayout = DailySourceItemiPadLayout()
+            
+        default:
+            searchCollectionView?.collectionViewLayout.invalidateLayout()
+            searchCollectionView?.collectionViewLayout = DailySourceItemLayout()
+            
+        }
     }
     
     // MARK: - Setup UI
@@ -144,7 +157,6 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
                 guard let cell = sender as? UICollectionViewCell else { return }
                 guard let indexpath = self.searchCollectionView?.indexPath(for: cell) else { return }
                 selectedCell = cell
-                vc.transitioningDelegate = self
                 vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: searchItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
@@ -183,41 +195,6 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
 
-}
-
-
-extension NewsSearchViewController {
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        switch (traitCollection.verticalSizeClass, traitCollection.horizontalSizeClass) {
-            
-        case (.regular, .regular), (.compact, .regular), (.compact, .compact):
-            searchCollectionView?.collectionViewLayout.invalidateLayout()
-            searchCollectionView?.collectionViewLayout = DailySourceItemiPadLayout()
-            
-        default:
-            searchCollectionView?.collectionViewLayout.invalidateLayout()
-            searchCollectionView?.collectionViewLayout = DailySourceItemLayout()
-            
-        }
-    }
-}
-
-extension NewsSearchViewController: UIViewControllerTransitioningDelegate {
-    
-    // MARK: - UIViewController Transitioning Delegate Methods
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = selectedCell.superview!.convert(selectedCell.frame, to: nil)
-        transition.presenting = true
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.presenting = false
-        return transition
-    }
 }
 
 // MARK: - DZNEmptyDataSet Delegate Methods

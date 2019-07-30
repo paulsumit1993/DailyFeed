@@ -18,7 +18,7 @@ final class DailyFeedRealmModel: Object {
     @objc dynamic var articleDescription: String = ""
     @objc dynamic var url: String = ""
     
-    override static func primaryKey() -> String? {
+    override class func primaryKey() -> String? {
         return "title"
     }
     
