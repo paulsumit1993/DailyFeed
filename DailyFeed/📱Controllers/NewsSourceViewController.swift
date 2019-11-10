@@ -97,12 +97,12 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             //navigationItem.titleView = resultsSearchController.searchBar
         }
-        definesPresentationContext = true
+        //definesPresentationContext = true
     }
 
     // MARK: - Setup TableView
     func setupTableView() {
-        //sourceTableView.register(UINib(nibName: "DailySourceItemCell",bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
+        sourceTableView.register(UINib(nibName: "DailySourceItemCell",bundle: nil), forCellReuseIdentifier: "DailySourceItemCell")
         sourceTableView.tableFooterView = UIView()
     }
 

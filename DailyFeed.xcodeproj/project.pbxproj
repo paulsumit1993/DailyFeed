@@ -58,6 +58,7 @@
 		B04765DD23316ED200A692CF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04765DB23316ED200A692CF /* MainInterface.storyboard */; };
 		B04765E123316ED200A692CF /* DailyToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B04765D623316ED200A692CF /* DailyToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B092791C21E9B03300882D25 /* SourceTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */; };
+		B0F547BA237880D600DF0209 /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5971E28A3D600EF72BB /* NewsAPI.swift */; };
 		BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */; };
 		EC7250BD6730BFE124454F2F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579D7A0A06BC46128FF3D16 /* CoreText.framework */; };
 /* End PBXBuildFile section */
@@ -645,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B04765DA23316ED200A692CF /* TodayViewController.swift in Sources */,
+				B0F547BA237880D600DF0209 /* NewsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,11 +895,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5T7UHW36CL;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DailyToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed.DailyToday;
@@ -919,11 +923,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5T7UHW36CL;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DailyToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed.DailyToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";

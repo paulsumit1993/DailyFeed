@@ -80,6 +80,7 @@ class DailyFeedNewsController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        traitCollectionDidChange(traitCollection)
     }
 
     // MARK: - Setup UI
