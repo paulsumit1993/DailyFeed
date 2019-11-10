@@ -53,6 +53,10 @@
 		953C685821A071CC006750F8 /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 953C685721A071CC006750F8 /* IconTransitions.json */; };
 		B012C5D521E0E09B0084C974 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */; };
 		B03AE22921DF3ED300816B1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B03AE22721DF3ED300816B1E /* Localizable.strings */; };
+		B04765D723316ED200A692CF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0618B76E1E40B74D00BC8096 /* NotificationCenter.framework */; };
+		B04765DA23316ED200A692CF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04765D923316ED200A692CF /* TodayViewController.swift */; };
+		B04765DD23316ED200A692CF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04765DB23316ED200A692CF /* MainInterface.storyboard */; };
+		B04765E123316ED200A692CF /* DailyToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B04765D623316ED200A692CF /* DailyToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B092791C21E9B03300882D25 /* SourceTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */; };
 		BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */; };
 		EC7250BD6730BFE124454F2F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579D7A0A06BC46128FF3D16 /* CoreText.framework */; };
@@ -66,6 +70,13 @@
 			remoteGlobalIDString = 06D04C1A1E1248DA0013B4AA;
 			remoteInfo = DailyFeed;
 		};
+		B04765DF23316ED200A692CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06D04C131E1248DA0013B4AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B04765D523316ED200A692CF;
+			remoteInfo = DailyToday;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +86,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				B04765E123316ED200A692CF /* DailyToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +94,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0606C7661E4C47A800D03739 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		060D64871E31EB400053F2AB /* DailySourceItemLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemLayout.swift; sourceTree = "<group>"; };
 		0618B76E1E40B74D00BC8096 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		062169571E260AE800ECB0AB /* DailySourceItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemCell.swift; sourceTree = "<group>"; };
@@ -133,7 +144,6 @@
 		5539A81DBCC7A45D01F5CCB3 /* Pods-DailyFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.release.xcconfig"; sourceTree = "<group>"; };
 		56EA0AEF3558331B8AD9B3DC /* Pods_DailyFeedUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeedUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B2007D05E7918650A75085 /* Pods_DailyFeedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5AED84813097317D8F7BC76F /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		5FC3839392D2356ACF37A1F7 /* Pods_News_Now.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News_Now.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6579D7A0A06BC46128FF3D16 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7314A561F80C2D11A6AB0E63 /* Pods-DailyFeedTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedTests/Pods-DailyFeedTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +154,10 @@
 		B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		B03AE22321DF3E0800816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B03AE22821DF3ED300816B1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Views/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B04765D623316ED200A692CF /* DailyToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DailyToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B04765D923316ED200A692CF /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		B04765DC23316ED200A692CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B04765DE23316ED200A692CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceTableCellTableViewCell.swift; sourceTree = "<group>"; };
 		B0B6C61121DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Main.strings; sourceTree = "<group>"; };
 		B0B6C61221DF35D3008B9C0B /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -178,15 +192,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B04765D323316ED200A692CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B04765D723316ED200A692CF /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0618B76D1E40B74D00BC8096 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0606C7661E4C47A800D03739 /* Lottie.framework */,
 				0618B76E1E40B74D00BC8096 /* NotificationCenter.framework */,
-				5AED84813097317D8F7BC76F /* BuddyBuildSDK.framework */,
 				A531524C2A570ADFDBDA0451 /* AssetsLibrary.framework */,
 				6579D7A0A06BC46128FF3D16 /* CoreText.framework */,
 				E99DAE9BB0A7EFABFF566249 /* CoreTelephony.framework */,
@@ -208,6 +228,7 @@
 			children = (
 				06D04C1D1E1248DA0013B4AA /* DailyFeed */,
 				06D04C3D1E1248DC0013B4AA /* DailyFeedUITests */,
+				B04765D823316ED200A692CF /* DailyToday */,
 				0618B76D1E40B74D00BC8096 /* Frameworks */,
 				06D04C1C1E1248DA0013B4AA /* Products */,
 				E27AD38198DA5C1A50E0D004 /* Bridging-Header.h */,
@@ -220,6 +241,7 @@
 			children = (
 				06D04C1B1E1248DA0013B4AA /* DailyFeed.app */,
 				06D04C3A1E1248DB0013B4AA /* DailyFeedUITests.xctest */,
+				B04765D623316ED200A692CF /* DailyToday.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +373,16 @@
 			path = "Lottie Assets";
 			sourceTree = "<group>";
 		};
+		B04765D823316ED200A692CF /* DailyToday */ = {
+			isa = PBXGroup;
+			children = (
+				B04765D923316ED200A692CF /* TodayViewController.swift */,
+				B04765DB23316ED200A692CF /* MainInterface.storyboard */,
+				B04765DE23316ED200A692CF /* Info.plist */,
+			);
+			path = DailyToday;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -369,6 +401,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B04765E023316ED200A692CF /* PBXTargetDependency */,
 			);
 			name = DailyFeed;
 			productName = DailyFeed;
@@ -393,13 +426,30 @@
 			productReference = 06D04C3A1E1248DB0013B4AA /* DailyFeedUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B04765D523316ED200A692CF /* DailyToday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B04765E223316ED200A692CF /* Build configuration list for PBXNativeTarget "DailyToday" */;
+			buildPhases = (
+				B04765D223316ED200A692CF /* Sources */,
+				B04765D323316ED200A692CF /* Frameworks */,
+				B04765D423316ED200A692CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DailyToday;
+			productName = DailyToday;
+			productReference = B04765D623316ED200A692CF /* DailyToday.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		06D04C131E1248DA0013B4AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = trianz;
 				TargetAttributes = {
@@ -419,6 +469,11 @@
 						LastSwiftMigration = 1010;
 						TestTargetID = 06D04C1A1E1248DA0013B4AA;
 					};
+					B04765D523316ED200A692CF = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 5T7UHW36CL;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 06D04C161E1248DA0013B4AA /* Build configuration list for PBXProject "DailyFeed" */;
@@ -426,6 +481,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				el,
@@ -437,6 +493,7 @@
 			targets = (
 				06D04C1A1E1248DA0013B4AA /* DailyFeed */,
 				06D04C391E1248DB0013B4AA /* DailyFeedUITests */,
+				B04765D523316ED200A692CF /* DailyToday */,
 			);
 		};
 /* End PBXProject section */
@@ -463,6 +520,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B04765D423316ED200A692CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B04765DD23316ED200A692CF /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +571,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DailyFeed/Pods-DailyFeed-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -523,7 +588,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DailyFeed/Pods-DailyFeed-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -575,6 +640,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B04765D223316ED200A692CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B04765DA23316ED200A692CF /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -582,6 +655,11 @@
 			isa = PBXTargetDependency;
 			target = 06D04C1A1E1248DA0013B4AA /* DailyFeed */;
 			targetProxy = 06D04C3B1E1248DB0013B4AA /* PBXContainerItemProxy */;
+		};
+		B04765E023316ED200A692CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B04765D523316ED200A692CF /* DailyToday */;
+			targetProxy = B04765DF23316ED200A692CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -612,6 +690,14 @@
 				B0D980F521E0329000BB2BA5 /* el */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B04765DB23316ED200A692CF /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B04765DC23316ED200A692CF /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -737,7 +823,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -762,7 +848,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -797,6 +883,56 @@
 			};
 			name = Release;
 		};
+		B04765E323316ED200A692CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5T7UHW36CL;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DailyToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed.DailyToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B04765E423316ED200A692CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5T7UHW36CL;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DailyToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = gr.phisakel.DailyFeed.DailyToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -823,6 +959,15 @@
 			buildConfigurations = (
 				06D04C4A1E1248DC0013B4AA /* Debug */,
 				06D04C4B1E1248DC0013B4AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B04765E223316ED200A692CF /* Build configuration list for PBXNativeTarget "DailyToday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B04765E323316ED200A692CF /* Debug */,
+				B04765E423316ED200A692CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

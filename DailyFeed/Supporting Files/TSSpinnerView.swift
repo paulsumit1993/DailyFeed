@@ -14,7 +14,7 @@ class TSSpinnerView: UIView {
     
     let loadingView = UIView()
     
-    let bestView = LOTAnimationView(name: "IconTransitions")
+    let bestView = AnimationView(name: "IconTransitions")
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +35,7 @@ class TSSpinnerView: UIView {
         
         loadingView.layer.cornerRadius = loadingView.bounds.width / 2
         bestView.frame = CGRect(x: 0, y: 0, width: loadingView.frame.size.width, height: loadingView.frame.size.height)
-        bestView.loopAnimation = true
+        bestView.loopMode = .loop
         bestView.contentMode = .scaleAspectFill
         loadingView.addSubview(bestView)
         containerView.addSubview(loadingView)

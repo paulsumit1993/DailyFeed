@@ -26,7 +26,7 @@ enum NewsAPI {
             //let lSource = source ?? ""
             NewsAPI.baseURL?.path = "/v2/top-headlines"
             //if lSource.isEmpty {
-                var regionCode = Locale.current.regionCode!
+                var regionCode = Locale.current.regionCode ?? "gr"
                 if regionCode.caseInsensitiveCompare("cy") == .orderedSame { regionCode = "gr"}
                 NewsAPI.baseURL?.queryItems = [URLQueryItem(name: "country", value: regionCode), URLQueryItem(name: "category", value: category!), URLQueryItem(name: "apiKey", value: NewsAPI.apiToken)]
             //} else {
