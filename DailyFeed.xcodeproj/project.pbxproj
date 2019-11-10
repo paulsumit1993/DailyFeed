@@ -51,6 +51,7 @@
 		4E6BCD44E375D4568FD31B26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AA2450FF7F60A50F08A9F8 /* AVFoundation.framework */; };
 		7A069BDE14BC48BF6EF444E6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE71099B985DFA7F61C07BE /* CoreVideo.framework */; };
 		953C685821A071CC006750F8 /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 953C685721A071CC006750F8 /* IconTransitions.json */; };
+		AAB3C3EDFC07F525748A7D83 /* Pods_DailyToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3823251E8FC4B9E76B74095E /* Pods_DailyToday.framework */; };
 		B012C5D521E0E09B0084C974 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012C5D421E0E09B0084C974 /* SnapshotHelper.swift */; };
 		B03AE22921DF3ED300816B1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B03AE22721DF3ED300816B1E /* Localizable.strings */; };
 		B04765D723316ED200A692CF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0618B76E1E40B74D00BC8096 /* NotificationCenter.framework */; };
@@ -59,6 +60,11 @@
 		B04765E123316ED200A692CF /* DailyToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B04765D623316ED200A692CF /* DailyToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B092791C21E9B03300882D25 /* SourceTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092791B21E9B03300882D25 /* SourceTableCellTableViewCell.swift */; };
 		B0F547BA237880D600DF0209 /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAC5971E28A3D600EF72BB /* NewsAPI.swift */; };
+		B0F547BB2378836100DF0209 /* TSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C561E13948C0013B4AA /* TSImageView.swift */; };
+		B0F547BC237886E600DF0209 /* DailySourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0635050B1E165EA0002510B0 /* DailySourceModel.swift */; };
+		B0F547BD237886EF00DF0209 /* DailyFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C4C1E1249430013B4AA /* DailyFeedModel.swift */; };
+		B0F547BE2378873200DF0209 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2027D8AA1EEF2FDC00FE145B /* Serializable.swift */; };
+		B0F547BF2378874F00DF0209 /* JSONDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2085CBC31EF9216900D26594 /* JSONDecodingError.swift */; };
 		BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F173573F8F2C56C6A3483F /* Pods_DailyFeed.framework */; };
 		EC7250BD6730BFE124454F2F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579D7A0A06BC46128FF3D16 /* CoreText.framework */; };
 /* End PBXBuildFile section */
@@ -141,10 +147,14 @@
 		208C18261EA3CD81007BC052 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		208FBB5A1EDB1C36009C2539 /* DailySourceItemiPadLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySourceItemiPadLayout.swift; sourceTree = "<group>"; };
 		20EA15741EA28C6700047523 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
+		27FC020BC82A41D8F079172D /* Pods-DailyToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyToday/Pods-DailyToday.release.xcconfig"; sourceTree = "<group>"; };
+		2D714DE4A7BE67A24CC7590C /* Pods-DailyFeed-DailyToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed-DailyToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed-DailyToday/Pods-DailyFeed-DailyToday.debug.xcconfig"; sourceTree = "<group>"; };
+		3823251E8FC4B9E76B74095E /* Pods_DailyToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4B271DBAED1076F1C63A67 /* Pods-DailyFeedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedTests/Pods-DailyFeedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5539A81DBCC7A45D01F5CCB3 /* Pods-DailyFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.release.xcconfig"; sourceTree = "<group>"; };
 		56EA0AEF3558331B8AD9B3DC /* Pods_DailyFeedUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeedUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B2007D05E7918650A75085 /* Pods_DailyFeedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyFeedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C13B16DA40DBFEE54524F3F /* Pods-DailyToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyToday/Pods-DailyToday.debug.xcconfig"; sourceTree = "<group>"; };
 		5FC3839392D2356ACF37A1F7 /* Pods_News_Now.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News_Now.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6579D7A0A06BC46128FF3D16 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7314A561F80C2D11A6AB0E63 /* Pods-DailyFeedTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeedTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeedTests/Pods-DailyFeedTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +178,7 @@
 		D6D938716CB2644F8FE6904C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E18B06086150616A4B3A60A3 /* Pods-News Now.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News Now.debug.xcconfig"; path = "Pods/Target Support Files/Pods-News Now/Pods-News Now.debug.xcconfig"; sourceTree = "<group>"; };
 		E27AD38198DA5C1A50E0D004 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E53F78ECAAF75A6FD19950E6 /* Pods-DailyFeed-DailyToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed-DailyToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed-DailyToday/Pods-DailyFeed-DailyToday.release.xcconfig"; sourceTree = "<group>"; };
 		E99DAE9BB0A7EFABFF566249 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -198,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B04765D723316ED200A692CF /* NotificationCenter.framework in Frameworks */,
+				AAB3C3EDFC07F525748A7D83 /* Pods_DailyToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +232,7 @@
 				58B2007D05E7918650A75085 /* Pods_DailyFeedTests.framework */,
 				56EA0AEF3558331B8AD9B3DC /* Pods_DailyFeedUITests.framework */,
 				5FC3839392D2356ACF37A1F7 /* Pods_News_Now.framework */,
+				3823251E8FC4B9E76B74095E /* Pods_DailyToday.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -281,6 +294,10 @@
 				7314A561F80C2D11A6AB0E63 /* Pods-DailyFeedTests.release.xcconfig */,
 				E18B06086150616A4B3A60A3 /* Pods-News Now.debug.xcconfig */,
 				D1D7734AD5DFC5D8F8DD5CB0 /* Pods-News Now.release.xcconfig */,
+				2D714DE4A7BE67A24CC7590C /* Pods-DailyFeed-DailyToday.debug.xcconfig */,
+				E53F78ECAAF75A6FD19950E6 /* Pods-DailyFeed-DailyToday.release.xcconfig */,
+				5C13B16DA40DBFEE54524F3F /* Pods-DailyToday.debug.xcconfig */,
+				27FC020BC82A41D8F079172D /* Pods-DailyToday.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -431,6 +448,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B04765E223316ED200A692CF /* Build configuration list for PBXNativeTarget "DailyToday" */;
 			buildPhases = (
+				2ED24E997A81183E9456B8D1 /* [CP] Check Pods Manifest.lock */,
 				B04765D223316ED200A692CF /* Sources */,
 				B04765D323316ED200A692CF /* Frameworks */,
 				B04765D423316ED200A692CF /* Resources */,
@@ -548,6 +566,28 @@
 			shellPath = /bin/sh;
 			shellScript = "";
 		};
+		2ED24E997A81183E9456B8D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DailyToday-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6D231186B76E5C15DC1569A6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -645,8 +685,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F547BE2378873200DF0209 /* Serializable.swift in Sources */,
+				B0F547BF2378874F00DF0209 /* JSONDecodingError.swift in Sources */,
 				B04765DA23316ED200A692CF /* TodayViewController.swift in Sources */,
+				B0F547BB2378836100DF0209 /* TSImageView.swift in Sources */,
+				B0F547BC237886E600DF0209 /* DailySourceModel.swift in Sources */,
 				B0F547BA237880D600DF0209 /* NewsAPI.swift in Sources */,
+				B0F547BD237886EF00DF0209 /* DailyFeedModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +932,7 @@
 		};
 		B04765E323316ED200A692CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C13B16DA40DBFEE54524F3F /* Pods-DailyToday.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -895,7 +941,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5T7UHW36CL;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DailyToday/Info.plist;
@@ -915,6 +961,7 @@
 		};
 		B04765E423316ED200A692CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27FC020BC82A41D8F079172D /* Pods-DailyToday.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -923,7 +970,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5T7UHW36CL;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DailyToday/Info.plist;

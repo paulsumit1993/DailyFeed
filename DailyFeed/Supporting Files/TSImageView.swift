@@ -12,6 +12,19 @@ let imageCache = NSCache<AnyObject, AnyObject>()
 class TSImageView: UIImageView {
 
     var imageUrlString: String?
+  
+  static func downloadSimple(_ urlString: String, for image: UIImageView) {
+     guard let url = URL(string: urlString) else { return }
+       URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+      
+        guard
+            let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+            let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+            let data = data, error == nil else { return }
+        DispatchQueue.main.async {  image.image = UIImage(data: data) }
+            
+        }) .resume()
+  }
 
     func downloadedFromLink(_ urlString: String, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
         guard let url = URL(string: urlString) else { return }
