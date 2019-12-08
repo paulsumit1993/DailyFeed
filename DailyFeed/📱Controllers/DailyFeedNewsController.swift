@@ -18,7 +18,7 @@ class DailyFeedNewsController: UICollectionViewController {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
-                self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }
     }
@@ -46,7 +46,7 @@ class DailyFeedNewsController: UICollectionViewController {
     
     var selectedIndexPath: IndexPath?
     
-    let transition = NewsDetailPopAnimator()
+    //let transition = NewsDetailPopAnimator()
     
     var selectedCell = UICollectionViewCell()
     
@@ -68,9 +68,9 @@ class DailyFeedNewsController: UICollectionViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
         collectionView?.collectionViewLayout.invalidateLayout()
-    }
+        super.viewWillLayoutSubviews()
+      }
     
     let navBarSourceImage: TSImageView = {
         let image = TSImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 36))
@@ -174,7 +174,7 @@ class DailyFeedNewsController: UICollectionViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.collectionView?.indexPath(for: cell) else { return }
             
-                vc.transitioningDelegate = self
+                //vc.transitioningDelegate = self
                 vc.modalPresentationStyle = .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
@@ -243,7 +243,7 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
         return true
     }
 }
-
+/*
 extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
     
     // MARK: - UIViewController Transitioning Delegate Methods
@@ -259,5 +259,5 @@ extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
         return transition
     }
 }
-
+*/
 

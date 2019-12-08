@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06D04C1A1E1248DA0013B4AA"
-               BuildableName = "DailyFeed.app"
+               BuildableName = "News of the day.app"
                BlueprintName = "DailyFeed"
                ReferencedContainer = "container:DailyFeed.xcodeproj">
             </BuildableReference>
@@ -42,6 +42,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0618B76B1E40B74D00BC8096"
+            BuildableName = "News Now.appex"
+            BlueprintName = "News Now"
+            ReferencedContainer = "container:DailyFeed.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -64,23 +73,13 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0618B76B1E40B74D00BC8096"
-            BuildableName = "News Now.appex"
-            BlueprintName = "News Now"
-            ReferencedContainer = "container:DailyFeed.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
@@ -108,8 +107,6 @@
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -123,7 +120,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06D04C1A1E1248DA0013B4AA"
-            BuildableName = "DailyFeed.app"
+            BuildableName = "News of the day.app"
             BlueprintName = "DailyFeed"
             ReferencedContainer = "container:DailyFeed.xcodeproj">
          </BuildableReference>
