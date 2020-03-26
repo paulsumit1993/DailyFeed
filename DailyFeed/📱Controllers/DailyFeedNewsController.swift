@@ -44,9 +44,7 @@ class DailyFeedNewsController: UIViewController {
     }()
     
     var selectedIndexPath: IndexPath?
-    
-    private let transition = NewsDetailPopAnimator()
-    
+        
     var selectedCell = UICollectionViewCell()
     
     var isLanguageRightToLeft = Bool()
@@ -77,6 +75,8 @@ class DailyFeedNewsController: UIViewController {
     
     let navBarSourceImage: TSImageView = {
         let image = TSImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 36))
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
         return image
     }()
     
@@ -102,6 +102,7 @@ class DailyFeedNewsController: UIViewController {
     // MARK: - Setup CollectionView
     func setupCollectionView() {
         newsCollectionView?.register(R.nib.dailyFeedItemCell)
+        newsCollectionView?.collectionViewLayout = UIDevice.current.userInterfaceIdiom == .phone ? DailySourceItemLayout() : DailySourceItemiPadLayout()
         newsCollectionView?.refreshControl = refreshControl
         refreshControl.addTarget(self,
                                  action: #selector(DailyFeedNewsController.refreshData(_:)),
@@ -173,8 +174,7 @@ class DailyFeedNewsController: UIViewController {
             if let vc = segue.destination as? NewsDetailViewController {
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexpath = self.newsCollectionView?.indexPath(for: cell) else { return }
-                vc.transitioningDelegate = self
-                vc.modalPresentationStyle = .formSheet
+                vc.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .phone ? .fullScreen : .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
                 vc.receivedNewsSourceLogo = NewsAPI.getSourceNewsLogoUrl(source: self.source)
@@ -242,21 +242,3 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
         return true
     }
 }
-
-extension DailyFeedNewsController: UIViewControllerTransitioningDelegate {
-    
-    // MARK: - UIViewController Transitioning Delegate Methods
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = selectedCell.superview!.convert(selectedCell.frame, to: nil)
-        transition.presenting = true
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.presenting = false
-        return transition
-    }
-}
-
-
