@@ -39,7 +39,6 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
         controller.hidesNavigationBarDuringPresentation = true
         controller.searchBar.placeholder = "Search Anything..."
         controller.searchBar.searchBarStyle = .prominent
-        controller.searchBar.tintColor = .black
         controller.searchBar.sizeToFit()
         return controller
     }()
@@ -87,6 +86,7 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
     // MARK: - Setup TableView
     private func setupCollectionView() {
         searchCollectionView.register(R.nib.dailyFeedItemCell)
+        searchCollectionView?.collectionViewLayout = UIDevice.current.userInterfaceIdiom == .phone ? DailySourceItemLayout() : DailySourceItemiPadLayout()
         searchCollectionView.emptyDataSetDelegate = self
         searchCollectionView.emptyDataSetSource = self
     }

@@ -27,6 +27,10 @@ class DailyFeedItemCell: UICollectionViewCell {
     func setupCell() {
         self.contentView.layer.cornerRadius = 10.0
         self.contentView.layer.masksToBounds = true
+        if #available(iOS 13.0, *) {
+            self.contentView.layer.borderWidth = 0.2
+            self.contentView.layer.borderColor = UIColor.label.cgColor
+        }
     }
     
     func configure(with newsitems: DailyFeedModel, ltr: Bool) {

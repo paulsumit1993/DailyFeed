@@ -24,7 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let _ = try! Realm()
         
-        window?.tintColor = .black
+        if #available(iOS 13.0, *) {
+            window?.tintColor = .label
+        } else {
+            window?.tintColor = .black
+        }
+        
         application.extendStateRestoration()
         return true
     }

@@ -27,7 +27,12 @@ public extension UIViewController {
 
         controller.setValue(attributedString, forKey: "attributedTitle")
 
-        controller.view.tintColor = .black
+        if #available(iOS 13.0, *) {
+            controller.view.tintColor = .label
+        } else {
+            controller.view.tintColor = .black
+        }
+
         controller.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),
                                            style: .default,
                                            handler: handler))

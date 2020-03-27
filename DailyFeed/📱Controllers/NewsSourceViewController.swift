@@ -67,7 +67,6 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
         controller.hidesNavigationBarDuringPresentation = true
         controller.searchBar.placeholder = "Search Sources..."
         controller.searchBar.searchBarStyle = .minimal
-        controller.searchBar.tintColor = .black
         controller.searchBar.sizeToFit()
         return controller
     }()

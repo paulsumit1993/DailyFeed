@@ -24,7 +24,7 @@ class DailyFeedNewsController: UIViewController {
     
     var source: String {
         get {
-            guard let defaultSource = UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.string(forKey: "source") else {
+            guard let defaultSource = UserDefaults(suiteName: "group.com.llc.DailyFeed.today")?.string(forKey: "source") else {
                 return "the-wall-street-journal"
             }
 
@@ -32,9 +32,11 @@ class DailyFeedNewsController: UIViewController {
         }
         
         set {
-           UserDefaults(suiteName: "group.com.trianz.DailyFeed.today")?.set(newValue, forKey: "source")
+           UserDefaults(suiteName: "group.com.llc.DailyFeed.today")?.set(newValue, forKey: "source")
         }
     }
+    
+    var sourceName: String = "DailyFeed"
 
     let spinningActivityIndicator = TSSpinnerView()
 
@@ -73,13 +75,6 @@ class DailyFeedNewsController: UIViewController {
         newsCollectionView?.collectionViewLayout.invalidateLayout()
     }
     
-    let navBarSourceImage: TSImageView = {
-        let image = TSImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 36))
-        image.contentMode = .scaleAspectFit
-        image.clipsToBounds = true
-        return image
-    }()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -95,8 +90,7 @@ class DailyFeedNewsController: UIViewController {
     func setupNavigationBar() {
         let sourceMenuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "sources"), style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
         navigationItem.rightBarButtonItem = sourceMenuButton
-        navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
-        navigationItem.titleView = navBarSourceImage
+        navigationItem.title = self.sourceName
     }
 
     // MARK: - Setup CollectionView
@@ -147,7 +141,7 @@ class DailyFeedNewsController: UIViewController {
                 NewsAPI.getNewsItems(source: source)
             }.done { result in
                 self.newsItems = result.articles
-                self.navBarSourceImage.downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
+                self.navigationItem.title = self.sourceName
             }.ensure(on: .main) {
                 self.spinningActivityIndicator.stop()
                 self.refreshControl.endRefreshing()
@@ -185,7 +179,10 @@ class DailyFeedNewsController: UIViewController {
 
     // MARK: - Unwind from Source View Controller
     @IBAction func unwindToDailyNewsFeed(_ segue: UIStoryboardSegue) {
-        if let sourceVC = segue.source as? NewsSourceViewController, let sourceId = sourceVC.selectedItem?.sid {
+        if let sourceVC = segue.source as? NewsSourceViewController,
+            let selectedItem = sourceVC.selectedItem {
+            let sourceId = selectedItem.sid
+            sourceName = selectedItem.name
             let status = Reach().connectionStatus()
             isLanguageRightToLeft = sourceVC.selectedItem?.isoLanguageCode.direction == .rightToLeft
             switch status {

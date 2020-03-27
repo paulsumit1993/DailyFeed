@@ -12,7 +12,9 @@ class DFSafariViewController: SFSafariViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 10.0, *) {
+        if #available(iOS 13.0, *) {
+            self.preferredControlTintColor = .label
+        } else {
             self.preferredControlTintColor = .black
         }
     }
