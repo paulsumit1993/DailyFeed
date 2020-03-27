@@ -15,7 +15,7 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     
     var receivedNewsItem: DailyFeedRealmModel?
     
-    var receivedNewsSourceLogo: String?
+    var receivedNewsSource: String?
     
     var articleStringURL: String?
     
@@ -107,11 +107,9 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
         }
     }
 
-    @IBOutlet weak var newsSourceImageView: TSImageView! {
+    @IBOutlet weak var newsSourceLabel: UILabel! {
         didSet {
-            guard receivedNewsSourceLogo != nil else { return }
-            //newsSourceImageView.downloadedFromLink(newsSourceLogo)
-
+            newsSourceLabel.text = receivedNewsSource
         }
     }
     

@@ -36,8 +36,8 @@ extension NewsDetailViewController {
             coder.encode(url, forKey: "newsURL")
         }
         
-        if let newsSourceImage = newsSourceImageView.image {
-            coder.encode(newsSourceImage.pngData(), forKey: "newsSourceImage")
+        if let newsSource = newsSourceLabel.text {
+            coder.encode(newsSource, forKey: "newsSource")
         }
         
         super.encodeRestorableState(with: coder)
@@ -71,8 +71,8 @@ extension NewsDetailViewController {
             articleStringURL = urlString
         }
         
-        if let newsSourceImageData = coder.decodeObject(forKey: "newsSourceImage") as? Data {
-            newsSourceImageView.image = UIImage(data: newsSourceImageData)
+        if let newsSource = coder.decodeObject(forKey: "newsSource") as? String {
+            newsSourceLabel.text = newsSource
         }
         
         super.decodeRestorableState(with: coder)

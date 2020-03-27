@@ -171,7 +171,7 @@ class DailyFeedNewsController: UIViewController {
                 vc.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .phone ? .fullScreen : .formSheet
                 vc.receivedNewsItem = DailyFeedRealmModel.toDailyFeedRealmModel(from: newsItems[indexpath.row])
                 vc.receivedItemNumber = indexpath.row + 1
-                vc.receivedNewsSourceLogo = NewsAPI.getSourceNewsLogoUrl(source: self.source)
+                vc.receivedNewsSource = self.sourceName
                 vc.isLanguageRightToLeftDetailView = isLanguageRightToLeft
             }
         }
