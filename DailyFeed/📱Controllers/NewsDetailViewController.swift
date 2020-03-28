@@ -47,7 +47,6 @@ class NewsDetailViewController: UIViewController, SFSafariViewControllerDelegate
     @IBOutlet weak var contentTextView: UITextView! {
         didSet {
             contentTextView.text = receivedNewsItem?.articleDescription
-            contentTextView.textColor = .gray
             contentTextView.alpha = 0.0
             contentTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
             contentTextView.sizeToFit()
