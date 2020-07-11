@@ -33,7 +33,7 @@ DEPENDENCIES:
   - RealmSwift
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - DZNEmptyDataSet
     - Kingfisher
     - lottie-ios
@@ -55,6 +55,6 @@ SPEC CHECKSUMS:
   Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
 
-PODFILE CHECKSUM: b8ff91a72f4d32731863be7b5e685f24a83dcdce
+PODFILE CHECKSUM: 6226dfa4f111404e5d56ed9d454d2ab51428c108
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.3
