@@ -14,5 +14,9 @@ class DailySourceItemCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle  = .none
     }
+  
+  override func prepareForReuse() {
+    sourceImageView.image = nil
+  }
     
 }

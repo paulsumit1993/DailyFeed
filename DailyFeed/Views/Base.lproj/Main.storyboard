@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPD-2t-72W">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +10,7 @@
         <!--Dailyfeed-->
         <scene sceneID="WGJ-LH-q2G">
             <objects>
-                <collectionViewController storyboardIdentifier="DailyFeedNewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="DailyFeedNewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L6A-1a-6xf" customClass="DailyFeedNewsController" customModule="News_of_the_day" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7N7-o2-reM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,7 +67,7 @@
         <!--Sources-->
         <scene sceneID="rtQ-Cl-8QZ">
             <objects>
-                <viewController storyboardIdentifier="NewsSourceViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjF-yu-jQX" customClass="NewsSourceViewController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsSourceViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjF-yu-jQX" customClass="NewsSourceViewController" customModule="News_of_the_day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yk7-G7-fGr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,7 +76,7 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada" customClass="SourceTableCellTableViewCell" customModule="DailyFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SourceCell" rowHeight="60" id="XSz-yC-ada" customClass="SourceTableCellTableViewCell" customModule="News_of_the_day" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XSz-yC-ada" id="aKz-78-YEH">
@@ -153,12 +152,12 @@
         <!--News Detail View Controller-->
         <scene sceneID="215-4y-uX3">
             <objects>
-                <viewController storyboardIdentifier="NewsDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1yk-sL-YYJ" customClass="NewsDetailViewController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1yk-sL-YYJ" customClass="NewsDetailViewController" customModule="News_of_the_day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jP3-ch-vay">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="0OI-zn-fNx" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="0OI-zn-fNx" customClass="TSImageView" customModule="News_of_the_day" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-44" width="320" height="219"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="image"/>
@@ -200,7 +199,7 @@
                                     <action selector="shareArticle:" destination="1yk-sL-YYJ" eventType="touchUpInside" id="cSy-kP-dpx"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Jh-bM7" customClass="TSImageView" customModule="DailyFeed" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Jh-bM7" customClass="TSImageView" customModule="News_of_the_day" customModuleProvider="target">
                                 <rect key="frame" x="140" y="504" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="WZl-Jh-bM7" secondAttribute="height" multiplier="1:1" id="RSh-lF-maR"/>
@@ -374,7 +373,7 @@
         <!--Bookmarks-->
         <scene sceneID="NqL-UD-vrJ">
             <objects>
-                <viewController storyboardIdentifier="BookmarkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vjv-Em-Web" customClass="BookmarkViewController" customModule="DailyFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookmarkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vjv-Em-Web" customClass="BookmarkViewController" customModule="News_of_the_day" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zkJ-mD-q6T">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,6 +454,9 @@
             <point key="canvasLocation" x="129" y="1269"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ico-Xt-3Zc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="36" height="36"/>
         <image name="bookmark" width="24" height="24"/>
@@ -463,7 +465,4 @@
         <image name="logo" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="w5m-To-g4E"/>
-    </inferredMetricsTieBreakers>
 </document>

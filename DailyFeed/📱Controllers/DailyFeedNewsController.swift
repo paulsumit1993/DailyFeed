@@ -13,6 +13,7 @@ import PromiseKit
 class DailyFeedNewsController: UICollectionViewController {
 
     // MARK: - Variable declaration
+  //var dragRec: UISwipeGestureRecognizer!
 
     var newsItems: [DailyFeedModel] = [] {
         didSet {
@@ -93,7 +94,7 @@ class DailyFeedNewsController: UICollectionViewController {
     func setupNavigationBar() {
         let sourceMenuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "sources"), style: .plain, target: self, action: #selector(sourceMenuButtonDidTap))
         navigationItem.rightBarButtonItem = sourceMenuButton
-        //navBarSourceImage.image = UIImage.init(named: "logo") // .downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
+        //navBarSourceImage.image = UIImage(named: "logo") // .downloadedFromLink(NewsAPI.getSourceNewsLogoUrl(source: self.source), contentMode: .scaleAspectFit)
         //navigationItem.titleView = navBarSourceImage
         navigationItem.title = NSLocalizedString("category_\(self.source)", comment: self.source) // "\(Locale.current.localizedString(forRegionCode: Locale.current.regionCode!)!)"
     }

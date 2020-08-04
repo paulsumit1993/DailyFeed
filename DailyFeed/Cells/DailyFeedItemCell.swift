@@ -17,13 +17,17 @@ class DailyFeedItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
-        
     }
     
     func setupCell() {
         self.contentView.layer.cornerRadius = 10.0
         self.contentView.layer.masksToBounds = true
     }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse() 
+    newsItemImageView.image = nil
+  }
     
     func configure(with newsitems: DailyFeedModel, ltr: Bool) {
         self.newsItemTitleLabel.text = newsitems.title
