@@ -110,6 +110,16 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.cellForItem(at: indexPath)
         self.performSegue(withIdentifier: R.segue.bookmarkViewController.bookmarkSourceSegue, sender: cell)
     }
+    
+    ///Animate the cell by scaling it, just before it appears on screen
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView.isDragging {
+            cell.transform = .init(scaleX: 0.5, y: 0.5)
+            UIView.animate(withDuration: 0.3) {
+                cell.transform = .identity
+            }
+        }
+    }
 }
 
 // MARK: - DZNEmptyDataSet Delegate Methods
