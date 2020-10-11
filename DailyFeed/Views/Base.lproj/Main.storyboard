@@ -387,7 +387,7 @@
                 <navigationController storyboardIdentifier="InitialNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oWo-5U-Bje" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="DailyFeed" image="logo" id="xue-dU-KaD"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" largeTitles="YES" id="DE7-ZW-YwF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="DE7-ZW-YwF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
