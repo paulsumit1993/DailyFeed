@@ -6,18 +6,15 @@
 //
 
 import UIKit
-import RealmSwift
 import CoreSpotlight
 import MobileCoreServices
 import DZNEmptyDataSet
+import RealmSwift
 
 class BookmarkViewController: UIViewController {
     
-    @IBOutlet weak var bookmarkCollectionView: UICollectionView!
-    
-    var newsItems: Results<DailyFeedRealmModel>!
-    
-    var notificationToken: NotificationToken? = nil
+    @IBOutlet private weak var bookmarkCollectionView: UICollectionView!
+    private var bookmarkViewModel = BookmarkViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,34 +24,29 @@ class BookmarkViewController: UIViewController {
         if #available(iOS 11.0, *) {
             bookmarkCollectionView?.dropDelegate = self
         }
-        observeDatabase()
+        ///Register  viewmodel observer here
+        bookmarkViewModel.observeDatabase { (changes) in
+            self.observeForFeeds(changes: changes)
+        }
     }
     
-    func observeDatabase() {
-        
-        let realm = try! Realm()
-        newsItems = realm.objects(DailyFeedRealmModel.self)
-        
-        notificationToken = newsItems.observe { [weak self] (changes: RealmCollectionChange) in
-            guard let collectionview = self?.bookmarkCollectionView else { return }
-            switch changes {
-            case .initial:
-                collectionview.reloadData()
-                break
-            case .update( _, let deletions, let insertions, _):
-                collectionview.performBatchUpdates({
-                    collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
-                    
-                    collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
-                    
-                }, completion: nil)
-                
-                if self?.newsItems.count == 0 || self?.newsItems.count == 1 { collectionview.reloadEmptyDataSet() }
-                break
-            case .error(let error):
-                fatalError("\(error)")
-                break
-            }
+    private func observeForFeeds(changes: RealmCollectionChange<Results<DailyFeedRealmModel>>) {
+        guard let collectionview = self.bookmarkCollectionView else { return }
+        switch changes {
+        case .initial:
+            collectionview.reloadData()
+            break
+        case .update( _, let deletions, let insertions, _):
+            collectionview.performBatchUpdates({
+                collectionview.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
+                collectionview.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+            }, completion: nil)
+            
+            if self.bookmarkViewModel.numberOfNewsItems == 0 || self.bookmarkViewModel.numberOfNewsItems == 1 { collectionview.reloadEmptyDataSet() }
+            break
+        case .error(let error):
+            fatalError("\(error)")
+            break
         }
     }
     
@@ -64,13 +56,9 @@ class BookmarkViewController: UIViewController {
                 guard let cell = sender as? UICollectionViewCell else { return }
                 guard let indexpath = self.bookmarkCollectionView.indexPath(for: cell) else { return }
                 vc.receivedItemNumber = indexpath.row + 1
-                vc.receivedNewsItem = newsItems[indexpath.row]
+                vc.receivedNewsItem =  bookmarkViewModel.getDailyFeedForIndex(indexpath.row)
             }
         }
-    }
-    
-    deinit {
-        notificationToken?.invalidate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -83,20 +71,16 @@ class BookmarkViewController: UIViewController {
 extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newsItems.count
+        return bookmarkViewModel.numberOfRowsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let newsCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.bookmarkItemsCell, for: indexPath)
-        newsCell?.configure(with: newsItems[indexPath.row])
+        newsCell?.configure(with: bookmarkViewModel.getDailyFeedForIndex(indexPath.row))
         newsCell?.cellTapped = { cell in
             if let cellToDelete = self.bookmarkCollectionView.indexPath(for: cell)?.row {
-                let item = self.newsItems[cellToDelete]
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.delete(item)
-                }
-                
+                let item = self.bookmarkViewModel.getDailyFeedForIndex(cellToDelete) //self.newsItems[cellToDelete]
+                self.bookmarkViewModel.removeDailyFeed(item)
             }
         }
         return newsCell!
@@ -116,15 +100,11 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
 extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "No Articles Bookmarked"
-        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return bookmarkViewModel.noDataErrorTitle
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let str = "Your Bookmarks will appear here."
-        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return bookmarkViewModel.noDataErrorDescription
     }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
@@ -151,15 +131,7 @@ extension BookmarkViewController: UICollectionViewDropDelegate {
             if itemProvider.canLoadObject(ofClass: DailyFeedModel.self) {
                 itemProvider.loadObject(ofClass: DailyFeedModel.self) { (object, error) in
                     DispatchQueue.main.async {
-                        let realm = try! Realm()
-                        if let dailyfeedmodel = object as? DailyFeedModel {
-                            let dailyfeedRealmModel = DailyFeedRealmModel.toDailyFeedRealmModel(from: dailyfeedmodel)
-                            try! realm.write {
-                                realm.add(dailyfeedRealmModel, update: .all)
-                            }
-                        } else {
-                            //self.displayError(error)
-                        }
+                        self.bookmarkViewModel.addDailyFeed(object as? DailyFeedModel)
                     }
                 }
             }
