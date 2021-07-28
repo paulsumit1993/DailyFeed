@@ -33,6 +33,8 @@ extension DecodingError {
             return NSLocalizedString("\(context.debugDescription)", comment: "")
         case .valueNotFound(_, let context):
             return NSLocalizedString("\(context.debugDescription)", comment: "")
+        @unknown default:
+            return nil
         }
     }
 }

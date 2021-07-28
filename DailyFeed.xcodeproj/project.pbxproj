@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,7 +35,18 @@
 		06D04C541E13945D0013B4AA /* DailyFeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C521E13945C0013B4AA /* DailyFeedItemCell.swift */; };
 		06D04C551E13945D0013B4AA /* DailyFeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06D04C531E13945C0013B4AA /* DailyFeedItemCell.xib */; };
 		06D04C571E13948C0013B4AA /* TSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D04C561E13948C0013B4AA /* TSImageView.swift */; };
+		1D0F3DBB26B15299001ED7D0 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0F3DBA26B15299001ED7D0 /* PromiseKit */; };
+		1D0F3DBE26B15303001ED7D0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0F3DBD26B15303001ED7D0 /* Kingfisher */; };
+		1D0F3DC126B1534A001ED7D0 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0F3DC026B1534A001ED7D0 /* DZNEmptyDataSet */; };
 		1D98E964228B1AF60090B722 /* NewsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98E963228B1AF60090B722 /* NewsSearchViewController.swift */; };
+		1DC1B9E626B153FE00B7F103 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC1B9E526B153FE00B7F103 /* Lottie */; };
+		1DC1B9EE26B154B200B7F103 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 1DC1B9E826B154B200B7F103 /* .gitkeep */; };
+		1DC1B9EF26B154B200B7F103 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1B9E926B154B200B7F103 /* UIView+Helper.swift */; };
+		1DC1B9F026B154B200B7F103 /* PullToReachTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1B9EA26B154B200B7F103 /* PullToReachTarget.swift */; };
+		1DC1B9F126B154B200B7F103 /* PullToReachObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1B9EB26B154B200B7F103 /* PullToReachObserver.swift */; };
+		1DC1B9F226B154B200B7F103 /* PullToReach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1B9EC26B154B200B7F103 /* PullToReach.swift */; };
+		1DC1B9F326B154B200B7F103 /* SelectionIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1B9ED26B154B200B7F103 /* SelectionIndicatorView.swift */; };
+		1DC1B9F626B1563000B7F103 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC1B9F526B1563000B7F103 /* RealmSwift */; };
 		1DD3CDCD227F14AF00C374BC /* NewsSourceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3CDCC227F14AF00C374BC /* NewsSourceParameters.swift */; };
 		1DD3CDD0227F295900C374BC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3CDCF227F295900C374BC /* R.generated.swift */; };
 		2027D8AB1EEF2FDC00FE145B /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2027D8AA1EEF2FDC00FE145B /* Serializable.swift */; };
@@ -98,6 +109,12 @@
 		1721C260D75D69EF09A4D02A /* Pods-DailyFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyFeed/Pods-DailyFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		1D98E963228B1AF60090B722 /* NewsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewController.swift; sourceTree = "<group>"; };
 		1DAAF127242E55C300DF364F /* DailyFeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DailyFeed.entitlements; sourceTree = "<group>"; };
+		1DC1B9E826B154B200B7F103 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		1DC1B9E926B154B200B7F103 /* UIView+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
+		1DC1B9EA26B154B200B7F103 /* PullToReachTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToReachTarget.swift; sourceTree = "<group>"; };
+		1DC1B9EB26B154B200B7F103 /* PullToReachObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToReachObserver.swift; sourceTree = "<group>"; };
+		1DC1B9EC26B154B200B7F103 /* PullToReach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToReach.swift; sourceTree = "<group>"; };
+		1DC1B9ED26B154B200B7F103 /* SelectionIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionIndicatorView.swift; sourceTree = "<group>"; };
 		1DD3CDCC227F14AF00C374BC /* NewsSourceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourceParameters.swift; sourceTree = "<group>"; };
 		1DD3CDCF227F295900C374BC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		2027D8AA1EEF2FDC00FE145B /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
@@ -124,7 +141,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DC1B9F626B1563000B7F103 /* RealmSwift in Frameworks */,
+				1DC1B9E626B153FE00B7F103 /* Lottie in Frameworks */,
+				1D0F3DC126B1534A001ED7D0 /* DZNEmptyDataSet in Frameworks */,
+				1D0F3DBE26B15303001ED7D0 /* Kingfisher in Frameworks */,
 				BF3E3EF3B745B55ADCBE90FA /* Pods_DailyFeed.framework in Frameworks */,
+				1D0F3DBB26B15299001ED7D0 /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +197,19 @@
 				06D04C2A1E1248DB0013B4AA /* Info.plist */,
 			);
 			path = DailyFeed;
+			sourceTree = "<group>";
+		};
+		1DC1B9E726B154B200B7F103 /* PullToReach */ = {
+			isa = PBXGroup;
+			children = (
+				1DC1B9E826B154B200B7F103 /* .gitkeep */,
+				1DC1B9E926B154B200B7F103 /* UIView+Helper.swift */,
+				1DC1B9EA26B154B200B7F103 /* PullToReachTarget.swift */,
+				1DC1B9EB26B154B200B7F103 /* PullToReachObserver.swift */,
+				1DC1B9EC26B154B200B7F103 /* PullToReach.swift */,
+				1DC1B9ED26B154B200B7F103 /* SelectionIndicatorView.swift */,
+			);
+			path = PullToReach;
 			sourceTree = "<group>";
 		};
 		3EEEBD274CB31BA2841191D5 /* Pods */ = {
@@ -230,6 +265,7 @@
 		953C685421A0713C006750F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1DC1B9E726B154B200B7F103 /* PullToReach */,
 				06D04C1E1E1248DB0013B4AA /* AppDelegate.swift */,
 				208C18261EA3CD81007BC052 /* Settings.bundle */,
 				06D04C251E1248DB0013B4AA /* Assets.xcassets */,
@@ -300,6 +336,13 @@
 			dependencies = (
 			);
 			name = DailyFeed;
+			packageProductDependencies = (
+				1D0F3DBA26B15299001ED7D0 /* PromiseKit */,
+				1D0F3DBD26B15303001ED7D0 /* Kingfisher */,
+				1D0F3DC026B1534A001ED7D0 /* DZNEmptyDataSet */,
+				1DC1B9E526B153FE00B7F103 /* Lottie */,
+				1DC1B9F526B1563000B7F103 /* RealmSwift */,
+			);
 			productName = DailyFeed;
 			productReference = 06D04C1B1E1248DA0013B4AA /* DailyFeed.app */;
 			productType = "com.apple.product-type.application";
@@ -311,7 +354,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = trianz;
 				TargetAttributes = {
 					06D04C1A1E1248DA0013B4AA = {
@@ -336,6 +379,13 @@
 				Base,
 			);
 			mainGroup = 06D04C121E1248DA0013B4AA;
+			packageReferences = (
+				1D0F3DB926B15299001ED7D0 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				1D0F3DBC26B15303001ED7D0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1D0F3DBF26B1534A001ED7D0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+				1DC1B9E426B153FE00B7F103 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				1DC1B9F426B1563000B7F103 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 06D04C1C1E1248DA0013B4AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,6 +407,7 @@
 				208C18271EA3CD81007BC052 /* Settings.bundle in Resources */,
 				06D04C261E1248DB0013B4AA /* Assets.xcassets in Resources */,
 				0621695A1E260AE800ECB0AB /* DailySourceItemCell.xib in Resources */,
+				1DC1B9EE26B154B200B7F103 /* .gitkeep in Resources */,
 				06D04C241E1248DB0013B4AA /* Main.storyboard in Resources */,
 				207A5C261E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.xib in Resources */,
 			);
@@ -422,25 +473,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DailyFeed/Pods-DailyFeed-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/PullToReach/PullToReach.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToReach.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -475,12 +512,17 @@
 				060D64881E31EB400053F2AB /* DailySourceItemLayout.swift in Sources */,
 				208FBB5B1EDB1C36009C2539 /* DailySourceItemiPadLayout.swift in Sources */,
 				207A5C251E9C1C6E00E4FC45 /* DailyFeedDetailItemCell.swift in Sources */,
+				1DC1B9F326B154B200B7F103 /* SelectionIndicatorView.swift in Sources */,
 				064FA8FA1E5DA98000693D12 /* DailyFeedRealmModel.swift in Sources */,
 				20EA15751EA28C6700047523 /* Reach.swift in Sources */,
 				06C38FD01E35E43C004429DD /* Date+Relative.swift in Sources */,
+				1DC1B9EF26B154B200B7F103 /* UIView+Helper.swift in Sources */,
+				1DC1B9F226B154B200B7F103 /* PullToReach.swift in Sources */,
+				1DC1B9F126B154B200B7F103 /* PullToReachObserver.swift in Sources */,
 				064FA8F31E52D48900693D12 /* BookmarkItemsCell.swift in Sources */,
 				2085CBC41EF9216900D26594 /* JSONDecodingError.swift in Sources */,
 				062169591E260AE800ECB0AB /* DailySourceItemCell.swift in Sources */,
+				1DC1B9F026B154B200B7F103 /* PullToReachTarget.swift in Sources */,
 				06529E7D1E408DC6003DA45B /* NewsDetailViewController+StateRestoration.swift in Sources */,
 				068496AC1E23AA2900DBD5A6 /* UIViewControllerExtension.swift in Sources */,
 				06D04C1F1E1248DB0013B4AA /* AppDelegate.swift in Sources */,
@@ -532,6 +574,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -556,7 +599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -588,6 +631,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -606,10 +650,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -625,8 +670,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DPJNX69R5W;
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sp.df;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -645,8 +693,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DPJNX69R5W;
 				INFOPLIST_FILE = DailyFeed/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sp.df;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -677,6 +728,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D0F3DB926B15299001ED7D0 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.15.3;
+			};
+		};
+		1D0F3DBC26B15303001ED7D0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
+		1D0F3DBF26B1534A001ED7D0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		1DC1B9E426B153FE00B7F103 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.3;
+			};
+		};
+		1DC1B9F426B1563000B7F103 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D0F3DBA26B15299001ED7D0 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D0F3DB926B15299001ED7D0 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+		1D0F3DBD26B15303001ED7D0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D0F3DBC26B15303001ED7D0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		1D0F3DC026B1534A001ED7D0 /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D0F3DBF26B1534A001ED7D0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
+		1DC1B9E526B153FE00B7F103 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DC1B9E426B153FE00B7F103 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		1DC1B9F526B1563000B7F103 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DC1B9F426B1563000B7F103 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 06D04C131E1248DA0013B4AA /* Project object */;
 }

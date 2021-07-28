@@ -231,11 +231,11 @@ extension DailyFeedNewsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegat
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
         return #imageLiteral(resourceName: "placeholder")
     }
     
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
         return true
     }
 }

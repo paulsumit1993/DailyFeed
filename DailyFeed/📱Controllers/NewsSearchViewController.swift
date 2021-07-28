@@ -35,7 +35,7 @@ class NewsSearchViewController: UIViewController, UICollectionViewDelegate, UICo
 
     private var resultsSearchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
-        controller.dimsBackgroundDuringPresentation = false
+        controller.obscuresBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = true
         controller.searchBar.placeholder = "Search Anything..."
         controller.searchBar.searchBarStyle = .prominent
@@ -210,19 +210,19 @@ extension NewsSearchViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelega
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
         return #imageLiteral(resourceName: "search")
     }
     
-    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+    func imageTintColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
         return UIColor.lightGray
     }
     
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
         return true
     }
     
-    func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView) -> Bool {
         return true
     }
 }

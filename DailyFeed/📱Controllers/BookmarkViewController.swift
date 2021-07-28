@@ -127,15 +127,15 @@ extension BookmarkViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
         return #imageLiteral(resourceName: "bookmark")
     }
     
-    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+    func imageTintColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
         return UIColor.lightGray
     }
     
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
         return true
     }
 }

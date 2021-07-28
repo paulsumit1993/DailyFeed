@@ -5,11 +5,5 @@ target 'DailyFeed' do
   use_frameworks!
 
   # Pods for DailyFeed
-  pod 'lottie-ios'
-  pod 'DZNEmptyDataSet'
-  pod 'PromiseKit'
   pod 'R.swift'
-  pod 'Kingfisher'
-  pod 'PullToReach'
-  pod 'RealmSwift'
 end

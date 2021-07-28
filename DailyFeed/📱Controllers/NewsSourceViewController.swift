@@ -8,7 +8,6 @@
 import UIKit
 import DZNEmptyDataSet
 import PromiseKit
-import PullToReach
 
 class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, PullToReach {
     
@@ -63,7 +62,7 @@ class NewsSourceViewController: UIViewController, UITableViewDelegate, UITableVi
 
     private var resultsSearchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
-        controller.dimsBackgroundDuringPresentation = false
+        controller.obscuresBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = true
         controller.searchBar.placeholder = "Search Sources..."
         controller.searchBar.searchBarStyle = .minimal
